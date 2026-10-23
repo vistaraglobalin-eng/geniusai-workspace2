@@ -95,7 +95,7 @@ export function AgreementForm({ templateKey, initialPrompt, creditsAvailable }: 
         <button type="submit" className="primary-button" disabled={busy}>
           <Wand2 size={16} aria-hidden="true" /> {busy ? "Drafting… (up to a minute)" : "Draft with AI"}
         </button>
-        <span className="field-hint">A draft usually uses 10–25 credits. About 45 are held while it's written and the unused part is returned straight away. You have {creditsAvailable.toLocaleString("en-IN")}.</span>
+        <span className="field-hint">A draft usually uses 10–25 credits. About 45 are held while it’s written and the unused part is returned straight away. You have {creditsAvailable.toLocaleString("en-IN")}.</span>
       </div>
       <p className="dg-disclaimer">{DISCLAIMER}</p>
     </form>

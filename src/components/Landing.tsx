@@ -20,7 +20,7 @@ export function Landing() {
         <h1>Draft, understand and finish <span>every document.</span></h1>
         <p className="legal-lead">Agreements, PDFs and paperwork in one private workspace, built for India.</p>
         <div className="panel-card landing-prompt"><PromptBox heading="What agreement do you need?" /></div>
-        <p className="field-hint">You'll be asked to sign in first. New workspaces start with free credits.</p>
+        <p className="field-hint">You’ll be asked to sign in first. New workspaces start with free credits.</p>
       </section>
 
       <section className="landing-templates" aria-labelledby="popular">
