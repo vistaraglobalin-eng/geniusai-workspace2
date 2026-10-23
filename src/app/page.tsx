@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
-  ArrowUpRight, BriefcaseBusiness, FileText, Image as ImageIcon,
-  ReceiptText, Scale, Signature, ShieldCheck
+  BriefcaseBusiness, ChevronRight, Combine, FileInput, FilePen, FileText, Image as ImageIcon, Languages,
+  Layers, ListChecks, Lock, MessageSquareText, Minimize2, ReceiptText, ScanText, Scissors, Send, Signature, Table, Zap
 } from "lucide-react";
 import { getSupabasePublicEnv } from "@/lib/supabase/env";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -11,18 +11,65 @@ import { SetupNotice } from "@/components/SetupNotice";
 import { UploadButton } from "@/components/UploadButton";
 import { RecentFiles } from "@/components/RecentFiles";
 import { AppShell, firstNameOf } from "@/components/AppShell";
-import { PDF_TOOL_ICONS } from "@/components/ToolIcons";
-import { PDF_TOOLS, TOOL_INFO } from "@/lib/pdf/catalog";
 import { Landing } from "@/components/Landing";
 import { PromptBox } from "@/components/PromptBox";
+import { getTemplate } from "@/lib/agreements/templates";
 
-const tools = [
-  { number: "01", title: "Document Genius", description: "Summarize, translate, OCR, Markdown and tables from documents.", detail: "Summary · Translate · OCR · Tables", icon: FileText, color: "lavender", status: "Ready", href: "/tools/documents" },
-  { number: "02", title: "Resume & Career Studio", description: "Build a resume and tailor applications to a role.", detail: "Resume · Cover letter · Interview prep", icon: BriefcaseBusiness, color: "mint", status: "Coming soon" },
-  { number: "03", title: "Product Photo & Ad Studio", description: "Create polished product visuals and ad copy.", detail: "Backgrounds · Creatives · Ad copy", icon: ImageIcon, color: "peach", status: "Coming soon" },
-  { number: "04", title: "Invoice & Receipt Manager", description: "Create invoices and turn receipts into organized records.", detail: "Invoices · OCR · CSV export", icon: ReceiptText, color: "blue", status: "Coming soon" },
-  { number: "05", title: "Agreement Studio", description: "Draft India-ready agreements with AI and explain contracts before you sign.", detail: "8 templates · AI revise · Versions · Word/PDF", icon: Scale, color: "rose", status: "Ready", href: "/tools/agreements" }
+type Row = { href?: string; title: string; text: string; Icon: typeof FileText; tint: string; soon?: boolean };
+
+// Every service, grouped by the job people come to do.
+const GROUPS: { title: string; rows: Row[] }[] = [
+  {
+    title: "Create & sign",
+    rows: [
+      { href: "/tools/agreements", title: "Agreement Studio", text: "Draft India-ready agreements with AI", Icon: FilePen, tint: "indigo" },
+      { href: "/tools/agreements#templates", title: "Templates", text: "NDA, rental, employment and more", Icon: Layers, tint: "purple" },
+      { href: "/tools/sign", title: "Sign PDF", text: "Draw or type your signature", Icon: Signature, tint: "green" },
+      { title: "Request signatures", text: "Send a document for others to sign", Icon: Send, tint: "gray", soon: true }
+    ]
+  },
+  {
+    title: "Understand documents",
+    rows: [
+      { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks", Icon: MessageSquareText, tint: "orange" },
+      { href: "/tools/documents?task=summary", title: "Summarize", text: "Key points from long documents", Icon: ListChecks, tint: "blue" },
+      { href: "/tools/documents?task=translate", title: "Translate", text: "Into 25 languages, incl. Hindi", Icon: Languages, tint: "teal" },
+      { href: "/tools/documents?task=extract_text", title: "Extract text", text: "From scans and photos (OCR)", Icon: ScanText, tint: "cyan" },
+      { href: "/tools/documents?task=tables", title: "Extract tables", text: "To a spreadsheet you can edit", Icon: Table, tint: "green" }
+    ]
+  },
+  {
+    title: "PDF tools",
+    rows: [
+      { href: "/tools/pdf/merge", title: "Merge PDFs", text: "Combine files in the order you want", Icon: Combine, tint: "red" },
+      { href: "/tools/pdf/split", title: "Split PDF", text: "By page ranges or every few pages", Icon: Scissors, tint: "orange" },
+      { href: "/tools/pdf/compress", title: "Compress PDF", text: "Make files smaller to share", Icon: Minimize2, tint: "green" },
+      { href: "/tools/pdf/office-to-pdf", title: "Convert to PDF", text: "Word, Excel, PowerPoint, images", Icon: FileInput, tint: "blue" },
+      { href: "/tools/pdf/protect", title: "Protect PDF", text: "Add a password", Icon: Lock, tint: "gray" },
+      { href: "/tools/pdf", title: "All PDF tools", text: "Rotate, reorder, number, watermark…", Icon: FileText, tint: "indigo" }
+    ]
+  }
+];
+
+const ACTIONS = [
+  { href: "/tools/agreements/new", label: "Draft", Icon: FilePen, tint: "indigo" },
+  { href: "/tools/agreements/explain", label: "Explain", Icon: MessageSquareText, tint: "orange" },
+  { href: "/tools/sign", label: "Sign", Icon: Signature, tint: "green" },
+  { href: "/tools/documents?task=summary", label: "Summarize", Icon: ListChecks, tint: "blue" },
+  { href: "/tools/documents?task=translate", label: "Translate", Icon: Languages, tint: "teal" },
+  { href: "/tools/pdf/merge", label: "Merge", Icon: Combine, tint: "red" }
 ] as const;
+
+const SOON = [
+  { title: "Resume & Career Studio", Icon: BriefcaseBusiness },
+  { title: "Invoices & Receipts", Icon: ReceiptText },
+  { title: "Product Photos & Ads", Icon: ImageIcon }
+] as const;
+
+function greeting(now: Date) {
+  const hour = Number(new Intl.DateTimeFormat("en-GB", { hour: "numeric", hour12: false, timeZone: "Asia/Kolkata" }).format(now));
+  return hour < 5 ? "Good evening" : hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+}
 
 export default async function Home() {
   if (!getSupabasePublicEnv().configured) return <SetupNotice />;
@@ -32,72 +79,109 @@ export default async function Home() {
   if (!ctx) return <Landing />;
   if (!ctx.workspace) redirect("/onboarding");
   const workspace = ctx.workspace;
-
   const credits = ctx.credits ?? { available: 0, reserved: 0 };
-  const planName = ctx.plan?.name ?? "Free";
-  const planStatus = ctx.plan?.status ?? "free";
+
+  const { data: agreementRows } = await supabase
+    .from("agreements")
+    .select("id, title, template_key, status, updated_at")
+    .eq("workspace_id", workspace.id)
+    .is("deleted_at", null)
+    .order("updated_at", { ascending: false })
+    .limit(4);
+  const agreements = (agreementRows ?? []) as { id: string; title: string; template_key: string; status: string; updated_at: string }[];
+
+  const now = new Date();
+  const today = new Intl.DateTimeFormat("en-IN", { weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata" }).format(now);
+  const shortDate = (iso: string) => new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", timeZone: "Asia/Kolkata" }).format(new Date(iso));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="overview" breadcrumb="Overview">
-      <div className="welcome-row">
-        <div><h1>Welcome, <span>{firstNameOf(ctx)}.</span></h1><p className="subtitle">Your documents, agreements and PDFs in one place.</p></div>
-        <UploadButton workspaceId={workspace.id} />
+    <AppShell ctx={{ ...ctx, workspace }} active="overview" breadcrumb="Home">
+      <header className="dash-head">
+        <div>
+          <p className="dash-date">{today}</p>
+          <h1>{greeting(now)}, {firstNameOf(ctx)}</h1>
+        </div>
+        <div className="dash-head-actions">
+          <Link href="/billing" className="credit-pill" title="Plans & credits"><Zap size={15} aria-hidden="true" />{credits.available.toLocaleString("en-IN")} credits</Link>
+          <UploadButton workspaceId={workspace.id} label="Upload" />
+        </div>
+      </header>
+
+      <section className="ask-card" aria-labelledby="ask-title">
+        <h2 id="ask-title">What do you want to get done?</h2>
+        <PromptBox heading="Describe an agreement and GeniusAI drafts it" compact />
+        <nav className="action-row" aria-label="Shortcuts">
+          {ACTIONS.map(({ href, label, Icon, tint }) => (
+            <Link key={label} href={href} className="action">
+              <span className={`app-icon lg ${tint}`}><Icon size={22} aria-hidden="true" /></span>
+              <span>{label}</span>
+            </Link>
+          ))}
+        </nav>
+      </section>
+
+      <div className="service-groups">
+        {GROUPS.map((g) => (
+          <section key={g.title} className="service-group" aria-labelledby={`g-${g.title}`}>
+            <h2 id={`g-${g.title}`}>{g.title}</h2>
+            <ul className="list-card">
+              {g.rows.map(({ href, title, text, Icon, tint, soon }) => {
+                const inner = (
+                  <>
+                    <span className={`app-icon ${tint}`}><Icon size={17} aria-hidden="true" /></span>
+                    <span className="list-text"><strong>{title}</strong><span>{text}</span></span>
+                    {soon ? <span className="soon-tag">Soon</span> : <ChevronRight size={17} className="list-chevron" aria-hidden="true" />}
+                  </>
+                );
+                return <li key={title}>{href && !soon ? <Link href={href} className="list-row">{inner}</Link> : <div className="list-row muted">{inner}</div>}</li>;
+              })}
+            </ul>
+          </section>
+        ))}
       </div>
 
-      <section className="hero-card" aria-label="Get started">
-        <h2>What do you want to get done?</h2>
-        <PromptBox heading="Describe an agreement and the AI drafts it" compact />
-        <div className="hero-links">
-          <Link href="/tools/documents">Summarize or translate a document</Link>
-          <Link href="/tools/sign">Sign a PDF</Link>
-          <Link href="/tools/pdf">PDF tools</Link>
+      <h2 className="dash-section-title">Continue where you left off</h2>
+      <div className="continue-grid">
+        <section className="panel-card" aria-labelledby="recent-agreements">
+          <div className="panel-title"><div><h3 id="recent-agreements">Agreements</h3></div><Link href="/tools/agreements">See all</Link></div>
+          {agreements.length === 0 ? (
+            <p className="dash-empty">No agreements yet. <Link href="/tools/agreements">Draft your first one</Link>.</p>
+          ) : (
+            <ul className="mini-list">
+              {agreements.map((a) => (
+                <li key={a.id}>
+                  <Link href={`/tools/agreements/${a.id}`}>
+                    <span className="mini-title">{a.title}</span>
+                    <span className="mini-meta">{getTemplate(a.template_key)?.title ?? "Custom document"}, {shortDate(a.updated_at)}</span>
+                  </Link>
+                  <span className={`as-status ${a.status}`}>{a.status === "final" ? "Final" : "Draft"}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+        <section className="panel-card" aria-labelledby="recent-files">
+          <div className="panel-title"><div><h3 id="recent-files">Files</h3></div><Link href="/files">See all</Link></div>
+          <RecentFiles files={ctx.recentFiles.slice(0, 4)} currentUserId={ctx.user.id} role={workspace.role} />
+        </section>
+        <section className="panel-card credits-card" aria-labelledby="credits-h">
+          <div className="panel-title"><div><h3 id="credits-h">Credits</h3></div><Link href="/billing">Buy credits</Link></div>
+          <p className="credits-big">{credits.available.toLocaleString("en-IN")}</p>
+          <p className="dash-empty">available for AI tools{credits.reserved > 0 ? `, ${credits.reserved.toLocaleString("en-IN")} in use now` : ""}. PDF tools and signing are free.</p>
+          <p className="dash-fine">A typical agreement draft uses 10–25 credits.</p>
+        </section>
+      </div>
+
+      <section className="soon-row" aria-labelledby="soon-h">
+        <h2 id="soon-h" className="dash-section-title">Coming soon</h2>
+        <div className="soon-list">
+          {SOON.map(({ title, Icon }) => (
+            <span key={title} className="soon-item"><span className="app-icon gray"><Icon size={16} aria-hidden="true" /></span>{title}</span>
+          ))}
         </div>
       </section>
 
-      <div className="section-heading">
-        <div><h2>Quick PDF tools</h2><p>Free and instant. Results are saved to Files.</p></div>
-        <Link className="tool-count" href="/tools/pdf">See all</Link>
-      </div>
-      <nav className="quick-tools" aria-label="Quick PDF tools">
-        <Link href="/tools/sign" className="quick-tool"><Signature size={16} aria-hidden="true" />Sign PDF</Link>
-        {(["merge", "split", "compress", "images-to-pdf", "protect"] as const).filter((t) => PDF_TOOLS.includes(t)).map((t) => {
-          const Icon = PDF_TOOL_ICONS[t];
-          return <Link key={t} href={`/tools/pdf/${t}`} className="quick-tool"><Icon size={16} aria-hidden="true" />{TOOL_INFO[t].title}</Link>;
-        })}
-      </nav>
-
-      <div className="section-heading" id="tools"><div><h2>Your tools</h2><p>Choose a tool to get started.</p></div></div>
-      <div className="tool-grid">
-        {tools.map((tool) => {
-          const Icon = tool.icon;
-          const ready = "href" in tool;
-          const inner = <>
-            <div className="tool-card-top"><div className={`tool-icon ${tool.color}`}><Icon size={22}/></div></div>
-            <h3>{tool.title}</h3><p>{tool.description}</p><div className="tool-detail">{tool.detail}</div>
-            <div className="tool-card-bottom"><span className={`status-dot${ready ? " ready" : ""}`}/><span>{tool.status}</span>{ready && <ArrowUpRight size={16} className="card-arrow"/>}</div>
-          </>;
-          return ready
-            ? <Link className="tool-card tool-card-link" key={tool.number} href={tool.href}>{inner}</Link>
-            : <article className="tool-card tool-card-soon" key={tool.number}>{inner}</article>;
-        })}
-      </div>
-
-      <div className="bottom-grid" id="recent">
-        <section className="panel-card">
-          <div className="panel-title"><div><h3>Recent files</h3><p>The latest uploads in {workspace.name}.</p></div><Link href="/files">View all</Link></div>
-          <RecentFiles files={ctx.recentFiles} currentUserId={ctx.user.id} role={workspace.role} />
-        </section>
-        <section className="panel-card" id="plans">
-          <div className="panel-title"><div><h3>Your plan</h3><p>Simple tools, transparent usage.</p></div><Link href="/billing">Buy credits</Link></div>
-          <div className="plan-row"><div><span className="plan-label">Current plan</span><strong>{planName}</strong></div><span className="plan-pill">{planStatus}</span></div>
-          <div className="credit-stats">
-            <div><span className="plan-label">Available credits</span><strong>{credits.available.toLocaleString("en-IN")}</strong></div>
-            <div><span className="plan-label">In use</span><strong>{credits.reserved.toLocaleString("en-IN")}</strong></div>
-          </div>
-          <div className="plan-foot"><span>1 credit ≈ 750 words read. Writing costs 5× more than reading.</span><ShieldCheck size={15}/></div>
-        </section>
-      </div>
-      <footer>GeniusAI Workspace <span>•</span> Files are stored privately in your workspace. AI tools send a file to the AI provider only when you run a task on it.</footer>
+      <footer>Files are stored privately in {workspace.name}. AI tools send a file to the AI provider only when you run a task on it.</footer>
     </AppShell>
   );
 }

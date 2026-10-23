@@ -43,7 +43,7 @@ export default async function AgreementStudioPage() {
         <PromptBox />
       </section>
 
-      <div className="section-heading"><div><h2>Start from a template</h2><p>Answer a few questions; the AI writes the first draft.</p></div></div>
+      <div className="section-heading" id="templates"><div><h2>Start from a template</h2><p>Answer a few questions; the AI writes the first draft.</p></div></div>
       <div className="as-templates">
         {TEMPLATES.map((t) => {
           const Icon = TEMPLATE_ICONS[t.key] ?? FilePen;

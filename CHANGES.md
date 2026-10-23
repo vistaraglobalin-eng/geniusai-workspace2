@@ -1,5 +1,11 @@
 # Changes
 
+## Revision 14: Home dashboard (2026-10-24)
+- Every tool and service has a fixed place, grouped by the job people come to do: **Create & sign** (Agreement Studio, Templates, Sign PDF, Request signatures soon), **Understand documents** (Explain a contract, Summarize, Translate, Extract text, Extract tables), **PDF tools** (Merge, Split, Compress, Convert to PDF, Protect, All PDF tools).
+- Time-of-day greeting with today's date (IST), credits at a glance, Upload.
+- "What do you want to get done?" request card with six one-tap shortcuts (Draft, Explain, Sign, Summarize, Translate, Merge), in iOS-style solid colour icon tiles.
+- "Continue where you left off": latest agreements, latest files and credits. Upcoming tools shown quietly under "Coming soon".
+
 ## Revision 13: design refresh (2026-10-24)
 - **Native-feeling type:** the device's own interface font (SF Pro on iPhone/Mac, Segoe UI on Windows, Roboto on Android, Noto Sans for Indian scripts). Google Fonts removed, so pages load faster.
 - **Calmer palette:** neutral greys, near-black text, one indigo accent (#4F46E5) for actions; true-black dark mode with iOS-style grey surfaces.
