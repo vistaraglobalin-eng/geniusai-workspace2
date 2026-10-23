@@ -32,7 +32,6 @@ export default async function PdfToolkitPage() {
     <AppShell ctx={{ ...ctx, workspace }} active="pdf" breadcrumb="PDF Toolkit">
       <div className="welcome-row">
         <div>
-          <div className="eyebrow"><span className="eyebrow-dot" /> PDF TOOLKIT</div>
           <h1>Every PDF tool, <span>one place.</span></h1>
           <p className="subtitle">Instant tools are free and never change your original. Results are saved to Files.</p>
         </div>

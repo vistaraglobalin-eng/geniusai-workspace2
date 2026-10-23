@@ -28,7 +28,6 @@ export default async function SettingsPage() {
     <AppShell ctx={{ ...ctx, workspace }} active="settings" breadcrumb="Settings">
       <div className="welcome-row">
         <div>
-          <div className="eyebrow"><span className="eyebrow-dot" /> ACCOUNT</div>
           <h1>Settings</h1>
           <p className="subtitle">Your profile, workspace, appearance and privacy.</p>
         </div>

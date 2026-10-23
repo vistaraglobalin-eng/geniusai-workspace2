@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 13: design refresh (2026-10-24)
+- **Native-feeling type:** the device's own interface font (SF Pro on iPhone/Mac, Segoe UI on Windows, Roboto on Android, Noto Sans for Indian scripts). Google Fonts removed, so pages load faster.
+- **Calmer palette:** neutral greys, near-black text, one indigo accent (#4F46E5) for actions; true-black dark mode with iOS-style grey surfaces.
+- **Less decoration:** removed all-caps eyebrow labels, coloured words in headings, 01-05 numbers, the decorative orbit art on Home and glowing button shadows; labels are in sentence case.
+- **iOS-style details:** frosted top bar, phone tab bar and site header; 44px buttons and inputs; segmented controls; hairline borders instead of card shadows; All tools is a compact list on phones; example prompts scroll sideways.
+- **Home:** "What do you want to get done?" request field is the centrepiece, with links to common jobs; 5 quick PDF tools plus "See all".
+
 ## Revision 12: Sign PDF (2026-10-24)
 - **Sign PDF** `/tools/sign`: draw or type a signature, place it on any page (tap, drag, resize, add to every page, optional date), save a signed copy to Files with a Signing record page and an audit-log entry (SHA-256 before and after). Free.
 - Engine `src/lib/pdf/sign.ts` (pdf-lib) handles rotated and cropped pages; 10 checks plus rendered output inspected. Page previews use pdf.js (`pdfjs-dist` 6.2.108, legacy build) in the browser, tested in Chromium.

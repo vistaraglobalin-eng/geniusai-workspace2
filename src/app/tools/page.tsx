@@ -28,7 +28,7 @@ export default async function ToolsPage() {
 
   return (
     <AppShell ctx={{ ...ctx, workspace }} active="tools" breadcrumb="All tools">
-      <div className="welcome-row"><div><div className="eyebrow"><span className="eyebrow-dot" /> ALL TOOLS</div><h1>What do you need <span>to do?</span></h1></div></div>
+      <div className="welcome-row"><div><h1>What do you need <span>to do?</span></h1></div></div>
       <div className="tool-grid tools-hub">
         {HUBS.map(({ href, title, text, Icon, color }) => (
           <Link key={href} href={href} className="tool-card tool-card-link">

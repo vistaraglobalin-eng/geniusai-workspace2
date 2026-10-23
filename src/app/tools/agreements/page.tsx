@@ -34,7 +34,6 @@ export default async function AgreementStudioPage() {
     <AppShell ctx={{ ...ctx, workspace }} active="agreements" breadcrumb="Agreement Studio">
       <div className="welcome-row">
         <div>
-          <div className="eyebrow"><span className="eyebrow-dot"/> TOOL 05</div>
           <h1>Agreement <span>Studio</span></h1>
           <p className="subtitle">Draft India-ready agreements with AI, edit them with version history, and understand any contract before you sign.</p>
         </div>
@@ -44,7 +43,7 @@ export default async function AgreementStudioPage() {
         <PromptBox />
       </section>
 
-      <div className="section-heading"><div><h2>Start from a template</h2><p>Answer a few questions; the AI writes the first draft.</p></div><span className="tool-count">{TEMPLATES.length} TEMPLATES</span></div>
+      <div className="section-heading"><div><h2>Start from a template</h2><p>Answer a few questions; the AI writes the first draft.</p></div></div>
       <div className="as-templates">
         {TEMPLATES.map((t) => {
           const Icon = TEMPLATE_ICONS[t.key] ?? FilePen;

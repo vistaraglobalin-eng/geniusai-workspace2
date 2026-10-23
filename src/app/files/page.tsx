@@ -45,7 +45,6 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
     <AppShell ctx={{ ...ctx, workspace }} active="files" breadcrumb="Files">
       <div className="welcome-row">
         <div>
-          <div className="eyebrow"><span className="eyebrow-dot" /> LIBRARY</div>
           <h1>Files</h1>
           <p className="subtitle">Everything in {workspace.name}, shared by all your tools.</p>
         </div>

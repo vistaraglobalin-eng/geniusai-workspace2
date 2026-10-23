@@ -65,7 +65,6 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
     <AppShell ctx={{ ...ctx, workspace }} active="billing" breadcrumb="Plans & credits">
       <div className="welcome-row">
         <div>
-          <div className="eyebrow"><span className="eyebrow-dot" /> PLANS & CREDITS</div>
           <h1>Credits for <span>AI tools</span></h1>
           <p className="subtitle">PDF Toolkit tools are free. AI tools use credits, and you see the cost before anything runs.</p>
         </div>
@@ -75,8 +74,8 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
         <section className="panel-card balance-card" aria-labelledby="bal-h">
           <div className="panel-title"><div><h3 id="bal-h">{workspace.name}</h3><p>Shared by everyone in this workspace.</p></div><Zap size={19} aria-hidden="true" /></div>
           <div className="credit-stats">
-            <div><span className="plan-label">AVAILABLE</span><strong>{credits.available.toLocaleString("en-IN")}</strong></div>
-            <div><span className="plan-label">IN USE NOW</span><strong>{credits.reserved.toLocaleString("en-IN")}</strong></div>
+            <div><span className="plan-label">Available</span><strong>{credits.available.toLocaleString("en-IN")}</strong></div>
+            <div><span className="plan-label">In use now</span><strong>{credits.reserved.toLocaleString("en-IN")}</strong></div>
           </div>
           <p className="dg-hint">1 credit ≈ 750 words read. Writing costs 5× more than reading. A 10-page summary usually uses 20–40 credits.</p>
         </section>

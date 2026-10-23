@@ -46,7 +46,7 @@ export function BuyCredits({ packs, paymentsReady, canBuy }: { packs: Pack[]; pa
       await loadCheckout();
       if (!window.Razorpay) return setStatus({ kind: "error", text: "The payment window couldn't load. Check your connection and try again." });
 
-      const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#5b4cd0";
+      const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#4f46e5";
       const rzp = new window.Razorpay({
         key: data.keyId,
         order_id: data.orderId,

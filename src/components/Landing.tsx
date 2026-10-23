@@ -16,7 +16,6 @@ export function Landing() {
   return (
     <PublicLayout current="/">
       <section className="landing-hero">
-        <div className="eyebrow"><span className="eyebrow-dot" /> AI WORKSPACE FOR DOCUMENTS</div>
         <h1>Draft, understand and finish <span>every document.</span></h1>
         <p className="legal-lead">Agreements, PDFs and paperwork in one private workspace, built for India.</p>
         <div className="panel-card landing-prompt"><PromptBox heading="What agreement do you need?" /></div>

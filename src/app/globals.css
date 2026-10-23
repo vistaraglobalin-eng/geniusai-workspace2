@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 /* =========================================================================
    Design tokens
@@ -8,30 +7,32 @@
    ========================================================================= */
 :root {
   color-scheme: light;
-  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Manrope', var(--font-body);
+  /* The device's own interface font: SF Pro on iPhone/Mac, Segoe UI on Windows, Roboto on Android.
+     Noto Sans covers Indian scripts where the system font doesn't. */
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 
-  --bg: #f7f8fc;
+  --bg: #f5f5f7;
   --surface: #ffffff;
-  --surface-2: #f6f6fb;
-  --surface-3: #eeeef6;
-  --border: #e6e7f0;
-  --border-strong: #d6d8e4;
-  --text: #1d1e33;
-  --text-2: #4f5369;
-  --text-3: #62667c;
-  --shadow-sm: 0 1px 2px #1d1e330a;
-  --shadow-md: 0 10px 28px #1d1e3312;
-  --scrim: #1d1e3366;
+  --surface-2: #f5f5f7;
+  --surface-3: #ebebef;
+  --border: #e3e3e8;
+  --border-strong: #cfcfd6;
+  --text: #1d1d1f;
+  --text-2: #48484f;
+  --text-3: #6b6b73;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 4%);
+  --shadow-md: 0 12px 32px rgb(0 0 0 / 7%);
+  --scrim: rgb(0 0 0 / 40%);
 
   --success-bg: #eefaf4; --success-text: #1b6b47; --success-border: #cdeedd;
   --danger-bg: #fff1f3;  --danger-text: #a3233f;  --danger-border: #ffd6de; --danger-solid: #c23658;
   --warning-bg: #fff8e8; --warning-text: #7a4f00; --warning-border: #f3e0ad;
   --pending-bg: #fff4dc; --pending-text: #8a5800;
 
-  /* Accent (Lavender is the brand default) */
-  --accent: #5b4cd0;
-  --accent-strong: #4a3cb8;
+  /* Accent: GeniusAI indigo is the brand default (key "lavender" kept for saved preferences) */
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
   --on-accent: #ffffff;
   --accent-text: var(--accent);
   --accent-soft: color-mix(in srgb, var(--accent) 10%, var(--surface));
@@ -42,7 +43,7 @@
   /* Module colours (fixed identity per tool) */
   --mod-lavender: #5b4cd0; --mod-mint: #1f8a63; --mod-peach: #b9551c; --mod-blue: #2a6cc0; --mod-rose: #b3325b;
 
-  --radius-sm: 8px; --radius: 12px; --radius-lg: 16px;
+  --radius-sm: 10px; --radius: 14px; --radius-lg: 20px;
   --sidebar-w: 246px;
   --bottom-nav-h: 0px;
 }
@@ -56,15 +57,15 @@
 /* Dark tokens: applied for data-theme="dark", and for "system" when the device is dark. */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0e0f17; --surface: #161724; --surface-2: #1c1d2d; --surface-3: #25263a;
-  --border: #2a2c40; --border-strong: #3a3d55;
-  --text: #eceef7; --text-2: #c0c3d6; --text-3: #a3a7bd;
-  --shadow-sm: 0 1px 2px #00000040; --shadow-md: 0 12px 30px #00000059; --scrim: #000000a0;
+  --bg: #000000; --surface: #1c1c1e; --surface-2: #121214; --surface-3: #2c2c2e;
+  --border: #2f2f33; --border-strong: #48484c;
+  --text: #f5f5f7; --text-2: #c7c7cc; --text-3: #a1a1a6;
+  --shadow-sm: 0 1px 2px #00000040; --shadow-md: 0 12px 30px #00000066; --scrim: #000000a0;
   --success-bg: #15302a; --success-text: #7fdcae; --success-border: #22493d;
   --danger-bg: #3a1b24;  --danger-text: #ff9db0;  --danger-border: #5a2735; --danger-solid: #e0587a;
   --warning-bg: #33290f; --warning-text: #f3c56b; --warning-border: #4d3d14;
   --pending-bg: #33290f; --pending-text: #f3c56b;
-  --accent: #a99ff7; --accent-strong: #c2baff; --on-accent: #12131c;
+  --accent: #9c95ff; --accent-strong: #b8b3ff; --on-accent: #000000;
   --accent-soft: color-mix(in srgb, var(--accent) 16%, var(--surface));
   --accent-softer: color-mix(in srgb, var(--accent) 8%, var(--surface));
   --accent-border: color-mix(in srgb, var(--accent) 45%, var(--surface));
@@ -79,15 +80,15 @@
 @media (prefers-color-scheme: dark) {
   :root[data-theme="system"] {
     color-scheme: dark;
-    --bg: #0e0f17; --surface: #161724; --surface-2: #1c1d2d; --surface-3: #25263a;
-    --border: #2a2c40; --border-strong: #3a3d55;
-    --text: #eceef7; --text-2: #c0c3d6; --text-3: #a3a7bd;
-    --shadow-sm: 0 1px 2px #00000040; --shadow-md: 0 12px 30px #00000059; --scrim: #000000a0;
+    --bg: #000000; --surface: #1c1c1e; --surface-2: #121214; --surface-3: #2c2c2e;
+    --border: #2f2f33; --border-strong: #48484c;
+    --text: #f5f5f7; --text-2: #c7c7cc; --text-3: #a1a1a6;
+    --shadow-sm: 0 1px 2px #00000040; --shadow-md: 0 12px 30px #00000066; --scrim: #000000a0;
     --success-bg: #15302a; --success-text: #7fdcae; --success-border: #22493d;
     --danger-bg: #3a1b24;  --danger-text: #ff9db0;  --danger-border: #5a2735; --danger-solid: #e0587a;
     --warning-bg: #33290f; --warning-text: #f3c56b; --warning-border: #4d3d14;
     --pending-bg: #33290f; --pending-text: #f3c56b;
-    --accent: #a99ff7; --accent-strong: #c2baff; --on-accent: #12131c;
+    --accent: #9c95ff; --accent-strong: #b8b3ff; --on-accent: #000000;
     --accent-soft: color-mix(in srgb, var(--accent) 16%, var(--surface));
     --accent-softer: color-mix(in srgb, var(--accent) 8%, var(--surface));
     --accent-border: color-mix(in srgb, var(--accent) 45%, var(--surface));
@@ -118,7 +119,7 @@
    ========================================================================= */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: .875rem; line-height: 1.5; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: .9375rem; line-height: 1.5; letter-spacing: -0.006em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; color: inherit; }
 button:disabled { cursor: not-allowed; }
@@ -818,3 +819,114 @@ button.as-status { cursor: pointer; min-height: 28px; }
 .auth-switches p { margin: 0; }
 .link-button.with-icon { display: inline-flex; align-items: center; gap: 6px; }
 .input-with-icon .icon-button { margin-left: auto; }
+
+
+/* =========================================================================
+   Design refresh (revision 13): calm, precise, native-feeling.
+   One accent, hairline borders instead of shadows, frosted bars,
+   44px touch targets, no decorative labels.
+   ========================================================================= */
+h1 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.028em; line-height: 1.1; font-size: 2.25rem; }
+h1 span, .hero-card h2 span { color: inherit; }
+h2, h3 { letter-spacing: -0.018em; }
+.subtitle { color: var(--text-3); font-size: 1rem; }
+.welcome-row { margin-bottom: 22px; }
+
+/* Bars: frosted glass, like iOS */
+.topbar { background: color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 20; }
+.breadcrumb { color: var(--text-3); }
+.sidebar { background: color-mix(in srgb, var(--surface-2) 92%, transparent); border-right: 1px solid var(--border); }
+.nav-item { border-radius: 10px; min-height: 40px; color: var(--text-2); font-weight: 500; }
+.nav-item[aria-current="page"] { background: var(--surface-3); color: var(--text); font-weight: 600; box-shadow: none; }
+.nav-item[aria-current="page"] svg { color: var(--accent); }
+.brand-mark { border-radius: 9px; box-shadow: none; background: var(--accent); }
+.secure-note { background: transparent; border: 0; padding: 8px 4px; }
+@media (max-width: 760px) {
+  .bottom-nav { background: color-mix(in srgb, var(--surface) 80%, transparent); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+  .bottom-nav a { font-size: .66rem; font-weight: 500; color: var(--text-3); gap: 3px; }
+  .bottom-nav a svg { width: 24px; height: 24px; }
+  .bottom-nav a[aria-current="page"] { color: var(--accent-text); font-weight: 600; }
+  .bottom-nav a[aria-current="page"] svg { background: none; padding: 0; }
+  h1 { font-size: 2rem; }
+}
+
+/* Surfaces: hierarchy through radius and spacing, not shadows */
+.panel-card { border-radius: var(--radius-lg); border-color: var(--border); box-shadow: none; padding: 20px; }
+.tool-card { border-radius: var(--radius-lg); box-shadow: none; border: 1px solid var(--border); }
+.tool-card-link:hover { box-shadow: var(--shadow-md); transform: none; border-color: var(--border-strong); }
+.tool-icon { border-radius: 12px; }
+.tool-detail { background: transparent; padding: 0; color: var(--text-3); }
+.tool-count { text-transform: none; letter-spacing: 0; font-size: .875rem; font-weight: 600; color: var(--accent-text); }
+.section-heading h2 { font-size: 1.25rem; }
+
+/* Controls: 44px targets, no glow */
+.primary-button { border-radius: 12px; min-height: 44px; font-size: .9375rem; font-weight: 600; box-shadow: none; padding: 11px 18px; }
+.primary-button:active:not(:disabled) { transform: scale(.98); }
+.secondary-button { border-radius: 12px; min-height: 44px; font-size: .9375rem; font-weight: 600; border-color: var(--border-strong); color: var(--text); }
+.secondary-button:hover:not(:disabled) { background: var(--surface-2); }
+.quiet-button.with-icon { border-radius: 10px; }
+.danger-outline { border-radius: 12px; min-height: 44px; }
+.text-input, .auth-form input:not([type=radio]), .auth-form select, .select-input { border-radius: 12px; min-height: 44px; font-size: 1rem; background: var(--surface); }
+.chip { border-radius: 999px; border-color: var(--border); background: var(--surface); font-weight: 500; color: var(--text-2); }
+.segmented { background: var(--surface-3); border: 0; border-radius: 10px; padding: 2px; }
+.segmented label, .segmented button, .segmented a { border-radius: 8px; min-height: 34px; font-weight: 500; }
+.segmented label.selected, .segmented button[aria-selected="true"], .segmented a.selected { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgb(0 0 0 / 12%); font-weight: 600; }
+:root[data-theme="dark"] .segmented label.selected, :root[data-theme="dark"] .segmented button[aria-selected="true"], :root[data-theme="dark"] .segmented a.selected { background: #636366; }
+
+/* Labels in sentence case */
+.plan-label, .pack-name, .legal-eyebrow, .as-cat, .landing-templates h2, .auth-divider, .pack-badge { text-transform: none; letter-spacing: 0; }
+.plan-label { font-size: .8125rem; font-weight: 500; color: var(--text-3); }
+.as-cat { font-size: .75rem; font-weight: 500; color: var(--text-3); }
+.landing-templates h2 { font-size: 1rem; font-weight: 600; color: var(--text-2); }
+.auth-divider { font-size: .8125rem; font-weight: 500; }
+
+/* Home: the request field is the centrepiece */
+.hero-card { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 24px; min-height: 0; padding: 28px; display: flex; flex-direction: column; gap: 6px; }
+.hero-card h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; letter-spacing: -0.024em; margin: 0 0 6px; color: var(--text); }
+.hero-card .prompt-box.compact { width: 100%; max-width: none; margin: 4px 0 6px; }
+.hero-card .prompt-box.compact .prompt-label { color: var(--text-3); font-weight: 500; }
+.prompt-field { border-radius: 16px; background: var(--surface-2); border-color: transparent; padding: 10px; }
+.prompt-field:focus-within { background: var(--surface); }
+.prompt-field textarea { font-size: 1.0625rem; }
+.hero-links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .875rem; }
+.hero-links a { color: var(--accent-text); font-weight: 500; }
+.hero-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Landing */
+.landing-hero h1 { font-size: 3.25rem; letter-spacing: -0.035em; line-height: 1.05; }
+.landing-prompt { box-shadow: var(--shadow-md); border-radius: 24px; }
+.landing-feature { border-radius: var(--radius-lg); }
+.landing-trust { background: transparent; border: 0; border-top: 1px solid var(--border); border-radius: 0; padding: 22px 0 0; }
+@media (max-width: 760px) { .landing-hero h1 { font-size: 2.25rem; } .hero-card { padding: 20px; } .hero-card h2 { font-size: 1.4rem; } }
+
+/* Sign-in card */
+.auth-card { border-radius: 24px; box-shadow: var(--shadow-md); border-color: var(--border); }
+.auth-title { font-family: var(--font-display); letter-spacing: -0.028em; }
+.google-button { border-radius: 12px; box-shadow: none; min-height: 48px; font-weight: 600; }
+
+/* Agreement document reads like paper */
+.as-doc { border-radius: 16px; box-shadow: var(--shadow-sm); }
+.md { font-size: 1rem; }
+.public-header .brand > span:last-child { display: inline; }
+.public-header { border-bottom: 1px solid var(--border); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+.public-nav a[aria-current="page"] { background: var(--surface-3); color: var(--text); }
+@media (max-width: 760px) {
+  .public-header { flex-wrap: nowrap; }
+  .public-nav { order: 0; width: auto; margin-left: auto; }
+  .public-nav a:not([href="/pricing"]) { display: none; } /* the others are in the footer */
+  .public-header .primary-button { margin-left: 0; min-height: 38px; padding: 8px 14px; font-size: .875rem; }
+  /* Example requests scroll sideways in one line instead of stacking */
+  .prompt-box .chip-row { flex-wrap: nowrap; overflow-x: auto; margin: 0 -20px; padding: 2px 20px 4px; scrollbar-width: none; }
+  .prompt-box .chip-row::-webkit-scrollbar { display: none; }
+  .prompt-box .chip { white-space: nowrap; flex-shrink: 0; }
+}
+/* All tools on phones: a compact list, like iOS Settings rows */
+@media (max-width: 760px) {
+  .tools-hub { gap: 8px; }
+  .tools-hub .tool-card { display: grid; grid-template-columns: 44px minmax(0, 1fr) 20px; column-gap: 14px; row-gap: 2px; align-items: center; padding: 14px 16px; min-height: 0; }
+  .tools-hub .tool-card-top { display: contents; }
+  .tools-hub .tool-icon { grid-column: 1; grid-row: 1 / 3; width: 44px; height: 44px; }
+  .tools-hub .card-arrow { grid-column: 3; grid-row: 1 / 3; }
+  .tools-hub .tool-card h3 { grid-column: 2; grid-row: 1; margin: 0; font-size: 1rem; }
+  .tools-hub .tool-card p { grid-column: 2; grid-row: 2; margin: 0; font-size: .8125rem; color: var(--text-3); }
+}

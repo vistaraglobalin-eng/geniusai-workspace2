@@ -46,7 +46,6 @@ export default async function PdfToolPage({ params, searchParams }: { params: Pr
       <Link href="/tools/pdf" className="back-link"><ArrowLeft size={15} aria-hidden="true" /> All PDF tools</Link>
       <div className="welcome-row">
         <div>
-          <div className="eyebrow"><span className="eyebrow-dot" /> {info.group.toUpperCase()}</div>
           <h1>{info.title}</h1>
           <p className="subtitle">{info.description} Your original stays unchanged; the result is saved to Files.</p>
         </div>

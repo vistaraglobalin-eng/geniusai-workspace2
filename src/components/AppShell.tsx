@@ -56,7 +56,7 @@ export function AppShell({
           <span>GeniusAI<span className="brand-light"> Workspace</span></span>
         </Link>
         <nav aria-label="Main">
-          <div className="workspace-label">WORKSPACE</div>
+          
           {SIDEBAR_NAV.map(({ key, href, label, Icon }) => (
             <Link key={key} className="nav-item" href={href} title={label} aria-current={active === key ? "page" : undefined}>
               <Icon size={18} aria-hidden="true" /><span className="nav-label">{label}</span>

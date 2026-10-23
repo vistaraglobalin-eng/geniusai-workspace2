@@ -62,7 +62,6 @@ export default async function DocumentGeniusPage({ searchParams }: { searchParam
     <AppShell ctx={{ ...ctx, workspace }} active="documents" breadcrumb="Document Genius">
       <div className="welcome-row">
         <div>
-          <div className="eyebrow"><span className="eyebrow-dot"/> TOOL 01</div>
           <h1>Document <span>Genius</span></h1>
           <p className="subtitle">Summarize, translate, convert to Markdown, or pull text and tables out of PDFs, Word files and photos.</p>
         </div>

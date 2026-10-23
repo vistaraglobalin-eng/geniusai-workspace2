@@ -28,7 +28,6 @@ export default async function SignPage({ searchParams }: { searchParams: Promise
     <AppShell ctx={{ ...ctx, workspace }} active="pdf" breadcrumb="Sign PDF">
       <div className="welcome-row">
         <div>
-          <div className="eyebrow"><span className="eyebrow-dot" /> SIGN</div>
           <h1>Sign a <span>PDF</span></h1>
           <p className="subtitle">Draw or type your signature, place it on the pages, and save a signed copy with a signing record. Free.</p>
         </div>
