@@ -1,0 +1,31 @@
+import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
+import { cookies } from "next/headers";
+import { PREFS_COOKIE, htmlAttributes, parsePreferences } from "@/lib/preferences";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "GeniusAI Workspace",
+  description: "One workspace for documents, careers, creative work, invoices and contracts."
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f8fc" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e0f17" }
+  ]
+};
+
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  // Theme comes from a cookie so the very first HTML is already in the right
+  // colours: no white flash in dark mode, no layout shift.
+  const prefs = parsePreferences((await cookies()).get(PREFS_COOKIE)?.value);
+  return (
+    <html lang="en" {...htmlAttributes(prefs)}>
+      <body>{children}</body>
+    </html>
+  );
+}
