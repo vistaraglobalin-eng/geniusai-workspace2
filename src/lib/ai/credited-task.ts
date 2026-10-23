@@ -121,6 +121,8 @@ function providerError(err: unknown, refunded: boolean): CreditedTaskError {
   if (err instanceof AiProviderError) {
     switch (err.code) {
       case "not_configured": return new CreditedTaskError(503, "not_configured", "AI tools aren't set up on this server yet.");
+      case "provider_billing": return new CreditedTaskError(503, "provider_billing", "The AI service account has run out of credit. The app owner needs to add credit in Claude Console → Billing." + note);
+      case "provider_auth": return new CreditedTaskError(503, "provider_auth", "The AI service rejected the app's API key. The app owner needs to check ANTHROPIC_API_KEY." + note);
       case "rejected_input": return new CreditedTaskError(422, "rejected_input", "The AI couldn't process this input." + note);
       case "rate_limited":
       case "overloaded": return new CreditedTaskError(503, err.code, "The AI service is busy right now. Please try again in a minute." + note);

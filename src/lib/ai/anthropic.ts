@@ -27,7 +27,7 @@ export type GenerateResult = {
 };
 
 export class AiProviderError extends Error {
-  code: "not_configured" | "rejected_input" | "rate_limited" | "overloaded" | "provider_error" | "timeout";
+  code: "not_configured" | "rejected_input" | "rate_limited" | "overloaded" | "provider_error" | "timeout" | "provider_billing" | "provider_auth";
   status?: number;
   constructor(code: AiProviderError["code"], message: string, status?: number) {
     super(message);
@@ -71,6 +71,11 @@ async function post(path: string, body: unknown, timeoutMs: number, fetchImpl: t
       /* ignore */
     }
     const status = response.status;
+    // Visible in the hosting logs (e.g. Vercel → Logs). Never includes the API key or the document.
+    console.error(`[ai] ${path} failed: HTTP ${status}: ${detail.slice(0, 300)}`);
+    if (/credit balance|billing|purchase credits/i.test(detail)) throw new AiProviderError("provider_billing", detail, status);
+    if (status === 401 || status === 403) throw new AiProviderError("provider_auth", detail || "The AI API key was rejected.", status);
+    if (status === 404) throw new AiProviderError("provider_error", detail || "The AI model was not found.", status);
     if (status === 400 || status === 413) throw new AiProviderError("rejected_input", detail || "The document could not be processed.", status);
     if (status === 429) throw new AiProviderError("rate_limited", "The AI service is busy. Please try again shortly.", status);
     if (status === 529 || status === 503) throw new AiProviderError("overloaded", "The AI service is overloaded. Please try again shortly.", status);
