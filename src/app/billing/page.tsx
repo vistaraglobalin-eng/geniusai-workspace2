@@ -80,7 +80,7 @@ export default async function BillingPage() {
         <section className="panel-card" aria-labelledby="buy-h">
           <div className="panel-title"><div><h3 id="buy-h">Buy credits</h3><p>One-time packs. No subscription, no auto-renewal. Credits never expire.</p></div></div>
           <BuyCredits packs={packs} paymentsReady={isPaymentsConfigured()} canBuy={canBuy} />
-          <p className="pay-foot"><ShieldCheck size={15} aria-hidden="true" /> Secure payment by Razorpay: UPI, cards, netbanking and wallets. We never see your card or UPI details. Prices include GST.
+          <p className="pay-foot"><ShieldCheck size={15} aria-hidden="true" /> Secure card payment by Razorpay. We never see your card details. Prices are in US dollars and include applicable taxes.
             By buying you agree to our <Link href="/terms">Terms</Link> and <Link href="/refunds">Refund Policy</Link>.</p>
         </section>
       </div>

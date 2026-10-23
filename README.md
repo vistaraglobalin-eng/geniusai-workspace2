@@ -64,7 +64,7 @@ Sign-in uses passwordless email links. New users get an account the first time t
 10. `202610230010_agreements.sql` — **apply after #9.** Agreement Studio: `agreements` and `agreement_versions`, with automatic version history (see Agreement Studio).
 
 ## Payments (Razorpay)
-Page: `/billing` (sidebar → Plans & credits). One-time **credit packs**, no subscriptions or auto-renewal; credits never expire. Seeded packs (**placeholder prices, GST inclusive: change them before launch**): Starter 500 credits ₹199 · Standard 2,000 ₹699 · Pro 6,000 ₹1,799. Edit in SQL: `update public.credit_packs set price_minor = 24900 where pack_key = 'starter';` (paise).
+Page: `/billing` (sidebar → Plans & credits). One-time **credit packs**, no subscriptions or auto-renewal; credits never expire. **Live prices (set 24 Oct 2026, in US dollars, benchmarked against iLovePDF and Lumin):** Simple 1,000 credits $5 · Pro 2,000 credits $9 (highlighted) · Advance 5,000 credits $19. The original INR packs (starter, standard) are kept but inactive. Edit in SQL: `update public.credit_packs set price_minor = 1200 where pack_key = 'pro';` (cents). USD orders need **international payments** enabled in Razorpay, and are paid by card (UPI and netbanking only work for INR).
 
 How a purchase works:
 1. `POST /api/billing/checkout`: owner/admin only; the price is read from `credit_packs` (never from the browser); creates a Razorpay order and records it in `payment_orders`.

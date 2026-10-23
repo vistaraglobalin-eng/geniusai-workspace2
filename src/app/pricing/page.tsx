@@ -38,7 +38,7 @@ export default async function PricingPage() {
       <div className="pricing-grid">
         <section className="pack pricing-free">
           <strong className="pack-name">Free</strong>
-          <span className="pack-credits">₹0</span>
+          <span className="pack-credits">$0</span>
           <span className="pack-sub">Every new workspace also gets welcome credits to try the AI tools.</span>
           <ul className="check-list">{FREE.map((f) => <li key={f}><Check size={15} aria-hidden="true" />{f}</li>)}</ul>
           <Link className="secondary-button pack-button" href="/login">Get started</Link>
@@ -50,7 +50,7 @@ export default async function PricingPage() {
             <span className="pack-credits">{formatPrice(Number(p.price_minor), p.currency)}</span>
             <span className="pack-sub">{Number(p.credits).toLocaleString("en-IN")} credits{p.description ? ` · ${p.description}` : ""}</span>
             <ul className="check-list">
-              <li><Check size={15} aria-hidden="true" />All AI tools: summarize, translate, OCR, Markdown, tables</li>
+              <li><Check size={15} aria-hidden="true" />All AI tools: agreements, summaries, translation, OCR, tables</li>
               <li><Check size={15} aria-hidden="true" />Shared by your whole workspace</li>
               <li><Check size={15} aria-hidden="true" />Never expires</li>
             </ul>
@@ -68,7 +68,7 @@ export default async function PricingPage() {
           <dt>Will I be surprised by a charge?</dt>
           <dd>No. The most a task can use is reserved before it runs, only what it actually uses is charged, and failed tasks are free. Nothing renews automatically.</dd>
           <dt>How do I pay?</dt>
-          <dd>Securely through Razorpay with UPI, cards, netbanking or wallets. Prices are in Indian rupees and include GST.</dd>
+          <dd>Securely through Razorpay by debit or credit card. Prices are in US dollars and include applicable taxes.</dd>
           <dt>Can I get a refund?</dt>
           <dd>Yes, for packs you haven&apos;t used. See our <Link href="/refunds">Refund &amp; Cancellation Policy</Link>.</dd>
         </dl>

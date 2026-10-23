@@ -42,7 +42,7 @@ export function Landing() {
       <section className="landing-trust" aria-label="Privacy">
         <div><ShieldCheck size={20} aria-hidden="true" /><span><strong>Private by default.</strong> Only your workspace can open your files.</span></div>
         <div><Lock size={20} aria-hidden="true" /><span><strong>AI only when you ask.</strong> A file is sent to the AI provider only when you run a task on it.</span></div>
-        <div><Zap size={20} aria-hidden="true" /><span><strong>Pay as you go.</strong> Credits in rupees; unused holds are returned. <Link href="/pricing">See pricing</Link></span></div>
+        <div><Zap size={20} aria-hidden="true" /><span><strong>Pay as you go.</strong> Credit packs from $5; unused holds are returned. <Link href="/pricing">See pricing</Link></span></div>
       </section>
 
       <div className="landing-cta">
