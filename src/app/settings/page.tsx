@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { Building2, Download, LogOut, Palette, ShieldCheck, Sparkles, UserRound } from "lucide-react";
+import { Building2, Download, LogOut, Palette, ShieldCheck, Sparkles, UserRound, Zap } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -35,10 +35,15 @@ export default async function SettingsPage() {
 
       <div className="settings-layout">
         <nav className="settings-nav" aria-label="Settings sections">
-          <a href="#profile"><UserRound size={16} aria-hidden="true" /> Profile</a>
-          <a href="#workspace"><Building2 size={16} aria-hidden="true" /> Workspace</a>
-          <a href="#appearance"><Palette size={16} aria-hidden="true" /> Appearance</a>
-          <a href="#privacy"><ShieldCheck size={16} aria-hidden="true" /> Privacy & security</a>
+          <div className="settings-id">
+            <span className="settings-avatar" aria-hidden="true">{(ctx.displayName?.trim() || ctx.user.email || "G")[0].toUpperCase()}</span>
+            <span><strong>{ctx.displayName?.trim() || "Your name"}</strong><span>{ctx.user.email}</span></span>
+          </div>
+          <a href="#profile"><span className="app-icon sm blue"><UserRound size={15} aria-hidden="true" /></span> Profile</a>
+          <a href="#workspace"><span className="app-icon sm indigo"><Building2 size={15} aria-hidden="true" /></span> Workspace</a>
+          <a href="#appearance"><span className="app-icon sm purple"><Palette size={15} aria-hidden="true" /></span> Appearance</a>
+          <a href="#privacy"><span className="app-icon sm gray"><ShieldCheck size={15} aria-hidden="true" /></span> Privacy & security</a>
+          <Link href="/billing"><span className="app-icon sm green"><Zap size={15} aria-hidden="true" /></span> Plans & credits</Link>
         </nav>
 
         <div className="settings-sections">

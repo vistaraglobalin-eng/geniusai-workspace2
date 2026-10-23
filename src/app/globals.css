@@ -1012,3 +1012,40 @@ a.list-row:hover { background: var(--surface-2); }
   .action-row { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 12px; }
   .service-groups, .continue-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
 }
+
+/* =========================================================================
+   iPhone-style throughout (revision 15)
+   ========================================================================= */
+.app-icon.sm { width: 26px; height: 26px; border-radius: 7px; }
+.nav-item { gap: 11px; padding-top: 7px; padding-bottom: 7px; }
+.nav-item .app-icon svg { color: #fff; }
+.nav-item[aria-current="page"] svg { color: #fff; }
+.group-lead { margin: -4px 0 10px 4px; font-size: .8125rem; color: var(--text-3); }
+.pdf-hub { margin-top: 8px; }
+
+/* Settings, like the iPhone Settings app */
+.settings-nav { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 6px; gap: 0; }
+.settings-nav a { min-height: 46px; padding: 8px 10px; color: var(--text); font-weight: 500; gap: 12px; }
+.settings-nav a:hover { background: var(--surface-2); color: var(--text); }
+.settings-nav a + a { box-shadow: inset 48px 1px 0 -47px var(--surface), inset 0 1px 0 0 var(--border); border-radius: 0; }
+.settings-id { display: flex; align-items: center; gap: 12px; padding: 10px 10px 14px; margin-bottom: 4px; border-bottom: 1px solid var(--border); }
+.settings-id > span:last-child { display: flex; flex-direction: column; min-width: 0; }
+.settings-id strong { font-size: 1rem; }
+.settings-id span span { font-size: .8125rem; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.settings-avatar { width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center; font-weight: 700; font-size: 1.25rem; color: #fff; background: linear-gradient(180deg, #8e8e93, #636366); flex-shrink: 0; }
+.settings-section > h2 { font-size: 1.25rem; letter-spacing: -0.018em; }
+.settings-section > .section-lead { font-size: .875rem; }
+.settings-row-text strong { font-size: .9375rem; }
+.settings-row-text span { font-size: .8125rem; }
+@media (max-width: 760px) {
+  .settings-nav { position: static; flex-direction: column; flex-wrap: nowrap; gap: 0; }
+  .settings-nav a { border: 0; background: transparent; }
+}
+
+/* Agreement templates: solid icon tiles */
+.as-template-icon { background: linear-gradient(180deg, #6366f1, #4f46e5); color: #fff; border-radius: 10px; }
+.as-template { border-radius: 18px; }
+.as-template:hover { transform: none; }
+
+/* Upload buttons and credit pill sit on one baseline */
+.dash-head-actions .upload-control { flex-direction: row; }

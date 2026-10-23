@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Signature, Sparkles } from "lucide-react";
+import { Signature } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
 import { PDF_TOOLS, TOOL_GROUPS, TOOL_INFO, isWorkerTool } from "@/lib/pdf/catalog";
 import { isWorkerConfigured } from "@/lib/pdf/worker";
 import { AI_TOOL_LINKS, PDF_TOOL_ICONS } from "@/components/ToolIcons";
+import { ListRow } from "@/components/ListRow";
 
 export const metadata: Metadata = { title: "PDF Toolkit · GeniusAI Workspace" };
 
-const GROUP_CLASS = { Organize: "peach", Optimize: "mint", Edit: "rose", Security: "lavender", Convert: "blue" } as const;
+const GROUP_TINT = { Organize: "orange", Optimize: "green", Edit: "blue", Security: "gray", Convert: "indigo" } as const;
 const GROUP_LEAD = {
   Organize: "Combine, split and rearrange pages.",
   Optimize: "Make PDFs smaller, or fix ones that won't open.",
@@ -32,61 +32,45 @@ export default async function PdfToolkitPage() {
     <AppShell ctx={{ ...ctx, workspace }} active="pdf" breadcrumb="PDF Toolkit">
       <div className="welcome-row">
         <div>
-          <h1>Every PDF tool, <span>one place.</span></h1>
+          <h1>PDF Toolkit</h1>
           <p className="subtitle">Instant tools are free and never change your original. Results are saved to Files.</p>
         </div>
       </div>
 
-      <div className="pdf-groups">
+      <div className="service-groups pdf-hub">
         {TOOL_GROUPS.map((group) => (
-          <section key={group} className="pdf-group" aria-labelledby={`g-${group}`}>
-            <div className="pdf-group-head">
-              <h2 id={`g-${group}`}>{group}</h2>
-              <p>{GROUP_LEAD[group]}</p>
-            </div>
-            <div className="pdf-tool-grid">
+          <section key={group} className="service-group" aria-labelledby={`g-${group}`}>
+            <h2 id={`g-${group}`}>{group}</h2>
+            <p className="group-lead">{GROUP_LEAD[group]}</p>
+            <ul className="list-card">
               {PDF_TOOLS.filter((t) => TOOL_INFO[t].group === group).map((t) => {
                 const Icon = PDF_TOOL_ICONS[t];
                 return (
-                  <Link key={t} href={`/tools/pdf/${t}`} className="pdf-tool">
-                    <span className={`tool-icon ${GROUP_CLASS[group]}`}><Icon size={20} aria-hidden="true" /></span>
-                    <span className="pdf-tool-text">
-                      <strong>{TOOL_INFO[t].title}{isWorkerTool(t) && !workerReady && <em className="scan-badge pending">Setup needed</em>}</strong>
-                      <span>{TOOL_INFO[t].description}</span>
-                    </span>
-                  </Link>
+                  <ListRow key={t} href={`/tools/pdf/${t}`} tint={GROUP_TINT[group]} icon={<Icon size={17} aria-hidden="true" />}
+                    title={TOOL_INFO[t].title} text={TOOL_INFO[t].description}
+                    badge={isWorkerTool(t) && !workerReady ? <span className="soon-tag">Setup needed</span> : undefined} />
                 );
               })}
-            </div>
+            </ul>
           </section>
         ))}
 
-        <section className="pdf-group" aria-labelledby="g-sign">
-          <div className="pdf-group-head">
-            <h2 id="g-sign">Sign</h2>
-            <p>Draw or type your signature and place it on any page.</p>
-          </div>
-          <div className="pdf-tool-grid">
-            <Link href="/tools/sign" className="pdf-tool">
-              <span className="tool-icon rose"><Signature size={20} aria-hidden="true" /></span>
-              <span className="pdf-tool-text"><strong>Sign PDF</strong><span>Add your signature and today&apos;s date, with a signing record. Free.</span></span>
-            </Link>
-          </div>
+        <section className="service-group" aria-labelledby="g-sign">
+          <h2 id="g-sign">Sign</h2>
+          <p className="group-lead">Draw or type your signature and place it on any page.</p>
+          <ul className="list-card">
+            <ListRow href="/tools/sign" tint="green" icon={<Signature size={17} aria-hidden="true" />} title="Sign PDF" text="With today’s date and a signing record. Free." />
+          </ul>
         </section>
 
-        <section className="pdf-group" aria-labelledby="g-ai">
-          <div className="pdf-group-head">
-            <h2 id="g-ai"><Sparkles size={16} aria-hidden="true" /> AI tools</h2>
-            <p>Powered by Document Genius. Uses credits; the cost is shown before anything runs.</p>
-          </div>
-          <div className="pdf-tool-grid">
+        <section className="service-group" aria-labelledby="g-ai">
+          <h2 id="g-ai">AI tools</h2>
+          <p className="group-lead">Use credits; the cost is shown before anything runs.</p>
+          <ul className="list-card">
             {AI_TOOL_LINKS.map(({ task, title, description, Icon }) => (
-              <Link key={task} href={`/tools/documents?task=${task}`} className="pdf-tool">
-                <span className="tool-icon lavender"><Icon size={20} aria-hidden="true" /></span>
-                <span className="pdf-tool-text"><strong>{title}</strong><span>{description}</span></span>
-              </Link>
+              <ListRow key={task} href={`/tools/documents?task=${task}`} tint="teal" icon={<Icon size={17} aria-hidden="true" />} title={title} text={description} />
             ))}
-          </div>
+          </ul>
         </section>
       </div>
 

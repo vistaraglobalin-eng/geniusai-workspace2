@@ -60,7 +60,7 @@ export function WorkspaceForm({
       <div className="field">
         <label htmlFor="wsCurrency">Default currency</label>
         <select id="wsCurrency" name="currency" className="select-input" defaultValue={workspace.defaultCurrency} disabled={!canEdit}>
-          {[...new Set([workspace.defaultCurrency, ...CURRENCIES])].map((c) => <option key={c} value={c}>{c}</option>)}
+          {[...new Set([workspace.defaultCurrency, ...CURRENCIES])].filter(Boolean).map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
         <p className="field-hint">Used for invoices and expenses.</p>
       </div>

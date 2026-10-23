@@ -7,15 +7,15 @@ const ROLE_LABEL = { owner: "Owner", admin: "Admin", member: "Member" } as const
 
 export type NavKey = "overview" | "files" | "tools" | "pdf" | "documents" | "agreements" | "billing" | "settings";
 
-type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home };
+type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home; tint?: string };
 
 /** Sidebar (desktop) and icon rail (tablet). */
 const SIDEBAR_NAV: NavItem[] = [
-  { key: "overview", href: "/", label: "Home", Icon: Home },
-  { key: "files", href: "/files", label: "Files", Icon: FolderOpen },
-  { key: "pdf", href: "/tools/pdf", label: "PDF Toolkit", Icon: FileStack },
-  { key: "documents", href: "/tools/documents", label: "Document Genius", Icon: FileText },
-  { key: "agreements", href: "/tools/agreements", label: "Agreement Studio", Icon: FilePen }
+  { key: "overview", href: "/", label: "Home", Icon: Home, tint: "blue" },
+  { key: "files", href: "/files", label: "Files", Icon: FolderOpen, tint: "cyan" },
+  { key: "pdf", href: "/tools/pdf", label: "PDF Toolkit", Icon: FileStack, tint: "red" },
+  { key: "documents", href: "/tools/documents", label: "Document Genius", Icon: FileText, tint: "teal" },
+  { key: "agreements", href: "/tools/agreements", label: "Agreement Studio", Icon: FilePen, tint: "indigo" }
 ];
 
 /** Phone bottom bar: five thumb-sized targets. "Tools" covers every tool page. */
@@ -57,15 +57,15 @@ export function AppShell({
         </Link>
         <nav aria-label="Main">
           
-          {SIDEBAR_NAV.map(({ key, href, label, Icon }) => (
+          {SIDEBAR_NAV.map(({ key, href, label, Icon, tint }) => (
             <Link key={key} className="nav-item" href={href} title={label} aria-current={active === key ? "page" : undefined}>
-              <Icon size={18} aria-hidden="true" /><span className="nav-label">{label}</span>
+              <span className={`app-icon sm ${tint ?? "gray"}`}><Icon size={15} aria-hidden="true" /></span><span className="nav-label">{label}</span>
             </Link>
           ))}
           <div className="nav-divider" />
-          <Link className="nav-item" href="/billing" title="Plans & credits" aria-current={active === "billing" ? "page" : undefined}><Zap size={18} aria-hidden="true" /><span className="nav-label">Plans & credits</span></Link>
+          <Link className="nav-item" href="/billing" title="Plans & credits" aria-current={active === "billing" ? "page" : undefined}><span className="app-icon sm green"><Zap size={15} aria-hidden="true" /></span><span className="nav-label">Plans & credits</span></Link>
           <Link className="nav-item" href="/settings" title="Settings" aria-current={active === "settings" ? "page" : undefined}>
-            <Settings size={18} aria-hidden="true" /><span className="nav-label">Settings</span>
+            <span className="app-icon sm gray"><Settings size={15} aria-hidden="true" /></span><span className="nav-label">Settings</span>
           </Link>
         </nav>
         <div className="sidebar-bottom">
