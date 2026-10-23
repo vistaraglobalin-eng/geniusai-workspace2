@@ -59,7 +59,7 @@ export default function PrivacyPage() {
           <li><strong>Anthropic:</strong> AI processing when you run an AI task.</li>
           <li><strong>Razorpay:</strong> payment processing.</li>
           <li><strong><Detail value={SITE.hosting} />:</strong> hosting for the web app.</li>
-          <li><strong><Detail value={SITE.pdfWorkerHost} />:</strong> processing for some PDF tools (compress, repair, protect, unlock, Office to PDF, PDF to JPG). Files are deleted immediately after processing.</li>
+          {SITE.pdfWorkerHost && <li><strong><Detail value={SITE.pdfWorkerHost} />:</strong> processing for some PDF tools (compress, repair, protect, unlock, Office to PDF, PDF to JPG). Files are deleted immediately after processing.</li>}
           <li><strong><Detail value={SITE.emailProvider} />:</strong> sending sign-in emails.</li>
         </ul>
         <p>We may also disclose data if required by law, or to protect the rights and safety of our users or the public. We never sell personal data.</p>

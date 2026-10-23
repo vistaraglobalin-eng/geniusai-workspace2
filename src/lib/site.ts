@@ -17,9 +17,9 @@ export const SITE = {
   },
   gstin: "",                                                 // add when registered, e.g. "27ABCDE1234F1Z5"; empty hides it
   jurisdictionCity: "[City]",                                // courts for disputes, e.g. "Mumbai"
-  hosting: "[Hosting provider, e.g. Vercel]",                // where the web app runs
-  emailProvider: "[Email provider, e.g. Resend]",            // who sends sign-in emails
-  pdfWorkerHost: "[PDF worker host, e.g. Google Cloud (Mumbai)]",
+  hosting: "Vercel",                                         // where the web app runs
+  emailProvider: "Supabase",                                 // who sends sign-in emails (change when you add Resend etc.)
+  pdfWorkerHost: "",                                         // empty until the PDF worker is deployed; hides it from the Privacy Policy
   lastUpdated: "23 October 2026",
   refundWindowDays: 7,
   supportResponseHours: 48
