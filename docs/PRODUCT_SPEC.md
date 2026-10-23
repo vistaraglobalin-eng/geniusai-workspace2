@@ -227,7 +227,7 @@ Lumin and iLovePDF were used only as a checklist of what people expect; names, l
 
 | # | Feature | How it should work | Builds on | Notes |
 |---|---|---|---|---|
-| 1 | **Sign (self-sign)** | Draw, type or upload a signature; place it, the date and initials on any PDF page; flatten and save as a new file with an audit page (who, when, IP, SHA-256 of the file). | PDF Toolkit, Files | pdf-lib; signatures stored per user, encrypted. Valid as an electronic signature for most commercial agreements in India (IT Act 2000, s.3A/5); **not** for wills, property sale deeds or negotiable instruments. Aadhaar eSign is a later paid integration. |
+| 1 ✅ (rev 12) | **Sign (self-sign)** | Draw, type or upload a signature; place it, the date and initials on any PDF page; flatten and save as a new file with an audit page (who, when, IP, SHA-256 of the file). | PDF Toolkit, Files | pdf-lib; signatures stored per user, encrypted. Valid as an electronic signature for most commercial agreements in India (IT Act 2000, s.3A/5); **not** for wills, property sale deeds or negotiable instruments. Aadhaar eSign is a later paid integration. |
 | 2 | **Request signatures** | Send an agreement (from Agreement Studio or Files) to signers by email with order; each gets a one-time link, signs, everyone gets the completed PDF + certificate; reminders and expiry. | #1 | Needs SMTP, a `signature_requests` table, rate limits; signer links are single-use and expire. |
 | 3 | **Fillable forms** | Detect or add text fields, checkboxes, dates on a PDF; fill and save; "Fill & sign" combines with #1. | #1 | pdf-lib AcroForms. |
 | 4 | **Edit PDF text & annotate** | Add text boxes, highlights, shapes, images, comments; whiteout. True in-place text editing is hard for arbitrary PDFs; start with overlay editing. | #3 | Unicode needs embedded fonts (Noto for Indian scripts). |
@@ -238,4 +238,4 @@ Lumin and iLovePDF were used only as a checklist of what people expect; names, l
 | 9 | **Drive / OneDrive import** | Pick files from Google Drive; save results back. | Files | OAuth, read-only scopes first. |
 | 10 | **Developer API keys** | Workspace owners create API keys (shown once, stored hashed, scoped, revocable) to call PDF tools and Agreement Studio from their own apps; usage billed in credits; per-key rate limits. | Credits | `api_keys` table; never accept keys in URLs. |
 
-**Recommended next:** #1 and #2 (signing) — they complete the Agreement Studio journey (draft → explain → sign) and are the most-asked-for feature in this category.
+**Recommended next:** #2 (request signatures; #1 self-sign is built) — they complete the Agreement Studio journey (draft → explain → sign) and are the most-asked-for feature in this category.

@@ -74,7 +74,7 @@ function describe(pages: number[]): string {
 type Frame = { width: number; height: number; toUser: (x: number, y: number) => { x: number; y: number }; rotation: number };
 
 /** Coordinates as the reader sees the page (origin bottom-left), mapped to PDF user space. */
-function visualFrame(page: PDFPage): Frame {
+export function visualFrame(page: PDFPage): Frame {
   const box = page.getCropBox();
   const w = box.width, h = box.height, ox = box.x, oy = box.y;
   const r = (((page.getRotation().angle % 360) + 360) % 360) as 0 | 90 | 180 | 270;

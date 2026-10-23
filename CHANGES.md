@@ -1,5 +1,11 @@
 # Changes
 
+## Revision 12: Sign PDF (2026-10-24)
+- **Sign PDF** `/tools/sign`: draw or type a signature, place it on any page (tap, drag, resize, add to every page, optional date), save a signed copy to Files with a Signing record page and an audit-log entry (SHA-256 before and after). Free.
+- Engine `src/lib/pdf/sign.ts` (pdf-lib) handles rotated and cropped pages; 10 checks plus rendered output inspected. Page previews use pdf.js (`pdfjs-dist` 6.2.108, legacy build) in the browser, tested in Chromium.
+- Links from PDF Toolkit, All tools, Home quick tools and Files.
+- Live-site fixes this round: escaped apostrophes (build), real AI error reasons (credit/key problems) logged to Vercel, USD and INR price lists with a currency switch, business details on policy pages.
+
 ## Revision 11: Agreement Studio and a public home page (2026-10-23)
 - **Agreement Studio** (tool 05, replaces "Contract Explainer — coming soon"): draft agreements with AI from a prompt or 8 India-ready templates; editor with preview/edit, AI revise, Draft/Final status and version history with restore; export to Word (.docx), Markdown, Print/PDF, and Save to Files (Word, or PDF via the worker); **Explain a contract** with summary, key terms, risks, gaps and questions.
 - **Database** `202610230010_agreements.sql`: `agreements`, `agreement_versions`, triggers that number versions automatically and stop users labelling edits as AI-made; column-level grants; 15 checks.

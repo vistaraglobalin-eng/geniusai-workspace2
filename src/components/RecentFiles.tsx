@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Download, FileText, Image as ImageIcon, Sheet, Sparkles, Trash2 } from "lucide-react";
+import { Download, FileText, Image as ImageIcon, Sheet, Signature, Sparkles, Trash2 } from "lucide-react";
 import { isDocumentReadable } from "@/lib/documents/tasks";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { deleteWorkspaceFile, getFileDownloadUrl } from "@/lib/storage/files";
@@ -126,6 +126,16 @@ export function RecentFiles({
                         title="Open in Document Genius"
                       >
                         <Sparkles size={16} />
+                      </Link>
+                    )}
+                    {showOpenInTool && !blocked && file.mimeType === "application/pdf" && (
+                      <Link
+                        className="icon-button"
+                        href={`/tools/sign?file=${file.id}`}
+                        aria-label={`Sign ${file.originalFilename}`}
+                        title="Sign"
+                      >
+                        <Signature size={16} />
                       </Link>
                     )}
                     <button

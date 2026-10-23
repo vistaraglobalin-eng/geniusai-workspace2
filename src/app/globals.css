@@ -700,7 +700,7 @@ button.as-status { cursor: pointer; min-height: 28px; }
 .as-explained h2 { margin-top: 20px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
 
 /* Tools hub */
-.tools-hub { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.tools-hub { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 /* Public landing page */
 .landing-hero { text-align: center; max-width: 760px; margin: 12px auto 36px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -759,3 +759,47 @@ button.as-status { cursor: pointer; min-height: 28px; }
 .currency-switch { margin: 14px 0 4px; }
 .pricing-hero .currency-switch { justify-content: center; }
 .panel-card .currency-switch { margin: 0 0 12px; }
+
+/* ---------------------------------------------------------------------------
+   Sign PDF
+   --------------------------------------------------------------------------- */
+.sign-layout { display: grid; grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.sign-steps { display: flex; flex-direction: column; gap: 12px; position: sticky; top: 12px; }
+.sign-steps .panel-card { display: flex; flex-direction: column; gap: 12px; }
+.sign-submit .primary-button.wide { margin-top: 0; }
+.sig-pad { display: flex; flex-direction: column; gap: 10px; }
+.sig-tabs { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.sig-inks { display: flex; gap: 8px; }
+.sig-ink { width: 28px; height: 28px; border-radius: 999px; border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--border-strong); }
+.sig-ink[aria-checked="true"] { box-shadow: 0 0 0 2px var(--accent); }
+.sig-type-row { display: flex; flex-direction: column; gap: 8px; }
+.sig-type-row .chip-row { margin-bottom: 0; }
+.sig-type-row .chip { font-size: 1.05rem; font-weight: 400; }
+/* The pad stays white in dark mode so the ink colour is what ends up on the paper. */
+.sig-canvas { width: 100%; height: 150px; background: #fff; border: 1.5px dashed var(--border-strong); border-radius: 12px; touch-action: none; }
+.sig-canvas.drawable { cursor: crosshair; }
+.sig-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.sign-preview { display: flex; flex-direction: column; gap: 16px; align-items: center; min-width: 0; padding: 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px; min-height: 300px; }
+.sign-page-wrap { margin: 0; width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.sign-page-wrap figcaption { font-size: .72rem; color: var(--text-3); }
+.sign-page { position: relative; width: 100%; background: #fff; box-shadow: var(--shadow-md); border-radius: 4px; overflow: hidden; user-select: none; -webkit-user-select: none; }
+.sign-page.placing { cursor: copy; }
+.sign-page > img { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.sign-box { position: absolute; border: 1.5px dashed var(--accent); border-radius: 4px; background: color-mix(in srgb, var(--accent) 6%, transparent); cursor: move; touch-action: none; }
+.sign-box img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.sign-remove { position: absolute; top: -11px; right: -11px; width: 24px; height: 24px; border-radius: 999px; border: 0; background: var(--danger-solid); color: #fff; display: grid; place-items: center; box-shadow: var(--shadow-sm); }
+.sign-resize { position: absolute; right: -8px; bottom: -8px; width: 18px; height: 18px; border-radius: 999px; background: var(--accent); border: 2px solid #fff; cursor: nwse-resize; touch-action: none; }
+.sign-done { max-width: 620px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.sign-done > svg { color: var(--success-text); }
+.sign-done h2 { margin: 0; }
+@media (pointer: coarse) { .sign-remove { width: 30px; height: 30px; top: -14px; right: -14px; } .sign-resize { width: 26px; height: 26px; right: -12px; bottom: -12px; } }
+@media (max-width: 900px) {
+  /* Phones/tablets: 1 Choose, 2 Signature, pages, 3 Place & sign. */
+  .sign-layout { display: flex; flex-direction: column; align-items: stretch; }
+  .sign-layout > *, .sign-steps > * { width: 100%; }
+  .sign-steps { display: contents; }
+  .sign-steps > :nth-child(1) { order: 1; }
+  .sign-steps > :nth-child(2) { order: 2; }
+  .sign-preview { order: 3; padding: 10px; }
+  .sign-steps > .sign-submit { order: 4; }
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Sparkles } from "lucide-react";
+import { Signature, Sparkles } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -62,6 +62,19 @@ export default async function PdfToolkitPage() {
           </section>
         ))}
 
+        <section className="pdf-group" aria-labelledby="g-sign">
+          <div className="pdf-group-head">
+            <h2 id="g-sign">Sign</h2>
+            <p>Draw or type your signature and place it on any page.</p>
+          </div>
+          <div className="pdf-tool-grid">
+            <Link href="/tools/sign" className="pdf-tool">
+              <span className="tool-icon rose"><Signature size={20} aria-hidden="true" /></span>
+              <span className="pdf-tool-text"><strong>Sign PDF</strong><span>Add your signature and today&apos;s date, with a signing record. Free.</span></span>
+            </Link>
+          </div>
+        </section>
+
         <section className="pdf-group" aria-labelledby="g-ai">
           <div className="pdf-group-head">
             <h2 id="g-ai"><Sparkles size={16} aria-hidden="true" /> AI tools</h2>
@@ -79,7 +92,7 @@ export default async function PdfToolkitPage() {
       </div>
 
       <p className="dg-hint" style={{ marginTop: 18 }}>
-        Coming later: sign PDF, redact PDF, compare PDFs, PDF to Word/PowerPoint.
+        Coming later: request signatures from others, fill PDF forms, redact PDF, compare PDFs, PDF to Word/PowerPoint.
       </p>
     </AppShell>
   );

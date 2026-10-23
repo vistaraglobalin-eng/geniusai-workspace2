@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
   ArrowUpRight, BriefcaseBusiness, FileText, Image as ImageIcon,
-  ReceiptText, Scale, Sparkles, ShieldCheck
+  ReceiptText, Scale, Signature, Sparkles, ShieldCheck
 } from "lucide-react";
 import { getSupabasePublicEnv } from "@/lib/supabase/env";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -54,6 +54,7 @@ export default async function Home() {
         <Link className="tool-count" href="/tools/pdf">ALL TOOLS →</Link>
       </div>
       <nav className="quick-tools" aria-label="Quick PDF tools">
+        <Link href="/tools/sign" className="quick-tool"><Signature size={16} aria-hidden="true" />Sign PDF</Link>
         {PDF_TOOLS.map((t) => {
           const Icon = PDF_TOOL_ICONS[t];
           return <Link key={t} href={`/tools/pdf/${t}`} className="quick-tool"><Icon size={16} aria-hidden="true" />{TOOL_INFO[t].title}</Link>;

@@ -139,6 +139,14 @@ Pages: `/tools/agreements` (hub), `/tools/agreements/new` (form), `/tools/agreem
 - **Security:** agreements are visible to workspace members (row-level security); users can edit only title, text and status; only the server can label a change as AI-made; version rows can't be written or changed by users. Rendering never uses raw HTML.
 - **Not legal advice:** every page shows a disclaimer. Have a lawyer review the templates' instructions (`src/lib/agreements/templates.ts`) before launch.
 
+## Sign PDF
+Page: `/tools/sign` (also from PDF Toolkit, All tools, Home and the ✍ button on any PDF in Files). Free, no credits.
+1. Choose or upload a PDF. Its pages are rendered **in the browser** with pdf.js (legacy build for older phones; worker in `public/vendor/`, same version as `pdfjs-dist` in package.json).
+2. Draw the signature (finger, pen or mouse) or type it in one of three handwriting styles; blue or black ink.
+3. Tap a page to place it; drag to move, drag the corner to resize, "Add to every page", optional date under each signature.
+4. **Sign and save** (`POST /api/sign`): the server checks access through row-level security, draws the signature with pdf-lib (correct on rotated and cropped pages), and appends a **Signing record** page (signer name and email, time in IST and UTC, IP address, pages signed, SHA-256 of the original). The signed copy is saved to Files as a new file; the original is never changed. An `audit_logs` row (`document.signed`) stores the before and after fingerprints.
+Legal note shown on the record: an electronic signature, not an Aadhaar eSign or DSC; some documents in India (wills, property sale deeds, negotiable instruments) can't be signed electronically. Password-protected PDFs must be unlocked first.
+
 ## Home page for visitors
 Signed-out visitors to `/` see a landing page with an "What agreement do you need?" box; it sends them through sign-in and back to the new-agreement form with their text filled in. Signed-in users see the dashboard, which now has the same prompt in the hero card.
 
