@@ -28,7 +28,11 @@ The core database migration has already been applied to this new project. The mi
 Working today: email sign-in, workspace onboarding, private file upload/download/delete, a dashboard showing the user's workspace, files and credits, the first AI tool, **Document Genius** (summarize, translate, extract text, PDF to Markdown, tables to CSV), **credit packs paid with Razorpay** (UPI, cards, netbanking), a **PDF Toolkit** with 15 tools (merge, split, remove/extract/reorder pages, rotate, page numbers, watermark, JPG/PNG to PDF in the app; compress, repair, protect, unlock, Office to PDF and PDF to JPG via the separate **PDF worker**), a **Files** library with search and filters, **Settings** (profile, workspace, appearance, privacy & security), light/dark themes with six accent colours, and navigation that adapts to desktop, tablet and phone. The full feature plan is in `docs/PRODUCT_SPEC.md`. Not yet built: the other four AI tools, malware scanning, subscriptions/GST invoices, team invitations, a workspace switcher/settings page, mobile app packaging and production security review.
 
 ## Sign-in setup (one time, in the Supabase dashboard)
-Sign-in uses passwordless email links. New users get an account the first time they request a link.
+Three ways to sign in (`src/app/login/LoginForm.tsx`):
+- **Continue with Google**: no email per login, no limits. Shown only when `NEXT_PUBLIC_GOOGLE_SIGNIN=on` is set in Vercel and the Google provider is enabled in Supabase (Authentication → Sign In / Providers → Google, with a Google Cloud OAuth client whose redirect URI is `https://wxvaahhlywaklpfuocak.supabase.co/auth/v1/callback`).
+- **Email and password**: sign in any time without waiting for email. New accounts confirm their email once (keep "Confirm email" on so people can't claim free credits with fake addresses). "Forgot password?" sends a reset link to `/auth/reset`.
+- **Email link** (passwordless), as before.
+Supabase's built-in email sender allows only a few emails per hour and is for testing; add your own SMTP (step 3) before launch.
 1. **Authentication → URL Configuration**
    - *Site URL*: `http://localhost:3000` while developing (change to your live domain at launch).
    - *Redirect URLs*: add `http://localhost:3000/auth/callback` and, later, `https://<your-domain>/auth/callback`.

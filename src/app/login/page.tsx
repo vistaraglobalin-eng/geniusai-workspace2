@@ -28,13 +28,13 @@ export default async function LoginPage({
           <span>GeniusAI<span className="brand-light"> Workspace</span></span>
         </div>
         <h1 className="auth-title">Sign in</h1>
-        <p className="auth-subtitle">We&apos;ll email you a secure link. No password needed. New here? The same link creates your account.</p>
+        <p className="auth-subtitle">Welcome back. New here? Create a free account in a few seconds.</p>
         {params.signedout === "all" && (
           <p className="form-message success" role="status">You&apos;ve been signed out on all devices.</p>
         )}
         {linkError && (
           <p className="form-message error" role="alert">
-            That sign-in link didn&apos;t work. Links expire after an hour and must be opened in the same browser you requested them from. Please request a new one.
+            That link didn&apos;t work. Links expire after an hour and must be opened in the same browser you requested them from. Sign in with your password, or request a new link.
           </p>
         )}
         <LoginForm next={next} />
