@@ -752,3 +752,10 @@ button.as-status { cursor: pointer; min-height: 28px; }
   .md-table tr { break-inside: avoid; }
   @page { margin: 20mm 18mm; }
 }
+
+/* Currency switch (Pricing, Billing) */
+.segmented a { display: inline-flex; align-items: center; padding: 8px 13px; min-height: 38px; border-radius: 9px; font-size: .8rem; font-weight: 600; color: var(--text-2); }
+.segmented a.selected { background: var(--surface); color: var(--accent-text); box-shadow: var(--shadow-sm); }
+.currency-switch { margin: 14px 0 4px; }
+.pricing-hero .currency-switch { justify-content: center; }
+.panel-card .currency-switch { margin: 0 0 12px; }

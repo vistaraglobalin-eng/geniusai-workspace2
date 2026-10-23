@@ -6,7 +6,10 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
 import { isPaymentsConfigured } from "@/lib/payments/razorpay";
+import { headers } from "next/headers";
 import { formatPrice } from "@/lib/payments/format";
+import { PAYMENT_NOTE, pickCurrency } from "@/lib/payments/region";
+import { CurrencySwitch } from "@/components/CurrencySwitch";
 import { BuyCredits, type Pack } from "./BuyCredits";
 
 export const metadata: Metadata = { title: "Plans & credits · GeniusAI Workspace" };
@@ -15,7 +18,8 @@ const TASK_NAMES: Record<string, string> = {
   summary: "Summary", translate: "Translation", extract_text: "Text extraction", markdown: "PDF to Markdown", tables: "Table extraction"
 };
 
-export default async function BillingPage() {
+export default async function BillingPage({ searchParams }: { searchParams: Promise<{ currency?: string }> }) {
+  const currency = pickCurrency((await searchParams).currency, (await headers()).get("x-vercel-ip-country"));
   const supabase = await createSupabaseServerClient();
   const ctx = await loadWorkspaceContext(supabase);
   if (!ctx) redirect("/login?next=/billing");
@@ -30,7 +34,7 @@ export default async function BillingPage() {
   ]);
 
   type PackRow = { pack_key: string; display_name: string; description: string | null; credits: number; price_minor: number; currency: string; highlight: boolean };
-  const packs: Pack[] = ((packsResult.data ?? []) as PackRow[]).map((p) => ({
+  const packs: Pack[] = ((packsResult.data ?? []) as PackRow[]).filter((p) => p.currency === currency).map((p) => ({
     key: p.pack_key, name: p.display_name, description: p.description, credits: Number(p.credits),
     priceMinor: Number(p.price_minor), currency: p.currency, highlight: p.highlight
   }));
@@ -79,8 +83,9 @@ export default async function BillingPage() {
 
         <section className="panel-card" aria-labelledby="buy-h">
           <div className="panel-title"><div><h3 id="buy-h">Buy credits</h3><p>One-time packs. No subscription, no auto-renewal. Credits never expire.</p></div></div>
+          <CurrencySwitch current={currency} basePath="/billing" />
           <BuyCredits packs={packs} paymentsReady={isPaymentsConfigured()} canBuy={canBuy} />
-          <p className="pay-foot"><ShieldCheck size={15} aria-hidden="true" /> Secure card payment by Razorpay. We never see your card details. Prices are in US dollars and include applicable taxes.
+          <p className="pay-foot"><ShieldCheck size={15} aria-hidden="true" /> Secure payment by Razorpay. {PAYMENT_NOTE[currency]} We never see your card or UPI details.
             By buying you agree to our <Link href="/terms">Terms</Link> and <Link href="/refunds">Refund Policy</Link>.</p>
         </section>
       </div>

@@ -4,10 +4,12 @@ import { Check } from "lucide-react";
 import { PublicLayout } from "@/components/PublicLayout";
 import { createClient } from "@supabase/supabase-js";
 import { getSupabasePublicEnv } from "@/lib/supabase/env";
+import { headers } from "next/headers";
 import { formatPrice } from "@/lib/payments/format";
+import { FREE_PRICE, PAYMENT_NOTE, pickCurrency } from "@/lib/payments/region";
+import { CurrencySwitch } from "@/components/CurrencySwitch";
 
 export const metadata: Metadata = { title: "Pricing · GeniusAI Workspace", description: "Free PDF tools, and simple one-time credit packs for AI tools." };
-export const revalidate = 300; // prices change rarely; refresh every 5 minutes
 
 type PackRow = { pack_key: string; display_name: string; description: string | null; credits: number; price_minor: number; currency: string; highlight: boolean };
 
@@ -26,19 +28,21 @@ async function loadPacks(): Promise<PackRow[]> {
 
 const FREE = ["15 PDF tools: merge, split, compress, protect, convert and more", "Private file storage for your workspace", "Light and dark themes, works on phone, tablet and desktop"];
 
-export default async function PricingPage() {
-  const packs = await loadPacks();
+export default async function PricingPage({ searchParams }: { searchParams: Promise<{ currency?: string }> }) {
+  const currency = pickCurrency((await searchParams).currency, (await headers()).get("x-vercel-ip-country"));
+  const packs = (await loadPacks()).filter((p) => p.currency === currency);
   return (
     <PublicLayout current="/pricing">
       <section className="pricing-hero">
         <h1>Simple pricing. <span>No subscription.</span></h1>
         <p className="legal-lead">PDF tools are free. AI tools use credits that you buy once, use whenever you like, and that never expire.</p>
+        <CurrencySwitch current={currency} basePath="/pricing" />
       </section>
 
       <div className="pricing-grid">
         <section className="pack pricing-free">
           <strong className="pack-name">Free</strong>
-          <span className="pack-credits">$0</span>
+          <span className="pack-credits">{FREE_PRICE[currency]}</span>
           <span className="pack-sub">Every new workspace also gets welcome credits to try the AI tools.</span>
           <ul className="check-list">{FREE.map((f) => <li key={f}><Check size={15} aria-hidden="true" />{f}</li>)}</ul>
           <Link className="secondary-button pack-button" href="/login">Get started</Link>
@@ -68,7 +72,7 @@ export default async function PricingPage() {
           <dt>Will I be surprised by a charge?</dt>
           <dd>No. The most a task can use is reserved before it runs, only what it actually uses is charged, and failed tasks are free. Nothing renews automatically.</dd>
           <dt>How do I pay?</dt>
-          <dd>Securely through Razorpay by debit or credit card. Prices are in US dollars and include applicable taxes.</dd>
+          <dd>Securely through Razorpay. {PAYMENT_NOTE[currency]} Use the switch at the top to see prices in {currency === "INR" ? "US dollars" : "Indian rupees"}.</dd>
           <dt>Can I get a refund?</dt>
           <dd>Yes, for packs you haven&apos;t used. See our <Link href="/refunds">Refund &amp; Cancellation Policy</Link>.</dd>
         </dl>
