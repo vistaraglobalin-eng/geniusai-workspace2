@@ -1879,3 +1879,12 @@ a.home-card:hover { background: var(--surface-2); }
   .bottom-nav a[aria-current="page"] { color: var(--text); background: var(--surface); border-color: transparent; box-shadow: 0 0 0 2px var(--peach), 0 6px 16px rgb(242 160 122 / 35%); }
   .bottom-nav a[aria-current="page"] svg { color: var(--text); }
 }
+
+/* Lighter: off-white peach grounds (25 Oct 2026) */
+:root, :root[data-accent] {
+  --bg: #fffaf6; --surface: #ffffff; --surface-2: #fef4ee; --surface-3: #fbe9de;
+  --border: #f6e6db; --border-strong: #e6cdbd;
+  --peach-glow: #fde7d9; --peach-soft: #fff0e7; --accent-soft: #fff0e7; --accent-softer: #fff7f2;
+  --tile-bg: #fff0e7; --tile-border: #fbe0cf;
+  --success-bg: #fef4ee; --success-border: #f3dccd;
+}
