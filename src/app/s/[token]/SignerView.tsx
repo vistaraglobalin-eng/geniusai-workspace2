@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CheckCircle2, ChevronDown, Download, PenLine, XCircle } from "lucide-react";
 import { renderPdfPages, type PageView } from "@/lib/pdf/preview";
@@ -171,7 +172,7 @@ export function SignerView(p: Props) {
         <button type="button" className="primary-button wide" onClick={sign} disabled={busy || pages.length === 0}>
           <PenLine size={16} aria-hidden="true" /> {busy ? "Signing…" : "Sign the document"}
         </button>
-        <p className="field-hint">Your name, the time, your IP address and device are recorded on a signing certificate attached to the final PDF, which {p.sender} receives. See our <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
+        <p className="field-hint">Your name, the time, your IP address and device are recorded on a signing certificate attached to the final PDF, which {p.sender} receives. See our <Link href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</Link>.</p>
         {!declining ? (
           <button type="button" className="quiet-button sr-decline" onClick={() => setDeclining(true)}>I don&apos;t want to sign</button>
         ) : (
