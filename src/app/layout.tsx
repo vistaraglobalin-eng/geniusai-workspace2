@@ -6,7 +6,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "GeniusAI Workspace",
-  description: "One workspace for documents, careers, creative work, invoices and contracts."
+  description: "One workspace for documents, careers, creative work, invoices and contracts.",
+  applicationName: "GeniusAI Workspace",
+  // iPhone "Add to Home Screen": opens full screen with its own name and icon (src/app/apple-icon.png).
+  appleWebApp: { capable: true, title: "GeniusAI", statusBarStyle: "default" },
+  formatDetection: { telephone: false }
 };
 
 export const viewport: Viewport = {
