@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
-import { DOCUMENT_MIME_TYPES, parseTask, type DocumentTask } from "@/lib/documents/tasks";
+import { DOCUMENT_MIME_TYPES, DOCUMENT_TASKS, parseTask, type DocumentTask } from "@/lib/documents/tasks";
 import { DocumentGenius, type DocFile, type DocJob } from "./DocumentGenius";
 
 export const metadata: Metadata = { title: "Document Genius · GeniusAI Workspace" };
@@ -32,6 +32,7 @@ export default async function DocumentGeniusPage({ searchParams }: { searchParam
       .select("id, task_type, status, input_params, charged_credits, safe_error_code, created_at")
       .eq("workspace_id", workspace.id)
       .eq("module_key", "documents")
+      .in("task_type", [...DOCUMENT_TASKS])
       .order("created_at", { ascending: false })
       .limit(12)
   ]);

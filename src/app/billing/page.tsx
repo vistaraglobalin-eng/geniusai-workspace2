@@ -15,7 +15,7 @@ import { BuyCredits, type Pack } from "./BuyCredits";
 export const metadata: Metadata = { title: "Plans & credits · GeniusAI Workspace" };
 
 const TASK_NAMES: Record<string, string> = {
-  summary: "Summary", translate: "Translation", extract_text: "Text extraction", markdown: "PDF to Markdown", tables: "Table extraction"
+  summary: "Summary", translate: "Translation", extract_text: "Text extraction", markdown: "Conversion to Word / text", tables: "Table extraction", chat: "Chat with document"
 };
 
 export default async function BillingPage({ searchParams }: { searchParams: Promise<{ currency?: string }> }) {

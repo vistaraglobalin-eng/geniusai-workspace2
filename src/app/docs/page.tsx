@@ -27,6 +27,7 @@ export default function DocsPage() {
         { href: "/tools/letters", title: "Business letters", text: "Offer letters, salary slips, NOC, rent receipts", Icon: Mail, tint: "blue" }
       ] },
       { title: "AI", rows: [
+        { href: "/tools/chat", title: "Chat with a document", text: "Ask questions, get answers with page numbers", Icon: MessageSquareText, tint: "cyan" },
         { href: "/tools/documents?task=summary", title: "Summarize", text: "Key points from long documents", Icon: ListChecks, tint: "cyan" },
         { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks", Icon: MessageSquareText, tint: "orange" },
         { href: "/tools/documents?task=translate", title: "Translate", text: "Into 25 languages, incl. Hindi", Icon: Languages, tint: "teal" },

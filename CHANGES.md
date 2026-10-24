@@ -7,6 +7,7 @@
 - Scan & convert: choose Paper document, ID or passport (cropped, sharp, true colour, 2 per A4 for front and back) or Screenshot or photo (kept whole, full resolution). Also accepts a PDF. Save as HD PDF (on device), or Word (.docx), Text PDF (retyped, searchable) or plain text, read by AI (uses credits; reuses one reading for all formats).
 - Find & replace in Edit PDF: search the text, see matches highlighted, replace every match in the same font size and colour.
 - Redact in Edit PDF: drag black boxes, or "Redact all" for a search or for PAN, Aadhaar, phone, email, account numbers and GSTIN. On save, pages with redactions are rebuilt as images in the browser and the file is rebuilt from scratch, so hidden text is really removed. Saved as "<name> (redacted).pdf".
+- Chat with a document (/tools/chat): ask questions about a PDF, Word file or photo; answers come only from the document, mention page numbers, reply in the question's language, keep the last 6 turns as context and are saved per person and file. Uses credits per question (ai_jobs task "chat"; no database change).
 - Stamps in Edit PDF: Approved, Paid, Received, Verified, Rejected, Draft, Confidential, Original, Copy, your own text, round company seal and "For <business> / Authorised Signatory", in red, blue, violet or black, with today's date.
 
 ## Revision 23: Reminders, Letters & Cards, Expenses, Team members

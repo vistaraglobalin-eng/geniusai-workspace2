@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Camera, Check, Crop, Download, FileText, FileType2, IdCard, ImagePlus, Maximize2, PenLine, RotateCw, ScanLine, Smartphone, Sparkles, Trash2, Wand2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Camera, Check, Crop, Download, FileText, FileType2, IdCard, ImagePlus, Maximize2, MessageSquareText, PenLine, RotateCw, ScanLine, Smartphone, Sparkles, Trash2, Wand2 } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { uploadWorkspaceFile } from "@/lib/storage/files";
 import { ShareSheet } from "@/components/ShareSheet";
@@ -421,6 +421,7 @@ export function ScanStudio({ workspaceId }: { workspaceId: string }) {
                 <span><Check size={15} aria-hidden="true" /> In Files: {saved.name}{read && read.key === contentKey && read.credits !== null ? ` · ${read.credits} credits used` : ""}</span>
                 <span className="sc-next">
                   <Link href={`/tools/edit?file=${saved.id}`}><PenLine size={14} aria-hidden="true" /> Edit, stamp or sign</Link>
+                  <Link href={`/tools/chat?file=${saved.id}`}><MessageSquareText size={14} aria-hidden="true" /> Ask about it</Link>
                 </span>
               </div>
             )}

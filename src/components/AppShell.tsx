@@ -1,13 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LogOut, Mail, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap } from "lucide-react";
+import { BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 import { roleLabel } from "@/lib/team/roles";
 
 
 export type NavKey =
   | "overview" | "money" | "docs" | "create" | "account"
-  | "invoices" | "expenses" | "scan" | "pdf" | "edit" | "sign" | "agreements" | "documents" | "letters"
+  | "invoices" | "expenses" | "scan" | "chat" | "pdf" | "edit" | "sign" | "agreements" | "documents" | "letters"
   | "creative" | "cards" | "career" | "files" | "tools" | "billing" | "settings";
 
 type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home; tint: string };
@@ -25,6 +25,7 @@ const GROUPS: NavGroup[] = [
     { key: "edit", href: "/tools/edit", label: "Edit PDF", Icon: PenLine, tint: "blue" },
     { key: "sign", href: "/tools/sign", label: "Sign & send", Icon: Signature, tint: "indigo" },
     { key: "agreements", href: "/tools/agreements", label: "Agreements", Icon: FilePen, tint: "purple" },
+    { key: "chat", href: "/tools/chat", label: "Chat with a doc", Icon: MessageSquareText, tint: "cyan" },
     { key: "documents", href: "/tools/documents", label: "AI documents", Icon: Sparkles, tint: "cyan" },
     { key: "letters", href: "/tools/letters", label: "Letters", Icon: Mail, tint: "blue" }
   ] },
@@ -44,7 +45,7 @@ const ACCOUNT: NavItem[] = [
 const TABS: { href: string; label: string; Icon: typeof Home; covers: NavKey[] }[] = [
   { href: "/", label: "Home", Icon: Home, covers: ["overview"] },
   { href: "/money", label: "Money", Icon: IndianRupee, covers: ["money", "invoices", "expenses"] },
-  { href: "/docs", label: "Documents", Icon: FileText, covers: ["docs", "scan", "pdf", "edit", "sign", "agreements", "documents", "letters"] },
+  { href: "/docs", label: "Documents", Icon: FileText, covers: ["docs", "scan", "chat", "pdf", "edit", "sign", "agreements", "documents", "letters"] },
   { href: "/create", label: "Create", Icon: Sparkles, covers: ["create", "creative", "cards", "career"] },
   { href: "/account", label: "Account", Icon: CircleUserRound, covers: ["account", "files", "tools", "billing", "settings"] }
 ];
