@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, Signature } from "lucide-react";
+import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -14,6 +14,7 @@ const HUBS = [
   { href: "/tools/pdf", title: "PDF Toolkit", text: "Merge, split, compress, protect, convert and more. Free.", Icon: FileStack, color: "peach" },
   { href: "/tools/documents", title: "Document Genius", text: "AI summaries, translation, OCR, Markdown and tables.", Icon: FileText, color: "lavender" },
   { href: "/tools/agreements", title: "Agreement Studio", text: "Draft India-ready agreements with AI, edit and export.", Icon: FilePen, color: "rose" },
+  { href: "/tools/edit", title: "Edit PDF", text: "Add text, whiteout, highlight, notes, drawings and images.", Icon: PenLine, color: "blue" },
   { href: "/tools/sign", title: "Sign PDF", text: "Draw or type your signature and place it on any PDF. Free.", Icon: Signature, color: "mint" },
   { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks before you sign.", Icon: MessageSquareText, color: "blue" }
 ] as const;

@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 15: Edit PDF (2026-10-24)
+- **Edit PDF** `/tools/edit`: Text (sizes, Sans/Serif/Mono, bold, colours; Hindi and other scripts via browser rendering), Note (yellow comment card), Whiteout (cover and replace words), Highlight, Underline, Strikeout, Box, Draw (freehand, 3 pen sizes), Image (PNG/JPG). Select to move/resize/delete, Undo (also Ctrl/Cmd+Z), Delete key. Saved as a new file "(edited).pdf"; the original is never changed. Free.
+- Engine `src/lib/pdf/edit.ts` (pdf-lib, vector output, correct on rotated and cropped pages); route `/api/edit`; shared browser renderer `src/lib/pdf/preview.ts`.
+- Tested end to end in Chromium: real taps, drags and typing in the editor, then the captured edits applied by the server engine and the PDF rendered and compared with the screen.
+- Linked from PDF Toolkit (Edit group), Home (Create & sign), All tools and Files.
+- Feature checklist compared with iLovePDF's editor; still to come: editing existing text in place, links, form fields, comments as PDF annotations.
+
 ## Revision 14: Home dashboard (2026-10-24)
 - Every tool and service has a fixed place, grouped by the job people come to do: **Create & sign** (Agreement Studio, Templates, Sign PDF, Request signatures soon), **Understand documents** (Explain a contract, Summarize, Translate, Extract text, Extract tables), **PDF tools** (Merge, Split, Compress, Convert to PDF, Protect, All PDF tools).
 - Time-of-day greeting with today's date (IST), credits at a glance, Upload.

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { Signature } from "lucide-react";
+import { PenLine, Signature } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -43,6 +43,9 @@ export default async function PdfToolkitPage() {
             <h2 id={`g-${group}`}>{group}</h2>
             <p className="group-lead">{GROUP_LEAD[group]}</p>
             <ul className="list-card">
+              {group === "Edit" && (
+                <ListRow href="/tools/edit" tint="blue" icon={<PenLine size={17} aria-hidden="true" />} title="Edit PDF" text="Add text, whiteout, highlight, draw, images" />
+              )}
               {PDF_TOOLS.filter((t) => TOOL_INFO[t].group === group).map((t) => {
                 const Icon = PDF_TOOL_ICONS[t];
                 return (
@@ -75,7 +78,7 @@ export default async function PdfToolkitPage() {
       </div>
 
       <p className="dg-hint" style={{ marginTop: 18 }}>
-        Coming later: request signatures from others, fill PDF forms, redact PDF, compare PDFs, PDF to Word/PowerPoint.
+        Coming later: request signatures, fill PDF forms, edit existing text in place, redact, compare PDFs, PDF to Word/PowerPoint.
       </p>
     </AppShell>
   );

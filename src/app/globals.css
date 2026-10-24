@@ -1049,3 +1049,71 @@ a.list-row:hover { background: var(--surface-2); }
 
 /* Upload buttons and credit pill sit on one baseline */
 .dash-head-actions .upload-control { flex-direction: row; }
+
+/* =========================================================================
+   Edit PDF
+   ========================================================================= */
+.edit-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 16px; align-items: start; }
+.edit-side { display: flex; flex-direction: column; gap: 12px; position: sticky; top: 76px; }
+.edit-side .panel-card { display: flex; flex-direction: column; gap: 12px; }
+.edit-side-title { font-size: 1rem; margin: 0; }
+.edit-help ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: .875rem; color: var(--text-2); line-height: 1.45; }
+.edit-main { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.edit-toolbar { position: sticky; top: 64px; z-index: 8; display: flex; flex-direction: column; gap: 8px; padding: 8px; border-radius: 18px; border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 86%, transparent); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+.edit-tools { display: flex; align-items: center; gap: 4px; }
+.edit-tools-scroll { flex: 1; min-width: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent); mask-image: linear-gradient(90deg, #000 92%, transparent); }
+.edit-tools-scroll::-webkit-scrollbar { display: none; }
+.edit-tool { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 58px; min-height: 48px; padding: 5px 6px; border: 0; border-radius: 12px; background: none; color: var(--text-2); font-size: .6875rem; font-weight: 500; }
+.edit-tool:hover:not(:disabled) { background: var(--surface-2); color: var(--text); }
+.edit-tool.active { background: var(--accent-soft); color: var(--accent-text); font-weight: 600; }
+.edit-tool:disabled { opacity: .4; }
+.edit-tools-gap { flex: 1; min-width: 6px; }
+.edit-save { flex-shrink: 0; min-height: 40px; padding: 8px 18px; }
+@media (max-width: 760px) { .edit-tool { min-width: 52px; } .edit-save { padding: 8px 14px; } }
+.edit-context { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 40px; padding: 0 4px; border-top: 1px solid var(--border); padding-top: 8px; }
+.edit-hint, .edit-context-label { font-size: .8125rem; color: var(--text-3); }
+.edit-context-label { font-weight: 600; color: var(--text); }
+.edit-text-input { flex: 1 1 220px; min-height: 40px; font-size: .9375rem; }
+.edit-stepper { display: inline-flex; align-items: center; gap: 2px; background: var(--surface-3); border-radius: 10px; padding: 2px; }
+.edit-stepper button { width: 32px; height: 32px; border: 0; border-radius: 8px; background: transparent; display: grid; place-items: center; }
+.edit-stepper button:hover { background: var(--surface); }
+.edit-stepper span { font-size: .8125rem; font-weight: 600; min-width: 42px; text-align: center; }
+.edit-font { min-height: 36px; width: auto; padding: 4px 28px 4px 10px; font-size: .875rem; }
+.edit-icon-btn { display: inline-flex; align-items: center; gap: 6px; min-width: 36px; height: 36px; padding: 0 9px; justify-content: center; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text-2); font-size: .8125rem; font-weight: 600; }
+.edit-icon-btn.on { background: var(--text); color: var(--surface); border-color: var(--text); }
+.edit-icon-btn.danger { color: var(--danger-text); }
+.edit-swatches { display: flex; gap: 6px; }
+.edit-swatches .sig-ink { width: 26px; height: 26px; }
+.edit-pages { display: flex; flex-direction: column; gap: 16px; align-items: center; padding: 14px; border-radius: 18px; background: var(--surface-3); min-height: 320px; }
+.edit-page { position: relative; width: 100%; background: #fff; box-shadow: var(--shadow-md); border-radius: 3px; overflow: hidden; container-type: inline-size; user-select: none; -webkit-user-select: none; touch-action: pan-y; }
+.edit-page.tool-draw, .edit-page.tool-whiteout, .edit-page.tool-highlight, .edit-page.tool-box, .edit-page.tool-underline, .edit-page.tool-strike { touch-action: none; cursor: crosshair; }
+.edit-page.tool-text, .edit-page.tool-note { cursor: text; }
+.edit-page.tool-image { cursor: copy; }
+.edit-page > img { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.edit-ink { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.edit-item { position: absolute; box-sizing: border-box; }
+.tool-select .edit-item { cursor: move; touch-action: none; }
+.edit-item.selected { outline: 1.5px solid var(--accent); outline-offset: 2px; }
+.edit-whiteout { outline: 1px dashed rgb(0 0 0 / 18%); }
+.edit-highlight { opacity: .4; mix-blend-mode: multiply; }
+.edit-box { border-style: solid; }
+.edit-underline { background: linear-gradient(var(--mark), var(--mark)) bottom / 100% max(1.5px, 9%) no-repeat; }
+.edit-strike { background: linear-gradient(var(--mark), var(--mark)) center / 100% max(1.5px, 9%) no-repeat; }
+.edit-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.edit-note { padding: 0; box-shadow: 0 0 0 calc(4 / 595 * 100cqw) #fff3a3, 0 0 0 calc(4.6 / 595 * 100cqw) #d9b833; }
+.edit-placeholder { opacity: .4; }
+.edit-item > img { width: 100%; height: 100%; pointer-events: none; display: block; }
+.edit-inkbox { background: transparent; }
+.edit-draft { pointer-events: none; outline: 1px dashed var(--accent); }
+.edit-draft.edit-whiteout { background: #fff; }
+.edit-draft.edit-box { border: 2px solid; }
+.edit-resize { position: absolute; right: -9px; bottom: -9px; width: 18px; height: 18px; border-radius: 999px; background: var(--accent); border: 2px solid #fff; cursor: nwse-resize; touch-action: none; }
+@media (pointer: coarse) { .edit-resize { width: 26px; height: 26px; right: -13px; bottom: -13px; } }
+@media (max-width: 900px) {
+  .edit-layout { grid-template-columns: minmax(0, 1fr); }
+  .edit-side { position: static; }
+  .edit-side .edit-help { display: none; }
+  .edit-pages { padding: 8px; margin: 0 -8px; }
+}
+@media (max-width: 760px) { .edit-toolbar { top: 56px; } }
