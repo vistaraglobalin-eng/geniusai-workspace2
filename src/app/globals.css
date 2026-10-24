@@ -1320,3 +1320,78 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
   .ps-canvas-wrap { max-height: 38vh; }
   .ps-two { grid-template-columns: 1fr; }
 }
+
+/* ---------- Invoices & Receipts ---------- */
+.inv-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 420px); gap: 16px; align-items: start; }
+.inv-form { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.inv-titlebar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.inv-titlebar h2 { margin: 0; font-size: 1.3rem; }
+.inv-card { display: flex; flex-direction: column; gap: 10px; }
+.inv-card h3 { margin: 0; font-size: .95rem; }
+.inv-card .field { display: flex; flex-direction: column; gap: 5px; font-size: .78rem; font-weight: 600; color: var(--text-2); margin: 0; min-width: 0; }
+.inv-two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.inv-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.inv-quick, .inv-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.inv-quick .quiet-button { border: 1px solid var(--border); min-height: 34px; padding: 4px 11px; font-size: .78rem; }
+.inv-warn { color: var(--warning-text); }
+.inv-item { border: 1px solid var(--border); border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 8px; background: var(--surface); }
+.inv-item-top { display: flex; gap: 8px; align-items: flex-start; }
+.inv-item-top textarea { flex: 1; min-width: 0; }
+.inv-item-no { flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); font-weight: 800; font-size: .78rem; margin-top: 8px; }
+.inv-item-actions { display: flex; flex-direction: column; gap: 4px; }
+.inv-item-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.inv-item-grid .text-input { padding-left: 8px; padding-right: 8px; }
+.inv-line-total { margin: 0; text-align: right; font-weight: 800; font-size: .92rem; }
+.inv-line-total span { font-weight: 500; color: var(--text-3); font-size: .76rem; margin-left: 6px; }
+.inv-side { position: sticky; top: 76px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.inv-summary { display: flex; flex-direction: column; gap: 10px; }
+.inv-summary dl { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.inv-summary dl div { display: flex; justify-content: space-between; font-size: .86rem; }
+.inv-summary dt { color: var(--text-3); }
+.inv-summary dd { margin: 0; font-variant-numeric: tabular-nums; }
+.inv-total { margin: 0; display: flex; justify-content: space-between; align-items: baseline; padding: 12px 14px; border-radius: 14px; background: var(--accent-softer); }
+.inv-total span { font-weight: 700; color: var(--text-2); }
+.inv-total strong { font-size: 1.45rem; color: var(--accent-text); font-variant-numeric: tabular-nums; }
+.inv-paid { margin: 0; font-size: .82rem; color: var(--text-2); text-align: right; }
+.inv-actions { display: flex; flex-direction: column; gap: 8px; }
+.inv-actions .primary-button.wide { width: 100%; justify-content: center; }
+.inv-pay { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--border); border-radius: 14px; padding: 10px; }
+.inv-preview-toggle { align-self: center; font-size: .82rem; }
+.inv-preview { display: none; }
+.inv-preview.open { display: block; }
+.inv-preview-pages { display: flex; flex-direction: column; gap: 10px; }
+.inv-page { width: 100%; height: auto; border-radius: 6px; box-shadow: var(--shadow-md); background: #fff; }
+.inv-settings { display: flex; flex-direction: column; gap: 12px; max-width: 760px; }
+.inv-logo-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.inv-logo { width: 72px; height: 72px; border-radius: 16px; border: 1px dashed var(--border-strong); display: grid; place-items: center; overflow: hidden; color: var(--text-3); background: #fff; }
+.inv-logo img { width: 100%; height: 100%; object-fit: contain; }
+.inv-sig { width: 100%; max-width: 320px; height: 100px; border: 1px solid var(--border); border-radius: 12px; display: grid; place-items: center; background: #fff; }
+.inv-sig img { max-width: 92%; max-height: 86px; object-fit: contain; }
+.inv-setup { display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit; margin-bottom: 12px; border-color: var(--warning-border); background: var(--warning-bg); }
+.inv-setup > span:last-child { display: flex; flex-direction: column; gap: 3px; }
+.inv-setup span span { font-size: .84rem; color: var(--text-2); }
+.inv-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.inv-stats .panel-card { display: flex; flex-direction: column; gap: 4px; padding: 14px; }
+.inv-stats span { font-size: .76rem; font-weight: 600; color: var(--text-3); }
+.inv-stats strong { font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+.inv-stats em { font-style: normal; font-size: .74rem; color: var(--text-3); }
+.inv-stats .warn strong { color: var(--danger-text); }
+.inv-toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.inv-tabs a { display: inline-flex; align-items: center; padding: 8px 13px; min-height: 38px; border-radius: 9px; font-size: .82rem; font-weight: 600; color: var(--text-2); text-decoration: none; }
+.inv-tabs a.selected { background: var(--surface); color: var(--accent-text); box-shadow: var(--shadow-sm); }
+.inv-search { flex: 1; min-width: 180px; }
+.inv-search .text-input { width: 100%; }
+.inv-row-link .list-text { flex: 1; min-width: 0; }
+.inv-amount { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.inv-amount strong { font-variant-numeric: tabular-nums; }
+.form-message.inline a { font-weight: 700; }
+@media (max-width: 900px) {
+  .inv-layout { grid-template-columns: minmax(0, 1fr); }
+  .inv-side { position: static; }
+  .inv-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .inv-item-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .inv-two, .inv-three { grid-template-columns: 1fr; }
+  .inv-stats strong { font-size: 1.1rem; }
+}

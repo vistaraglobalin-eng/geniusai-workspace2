@@ -1,5 +1,18 @@
 # Changes
 
+## Revision 21: Invoices & Receipts
+
+- New **Invoices & Receipts** (dashboard → Grow your business, sidebar → Invoices, All tools).
+- **Business details** once: name, address, state, GSTIN (checked, fills state and PAN), logo, bank, UPI ID, signature (draw or type), default terms, number prefixes, colour.
+- **Tax invoice / bill of supply, quotation, payment receipt.** Numbers like INV/26-27/0001, consecutive and restarting each financial year (April–March), unique per business.
+- **GST:** CGST + SGST for same-state sales, IGST for other states (from place of supply); slabs 0 / 5 / 18 / 40 % plus 3 % and 0.25 %; per-item discount; round-off; reverse-charge flag; amount in words in lakh/crore.
+- **Customers** saved for next time (GSTIN check; state set from GSTIN).
+- **PDF**: A4, logo, colour, HSN/SAC table, tax breakdown, bank details, **UPI QR code for the exact balance**, signature, multiple pages; ₹ and Indian-language names print correctly; searchable text layer.
+- **Record payment** → creates a receipt and marks the invoice part paid / paid. **Quotation → invoice**, duplicate, cancel.
+- List with **To collect, Overdue, Billed this month, Received this month**, tabs and search.
+- **Share** (PDF, Word, images, link), download, or save the PDF to Files.
+- Database: run `supabase/migrations/202610240012_invoices.sql` once.
+
 ## Revision 20: Product Photos & Ads
 
 - New **Product Photos & Ads** studio (dashboard → Grow your business, sidebar → Photos & Ads, All tools).

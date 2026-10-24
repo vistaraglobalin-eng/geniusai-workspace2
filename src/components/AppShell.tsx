@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { FilePen, FileStack, FileText, FolderOpen, Home, LayoutGrid, LogOut, Settings, ShieldCheck, Sparkles, Zap, Image as ImageIcon } from "lucide-react";
+import { FilePen, FileStack, FileText, FolderOpen, Home, LayoutGrid, LogOut, Settings, ShieldCheck, Sparkles, Zap, Image as ImageIcon, ReceiptText } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 
 const ROLE_LABEL = { owner: "Owner", admin: "Admin", member: "Member" } as const;
 
-export type NavKey = "overview" | "files" | "tools" | "pdf" | "documents" | "agreements" | "creative" | "billing" | "settings";
+export type NavKey = "overview" | "files" | "tools" | "pdf" | "documents" | "agreements" | "creative" | "invoices" | "billing" | "settings";
 
 type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home; tint?: string };
 
@@ -16,14 +16,15 @@ const SIDEBAR_NAV: NavItem[] = [
   { key: "pdf", href: "/tools/pdf", label: "PDF Toolkit", Icon: FileStack, tint: "red" },
   { key: "documents", href: "/tools/documents", label: "Document Genius", Icon: FileText, tint: "teal" },
   { key: "agreements", href: "/tools/agreements", label: "Agreement Studio", Icon: FilePen, tint: "indigo" },
-  { key: "creative", href: "/tools/photos", label: "Photos & Ads", Icon: ImageIcon, tint: "orange" }
+  { key: "creative", href: "/tools/photos", label: "Photos & Ads", Icon: ImageIcon, tint: "orange" },
+  { key: "invoices", href: "/tools/invoices", label: "Invoices", Icon: ReceiptText, tint: "green" }
 ];
 
 /** Phone bottom bar: five thumb-sized targets. "Tools" covers every tool page. */
 const BOTTOM_NAV: (NavItem & { short: string; covers: NavKey[] })[] = [
   { key: "overview", href: "/", label: "Home", short: "Home", Icon: Home, covers: ["overview"] },
   { key: "files", href: "/files", label: "Files", short: "Files", Icon: FolderOpen, covers: ["files"] },
-  { key: "tools", href: "/tools", label: "All tools", short: "Tools", Icon: LayoutGrid, covers: ["tools", "pdf", "documents", "creative"] },
+  { key: "tools", href: "/tools", label: "All tools", short: "Tools", Icon: LayoutGrid, covers: ["tools", "pdf", "documents", "creative", "invoices"] },
   { key: "agreements", href: "/tools/agreements", label: "Agreement Studio", short: "Agreements", Icon: FilePen, covers: ["agreements"] },
   { key: "settings", href: "/settings", label: "Settings", short: "Settings", Icon: Settings, covers: ["settings", "billing"] }
 ];
