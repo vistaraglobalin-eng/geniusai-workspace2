@@ -26,7 +26,7 @@ const GROUPS: { title: string; rows: Row[] }[] = [
       { href: "/tools/agreements#templates", title: "Templates", text: "NDA, rental, employment and more", Icon: Layers, tint: "purple" },
       { href: "/tools/sign", title: "Sign PDF", text: "Draw or type your signature", Icon: Signature, tint: "green" },
       { href: "/tools/edit", title: "Edit PDF", text: "Edit text, mark up, shapes, links, forms", Icon: PenLine, tint: "blue" },
-      { title: "Request signatures", text: "Send a document for others to sign", Icon: Send, tint: "gray", soon: true }
+      { href: "/tools/sign/requests", title: "Request signatures", text: "Send a PDF for others to sign by link", Icon: Send, tint: "teal" }
     ]
   },
   {

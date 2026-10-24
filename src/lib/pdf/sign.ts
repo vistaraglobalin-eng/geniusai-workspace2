@@ -47,13 +47,13 @@ export function decodeSignature(dataUrl: unknown): Uint8Array {
 }
 
 /** Standard PDF fonts only cover Latin text; replace anything else so the record never fails to draw. */
-function latin(font: PDFFont, text: string): string {
+export function latin(font: PDFFont, text: string): string {
   return Array.from(text).map((ch) => {
     try { font.widthOfTextAtSize(ch, 10); return ch; } catch { return "?"; }
   }).join("");
 }
 
-function wrap(font: PDFFont, text: string, size: number, maxWidth: number): string[] {
+export function wrap(font: PDFFont, text: string, size: number, maxWidth: number): string[] {
   const words = text.split(/\s+/);
   const lines: string[] = [];
   let line = "";
@@ -65,7 +65,7 @@ function wrap(font: PDFFont, text: string, size: number, maxWidth: number): stri
   return lines;
 }
 
-const formatWhen = (d: Date, timeZone: string) =>
+export const formatWhen = (d: Date, timeZone: string) =>
   new Intl.DateTimeFormat("en-GB", { timeZone, day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }).format(d);
 
 export async function signPdf(

@@ -44,7 +44,7 @@ function trimmed(canvas: HTMLCanvasElement): Signature | null {
   return { dataUrl: out.toDataURL("image/png"), aspect: w / h };
 }
 
-export function SignaturePad({ defaultName, onChange }: { defaultName: string; onChange: (s: Signature | null) => void }) {
+export function SignaturePad({ defaultName, onChange, doneHint = "Looks good? Now tap a page below to place it." }: { defaultName: string; onChange: (s: Signature | null) => void; doneHint?: string }) {
   const [mode, setMode] = useState<"draw" | "type">("draw");
   const [ink, setInk] = useState<string>(INKS[0].color);
   const [typed, setTyped] = useState(defaultName);
@@ -171,7 +171,7 @@ export function SignaturePad({ defaultName, onChange }: { defaultName: string; o
         onPointerLeave={up}
       />
       <div className="sig-foot">
-        <span className="field-hint">{mode === "draw" ? (hasInk ? "Looks good? Now tap a page below to place it." : "Sign above with your finger, pen or mouse.") : "Pick the style you like."}</span>
+        <span className="field-hint">{mode === "draw" ? (hasInk ? doneHint : "Sign above with your finger, pen or mouse.") : "Pick the style you like."}</span>
         <button type="button" className="quiet-button with-icon" onClick={clear}><Eraser size={14} aria-hidden="true" /> Clear</button>
       </div>
     </div>

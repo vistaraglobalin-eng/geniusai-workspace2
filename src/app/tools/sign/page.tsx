@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
@@ -31,6 +32,7 @@ export default async function SignPage({ searchParams }: { searchParams: Promise
           <h1>Sign a <span>PDF</span></h1>
           <p className="subtitle">Draw or type your signature, place it on the pages, and save a signed copy with a signing record. Free.</p>
         </div>
+        <Link className="secondary-button" href="/tools/sign/requests/new">Need others to sign? Request signatures</Link>
       </div>
       <SignPdf
         workspaceId={workspace.id}

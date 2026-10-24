@@ -1,5 +1,15 @@
 # Changes
 
+## Revision 17: Request signatures
+
+- **Send a PDF for others to sign:** choose a PDF, add up to 10 signers, and place signature, name and date fields for each one.
+- **Private signing links:** every signer gets their own link to share by WhatsApp, email, the iPhone share sheet, or copy and paste. Signers don't need an account.
+- **Signing order:** any order, or one after another.
+- **Signer page:** review the document, draw or type a signature, agree to sign electronically, or decline with a reason. Works on phones.
+- **Finished PDF:** when everyone has signed, all signatures are placed on the original and a signing certificate is added (names, times in IST and UTC, IP address, device, document fingerprint). It's saved to the sender's Files, and signers can download a copy.
+- **Tracking:** Signature requests page with status, who has opened or signed, an activity log, and cancel / download.
+- **Database:** run `supabase/migrations/202610240011_signature_requests.sql` once in the Supabase SQL editor.
+
 ## Revision 16: Edit PDF Pro
 
 - **Edit existing text:** tap a line of text in the PDF to change it. The old line is covered with its own background colour and your new text is placed in a matching font, size and colour.
