@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Eye, EyeOff, KeyRound, Lock, Mail } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { leakCount, leakedMessage } from "@/lib/auth/pwned";
 
 // Three ways in:
 //   * Continue with Google: no email needed, no limits (shown when NEXT_PUBLIC_GOOGLE_SIGNIN=on).
@@ -61,6 +62,10 @@ export function LoginForm({ next }: { next: string }) {
       return;
     }
     setStatus({ kind: "busy" });
+    if (mode === "signup") {
+      const leaks = await leakCount(password);
+      if (leaks) { setStatus({ kind: "error", message: leakedMessage(leaks) }); return; }
+    }
     const auth = createSupabaseBrowserClient().auth;
 
     if (mode === "signin") {

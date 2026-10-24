@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Lock } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { leakCount, leakedMessage } from "@/lib/auth/pwned";
 
 export function ResetForm() {
   const router = useRouter();
@@ -17,6 +18,8 @@ export function ResetForm() {
     if (password.length < 8 || !/[a-z]/i.test(password) || !/\d/.test(password)) { setError("Use at least 8 characters, including letters and numbers."); return; }
     if (password !== confirm) { setError("The two passwords don't match."); return; }
     setBusy(true); setError(null);
+    const leaks = await leakCount(password);
+    if (leaks) { setBusy(false); setError(leakedMessage(leaks)); return; }
     const { error: err } = await createSupabaseBrowserClient().auth.updateUser({ password });
     setBusy(false);
     if (err) { setError(/same/i.test(err.message) ? "Choose a password you haven't used before." : "The password couldn't be changed. Please request a new reset link."); return; }
