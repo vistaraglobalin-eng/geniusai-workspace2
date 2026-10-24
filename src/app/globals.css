@@ -1506,3 +1506,52 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
 .vc-qr button:disabled { opacity: .4; }
 .vc-reset { align-self: flex-start; }
 .lh-canvas { max-width: 520px; margin: 0 auto; display: block; }
+
+/* ---------- Expense tracker ---------- */
+.ex-monthbar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.ex-monthbar strong { font-size: 1.05rem; min-width: 140px; text-align: center; white-space: nowrap; }
+.ex-monthbar .icon-button.disabled { visibility: hidden; }
+.ex-add { margin-left: auto; }
+.ex-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ex-cats { padding: 14px; margin-bottom: 12px; }
+.ex-bar { display: flex; height: 12px; border-radius: 999px; overflow: hidden; gap: 2px; margin-bottom: 10px; background: var(--surface-2); }
+.ex-bar span { display: block; height: 100%; }
+.ex-cats ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 14px; }
+.ex-cats li button { display: flex; align-items: center; gap: 8px; width: 100%; padding: 7px 6px; border: 0; background: none; border-radius: 8px; font: inherit; font-size: .82rem; color: var(--text); cursor: pointer; text-align: left; }
+.ex-cats li button.selected { background: var(--accent-soft); }
+.ex-cats i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.ex-cats li span { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ex-cats b { font-variant-numeric: tabular-nums; font-weight: 700; }
+.ex-cats em { font-style: normal; color: var(--text-3); font-size: .74rem; width: 34px; text-align: right; }
+.ex-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.ex-search { position: relative; flex: 1 1 220px; display: flex; align-items: center; }
+.ex-search svg { position: absolute; left: 11px; color: var(--text-3); }
+.ex-search input { padding-left: 32px; width: 100%; }
+.ex-filter { font-size: .82rem; color: var(--text-2); margin: 0 0 8px; }
+.ex-days { display: flex; flex-direction: column; gap: 14px; }
+.ex-day { display: flex; justify-content: space-between; font-size: .78rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .02em; margin: 0 4px 6px; }
+.ex-row { width: 100%; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.ex-dot { width: 32px; height: 32px; border-radius: 9px; flex: none; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: .85rem; }
+.ex-billtag { display: inline-flex; align-items: center; gap: 3px; font-size: .7rem; font-weight: 600; color: var(--text-3); }
+.ex-sheet { max-width: 560px; }
+.ex-form { display: flex; flex-direction: column; gap: 12px; }
+.ex-amount { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 0 4px; }
+.ex-amount span { font-size: 2rem; font-weight: 700; color: var(--text-3); }
+.ex-amount input { border: 0; background: none; font: inherit; font-size: 2.6rem; font-weight: 800; width: 7.5ch; text-align: left; color: var(--text); outline: none; font-variant-numeric: tabular-nums; }
+.ex-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ex-chips button { border: 1px solid var(--border); background: var(--surface); color: var(--text-2); border-radius: 999px; padding: 7px 12px; font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer; }
+.ex-chips button.selected { background: var(--c); border-color: var(--c); color: #fff; }
+.ex-gstquick { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: .78rem; color: var(--text-3); margin-top: -4px; }
+.ex-note { display: flex; flex-direction: column; gap: 5px; font-size: .78rem; font-weight: 600; color: var(--text-2); margin: 0; }
+.ex-photo { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.ex-photoname { display: inline-flex; align-items: center; gap: 4px; font-size: .78rem; color: var(--success-text); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ex-actions { display: flex; gap: 8px; align-items: center; }
+.ex-actions .wide { flex: 1; }
+@media (max-width: 640px) {
+  .ex-monthbar strong { min-width: 0; flex: 1; font-size: .98rem; }
+  .ex-chips button { padding: 6px 10px; font-size: .74rem; }
+  .ex-add { padding-inline: 12px; }
+  .ex-cats ul { grid-template-columns: 1fr; }
+  .share-backdrop:has(.ex-sheet) { align-items: flex-end; padding: 0; }
+  .ex-sheet { border-radius: 22px 22px 0 0; max-height: 92vh; padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+}
