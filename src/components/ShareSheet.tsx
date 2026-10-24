@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Copy, Download, FileText, Image as ImageIcon, Link2, Mail, MessageCircle, Share2, X } from "lucide-react";
+import { Download, FileText, Image as ImageIcon, Link2, Share2, X } from "lucide-react";
+import { ShareApps, mailHref, smsHref, waHref } from "@/components/ShareApps";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { FILES_BUCKET } from "@/lib/storage/files";
 
@@ -189,12 +190,13 @@ export function ShareSheet({ source, onClose }: { source: ShareSource; onClose: 
               {!link ? (
                 <button type="button" className="primary-button" onClick={makeLink} disabled={linkBusy}><Link2 size={15} aria-hidden="true" /> {linkBusy ? "Creating…" : "Create link"}</button>
               ) : (
-                <div className="sr-link-actions share-link-actions">
-                  <button type="button" className="quiet-button with-icon" onClick={shareLink}><Share2 size={15} aria-hidden="true" /> Share</button>
-                  <a className="quiet-button with-icon" href={`https://wa.me/?text=${encodeURIComponent(linkText)}`} target="_blank" rel="noopener noreferrer"><MessageCircle size={15} aria-hidden="true" /> WhatsApp</a>
-                  <a className="quiet-button with-icon" href={`mailto:?subject=${encodeURIComponent(source.name)}&body=${encodeURIComponent(linkText)}`}><Mail size={15} aria-hidden="true" /> Email</a>
-                  <button type="button" className="quiet-button with-icon" onClick={copyLink}>{copied ? <><Check size={15} aria-hidden="true" /> Copied</> : <><Copy size={15} aria-hidden="true" /> Copy link</>}</button>
-                </div>
+                <ShareApps label="Send the link" items={[
+                  { kind: "share", onClick: shareLink },
+                  { kind: "whatsapp", href: waHref(linkText) },
+                  { kind: "sms", href: smsHref(linkText) },
+                  { kind: "email", href: mailHref("", source.name, linkText) },
+                  { kind: copied ? "copied" : "copy", onClick: copyLink }
+                ]} />
               )}
             </div>
           </>

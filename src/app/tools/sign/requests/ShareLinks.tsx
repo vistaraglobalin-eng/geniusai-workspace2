@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy, Mail, MessageCircle, Paperclip, Share2 } from "lucide-react";
+import { ShareApps, mailHref, smsHref, waHref } from "@/components/ShareApps";
 import type { ShareSource } from "@/components/ShareSheet";
 
 export type SignLink = { position: number; name: string; email: string | null; url: string; status?: string };
@@ -48,17 +48,14 @@ export function ShareLinks({ links, title, sender, attach }: { links: SignLink[]
             <span className="list-text"><strong>{l.name}</strong><span>{l.email ?? "No email"}{l.status ? ` · ${STATUS[l.status] ?? l.status}` : ""}</span></span>
           </div>
           {l.status !== "signed" && l.status !== "declined" && (
-            <div className="sr-link-actions">
-              <button type="button" className="quiet-button with-icon" onClick={() => share(l)}><Share2 size={15} aria-hidden="true" /> Share</button>
-              <a className="quiet-button with-icon" href={`https://wa.me/?text=${encodeURIComponent(text(l))}`} target="_blank" rel="noopener noreferrer"><MessageCircle size={15} aria-hidden="true" /> WhatsApp</a>
-              <a className="quiet-button with-icon" href={`mailto:${l.email ?? ""}?subject=${encodeURIComponent(`Please sign: ${title}`)}&body=${encodeURIComponent(text(l))}`}><Mail size={15} aria-hidden="true" /> Email</a>
-              {attach && (pdf
-                ? <button type="button" className="quiet-button with-icon" onClick={() => sharePdf(l)}><Paperclip size={15} aria-hidden="true" /> Link + PDF</button>
-                : <button type="button" className="quiet-button with-icon" onClick={preparePdf} disabled={pdfBusy}><Paperclip size={15} aria-hidden="true" /> {pdfBusy ? "Attaching…" : "Attach PDF"}</button>)}
-              <button type="button" className="quiet-button with-icon" onClick={() => copy(l)}>
-                {copied === l.position ? <><Check size={15} aria-hidden="true" /> Copied</> : <><Copy size={15} aria-hidden="true" /> Copy link</>}
-              </button>
-            </div>
+            <ShareApps label={`Send ${l.name}'s link`} items={[
+              { kind: "share", onClick: () => share(l) },
+              { kind: "whatsapp", href: waHref(text(l)) },
+              { kind: "sms", href: smsHref(text(l)) },
+              { kind: "email", href: mailHref(l.email ?? "", `Please sign: ${title}`, text(l)) },
+              ...(attach ? [pdf ? { kind: "attach" as const, onClick: () => sharePdf(l) } : { kind: "attach" as const, label: pdfBusy ? "Attaching…" : "Attach PDF", onClick: preparePdf, disabled: pdfBusy }] : []),
+              { kind: copied === l.position ? "copied" as const : "copy" as const, onClick: () => copy(l) }
+            ]} />
           )}
         </li>
       ))}
