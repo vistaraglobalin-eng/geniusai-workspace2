@@ -20,7 +20,7 @@ const GROUPS: NavGroup[] = [
     { key: "expenses", href: "/tools/expenses", label: "Expenses", Icon: Wallet, tint: "teal" }
   ] },
   { title: "Documents", hub: "/docs", area: "docs", items: [
-    { key: "scan", href: "/tools/scan", label: "Scan", Icon: ScanLine, tint: "red" },
+    { key: "scan", href: "/tools/scan", label: "Scan & convert", Icon: ScanLine, tint: "red" },
     { key: "pdf", href: "/tools/pdf", label: "PDF tools", Icon: FileStack, tint: "red" },
     { key: "edit", href: "/tools/edit", label: "Edit PDF", Icon: PenLine, tint: "blue" },
     { key: "sign", href: "/tools/sign", label: "Sign & send", Icon: Signature, tint: "indigo" },
@@ -53,7 +53,7 @@ const TABS: { href: string; label: string; Icon: typeof Home; covers: NavKey[] }
 const NEW_ITEMS = [
   { href: "/tools/invoices/new?kind=invoice", label: "New invoice", Icon: ReceiptText, tint: "green" },
   { href: "/tools/expenses", label: "Add expense", Icon: Wallet, tint: "teal" },
-  { href: "/tools/scan", label: "Scan a document", Icon: ScanLine, tint: "red" },
+  { href: "/tools/scan", label: "Scan or convert", Icon: ScanLine, tint: "red" },
   { href: "/tools/sign", label: "Sign a PDF", Icon: Signature, tint: "indigo" },
   { href: "/tools/letters", label: "Write a letter", Icon: Mail, tint: "blue" },
   { href: "/tools/documents?task=summary", label: "Summarize a document", Icon: Sparkles, tint: "cyan" }

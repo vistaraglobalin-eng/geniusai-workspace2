@@ -1932,3 +1932,30 @@ a.home-card:hover { background: var(--surface-2); }
 }
 .edit-stamp { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; width: 100%; }
 .edit-stamp-preview { max-height: 56px; max-width: 160px; object-fit: contain; padding: 4px 8px; background: #fff; border: 1px solid var(--border); border-radius: 10px; }
+.sc-empty .sc-modes { width: 100%; max-width: 760px; }
+.sc-modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: left; }
+.sc-mode { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); color: var(--text); text-align: left; }
+.sc-mode strong { display: block; font-size: .92rem; }
+.sc-mode small { display: block; color: var(--text-3); font-size: .78rem; line-height: 1.35; margin-top: 3px; }
+.sc-mode.on { border-color: transparent; box-shadow: 0 0 0 2px var(--peach), 0 8px 20px rgb(242 160 122 / 18%); background: var(--surface); }
+.sc-mode .app-icon { flex: none; width: 38px; height: 38px; border-radius: 12px; }
+.sc-addas { margin: 0 0 16px; }
+.sc-addas > summary { cursor: pointer; color: var(--text-2); font-size: .88rem; list-style: none; }
+.sc-addas > summary::-webkit-details-marker { display: none; }
+.sc-addas[open] > summary { margin-bottom: 10px; }
+.sc-pdfsrc { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; max-width: 720px; }
+.sc-pdfsrc strong { display: block; word-break: break-word; }
+.sc-pdfsrc small { color: var(--text-3); }
+.sc-outputs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.sc-out { display: grid; gap: 4px; padding: 12px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); color: var(--text); text-align: left; }
+.sc-out strong { display: flex; align-items: center; gap: 6px; font-size: .92rem; }
+.sc-out small { color: var(--text-3); font-size: .76rem; line-height: 1.35; }
+.sc-out.on { border-color: transparent; box-shadow: 0 0 0 2px var(--ink); }
+.sc-ai-note { display: flex; gap: 6px; align-items: flex-start; }
+.sc-ai-note svg { flex: none; margin-top: 3px; color: var(--accent-text); }
+.sc-readout > summary { cursor: pointer; font-weight: 600; font-size: .88rem; }
+.sc-readout pre { white-space: pre-wrap; word-break: break-word; max-height: 320px; overflow: auto; background: var(--surface-2); border-radius: 12px; padding: 12px; font-size: .8rem; margin-top: 8px; }
+@media (max-width: 760px) {
+  .sc-modes { grid-template-columns: 1fr; }
+  .sc-outputs { grid-template-columns: 1fr 1fr; }
+}

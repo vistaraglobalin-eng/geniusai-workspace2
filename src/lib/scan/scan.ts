@@ -218,3 +218,18 @@ export function placeOnPage(size: PageSize, w: number, h: number): { pw: number;
   const k = Math.min((pw - 2 * m) / w, (ph - 2 * m) / h), dw = w * k, dh = h * k;
   return { pw, ph, x: (pw - dw) / 2, y: (ph - dh) / 2, dw, dh };
 }
+
+/** Unsharp mask: makes small text and ID details crisper. */
+export function sharpen(px: Px, amount = 0.6): Px {
+  const { width: w, height: h, data } = px, out = new Uint8ClampedArray(data.length);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const i = (y * w + x) * 4;
+    const up = y > 0 ? i - w * 4 : i, dn = y < h - 1 ? i + w * 4 : i, lf = x > 0 ? i - 4 : i, rt = x < w - 1 ? i + 4 : i;
+    for (let c = 0; c < 3; c++) {
+      const blur = (data[up + c] + data[dn + c] + data[lf + c] + data[rt + c] + data[i + c] * 4) / 8;
+      out[i + c] = data[i + c] + (data[i + c] - blur) * amount * 2;
+    }
+    out[i + 3] = 255;
+  }
+  return { width: w, height: h, data: out };
+}

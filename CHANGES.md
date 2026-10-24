@@ -4,6 +4,7 @@
 
 - New look: off-white peach background, baby peach as the only accent, black pill buttons, serif titles, floating round dock on phones.
 - Scan (/tools/scan): photos of paper become a straight, cleaned-up PDF. Auto edge detection, drag corners, rotate, Clean / Black & white / Grey / Original, reorder pages, A4/Letter/photo size, download, share or save to Files. Runs in the browser; photos are not uploaded until the PDF is saved.
+- Scan & convert: choose Paper document, ID or passport (cropped, sharp, true colour, 2 per A4 for front and back) or Screenshot or photo (kept whole, full resolution). Also accepts a PDF. Save as HD PDF (on device), or Word (.docx), Text PDF (retyped, searchable) or plain text, read by AI (uses credits; reuses one reading for all formats).
 - Stamps in Edit PDF: Approved, Paid, Received, Verified, Rejected, Draft, Confidential, Original, Copy, your own text, round company seal and "For <business> / Authorised Signatory", in red, blue, violet or black, with today's date.
 
 ## Revision 23: Reminders, Letters & Cards, Expenses, Team members

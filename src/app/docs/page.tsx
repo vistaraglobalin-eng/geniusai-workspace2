@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Combine, FilePen, FileStack, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table } from "lucide-react";
+import { Combine, FilePen, FileType2, FileStack, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table } from "lucide-react";
 import { Hub } from "@/components/Hub";
 
 export const metadata: Metadata = { title: "Documents · GeniusAI Workspace" };
@@ -9,11 +9,12 @@ export default function DocsPage() {
   return (
     <Hub area="docs" path="/docs" title="Documents" tag="PDF, sign and AI" intro="Edit and sign PDFs, send them for signing, draft agreements and letters, and let AI read long documents for you." sections={[
       { title: "PDF", rows: [
-        { href: "/tools/scan", title: "Scan a document", text: "Photo to a clean, straight PDF", Icon: ScanLine, tint: "red" },
+        { href: "/tools/scan", title: "Scan & convert", text: "Photo, ID or screenshot to HD PDF, Word or text", Icon: ScanLine, tint: "red" },
         { href: "/tools/edit", title: "Edit PDF", text: "Text, highlights, notes, forms, images", Icon: PenLine, tint: "blue" },
         { href: "/tools/edit", title: "Stamp a PDF", text: "Paid, Approved, company seal, signatory", Icon: Stamp, tint: "red" },
         { href: "/tools/pdf/merge", title: "Merge PDFs", text: "Combine files in the order you want", Icon: Combine, tint: "red" },
         { href: "/tools/pdf/compress", title: "Compress PDF", text: "Make files smaller to share", Icon: Minimize2, tint: "red" },
+        { href: "/tools/scan", title: "PDF to Word", text: "Editable Word or text from any PDF", Icon: FileType2, tint: "blue" },
         { href: "/tools/pdf", title: "All PDF tools", text: "Split, rotate, protect, convert and more", Icon: FileStack, tint: "red" }
       ] },
       { title: "Sign", rows: [
