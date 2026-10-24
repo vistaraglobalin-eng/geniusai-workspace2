@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { FilePen, FileStack, FileText, FolderOpen, Home, LayoutGrid, LogOut, Settings, ShieldCheck, Sparkles, Zap, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet } from "lucide-react";
+import { FilePen, FileStack, FileText, FolderOpen, Home, LayoutGrid, LogOut, Settings, ShieldCheck, Sparkles, Zap, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, Check, ChevronDown, Eye, Users } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
+import { roleLabel } from "@/lib/team/roles";
 
-const ROLE_LABEL = { owner: "Owner", admin: "Admin", member: "Member" } as const;
 
 export type NavKey = "overview" | "files" | "tools" | "pdf" | "documents" | "agreements" | "creative" | "invoices" | "expenses" | "letters" | "career" | "billing" | "settings";
 
@@ -77,7 +77,7 @@ export function AppShell({
           <div className="secure-note"><ShieldCheck size={18} aria-hidden="true" /><div><strong>Privacy-first workspace</strong><span>Only your workspace can open your files.</span></div></div>
           <div className="profile">
             <div className="avatar" aria-hidden="true">{initial}</div>
-            <div className="profile-text"><strong title={name}>{name}</strong><span title={workspace.name}>{workspace.name} · {ROLE_LABEL[workspace.role]}</span></div>
+            <div className="profile-text"><strong title={name}>{name}</strong><span title={workspace.name}>{workspace.name} · {roleLabel(workspace.role, workspace.access)}</span></div>
             <form action="/auth/signout" method="post" className="signout-form">
               <button type="submit" className="icon-button" aria-label="Sign out of this device" title="Sign out"><LogOut size={16} aria-hidden="true" /></button>
             </form>
@@ -87,13 +87,37 @@ export function AppShell({
 
       <div className="main-panel">
         <header className="topbar">
-          <div className="breadcrumb">{workspace.name} <span aria-hidden="true">/</span> {breadcrumb}</div>
+          <div className="breadcrumb">
+            {ctx.workspaces.length > 1 ? (
+              <details className="ws-switch">
+                <summary aria-label="Switch workspace">{workspace.name}<ChevronDown size={14} aria-hidden="true" /></summary>
+                <div className="ws-menu" role="menu">
+                  <span className="ws-menu-label">Your workspaces</span>
+                  {ctx.workspaces.map((w) => (
+                    <form key={w.id} action="/api/workspace/switch" method="post">
+                      <input type="hidden" name="workspaceId" value={w.id} />
+                      <button type="submit" role="menuitem" className={w.id === workspace.id ? "current" : ""} aria-current={w.id === workspace.id ? "true" : undefined}>
+                        <span className="ws-initial" aria-hidden="true">{(w.name[0] ?? "W").toUpperCase()}</span>
+                        <span className="ws-name"><strong>{w.name}</strong><span>{roleLabel(w.role, w.access)}</span></span>
+                        {w.id === workspace.id && <Check size={15} aria-hidden="true" />}
+                      </button>
+                    </form>
+                  ))}
+                  <Link href="/settings/team" className="ws-menu-link"><Users size={15} aria-hidden="true" /> Team members</Link>
+                </div>
+              </details>
+            ) : workspace.name}
+            <span aria-hidden="true">/</span> {breadcrumb}
+          </div>
           <div className="top-actions">
             <span className="topbar-email">{user.email}</span>
             <Link className="avatar small" href="/settings#profile" aria-label="Your profile and settings">{initial}</Link>
           </div>
         </header>
-        <main id="main" className="content" tabIndex={-1}>{children}</main>
+        <main id="main" className="content" tabIndex={-1}>
+          {workspace.access === "view" && <p className="form-message inline view-only-note"><Eye size={16} aria-hidden="true" /> You have view-only access to {workspace.name}. Ask an admin if you need to make changes.</p>}
+          {children}
+        </main>
       </div>
 
       <nav className="bottom-nav" aria-label="Main">

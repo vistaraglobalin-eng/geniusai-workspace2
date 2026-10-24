@@ -58,6 +58,11 @@ export default function PrivacyPage() {
           only to provide the service to you. People who sign through a link don&apos;t need an account; they can contact us at the address below
           to exercise their rights, and we will pass requests to the sender where appropriate.
         </p>
+        <p>
+          <strong>Team workspaces.</strong> When you invite someone, we store their email address (if you give one) and the invite until it is used,
+          cancelled or expires (7 days). Everyone in a workspace can see its members&apos; names and email addresses and the workspace&apos;s shared content;
+          the owner and admins control who has access. Expense entries and bill photos you add are stored in your workspace like your other files.
+        </p>
 
         <h2>3B. Processing on your device</h2>
         <p>
@@ -118,7 +123,7 @@ export default function PrivacyPage() {
 
         <h2>9. Cookies</h2>
         <p>
-          We use only essential cookies: sign-in cookies that keep you logged in, and a preferences cookie that remembers your theme. We don&apos;t use
+          We use only essential cookies: sign-in cookies that keep you logged in, and a preferences cookie that remembers your theme, and a cookie that remembers which workspace you last opened. We don&apos;t use
           advertising or third-party tracking cookies. Razorpay may set its own cookies inside the payment window.
         </p>
 

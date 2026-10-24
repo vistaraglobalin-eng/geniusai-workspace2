@@ -1555,3 +1555,49 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
   .share-backdrop:has(.ex-sheet) { align-items: flex-end; padding: 0; }
   .ex-sheet { border-radius: 22px 22px 0 0; max-height: 92vh; padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
 }
+
+/* ---------- Team & workspace switcher ---------- */
+.ws-switch { position: relative; display: inline-block; }
+.ws-switch summary { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; list-style: none; font-weight: 600; color: var(--text); border-radius: 8px; padding: 2px 6px; margin-left: -6px; }
+.ws-switch summary::-webkit-details-marker { display: none; }
+.ws-switch summary:hover { background: var(--surface-2); }
+.ws-menu { position: absolute; top: calc(100% + 6px); left: 0; z-index: 60; min-width: 260px; max-width: calc(100vw - 32px); background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-md); padding: 6px; display: flex; flex-direction: column; gap: 2px; }
+.ws-menu-label { font-size: .7rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .03em; padding: 6px 8px 4px; }
+.ws-menu form { margin: 0; }
+.ws-menu button { display: flex; align-items: center; gap: 10px; width: 100%; border: 0; background: none; padding: 8px; border-radius: 10px; font: inherit; color: var(--text); text-align: left; cursor: pointer; }
+.ws-menu button:hover, .ws-menu button.current { background: var(--surface-2); }
+.ws-menu button > svg { color: var(--accent-text); margin-left: auto; }
+.ws-name { display: flex; flex-direction: column; min-width: 0; }
+.ws-name strong { font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ws-name span { font-size: .74rem; color: var(--text-3); }
+.ws-initial { width: 32px; height: 32px; border-radius: 9px; flex: none; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); font-weight: 800; font-size: .85rem; }
+.ws-initial.muted { background: var(--surface-2); color: var(--text-3); }
+.ws-menu-link { display: flex; align-items: center; gap: 8px; padding: 9px 8px; border-top: 1px solid var(--border); margin-top: 4px; font-size: .84rem; font-weight: 600; color: var(--accent-text); }
+.view-only-note { margin-bottom: 12px; }
+.team-layout { display: flex; flex-direction: column; gap: 12px; max-width: 760px; }
+.team-layout h3 { display: flex; align-items: center; gap: 8px; }
+.team-layout .field { display: flex; flex-direction: column; gap: 5px; font-size: .78rem; font-weight: 600; color: var(--text-2); margin: 0; }
+.team-roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.team-roles button { display: flex; flex-direction: column; gap: 3px; text-align: left; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 12px; background: var(--surface); font: inherit; color: var(--text); cursor: pointer; }
+.team-roles button strong { font-size: .86rem; }
+.team-roles button span { font-size: .74rem; color: var(--text-3); line-height: 1.35; }
+.team-roles button.selected { border-color: var(--accent); background: var(--accent-soft); }
+.team-created { display: flex; flex-direction: column; gap: 10px; }
+.team-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.team-list li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+.team-list li:first-child { border-top: 0; }
+.team-list .list-text span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.team-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+.team-actions select { width: auto; min-height: 36px; padding: 6px 28px 6px 10px; font-size: .82rem; }
+.team-badge { flex: none; font-size: .74rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--text-2); }
+.team-badge.owner { background: var(--accent-soft); color: var(--accent-text); }
+.team-badge.viewer { background: var(--warning-bg); color: var(--warning-text); }
+.team-leave { align-self: flex-start; }
+.team-link { color: inherit; margin-top: 12px; }
+.join-icon { margin: 4px auto 6px; }
+.join-form { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.join-form .field { display: flex; flex-direction: column; gap: 5px; font-size: .8rem; font-weight: 600; color: var(--text-2); }
+@media (max-width: 640px) {
+  .team-roles { grid-template-columns: 1fr; }
+  .ws-menu { position: fixed; top: 58px; left: 16px; right: 16px; min-width: 0; }
+}

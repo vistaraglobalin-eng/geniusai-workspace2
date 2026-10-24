@@ -87,6 +87,7 @@ export async function runCreditedTask(input: CreditedTaskInput): Promise<Credite
     if (msg.includes("insufficient_credits")) {
       throw new CreditedTaskError(402, "insufficient_credits", `This needs up to ${reserve} credits. Your workspace doesn't have enough right now.`, reserve);
     }
+    if (msg.includes("view_only")) throw new CreditedTaskError(403, "view_only", "You have view-only access to this workspace, so you can't use AI tools here.");
     if (msg.includes("not_a_member") || msg.includes("file_not_available")) throw new CreditedTaskError(403, "forbidden", "You don't have access to that.");
     throw new CreditedTaskError(500, "start_failed", "The task couldn't be started. Please try again.");
   }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { Building2, Download, LogOut, Palette, ShieldCheck, Sparkles, UserRound, Zap } from "lucide-react";
+import { Building2, Download, LogOut, Palette, ShieldCheck, Sparkles, UserRound, Users, Zap } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -41,6 +41,7 @@ export default async function SettingsPage() {
           </div>
           <a href="#profile"><span className="app-icon sm blue"><UserRound size={15} aria-hidden="true" /></span> Profile</a>
           <a href="#workspace"><span className="app-icon sm indigo"><Building2 size={15} aria-hidden="true" /></span> Workspace</a>
+          <Link href="/settings/team"><span className="app-icon sm teal"><Users size={15} aria-hidden="true" /></span> Team members</Link>
           <a href="#appearance"><span className="app-icon sm purple"><Palette size={15} aria-hidden="true" /></span> Appearance</a>
           <a href="#privacy"><span className="app-icon sm gray"><ShieldCheck size={15} aria-hidden="true" /></span> Privacy & security</a>
           <Link href="/billing"><span className="app-icon sm green"><Zap size={15} aria-hidden="true" /></span> Plans & credits</Link>
@@ -57,6 +58,10 @@ export default async function SettingsPage() {
             <h2 id="workspace-h">Workspace</h2>
             <p className="section-lead">Applies to everyone in {workspace.name}.</p>
             <WorkspaceForm workspace={workspace} canEdit={workspace.role === "owner"} />
+            <Link href="/settings/team" className="settings-row team-link">
+              <div className="settings-row-text"><strong>Team members</strong><span>Invite staff, a partner or your CA, and choose who can edit or only view.</span></div>
+              <span className="secondary-button"><Users size={16} aria-hidden="true" /> Manage team</span>
+            </Link>
           </section>
 
           <section id="appearance" className="panel-card settings-section" aria-labelledby="appearance-h">

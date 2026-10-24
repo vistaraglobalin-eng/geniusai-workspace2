@@ -1,4 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
+
+/** Cookie that remembers which workspace you're working in (when you belong to more than one). */
+export const WORKSPACE_COOKIE = "ga_ws";
 
 export type WorkspaceRole = "owner" | "admin" | "member";
 
@@ -8,7 +12,10 @@ export type WorkspaceSummary = {
   kind: "personal" | "business";
   defaultCurrency: string;
   role: WorkspaceRole;
+  /** "view" = view-only team member. */
+  access: "edit" | "view";
 };
+export type WorkspaceChoice = { id: string; name: string; role: WorkspaceRole; access: "edit" | "view" };
 
 export type FileSummary = {
   id: string;
@@ -26,6 +33,8 @@ export type WorkspaceContext = {
   displayName: string | null;
   onboarded: boolean;
   workspace: WorkspaceSummary | null;
+  /** Every workspace you belong to (for the switcher). */
+  workspaces: WorkspaceChoice[];
   credits: { available: number; reserved: number } | null;
   plan: { name: string; status: string } | null;
   recentFiles: FileSummary[];
@@ -33,6 +42,7 @@ export type WorkspaceContext = {
 
 type MembershipRow = {
   role: WorkspaceRole;
+  access?: "edit" | "view";
   workspace:
     | { id: string; name: string; kind: "personal" | "business"; default_currency: string }
     | { id: string; name: string; kind: "personal" | "business"; default_currency: string }[]
@@ -41,8 +51,8 @@ type MembershipRow = {
 
 /**
  * Loads everything the dashboard needs for the signed-in user, through RLS.
- * The user's first workspace (oldest membership) is the current one; a
- * workspace switcher can replace this later.
+ * The current workspace is the one chosen in the switcher (cookie), else the
+ * oldest membership.
  */
 export async function loadWorkspaceContext(supabase: SupabaseClient): Promise<WorkspaceContext | null> {
   const {
@@ -50,26 +60,37 @@ export async function loadWorkspaceContext(supabase: SupabaseClient): Promise<Wo
   } = await supabase.auth.getUser();
   if (!user) return null;
 
-  const [profileResult, membershipResult] = await Promise.all([
+  const membershipQuery = (cols: string) => supabase
+    .from("workspace_members")
+    .select(cols)
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: true })
+    .limit(20);
+  const [profileResult, firstTry] = await Promise.all([
     supabase.from("profiles").select("display_name, onboarding_completed_at").eq("user_id", user.id).maybeSingle(),
-    supabase
-      .from("workspace_members")
-      .select("role, workspace:workspaces(id, name, kind, default_currency)")
-      .eq("user_id", user.id)
-      .order("created_at", { ascending: true })
-      .limit(1)
-      .maybeSingle()
+    membershipQuery("role, access, workspace:workspaces(id, name, kind, default_currency)")
   ]);
+  // Before the Team update is installed there is no "access" column; fall back so nothing breaks.
+  const membershipResult = firstTry.error && /access/.test(firstTry.error.message)
+    ? await membershipQuery("role, workspace:workspaces(id, name, kind, default_currency)")
+    : firstTry;
 
   const profile = profileResult.data as { display_name: string | null; onboarding_completed_at: string | null } | null;
-  const membership = membershipResult.data as MembershipRow | null;
-  const ws = Array.isArray(membership?.workspace) ? membership?.workspace[0] : membership?.workspace;
+  const memberships = ((membershipResult.data ?? []) as unknown as MembershipRow[])
+    .map((m) => ({ m, ws: Array.isArray(m.workspace) ? m.workspace[0] : m.workspace }))
+    .filter((x): x is { m: MembershipRow; ws: NonNullable<typeof x.ws> } => !!x.ws);
+  let chosenId: string | undefined;
+  try { chosenId = (await cookies()).get(WORKSPACE_COOKIE)?.value; } catch { /* not in a request */ }
+  const current = memberships.find((x) => x.ws.id === chosenId) ?? memberships[0];
+  const membership = current?.m ?? null;
+  const ws = current?.ws;
 
   const base: WorkspaceContext = {
     user: { id: user.id, email: user.email ?? null },
     displayName: profile?.display_name ?? null,
     onboarded: Boolean(profile?.onboarding_completed_at),
     workspace: null,
+    workspaces: memberships.map(({ m, ws: w }) => ({ id: w.id, name: w.name, role: m.role, access: m.access === "view" ? "view" : "edit" })),
     credits: null,
     plan: null,
     recentFiles: []
@@ -81,7 +102,8 @@ export async function loadWorkspaceContext(supabase: SupabaseClient): Promise<Wo
     name: ws.name,
     kind: ws.kind,
     defaultCurrency: ws.default_currency,
-    role: membership.role
+    role: membership.role,
+    access: membership.access === "view" ? "view" : "edit"
   };
 
   const [creditsResult, subscriptionResult, filesResult] = await Promise.all([

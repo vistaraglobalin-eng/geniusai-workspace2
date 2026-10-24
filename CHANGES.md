@@ -1,5 +1,13 @@
 # Changes
 
+## Revision 23: Reminders, Letters & Cards, Expenses, Team members
+
+- **Payment reminders** (Invoices → Reminders, or *Send payment reminder* on an unpaid invoice): friendly / firm / final messages in English or Hindi with amount, due date, UPI ID and bank details; one tap to WhatsApp (straight to the customer's number), SMS, email, or PDF + text; reminder history saved on the invoice.
+- **Business letters** (sidebar → Letters & Cards): offer, appointment (salary table), experience, relieving, salary slip, increment, NOC, authorisation, rent receipt (with revenue-stamp box) and custom letters; editable text; 4 letterhead styles; PDF and Word.
+- **Visiting cards & letterhead**: 6 card designs, any colour, QR code (save contact / UPI / website), A4 sheet of 10 with crop marks, print-shop PDF with 3 mm bleed, PNG for WhatsApp; blank letterhead as PDF or Word.
+- **Expense tracker** (sidebar → Expenses): amount, category, paid to, payment mode, GST in the bill (quick 5/18/40% buttons), vendor GSTIN, bill photo (compressed on the phone); monthly totals vs last month, category breakdown, search; Excel/CSV for the month or financial year, PDF report on letterhead. SQL: `202610240015_expenses.sql`.
+- **Team members** (Settings → Team members, workspace switcher in the top bar): invite by link or email as Admin, Editor or Viewer; view-only people can't change data, upload, send for signing or spend credits (enforced in the database); change roles, remove people, leave a workspace; invite links expire after 7 days and work once. SQL: `202610240016_team.sql`.
+
 ## Revision 22: Resume & Career Studio, PDF to JPG on device
 
 - **Resume & Career Studio** (dashboard → Grow your business, sidebar → Resumes, All tools): build resumes that save as you type, with a live preview of the real PDF.
