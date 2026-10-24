@@ -1777,3 +1777,105 @@ a.home-card:hover { background: var(--surface-3); }
   .new-menu-list { right: auto; width: 240px; }
   .nav-item[aria-current="page"] { background: var(--surface-3); }
 }
+
+/* =========================================================================
+   Ivory & Baby Peach (chosen 25 Oct 2026)
+   Light ivory grounds, near-black ink, black pill buttons and ONE soft colour:
+   baby peach. No green, blue, yellow, gold or orange in the interface.
+   ========================================================================= */
+:root, :root[data-accent] {
+  --bg: #fbf8f3; --surface: #fffdf9; --surface-2: #f5efe7; --surface-3: #ede5da;
+  --border: #ece4d9; --border-strong: #cdc2b4;
+  --text: #1a1714; --text-2: #4a433c; --text-3: #6e655c;
+  --ink: #1a1714; --on-ink: #fffdf9;
+  --peach: #f6c7ac; --peach-2: #f9d9c5; --peach-soft: #fde9dd; --peach-glow: #f7cfb6;
+  --accent: #1a1714; --accent-strong: #000000; --on-accent: #fffdf9;
+  --accent-text: #8a4b2e; --accent-glow: #f2a07a;
+  --accent-soft: #fde9dd; --accent-softer: #fef4ee; --accent-border: #f1c3a6;
+  --focus: #8a4b2e;
+  --success-bg: #f5efe7; --success-text: #1a1714; --success-border: #ddd3c6;
+  --warning-bg: #fde9dd; --warning-text: #8a4b2e; --warning-border: #f1c3a6;
+  --pending-bg: #fde9dd; --pending-text: #8a4b2e;
+  --danger-bg: #fbeceb; --danger-text: #b3261e; --danger-border: #f0c9c6; --danger-solid: #b3261e;
+  --tile-bg: #fde9dd; --tile-ink: #5c3320; --tile-border: #f6d6c3;
+  --shadow-md: 0 16px 40px rgb(92 51 32 / 9%);
+}
+:root[data-theme="dark"], :root[data-theme="dark"][data-accent] {
+  --bg: #151210; --surface: #1e1a17; --surface-2: #181512; --surface-3: #2a2421;
+  --border: #2e2723; --border-strong: #4d433c;
+  --text: #f6efe7; --text-2: #d2c8bd; --text-3: #a8a097;
+  --ink: #f6efe7; --on-ink: #151210;
+  --peach: #f2b896; --peach-2: #e8a888; --peach-soft: #3a2a22; --peach-glow: #4a3226;
+  --accent: #f6efe7; --accent-strong: #ffffff; --on-accent: #151210;
+  --accent-text: #f2b896; --accent-glow: #f2b896;
+  --accent-soft: #3a2a22; --accent-softer: #261d18; --accent-border: #5e4436;
+  --focus: #f2b896;
+  --success-bg: #2a2421; --success-text: #f6efe7; --success-border: #4d433c;
+  --warning-bg: #3a2a22; --warning-text: #f2b896; --warning-border: #5e4436;
+  --pending-bg: #3a2a22; --pending-text: #f2b896;
+  --danger-bg: #3a1c1b; --danger-text: #ff9a92; --danger-border: #5c2b28; --danger-solid: #d9534a;
+  --tile-bg: #3a2a22; --tile-ink: #f6d2bd; --tile-border: #4e382d;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"], :root[data-theme="system"][data-accent] {
+    --bg: #151210; --surface: #1e1a17; --surface-2: #181512; --surface-3: #2a2421;
+    --border: #2e2723; --border-strong: #4d433c;
+    --text: #f6efe7; --text-2: #d2c8bd; --text-3: #a8a097;
+    --ink: #f6efe7; --on-ink: #151210;
+    --peach: #f2b896; --peach-2: #e8a888; --peach-soft: #3a2a22; --peach-glow: #4a3226;
+    --accent: #f6efe7; --accent-strong: #ffffff; --on-accent: #151210;
+    --accent-text: #f2b896; --accent-glow: #f2b896;
+    --accent-soft: #3a2a22; --accent-softer: #261d18; --accent-border: #5e4436;
+    --focus: #f2b896;
+    --success-bg: #2a2421; --success-text: #f6efe7; --success-border: #4d433c;
+    --warning-bg: #3a2a22; --warning-text: #f2b896; --warning-border: #5e4436;
+    --pending-bg: #3a2a22; --pending-text: #f2b896;
+    --danger-bg: #3a1c1b; --danger-text: #ff9a92; --danger-border: #5c2b28; --danger-solid: #d9534a;
+    --tile-bg: #3a2a22; --tile-ink: #f6d2bd; --tile-border: #4e382d;
+  }
+}
+
+/* Soft peach daylight at the top of every page */
+body { background: radial-gradient(110% 420px at 85% -60px, var(--peach-glow) 0%, color-mix(in srgb, var(--peach-glow) 35%, transparent) 45%, transparent 75%) no-repeat, var(--bg); }
+.topbar { background: color-mix(in srgb, var(--bg) 60%, transparent); }
+.sidebar { background: color-mix(in srgb, var(--surface) 92%, transparent); }
+
+/* One colour for every icon square: baby peach with a dark glyph */
+.app-icon, .app-icon.indigo, .app-icon.purple, .app-icon.green, .app-icon.orange, .app-icon.blue, .app-icon.teal,
+.app-icon.cyan, .app-icon.red, .app-icon.gray, .app-icon.pink, .app-icon.yellow, .app-icon.graphite {
+  background: var(--tile-bg); color: var(--tile-ink); box-shadow: inset 0 0 0 1px var(--tile-border);
+}
+.app-icon svg, .nav-item .app-icon svg, .nav-item[aria-current="page"] svg { color: var(--tile-ink); }
+.nav-item[aria-current="page"] .app-icon { background: var(--ink); box-shadow: none; }
+.nav-item[aria-current="page"] .app-icon svg { color: var(--on-ink); }
+.quick-row a .app-icon { border-radius: 18px; }
+
+/* Peach accents */
+.pill-accent { background: var(--peach-soft); color: var(--accent-text); }
+.dot-ring .glow { fill: var(--peach); }
+.dot-ring .done { fill: var(--ink); }
+.home-card { background: var(--surface); }
+a.home-card:hover { background: var(--surface-2); }
+.home-card strong.bad { color: var(--danger-text); }
+.hub-hero::before { background: radial-gradient(closest-side, var(--peach), transparent 70%); opacity: .7; }
+.credit-pill { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+.credit-pill svg { color: var(--accent-text); }
+.as-status.final { background: var(--surface-2); color: var(--text); border-color: var(--border); }
+.form-message.success { background: var(--peach-soft); color: var(--text); border-color: var(--accent-border); }
+::selection { background: var(--peach-2); }
+.segmented label.selected, .segmented button[aria-selected="true"], .segmented a.selected { background: var(--ink); color: var(--on-ink); }
+:root[data-theme="dark"] .segmented label.selected, :root[data-theme="dark"] .segmented button[aria-selected="true"], :root[data-theme="dark"] .segmented a.selected { background: var(--ink); color: var(--on-ink); }
+.new-menu > summary .plus { background: var(--peach); color: #1a1714; }
+
+/* Phone: the floating dock of round buttons (current one ringed in peach) */
+@media (max-width: 760px) {
+  :root { --bottom-nav-h: calc(96px + env(safe-area-inset-bottom)); }
+  .bottom-nav { left: 50%; right: auto; bottom: calc(14px + env(safe-area-inset-bottom)); transform: translateX(-50%); width: max-content; height: auto; display: flex; gap: 10px; padding: 8px; border-radius: 999px;
+    background: color-mix(in srgb, var(--surface) 72%, transparent); -webkit-backdrop-filter: saturate(160%) blur(22px); backdrop-filter: saturate(160%) blur(22px);
+    border: 1px solid var(--border); box-shadow: 0 18px 40px rgb(92 51 32 / 14%); }
+  .bottom-nav a { width: 52px; height: 52px; min-height: 0; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); position: relative; gap: 0; }
+  .bottom-nav a svg { width: 22px; height: 22px; }
+  .bottom-nav a .tab-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .bottom-nav a[aria-current="page"] { color: var(--text); background: var(--surface); border-color: transparent; box-shadow: 0 0 0 2px var(--peach), 0 6px 16px rgb(242 160 122 / 35%); }
+  .bottom-nav a[aria-current="page"] svg { color: var(--text); }
+}

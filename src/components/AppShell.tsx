@@ -160,8 +160,8 @@ export function AppShell({
 
       <nav className="bottom-nav" aria-label="Main">
         {TABS.map(({ href, label, Icon, covers }) => (
-          <Link key={href} href={href} aria-current={covers.includes(active) ? "page" : undefined}>
-            <Icon size={22} strokeWidth={covers.includes(active) ? 2.2 : 1.7} aria-hidden="true" />{label}
+          <Link key={href} href={href} aria-label={label} aria-current={covers.includes(active) ? "page" : undefined}>
+            <Icon size={22} strokeWidth={covers.includes(active) ? 2.1 : 1.7} aria-hidden="true" /><span className="tab-label">{label}</span>
           </Link>
         ))}
       </nav>
