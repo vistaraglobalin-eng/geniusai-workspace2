@@ -255,9 +255,26 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
         {!file && <p className="dg-hint">Choose or upload a PDF to see its pages here.</p>}
         {loading && pages.length === 0 && <p className="dg-hint" role="status">Opening the PDF…</p>}
         {pages.length > 0 && activeKey && (
-          <p className="sr-placing" style={{ ["--c" as string]: colorOf(activeKey) }}>
-            <KindIcon size={14} aria-hidden="true" /> Tap to place <strong>{KINDS.find((k) => k.kind === kind)!.label.toLowerCase()}</strong> for <strong>{labelOf(activeKey)}</strong>
-          </p>
+          <div className="sr-placebar" style={{ ["--c" as string]: colorOf(activeKey) }} aria-label="Field to place">
+            {signers.length > 1 && (
+              <div className="sr-placebar-row" role="radiogroup" aria-label="Signer">
+                {signers.map((s, i) => (
+                  <button key={s.key} type="button" role="radio" aria-checked={activeKey === s.key} onClick={() => setActive(s.key)}
+                    className={`sr-mini${activeKey === s.key ? " selected" : ""}`} style={{ ["--c" as string]: SIGNER_COLORS[i % SIGNER_COLORS.length] }}>
+                    <span className="sr-dot" aria-hidden="true">{i + 1}</span>{s.name.trim().split(" ")[0] || `Signer ${i + 1}`}
+                  </button>
+                ))}
+              </div>
+            )}
+            <div className="sr-placebar-row" role="radiogroup" aria-label="Field type">
+              {KINDS.map(({ kind: k, label, Icon }) => (
+                <button key={k} type="button" role="radio" aria-checked={kind === k} onClick={() => setKind(k)} className={`sr-mini${kind === k ? " selected" : ""}`}>
+                  <Icon size={14} aria-hidden="true" /> {label}
+                </button>
+              ))}
+            </div>
+            <p className="sr-placebar-hint"><KindIcon size={13} aria-hidden="true" /> Tap the page to place <strong>{KINDS.find((k) => k.kind === kind)!.label.toLowerCase()}</strong> for <strong>{labelOf(activeKey)}</strong></p>
+          </div>
         )}
         {pages.map((pg) => (
           <figure key={pg.number} className="sign-page-wrap">

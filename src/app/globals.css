@@ -1165,7 +1165,14 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
 .sr-chip .sr-dot { background: var(--c); }
 .sr-count { font-size: .7rem; color: var(--text-3); background: var(--surface-2); border-radius: 999px; padding: 1px 7px; }
 .sr-dot { flex-shrink: 0; width: 24px; height: 24px; border-radius: 999px; display: grid; place-items: center; color: #fff; font-size: .72rem; font-weight: 800; background: var(--accent); }
-.sr-placing { --c: var(--accent); position: sticky; top: 8px; z-index: 3; margin: 0; display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; padding: 7px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--c); box-shadow: var(--shadow-sm); color: var(--text-2); }
+.sr-placebar { --c: var(--accent); position: sticky; top: 72px; z-index: 6; width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 16px; border: 1px solid var(--border); background: color-mix(in srgb, var(--surface) 92%, transparent); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: var(--shadow-sm); }
+.sr-placebar-row { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.sr-placebar-row::-webkit-scrollbar { display: none; }
+.sr-mini { --c: var(--accent); flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: .78rem; font-weight: 600; color: var(--text-2); white-space: nowrap; }
+.sr-mini .sr-dot { width: 20px; height: 20px; font-size: .66rem; background: var(--c); }
+.sr-mini.selected { border-color: var(--c); color: var(--text); background: color-mix(in srgb, var(--c) 10%, var(--surface)); }
+.sr-placebar-hint { margin: 0; display: flex; align-items: center; gap: 5px; font-size: .74rem; color: var(--text-3); padding: 0 4px; }
+.sr-placebar-hint strong { color: var(--c); }
 .sr-field { --c: var(--accent); position: absolute; border: 1.5px solid var(--c); border-radius: 4px; background: color-mix(in srgb, var(--c) 14%, transparent); cursor: move; touch-action: none; display: flex; align-items: center; overflow: visible; }
 .sr-field-label { font-size: clamp(8px, 1.4cqw, 11px); font-weight: 700; color: var(--c); padding: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-flex; align-items: center; gap: 3px; text-decoration: none; }
 .sign-page { container-type: inline-size; }
@@ -1214,3 +1221,7 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
   .sr-public-main { padding: 12px 12px 40px; }
   .sr-secure { display: none; }
 }
+/* Small fields: keep remove (top-left) and resize (bottom-right) apart so both are easy to tap. */
+.sr-field .sign-remove { right: auto; left: -12px; }
+@media (pointer: coarse) { .sr-field .sign-remove { left: -15px; } }
+@media (pointer: coarse) { .sr-field:not(.mine) .sr-field-label { padding-left: 16px; } }
