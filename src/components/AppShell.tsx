@@ -1,13 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LogOut, Mail, PenLine, Plus, ReceiptText, Settings, Signature, Sparkles, Users, Wallet, Zap } from "lucide-react";
+import { BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LogOut, Mail, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 import { roleLabel } from "@/lib/team/roles";
 
 
 export type NavKey =
   | "overview" | "money" | "docs" | "create" | "account"
-  | "invoices" | "expenses" | "pdf" | "edit" | "sign" | "agreements" | "documents" | "letters"
+  | "invoices" | "expenses" | "scan" | "pdf" | "edit" | "sign" | "agreements" | "documents" | "letters"
   | "creative" | "cards" | "career" | "files" | "tools" | "billing" | "settings";
 
 type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home; tint: string };
@@ -20,6 +20,7 @@ const GROUPS: NavGroup[] = [
     { key: "expenses", href: "/tools/expenses", label: "Expenses", Icon: Wallet, tint: "teal" }
   ] },
   { title: "Documents", hub: "/docs", area: "docs", items: [
+    { key: "scan", href: "/tools/scan", label: "Scan", Icon: ScanLine, tint: "red" },
     { key: "pdf", href: "/tools/pdf", label: "PDF tools", Icon: FileStack, tint: "red" },
     { key: "edit", href: "/tools/edit", label: "Edit PDF", Icon: PenLine, tint: "blue" },
     { key: "sign", href: "/tools/sign", label: "Sign & send", Icon: Signature, tint: "indigo" },
@@ -43,7 +44,7 @@ const ACCOUNT: NavItem[] = [
 const TABS: { href: string; label: string; Icon: typeof Home; covers: NavKey[] }[] = [
   { href: "/", label: "Home", Icon: Home, covers: ["overview"] },
   { href: "/money", label: "Money", Icon: IndianRupee, covers: ["money", "invoices", "expenses"] },
-  { href: "/docs", label: "Documents", Icon: FileText, covers: ["docs", "pdf", "edit", "sign", "agreements", "documents", "letters"] },
+  { href: "/docs", label: "Documents", Icon: FileText, covers: ["docs", "scan", "pdf", "edit", "sign", "agreements", "documents", "letters"] },
   { href: "/create", label: "Create", Icon: Sparkles, covers: ["create", "creative", "cards", "career"] },
   { href: "/account", label: "Account", Icon: CircleUserRound, covers: ["account", "files", "tools", "billing", "settings"] }
 ];
@@ -52,6 +53,7 @@ const TABS: { href: string; label: string; Icon: typeof Home; covers: NavKey[] }
 const NEW_ITEMS = [
   { href: "/tools/invoices/new?kind=invoice", label: "New invoice", Icon: ReceiptText, tint: "green" },
   { href: "/tools/expenses", label: "Add expense", Icon: Wallet, tint: "teal" },
+  { href: "/tools/scan", label: "Scan a document", Icon: ScanLine, tint: "red" },
   { href: "/tools/sign", label: "Sign a PDF", Icon: Signature, tint: "indigo" },
   { href: "/tools/letters", label: "Write a letter", Icon: Mail, tint: "blue" },
   { href: "/tools/documents?task=summary", label: "Summarize a document", Icon: Sparkles, tint: "cyan" }

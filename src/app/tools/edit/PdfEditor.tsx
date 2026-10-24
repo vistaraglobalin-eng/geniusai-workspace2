@@ -6,18 +6,19 @@ import { useRouter } from "next/navigation";
 import {
   ArrowUpRight, Bold, BookmarkPlus, BringToFront, CheckCircle2, CheckSquare, Circle, Download, Eraser, FileText, Highlighter,
   ImagePlus, Link2, ListChecks, Minus, MessageSquare, MousePointer2, Paperclip, PenLine, Plus, SendToBack, Slash, Square,
-  SquareChevronDown, SquarePen, StickyNote, Strikethrough, TextCursorInput, Trash2, Type, Underline, Undo2, Waves, Brush
+  SquareChevronDown, SquarePen, Stamp, StickyNote, Strikethrough, TextCursorInput, Trash2, Type, Underline, Undo2, Waves, Brush
 } from "lucide-react";
 import { UploadButton } from "@/components/UploadButton";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { ShareButton, storageSource } from "@/components/ShareSheet";
 import { FILES_BUCKET } from "@/lib/storage/files";
+import { STAMP_INKS, STAMP_PRESETS, renderStamp, stampDate, type StampKind } from "@/lib/stamps/stamps";
 import { PdfPreviewError, renderPdfPages, type FormWidget, type PageView, type TextLine } from "@/lib/pdf/preview";
 
 export type EditFile = { id: string; name: string; objectKey: string; byteSize: number };
 
 type Tool =
-  | "select" | "edittext" | "text" | "whiteout" | "image" | "link"
+  | "select" | "edittext" | "text" | "whiteout" | "image" | "stamp" | "link"
   | "highlight" | "marker" | "underline" | "squiggly" | "strike" | "note" | "comment"
   | "box" | "ellipse" | "line" | "arrow" | "draw"
   | "fill" | "ftext" | "fcheck" | "fdropdown";
@@ -59,6 +60,7 @@ const GROUPS: { key: string; label: string; tools: ToolDef[] }[] = [
     T("text", "Add text", Type, "Tap where the new text should start."),
     T("whiteout", "Whiteout", Eraser, "Drag over anything to cover it."),
     T("image", "Image", ImagePlus, "Choose a picture, then tap where it should go."),
+    T("stamp", "Stamp", Stamp, "Pick a stamp, then tap where it should go."),
     T("link", "Link", Link2, "Drag over words to make them a link to a website or a page.")
   ] },
   { key: "markup", label: "Mark up", tools: [
@@ -151,7 +153,7 @@ function readBase64(file: File): Promise<string> {
 
 function widgetKey(w: FormWidget) { return w.kind === "radio" ? `${w.name}::${w.exportValue}` : w.name; }
 
-export function PdfEditor({ workspaceId, files, initialFileId }: { workspaceId: string; files: EditFile[]; initialFileId?: string }) {
+export function PdfEditor({ workspaceId, files, initialFileId, businessName = "" }: { workspaceId: string; files: EditFile[]; initialFileId?: string; businessName?: string }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [fileId, setFileId] = useState<string | null>(initialFileId ?? files[0]?.id ?? null);
@@ -169,6 +171,8 @@ export function PdfEditor({ workspaceId, files, initialFileId }: { workspaceId: 
   const [draftLine, setDraftLine] = useState<{ page: number; x1: number; y1: number; x2: number; y2: number } | null>(null);
   const [pendingImage, setPendingImage] = useState<{ data: string; aspect: number } | null>(null);
   const [style, setStyle] = useState({ size: 12, textColor: COLORS.text[0], font: "sans" as FontKey, bold: false, highlight: COLORS.highlight[0], line: COLORS.line[0], ink: COLORS.line[1], inkWidth: 2.5 });
+  const [stamp, setStamp] = useState({ kind: "approved" as StampKind, color: STAMP_INKS[0].color, date: true, text: "", business: businessName, caption: "" });
+  const stampOpts = { ...stamp, date: stamp.date ? stampDate() : null };
   const [fills, setFills] = useState<Record<string, string | boolean>>({});
   const [flatten, setFlatten] = useState(false);
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
@@ -297,6 +301,13 @@ export function PdfEditor({ workspaceId, files, initialFileId }: { workspaceId: 
       const s = 14;
       const item: Item = { id: uid(), type: "field", kind: "checkbox", page: pg.number, x: clamp(x - s / 2 / pg.width, 0, 1 - s / pg.width), y: clamp(y - s / 2 / pg.height, 0, 1 - s / pg.height), w: s / pg.width, h: s / pg.height,
         name: nextFieldName("Checkbox"), optionsText: "", checked: false };
+      commit([...items, item]); select(item.id);
+      return;
+    }
+    if (tool === "stamp") {
+      const st = renderStamp(stampOpts);
+      const w = Math.min(st.widthPt / pg.width, 0.9), h = (w * pg.width) / st.aspect / pg.height;
+      const item: Item = { id: uid(), type: "image", page: pg.number, x: clamp(x - w / 2, 0, 1 - w), y: clamp(y - h / 2, 0, 1 - h), w, h, data: st.data };
       commit([...items, item]); select(item.id);
       return;
     }
@@ -695,6 +706,23 @@ export function PdfEditor({ workspaceId, files, initialFileId }: { workspaceId: 
                     </div>
                   </>
                 )}
+                {tool === "stamp" && (
+                  <div className="edit-stamp">
+                    <select className="select-input edit-font" aria-label="Stamp" value={stamp.kind} onChange={(e: { target: { value: string } }) => setStamp((s) => ({ ...s, kind: e.target.value as StampKind }))}>
+                      {STAMP_PRESETS.map((p) => <option key={p.key} value={p.key}>{p.label}</option>)}
+                    </select>
+                    {stamp.kind === "custom" && <input className="text-input edit-name-input" aria-label="Stamp text" placeholder="e.g. Checked" maxLength={28} value={stamp.text} onChange={(e: { target: { value: string } }) => setStamp((s) => ({ ...s, text: e.target.value }))} />}
+                    {(stamp.kind === "seal" || stamp.kind === "signatory") && <>
+                      <input className="text-input edit-name-input" aria-label="Business name" placeholder="Business name" maxLength={60} value={stamp.business} onChange={(e: { target: { value: string } }) => setStamp((s) => ({ ...s, business: e.target.value }))} />
+                      <input className="text-input edit-name-input" aria-label={stamp.kind === "seal" ? "Bottom text, e.g. city" : "Caption"} placeholder={stamp.kind === "seal" ? "City (optional)" : "Authorised Signatory"} maxLength={40} value={stamp.caption} onChange={(e: { target: { value: string } }) => setStamp((s) => ({ ...s, caption: e.target.value }))} />
+                    </>}
+                    <div className="edit-swatches" role="radiogroup" aria-label="Ink">
+                      {STAMP_INKS.map((k) => <button key={k.key} type="button" role="radio" aria-checked={stamp.color === k.color} aria-label={k.label} className="sig-ink" style={{ background: k.color }} onClick={() => setStamp((s) => ({ ...s, color: k.color }))} />)}
+                    </div>
+                    <label className="check-row"><input type="checkbox" checked={stamp.date} onChange={() => setStamp((s) => ({ ...s, date: !s.date }))} /> Today&apos;s date</label>
+                    <StampPreview opts={stampOpts} />
+                  </div>
+                )}
                 {tool === "image" && <button type="button" className="quiet-button with-icon" onClick={() => imageInput.current?.click()}><ImagePlus size={14} aria-hidden="true" /> {pendingImage ? "Choose another" : "Choose image"}</button>}
               </>
             )}
@@ -859,6 +887,13 @@ function Order({ onFront, onBack }: { onFront: () => void; onBack: () => void })
       <button type="button" className="edit-icon-btn" aria-label="Send to back" title="Send to back" onClick={onBack}><SendToBack size={16} aria-hidden="true" /></button>
     </>
   );
+}
+
+function StampPreview({ opts }: { opts: Parameters<typeof renderStamp>[0] }) {
+  const [src, setSrc] = useState<string | null>(null);
+  const key = JSON.stringify(opts);
+  useEffect(() => { const t = setTimeout(() => setSrc(renderStamp(opts).data), 120); return () => clearTimeout(t); }, [key]); // eslint-disable-line react-hooks/exhaustive-deps
+  return src ? <img className="edit-stamp-preview" src={src} alt="Stamp preview" /> : null;
 }
 
 function Swatches({ colors, value, onPick }: { colors: string[]; value: string; onPick: (c: string) => void }) {

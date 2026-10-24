@@ -1,5 +1,11 @@
 # Changes
 
+## Revision 24: New look, Scanner, Stamps
+
+- New look: off-white peach background, baby peach as the only accent, black pill buttons, serif titles, floating round dock on phones.
+- Scan (/tools/scan): photos of paper become a straight, cleaned-up PDF. Auto edge detection, drag corners, rotate, Clean / Black & white / Grey / Original, reorder pages, A4/Letter/photo size, download, share or save to Files. Runs in the browser; photos are not uploaded until the PDF is saved.
+- Stamps in Edit PDF: Approved, Paid, Received, Verified, Rejected, Draft, Confidential, Original, Copy, your own text, round company seal and "For <business> / Authorised Signatory", in red, blue, violet or black, with today's date.
+
 ## Revision 23: Reminders, Letters & Cards, Expenses, Team members
 
 - **Payment reminders** (Invoices → Reminders, or *Send payment reminder* on an unpaid invoice): friendly / firm / final messages in English or Hindi with amount, due date, UPI ID and bank details; one tap to WhatsApp (straight to the customer's number), SMS, email, or PDF + text; reminder history saved on the invoice.

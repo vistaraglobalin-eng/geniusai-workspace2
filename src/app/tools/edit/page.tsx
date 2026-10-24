@@ -15,10 +15,11 @@ export default async function EditPage({ searchParams }: { searchParams: Promise
   if (!ctx.workspace) redirect("/onboarding");
   const workspace = ctx.workspace;
 
-  const { data } = await supabase.from("files")
+  const [{ data }, { data: biz }] = await Promise.all([supabase.from("files")
     .select("id, original_filename, object_key, byte_size, scan_status, created_at")
     .eq("workspace_id", workspace.id).is("deleted_at", null).eq("mime_type", "application/pdf")
-    .order("created_at", { ascending: false }).limit(50);
+    .order("created_at", { ascending: false }).limit(50),
+    supabase.from("invoice_settings").select("business_name").eq("workspace_id", workspace.id).maybeSingle()]);
   type Row = { id: string; original_filename: string; object_key: string; byte_size: number; scan_status: string };
   const files: EditFile[] = ((data ?? []) as Row[])
     .filter((f) => f.scan_status !== "quarantined" && f.scan_status !== "failed")
@@ -29,10 +30,10 @@ export default async function EditPage({ searchParams }: { searchParams: Promise
       <div className="welcome-row">
         <div>
           <h1>Edit PDF</h1>
-          <p className="subtitle">Change existing text, mark up, draw shapes, add links, images, comments and form fields, fill forms, add bookmarks and attachments. Free. Your original stays unchanged.</p>
+          <p className="subtitle">Change existing text, add stamps, mark up, draw shapes, add links, images, comments and form fields, fill forms, add bookmarks and attachments. Free. Your original stays unchanged.</p>
         </div>
       </div>
-      <PdfEditor workspaceId={workspace.id} files={files} initialFileId={files.some((f) => f.id === file) ? file : undefined} />
+      <PdfEditor workspaceId={workspace.id} files={files} initialFileId={files.some((f) => f.id === file) ? file : undefined} businessName={(biz as { business_name?: string | null } | null)?.business_name ?? workspace.name} />
     </AppShell>
   );
 }

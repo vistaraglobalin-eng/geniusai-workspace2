@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { BellRing, ChevronRight, Combine, FileText, ListChecks, ReceiptText, Signature, Wallet, Zap } from "lucide-react";
+import { BellRing, ChevronRight, FileText, ListChecks, ReceiptText, Signature, Wallet, Zap, ScanLine } from "lucide-react";
 import { getSupabasePublicEnv } from "@/lib/supabase/env";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
@@ -19,7 +19,7 @@ const ACTIONS = [
   { href: "/tools/invoices/reminders", label: "Remind", Icon: BellRing, tint: "red" },
   { href: "/tools/sign", label: "Sign", Icon: Signature, tint: "indigo" },
   { href: "/tools/documents?task=summary", label: "Summarize", Icon: ListChecks, tint: "cyan" },
-  { href: "/tools/pdf/merge", label: "Merge", Icon: Combine, tint: "orange" }
+  { href: "/tools/scan", label: "Scan", Icon: ScanLine, tint: "orange" }
 ] as const;
 
 const SOON: { title: string; Icon: typeof FileText }[] = [];
