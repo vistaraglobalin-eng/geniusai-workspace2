@@ -3,7 +3,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { FILES_BUCKET, MAX_UPLOAD_BYTES } from "@/lib/storage/files";
 import { saveFileForUser } from "@/lib/storage/server-save";
 import { PdfToolError } from "@/lib/pdf/tools";
-import { editPdf, parseEdits } from "@/lib/pdf/edit";
+import { editPdf, hasDocEdits, parseDocEdits, parseEdits } from "@/lib/pdf/edit";
 import { UUID, fail } from "@/lib/agreements/server";
 
 export const maxDuration = 60;
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
   if (!user) return fail(401, "not_signed_in", "Please sign in again.");
   if (Number(request.headers.get("content-length") ?? 0) > 4_400_000) return fail(413, "too_large", "These edits are too large to save at once. Remove some images and try again.");
 
-  let body: { fileId?: unknown; items?: unknown };
+  let body: { fileId?: unknown; items?: unknown; doc?: unknown };
   try { body = (await request.json()) as typeof body; } catch { return fail(400, "bad_request", "Invalid request."); }
   const fileId = typeof body.fileId === "string" && UUID.test(body.fileId) ? body.fileId : null;
   if (!fileId) return fail(400, "bad_request", "Choose a PDF to edit.");
@@ -31,9 +31,13 @@ export async function POST(request: NextRequest) {
 
   try {
     const items = parseEdits(body.items);
+    const docEdits = parseDocEdits(body.doc);
+    if (!items.length && !hasDocEdits(docEdits)) return fail(422, "no_edits", "Make at least one edit first.");
     const { data: blob, error } = await supabase.storage.from(FILES_BUCKET).download(f.object_key);
     if (error || !blob) return fail(404, "file_not_found", "That file couldn't be opened.");
-    const result = await editPdf(new Uint8Array(await blob.arrayBuffer()), items);
+    const { data: profile } = await supabase.from("profiles").select("display_name").eq("user_id", user.id).maybeSingle();
+    const author = (profile as { display_name: string | null } | null)?.display_name?.trim() || user.email || undefined;
+    const result = await editPdf(new Uint8Array(await blob.arrayBuffer()), items, docEdits, { author });
     const base = f.original_filename.replace(/\.pdf$/i, "").slice(0, 200);
     const saved = await saveFileForUser(supabase, {
       workspaceId: f.workspace_id, userId: user.id, name: `${base} (edited).pdf`, mime: "application/pdf", bytes: result.bytes

@@ -29,7 +29,7 @@ export default async function EditPage({ searchParams }: { searchParams: Promise
       <div className="welcome-row">
         <div>
           <h1>Edit PDF</h1>
-          <p className="subtitle">Add text, cover and replace words, highlight, draw and add images. Free. Your original stays unchanged.</p>
+          <p className="subtitle">Change existing text, mark up, draw shapes, add links, images, comments and form fields, fill forms, add bookmarks and attachments. Free. Your original stays unchanged.</p>
         </div>
       </div>
       <PdfEditor workspaceId={workspace.id} files={files} initialFileId={files.some((f) => f.id === file) ? file : undefined} />

@@ -1,5 +1,16 @@
 # Changes
 
+## Revision 16: Edit PDF Pro
+
+- **Edit existing text:** tap a line of text in the PDF to change it. The old line is covered with its own background colour and your new text is placed in a matching font, size and colour.
+- **Mark up:** highlight, freehand marker, underline, squiggly underline, strikeout, sticky notes, and real PDF comments (they show in Acrobat, Preview and other readers, signed with your name).
+- **Shapes:** box, circle, line, arrow and freehand drawing, with colour and thickness.
+- **Links:** to a website (https added automatically; unsafe links refused) or to a page in the same PDF.
+- **Forms:** fill the PDF's existing form fields, or add new text, multi-line, checkbox and dropdown fields.
+- **Document:** bookmarks (outline), file attachments (up to 5 files, 2 MB each), and an option to flatten so nothing can be changed later.
+- **Arrange:** bring to front / send to back, plus keyboard shortcuts.
+- **Phone layout:** Save stays pinned; the Document panel sits below the pages and starts collapsed.
+
 ## Revision 15: Edit PDF (2026-10-24)
 - **Edit PDF** `/tools/edit`: Text (sizes, Sans/Serif/Mono, bold, colours; Hindi and other scripts via browser rendering), Note (yellow comment card), Whiteout (cover and replace words), Highlight, Underline, Strikeout, Box, Draw (freehand, 3 pen sizes), Image (PNG/JPG). Select to move/resize/delete, Undo (also Ctrl/Cmd+Z), Delete key. Saved as a new file "(edited).pdf"; the original is never changed. Free.
 - Engine `src/lib/pdf/edit.ts` (pdf-lib, vector output, correct on rotated and cropped pages); route `/api/edit`; shared browser renderer `src/lib/pdf/preview.ts`.

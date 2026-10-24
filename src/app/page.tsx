@@ -25,7 +25,7 @@ const GROUPS: { title: string; rows: Row[] }[] = [
       { href: "/tools/agreements", title: "Agreement Studio", text: "Draft India-ready agreements with AI", Icon: FilePen, tint: "indigo" },
       { href: "/tools/agreements#templates", title: "Templates", text: "NDA, rental, employment and more", Icon: Layers, tint: "purple" },
       { href: "/tools/sign", title: "Sign PDF", text: "Draw or type your signature", Icon: Signature, tint: "green" },
-      { href: "/tools/edit", title: "Edit PDF", text: "Text, whiteout, highlight, notes, images", Icon: PenLine, tint: "blue" },
+      { href: "/tools/edit", title: "Edit PDF", text: "Edit text, mark up, shapes, links, forms", Icon: PenLine, tint: "blue" },
       { title: "Request signatures", text: "Send a document for others to sign", Icon: Send, tint: "gray", soon: true }
     ]
   },

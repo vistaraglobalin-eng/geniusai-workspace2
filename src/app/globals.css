@@ -1111,9 +1111,44 @@ a.list-row:hover { background: var(--surface-2); }
 .edit-resize { position: absolute; right: -9px; bottom: -9px; width: 18px; height: 18px; border-radius: 999px; background: var(--accent); border: 2px solid #fff; cursor: nwse-resize; touch-action: none; }
 @media (pointer: coarse) { .edit-resize { width: 26px; height: 26px; right: -13px; bottom: -13px; } }
 @media (max-width: 900px) {
-  .edit-layout { grid-template-columns: minmax(0, 1fr); }
-  .edit-side { position: static; }
+  .edit-layout { display: flex; flex-direction: column; align-items: stretch; }
+  .edit-side > *, .edit-main { width: 100%; min-width: 0; max-width: 100%; }
+  .edit-side { position: static; display: contents; }
+  .edit-side > :first-child { order: 1; }
+  .edit-main { order: 2; }
+  .edit-doc { order: 3; }
   .edit-side .edit-help { display: none; }
   .edit-pages { padding: 8px; margin: 0 -8px; }
 }
 @media (max-width: 760px) { .edit-toolbar { top: 56px; } }
+
+/* Edit PDF Pro */
+.edit-groups { align-self: flex-start; }
+.edit-groups button { padding: 6px 14px; min-height: 32px; }
+.edit-ellipse { border-style: solid; border-radius: 50%; }
+.edit-squiggly { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpath d='M0 3 L2 1 L4 3 L6 1 L8 3' fill='none' stroke='%23e5392f' stroke-width='1'/%3E%3C/svg%3E") bottom left / 8px 4px repeat-x; }
+.edit-link { background: rgb(10 108 240 / 10%); outline: 1.5px dashed #0a6cf0; }
+.edit-link-tag { position: absolute; left: 0; top: 100%; margin-top: 3px; font-size: 11px; line-height: 1.2; color: #0a6cf0; background: #fff; border-radius: 4px; padding: 1px 5px; white-space: nowrap; box-shadow: var(--shadow-sm); pointer-events: none; }
+.edit-field { background: rgb(79 70 229 / 8%); border: 1px solid #8b8fd0; border-radius: 2px; display: flex; align-items: center; overflow: hidden; }
+.edit-field-name { font-size: 10px; color: #4f46e5; padding: 0 4px; white-space: nowrap; }
+.edit-field-checkbox { justify-content: center; font-size: 11px; color: #111827; background: #fff; }
+.edit-comment { display: grid; place-items: center; border: 0; padding: 0; border-radius: 4px; background: #ffd23f; color: #5b4300; box-shadow: 0 1px 3px rgb(0 0 0 / 25%); }
+.edit-line { position: absolute; border: 0; padding: 0; background: rgb(79 70 229 / 7%); outline: 1px dashed rgb(79 70 229 / 55%); border-radius: 2px; cursor: text; }
+.edit-line:hover, .edit-line:focus-visible { background: rgb(79 70 229 / 16%); outline-style: solid; }
+.edit-widget { position: absolute; box-sizing: border-box; margin: 0; padding: 0 3px; border: 1px solid rgb(10 108 240 / 55%); border-radius: 2px; background: rgb(219 234 254 / 70%); color: #111827; font-family: Helvetica, Arial, sans-serif; resize: none; }
+.edit-widget:focus { outline: 2px solid #0a6cf0; background: #fff; }
+input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0; accent-color: #0a6cf0; }
+.edit-name-input { flex: 0 1 180px; min-height: 36px; font-size: .875rem; }
+.edit-doc summary { list-style: none; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
+.edit-doc summary::-webkit-details-marker { display: none; }
+.edit-doc-section { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid var(--border); }
+.edit-doc-section h3 { display: flex; align-items: center; gap: 6px; font-size: .875rem; margin: 0; }
+.edit-doc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.edit-doc-list li { display: flex; align-items: center; gap: 8px; font-size: .875rem; }
+.edit-doc-list li > span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.edit-doc-add { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 6px; }
+.edit-doc-add .select-input, .edit-doc-add .text-input, .edit-doc-add .secondary-button { min-height: 38px; font-size: .875rem; }
+.edit-doc-add .secondary-button { padding: 6px 12px; }
+.edit-page.tool-edittext, .edit-page.tool-fill { cursor: default; }
+.edit-page.tool-line, .edit-page.tool-arrow, .edit-page.tool-ellipse, .edit-page.tool-squiggly, .edit-page.tool-marker, .edit-page.tool-link, .edit-page.tool-ftext, .edit-page.tool-fdropdown { touch-action: none; cursor: crosshair; }
+@media (max-width: 760px) { .edit-doc-add { grid-template-columns: 1fr 1fr; } .edit-doc-add .text-input { grid-column: 1 / -1; } }
