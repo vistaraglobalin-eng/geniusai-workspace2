@@ -150,7 +150,7 @@ export function ResumeEditor({ id, workspaceId, initial, initialTitle, initialTe
             <button key={k} type="button" className={tab === k ? "selected" : ""} aria-pressed={tab === k} onClick={() => setTab(k)}>{l}</button>
           ))}
         </nav>
-        {latinWarning && <p className="form-message inline">Some letters (for example Hindi or Punjabi script) can't appear in the PDF and will show as “?”. Write the resume in English for best results.</p>}
+        {latinWarning && <p className="form-message inline">Some letters (for example Hindi or Punjabi script) can&apos;t appear in the PDF and will show as “?”. Write the resume in English for best results.</p>}
 
         {tab === "resume" && (
           <>
@@ -271,7 +271,7 @@ export function ResumeEditor({ id, workspaceId, initial, initialTitle, initialTe
               <Lines label="Achievements (one per line)" value={r.achievements} onChange={(v) => set({ achievements: v })} rows={2} />
               <label className="field">Languages (separate with commas)<input className="text-input" value={r.languages.join(",")} maxLength={300} placeholder="English, Hindi, Punjabi" onChange={(e: Val) => set({ languages: e.target.value.split(",") })} /></label>
               <h4>Personal details (optional)</h4>
-              <p className="field-hint">Most companies don't need these. Fill them only if the job asks.</p>
+              <p className="field-hint">Most companies don&apos;t need these. Fill them only if the job asks.</p>
               <div className="inv-two">
                 <Field label="Date of birth" value={r.personal.dob} onChange={(v) => set({ personal: { ...r.personal, dob: v } })} max={30} />
                 <Field label="Nationality" value={r.personal.nationality} onChange={(v) => set({ personal: { ...r.personal, nationality: v } })} max={40} />
@@ -285,12 +285,12 @@ export function ResumeEditor({ id, workspaceId, initial, initialTitle, initialTe
         {tab === "match" && (
           <section className="panel-card cv-card">
             <h3>Match a job post</h3>
-            <p className="field-hint">Paste the job description. You'll see which of its keywords your resume already has. Free.</p>
+            <p className="field-hint">Paste the job description. You&apos;ll see which of its keywords your resume already has. Free.</p>
             <textarea className="text-input" rows={8} maxLength={6000} value={r.cover.job} placeholder="Paste the job post here…" onChange={(e: Val) => set({ cover: { ...r.cover, job: e.target.value } })} />
             {match && (
               <div className="cv-match">
                 <div className="cv-score"><strong>{match.score}%</strong><span>keyword match</span><div className="cv-bar"><i style={{ width: `${match.score}%` }} /></div></div>
-                {match.missing.length > 0 && <><h4>Missing: add these where they're true for you</h4><div className="cv-chips">{match.missing.map((k) => <span key={k} className="cv-chip miss">{k}</span>)}</div></>}
+                {match.missing.length > 0 && <><h4>Missing: add these where they&apos;re true for you</h4><div className="cv-chips">{match.missing.map((k) => <span key={k} className="cv-chip miss">{k}</span>)}</div></>}
                 {match.found.length > 0 && <><h4>Already in your resume</h4><div className="cv-chips">{match.found.map((k) => <span key={k} className="cv-chip ok"><Check size={12} aria-hidden="true" /> {k}</span>)}</div></>}
               </div>
             )}
