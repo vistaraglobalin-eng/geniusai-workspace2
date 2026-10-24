@@ -34,7 +34,7 @@ const GROUPS: { title: string; rows: Row[] }[] = [
     rows: [
       { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations, UPI QR, receipts", Icon: ReceiptText, tint: "green" },
       { href: "/tools/photos", title: "Product Photos & Ads", text: "Remove background, marketplace photos, ad posts", Icon: ImageIcon, tint: "orange" },
-      { href: "/tools/letters", title: "Business letters", text: "Offer letters, salary slips, rent receipts", Icon: Mail, tint: "blue" },
+      { href: "/tools/letters", title: "Letters & visiting cards", text: "Visiting cards, letterhead, offer letters, salary slips", Icon: Mail, tint: "blue" },
       { href: "/tools/career", title: "Resume & Career Studio", text: "Resumes, job match, cover letters", Icon: BriefcaseBusiness, tint: "purple" }
     ]
   },

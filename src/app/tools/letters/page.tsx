@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Award, Building2, ChevronRight, DoorOpen, FilePenLine, Handshake, House, PenLine, ShieldCheck, TrendingUp, UserCheck, Wallet } from "lucide-react";
+import { Award, Building2, Contact, FileType2, ChevronRight, DoorOpen, FilePenLine, Handshake, House, PenLine, ShieldCheck, TrendingUp, UserCheck, Wallet } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -33,8 +33,8 @@ export default async function LettersPage() {
     <AppShell ctx={{ ...ctx, workspace }} active="letters" breadcrumb="Business letters">
       <div className="welcome-row">
         <div>
-          <h1>Business letters</h1>
-          <p className="subtitle">Offer letters, salary slips, experience certificates, rent receipts and more — on your letterhead, as PDF or Word. Free.</p>
+          <h1>Letters & stationery</h1>
+          <p className="subtitle">Visiting cards, letterhead, offer letters, salary slips, experience certificates, rent receipts and more — on your letterhead, as PDF or Word. Free.</p>
         </div>
       </div>
       {!settings.business_name && (
@@ -44,6 +44,13 @@ export default async function LettersPage() {
         </Link>
       )}
       <div className="service-groups">
+      <section className="service-group" aria-labelledby="g-stationery">
+        <h2 id="g-stationery">Stationery</h2>
+        <ul className="list-card">
+          <li><Link href="/tools/cards" className="list-row"><span className="app-icon indigo"><Contact size={17} aria-hidden="true" /></span><span className="list-text"><strong>Visiting card</strong><span>6 designs, QR code, print sheet and WhatsApp image</span></span><ChevronRight size={17} aria-hidden="true" className="list-chevron" /></Link></li>
+          <li><Link href="/tools/cards?tab=letterhead" className="list-row"><span className="app-icon teal"><FileType2 size={17} aria-hidden="true" /></span><span className="list-text"><strong>Letterhead</strong><span>Blank letterhead as PDF or Word</span></span><ChevronRight size={17} aria-hidden="true" className="list-chevron" /></Link></li>
+        </ul>
+      </section>
       {GROUPS.map((g) => (
         <section key={g.key} className="service-group" aria-labelledby={`g-${g.key}`}>
           <h2 id={`g-${g.key}`}>{g.title}</h2>

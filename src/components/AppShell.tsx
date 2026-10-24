@@ -18,7 +18,7 @@ const SIDEBAR_NAV: NavItem[] = [
   { key: "agreements", href: "/tools/agreements", label: "Agreement Studio", Icon: FilePen, tint: "indigo" },
   { key: "creative", href: "/tools/photos", label: "Photos & Ads", Icon: ImageIcon, tint: "orange" },
   { key: "invoices", href: "/tools/invoices", label: "Invoices", Icon: ReceiptText, tint: "green" },
-  { key: "letters", href: "/tools/letters", label: "Letters", Icon: Mail, tint: "blue" },
+  { key: "letters", href: "/tools/letters", label: "Letters & Cards", Icon: Mail, tint: "blue" },
   { key: "career", href: "/tools/career", label: "Resumes", Icon: BriefcaseBusiness, tint: "purple" }
 ];
 
