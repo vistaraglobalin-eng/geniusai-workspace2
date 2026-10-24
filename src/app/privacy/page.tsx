@@ -79,6 +79,7 @@ export default function PrivacyPage() {
           <li><strong>Supabase:</strong> database, sign-in and file storage. Our project is hosted in the Mumbai (ap-south-1) region.</li>
           <li><strong>Anthropic:</strong> AI processing when you run an AI task.</li>
           <li><strong>Razorpay:</strong> payment processing.</li>
+          <li><strong>Have I Been Pwned:</strong> when you create or change a password, your device checks it against known leaked passwords. Only the first 5 characters of a one-way code (hash) of the password are sent, never the password or your email.</li>
           <li><strong><Detail value={SITE.hosting} />:</strong> hosting for the web app.</li>
           {SITE.pdfWorkerHost && <li><strong><Detail value={SITE.pdfWorkerHost} />:</strong> processing for some PDF tools (compress, repair, protect, unlock, Office to PDF, PDF to JPG). Files are deleted immediately after processing.</li>}
           <li><strong><Detail value={SITE.emailProvider} />:</strong> sending emails: sign-in links and, when you send a signature request, the signing invitations and notifications.</li>
