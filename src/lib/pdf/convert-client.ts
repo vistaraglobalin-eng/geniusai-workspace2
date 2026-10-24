@@ -32,13 +32,13 @@ async function renderPage(page: PdfPage, maxWidth: number, type: "image/jpeg" | 
 }
 
 /** One image per page. */
-export async function pdfToImages(bytes: Uint8Array, format: "jpg" | "png", onProgress?: (done: number, total: number) => void): Promise<Blob[]> {
+export async function pdfToImages(bytes: Uint8Array, format: "jpg" | "png", onProgress?: (done: number, total: number) => void, maxWidth = 1600): Promise<Blob[]> {
   const { task, doc } = await openPdf(bytes);
   try {
     const n = Math.min(doc.numPages, MAX_CONVERT_PAGES);
     const out: Blob[] = [];
     for (let i = 1; i <= n; i++) {
-      out.push((await renderPage(await doc.getPage(i), 1600, format === "jpg" ? "image/jpeg" : "image/png")).blob);
+      out.push((await renderPage(await doc.getPage(i), maxWidth, format === "jpg" ? "image/jpeg" : "image/png")).blob);
       onProgress?.(i, n);
     }
     return out;

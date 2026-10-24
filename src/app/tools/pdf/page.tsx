@@ -51,7 +51,7 @@ export default async function PdfToolkitPage() {
                 return (
                   <ListRow key={t} href={`/tools/pdf/${t}`} tint={GROUP_TINT[group]} icon={<Icon size={17} aria-hidden="true" />}
                     title={TOOL_INFO[t].title} text={TOOL_INFO[t].description}
-                    badge={isWorkerTool(t) && !workerReady ? <span className="soon-tag">Setup needed</span> : undefined} />
+                    badge={isWorkerTool(t) && t !== "pdf-to-jpg" && !workerReady ? <span className="soon-tag">Setup needed</span> : undefined} />
                 );
               })}
             </ul>

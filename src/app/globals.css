@@ -1395,3 +1395,9 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
   .inv-two, .inv-three { grid-template-columns: 1fr; }
   .inv-stats strong { font-size: 1.1rem; }
 }
+
+/* PDF → images (on device) */
+.p2i { display: flex; flex-direction: column; gap: 12px; max-width: 760px; }
+.p2i-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.p2i-thumb { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--text-2); font-size: .74rem; }
+.p2i-thumb img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #fff; border: 1px solid var(--border); border-radius: 10px; }
