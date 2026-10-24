@@ -169,9 +169,9 @@ export async function buildCompletedPdf(original: Uint8Array, signers: Completed
 
   const note =
     "Each signer opened a private link sent by the sender, agreed to sign electronically, and applied the signature shown. " +
-    "The SHA-256 fingerprint identifies the document before signing. This is an electronic signature under the Information " +
-    "Technology Act, 2000; it is not an Aadhaar eSign or a digital signature certificate (DSC). Some documents in India, such as " +
-    "wills, property sale deeds, powers of attorney and negotiable instruments, cannot be signed electronically.";
+    "The SHA-256 fingerprint identifies the document before signing. This is an electronic record of the signers' agreement; it is " +
+    "not an Aadhaar eSign or a digital signature certificate (DSC). Some documents in India, such as wills, powers of attorney, " +
+    "negotiable instruments and contracts for the sale of immovable property, cannot be signed electronically.";
   const lines = wrap(font, note, 8.5, width);
   ensure(lines.length * 12 + 20);
   y -= 8;

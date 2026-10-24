@@ -19,9 +19,9 @@ export default function TermsPage() {
 
         <h2>1. The service</h2>
         <p>
-          {SITE.productName} is an online workspace with AI tools (such as summarising, translating and extracting text and tables from documents)
-          and PDF tools (such as merging, splitting, compressing, converting and password-protecting files). We may add, change or remove features
-          over time.
+          {SITE.productName} is an online workspace with AI tools (such as summarising, translating and extracting text and tables from documents,
+          and drafting agreements), PDF tools (such as merging, splitting, editing, signing, converting and password-protecting files), signature
+          requests, invoices and receipts, product photo and ad design, and resume tools. We may add, change or remove features over time.
         </p>
 
         <h2>2. Your account</h2>
@@ -55,6 +55,28 @@ export default function TermsPage() {
           AI results are generated automatically and can be inaccurate, incomplete or out of date. They are not legal, financial, medical or other
           professional advice. Check important information against the original document before relying on it.
         </p>
+
+        <h2>5A. Electronic signatures</h2>
+        <ul>
+          <li>Sign PDF and Request signatures create electronic records of a person agreeing to sign: a drawn or typed signature placed on the document, with a signing certificate (names, times, IP address, device and the document&apos;s fingerprint).</li>
+          <li>Electronic contracts are generally recognised in India (Information Technology Act, 2000, section 10A), but these signatures are <strong>not</strong> Aadhaar eSign or a Digital Signature Certificate (DSC). Whether a particular document can be signed this way, and how much weight a court gives it, depends on the law and the facts.</li>
+          <li>Some documents can&apos;t be signed electronically under the First Schedule of the IT Act, including wills, powers of attorney, trusts, negotiable instruments other than cheques, and contracts for the sale or conveyance of immovable property. Some others need stamping or registration. Take legal advice if unsure.</li>
+          <li>You are responsible for sending signing links only to the intended people. Anyone with a signing link can sign as that person, so don&apos;t share it with others.</li>
+        </ul>
+
+        <h2>5B. Invoices and receipts</h2>
+        <p>
+          The invoice tools follow the usual GST invoice format and calculate tax from the rates and details you enter, but you are responsible for
+          the accuracy of every document, the GST rates and HSN/SAC codes you choose, and your tax filings. The tools don&apos;t generate e-invoices
+          (IRN) on the government portal or e-way bills. This isn&apos;t tax advice; check with your accountant.
+        </p>
+
+        <h2>5C. Photos, ads and resumes</h2>
+        <ul>
+          <li>Use only photos, logos and brand names you have the right to use. Ads you create must be truthful and follow the rules of the marketplaces and platforms where you post them.</li>
+          <li>Resumes and cover letters must be truthful. AI suggestions may contain errors or placeholders; check and correct them before sending.</li>
+          <li>Private links to files can be opened by anyone who has the link until it expires. Share them only with people you trust.</li>
+        </ul>
 
         <h2>6. Credits and payments</h2>
         <ul>

@@ -165,13 +165,13 @@ export function SignerView(p: Props) {
         </div>
         <label className="check-row">
           <input type="checkbox" checked={consent} onChange={() => setConsent((v) => !v)} />
-          <span>I have reviewed this document and agree to sign it electronically. I understand my electronic signature is as valid as a handwritten one.</span>
+          <span>I have reviewed this document, agree to sign it electronically, and intend the signature I add to be my signature on it.</span>
         </label>
         {error && <p className="form-message error" role="alert">{error}</p>}
         <button type="button" className="primary-button wide" onClick={sign} disabled={busy || pages.length === 0}>
           <PenLine size={16} aria-hidden="true" /> {busy ? "Signing…" : "Sign the document"}
         </button>
-        <p className="field-hint">Your name, the time, your IP address and device are recorded on a signing certificate attached to the final PDF.</p>
+        <p className="field-hint">Your name, the time, your IP address and device are recorded on a signing certificate attached to the final PDF, which {p.sender} receives. See our <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
         {!declining ? (
           <button type="button" className="quiet-button sr-decline" onClick={() => setDeclining(true)}>I don&apos;t want to sign</button>
         ) : (
