@@ -158,9 +158,13 @@ export function LetterEditor({ templateKey, workspaceId, settings }: { templateK
           </section>
         )}
         <p className="lt-help">Templates are general formats. Check the terms suit your business and local law before you sign.</p>
+        <div className="lt-jump">
+          <button type="button" className="secondary-button" onClick={() => { setShowPreview(true); setTimeout(() => document.getElementById("lt-finish")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50); }}>Preview</button>
+          <button type="button" className="primary-button" onClick={() => save("pdf")} disabled={!!busy}><Download size={16} aria-hidden="true" /> Download PDF</button>
+        </div>
       </div>
 
-      <aside className="inv-side">
+      <aside className="inv-side" id="lt-finish">
         <section className="panel-card inv-card">
           <h3>Letterhead</h3>
           <nav className="segmented lt-styles" aria-label="Letterhead style">

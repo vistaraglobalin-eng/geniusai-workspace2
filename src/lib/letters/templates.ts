@@ -24,6 +24,8 @@ export type Template = {
 
 const n = (x: string | undefined) => { const v = Number(String(x ?? "").replace(/[,₹\s]/g, "")); return Number.isFinite(v) ? v : 0; };
 const rs = (x: number) => `₹${inr(x, Number.isInteger(x) ? 0 : 2)}`;
+/** "₹3,60,000 (Rupees … Only)", or a blank to fill in when no amount is entered yet. */
+const money = (x: number) => (x > 0 ? `${rs(x)} (${amountInWords(x)})` : "₹__________");
 const d = (iso: string | undefined) => (iso ? showDate(iso) : "__________");
 const or = (x: string | undefined, blank = "__________") => (x && x.trim() ? x.trim() : blank);
 const monthName = (ym: string | undefined) => {
@@ -67,7 +69,7 @@ export const TEMPLATES: Template[] = [
       const ctc = n(v.ctc), co = s.business_name || "our company";
       return [`Dear ${person(v)},`,
         `We are pleased to offer you the position of ${or(v.designation)}${v.department ? ` in the ${v.department} department` : ""} at ${co}. We were impressed by your experience and believe you will be a valuable member of our team.`,
-        `Your annual cost to company (CTC) will be ${rs(ctc)} (${amountInWords(ctc)}), which works out to about ${rs(Math.round(ctc / 12))} per month. A detailed salary break-up will be shared with your appointment letter.`,
+        `Your annual cost to company (CTC) will be ${money(ctc)}${ctc > 0 ? `, which works out to about ${rs(Math.round(ctc / 12))} per month` : ""}. A detailed salary break-up will be shared with your appointment letter.`,
         `Your date of joining will be ${d(v.joining)}${v.location ? ` and your place of work will be ${v.location}` : ""}.${v.reporting ? ` You will report to ${v.reporting}.` : ""}${n(v.probation) ? ` You will be on probation for ${n(v.probation)} months from the date of joining.` : ""}`,
         `This offer is subject to verification of your documents and references. Please bring originals of your educational certificates, ID proof (Aadhaar/PAN), previous employment documents and two passport-size photographs on the day of joining.`,
         `Please sign and return a copy of this letter${v.accept_by ? ` by ${d(v.accept_by)}` : ""} to confirm your acceptance. We look forward to welcoming you.`
@@ -193,7 +195,7 @@ export const TEMPLATES: Template[] = [
     body: (v, s) => {
       const oldC = n(v.old_ctc), newC = n(v.new_ctc), pct = oldC > 0 ? ((newC - oldC) / oldC) * 100 : 0;
       return [`Dear ${person(v)},`,
-        `In recognition of your contribution and performance, we are pleased to inform you that your annual cost to company (CTC) has been revised to ${rs(newC)} (${amountInWords(newC)})${oldC > 0 ? `, an increase of ${pct.toFixed(1)}% over your current CTC of ${rs(oldC)}` : ""}, with effect from ${d(v.effective)}.`,
+        `In recognition of your contribution and performance, we are pleased to inform you that your annual cost to company (CTC) has been revised to ${money(newC)}${oldC > 0 ? `, an increase of ${pct.toFixed(1)}% over your current CTC of ${rs(oldC)}` : ""}, with effect from ${d(v.effective)}.`,
         ...(v.new_designation ? [`We are also pleased to promote you to the position of ${v.new_designation}.`] : []),
         `All other terms and conditions of your employment remain unchanged. Please keep your salary details confidential.`,
         `We appreciate your efforts and look forward to your continued contribution to ${s.business_name || "the company"}.`].join("\n\n");
@@ -239,7 +241,7 @@ export const TEMPLATES: Template[] = [
         if (i > 0) out.push({ t: "space", h: 40 });
         out.push({ t: "title", text: "Rent receipt" },
           { t: "meta", left: [`Receipt no.: ${String(i + 1).padStart(2, "0")}`], right: [`Date: ${d(v.date)}`] },
-          { t: "p", text: `Received with thanks from ${or(v.tenant)} a sum of ${rs(amt)} (${amountInWords(amt)}) by ${v.mode || "UPI"} towards rent for the property at ${or(v.property).replace(/\n/g, ", ")} for the period ${period}.` },
+          { t: "p", text: `Received with thanks from ${or(v.tenant)} a sum of ${money(amt)} by ${v.mode || "UPI"} towards rent for the property at ${or(v.property).replace(/\n/g, ", ")} for the period ${period}.` },
           { t: "sign", right: { label: "Landlord", name: or(v.landlord), sub: v.landlord_pan ? `PAN: ${v.landlord_pan.toUpperCase()}` : undefined }, stampBox: v.mode === "Cash" && amt > 5000 ? "Revenue stamp" : undefined });
       });
       return out;

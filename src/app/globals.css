@@ -1601,3 +1601,13 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
   .team-roles { grid-template-columns: 1fr; }
   .ws-menu { position: fixed; top: 58px; left: 16px; right: 16px; min-width: 0; }
 }
+
+/* Success / notice lines that start with an icon: icon beside the text, not above it. */
+.form-message:has(> svg:first-child) { display: flex; flex-direction: row; align-items: flex-start; gap: 8px; }
+.form-message > svg:first-child { flex: none; margin-top: 3px; }
+.lt-jump { display: none; }
+@media (max-width: 900px) {
+  .lt-jump { display: flex; gap: 8px; position: sticky; bottom: calc(var(--bottom-nav-h, 0px) + 10px + env(safe-area-inset-bottom)); z-index: 20; padding: 8px; border-radius: 16px; background: color-mix(in srgb, var(--surface) 88%, transparent); -webkit-backdrop-filter: saturate(180%) blur(16px); backdrop-filter: saturate(180%) blur(16px); border: 1px solid var(--border); box-shadow: var(--shadow-md); }
+  .lt-jump > * { flex: 1; justify-content: center; white-space: nowrap; }
+  #lt-finish { scroll-margin-top: 70px; }
+}

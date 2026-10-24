@@ -159,7 +159,7 @@ export function ExpenseBook({ workspaceId, month, today, rows, prevTotal, settin
       {message && !draft && <p className="form-message success" role="status"><Check size={15} aria-hidden="true" /> {message}</p>}
 
       <div className="inv-stats ex-stats">
-        <div className="panel-card"><span>Spent</span><strong>{rupees(sum.total)}</strong><em>{change === null ? `${sum.count} expense${sum.count === 1 ? "" : "s"}` : `${change >= 0 ? "▲" : "▼"} ${Math.abs(change).toFixed(0)}% vs last month`}</em></div>
+        <div className="panel-card"><span>Spent</span><strong>{rupees(sum.total)}</strong><em>{change === null || sum.total === 0 ? `${sum.count} expense${sum.count === 1 ? "" : "s"}` : `${change >= 0 ? "▲" : "▼"} ${Math.abs(change).toFixed(0)}% vs last month`}</em></div>
         <div className="panel-card"><span>GST in bills</span><strong>{rupees(sum.gst)}</strong><em>Input credit to check</em></div>
       </div>
 
