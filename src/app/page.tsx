@@ -33,7 +33,8 @@ const GROUPS: { title: string; rows: Row[] }[] = [
     title: "Grow your business",
     rows: [
       { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations, UPI QR, receipts", Icon: ReceiptText, tint: "green" },
-      { href: "/tools/photos", title: "Product Photos & Ads", text: "Remove background, marketplace photos, ad posts", Icon: ImageIcon, tint: "orange" }
+      { href: "/tools/photos", title: "Product Photos & Ads", text: "Remove background, marketplace photos, ad posts", Icon: ImageIcon, tint: "orange" },
+      { href: "/tools/career", title: "Resume & Career Studio", text: "Resumes, job match, cover letters", Icon: BriefcaseBusiness, tint: "purple" }
     ]
   },
   {
@@ -68,9 +69,7 @@ const ACTIONS = [
   { href: "/tools/pdf/merge", label: "Merge", Icon: Combine, tint: "red" }
 ] as const;
 
-const SOON = [
-  { title: "Resume & Career Studio", Icon: BriefcaseBusiness }
-] as const;
+const SOON: { title: string; Icon: typeof FileText }[] = [];
 
 function greeting(now: Date) {
   const hour = Number(new Intl.DateTimeFormat("en-GB", { hour: "numeric", hour12: false, timeZone: "Asia/Kolkata" }).format(now));
@@ -178,6 +177,7 @@ export default async function Home() {
         </section>
       </div>
 
+      {SOON.length > 0 && (
       <section className="soon-row" aria-labelledby="soon-h">
         <h2 id="soon-h" className="dash-section-title">Coming soon</h2>
         <div className="soon-list">
@@ -186,6 +186,7 @@ export default async function Home() {
           ))}
         </div>
       </section>
+      )}
 
       <footer>Files are stored privately in {workspace.name}. AI tools send a file to the AI provider only when you run a task on it.</footer>
     </AppShell>

@@ -1401,3 +1401,52 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
 .p2i-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
 .p2i-thumb { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--text-2); font-size: .74rem; }
 .p2i-thumb img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #fff; border: 1px solid var(--border); border-radius: 10px; }
+
+/* ---------- Resume & Career Studio ---------- */
+.cv-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 460px); gap: 16px; align-items: start; }
+.cv-form { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.cv-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.cv-title { font-size: 1.1rem; font-weight: 700; }
+.cv-tabs { align-self: flex-start; }
+.cv-tabs button[aria-pressed="true"], .cv-tabs button.selected { background: var(--surface); color: var(--accent-text); box-shadow: var(--shadow-sm); }
+.cv-card { display: flex; flex-direction: column; gap: 10px; }
+.cv-card h3 { margin: 0; font-size: .95rem; }
+.cv-card h4 { margin: 8px 0 0; font-size: .82rem; color: var(--text-2); }
+.cv-card .field { display: flex; flex-direction: column; gap: 5px; font-size: .78rem; font-weight: 600; color: var(--text-2); margin: 0; min-width: 0; }
+.cv-card summary { cursor: pointer; list-style: none; }
+.cv-card summary::-webkit-details-marker { display: none; }
+.cv-card summary h3::after { content: " ›"; color: var(--text-3); }
+.cv-card[open] summary h3::after { content: " ⌄"; }
+.cv-card-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cv-ai { color: var(--accent-text); border: 1px solid var(--accent-border); background: var(--accent-softer); min-height: 36px; padding: 5px 12px; font-size: .8rem; }
+.cv-templates { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 6px; }
+.cv-entry { border: 1px solid var(--border); border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 8px; background: var(--surface); }
+.cv-entry-actions { display: flex; gap: 6px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
+.cv-entry-actions .cv-ai { margin-right: auto; }
+.cv-cert { align-items: end; }
+.cv-cert-year { display: flex; gap: 6px; align-items: flex-end; }
+.cv-cert-year .field { flex: 1; }
+.cv-photo { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; }
+.cv-side { position: sticky; top: 76px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.cv-actions { display: flex; flex-direction: column; gap: 8px; }
+.cv-preview { display: flex; flex-direction: column; gap: 10px; }
+.cv-preview img { width: 100%; border-radius: 6px; box-shadow: var(--shadow-md); background: #fff; }
+.cv-match { display: flex; flex-direction: column; gap: 8px; }
+.cv-score { display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 4px 10px; }
+.cv-score strong { font-size: 1.8rem; color: var(--accent-text); }
+.cv-score span { color: var(--text-3); font-size: .82rem; }
+.cv-bar { grid-column: 1 / -1; height: 8px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
+.cv-bar i { display: block; height: 100%; background: linear-gradient(90deg, #f59e0b, #16a34a); border-radius: 999px; }
+.cv-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.cv-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font-size: .76rem; font-weight: 600; }
+.cv-chip.miss { background: var(--warning-bg); color: var(--warning-text); border: 1px solid var(--warning-border); }
+.cv-chip.ok { background: var(--success-bg); color: var(--success-text); border: 1px solid var(--success-border); }
+.cv-tips { white-space: pre-wrap; font: inherit; font-size: .86rem; line-height: 1.6; background: var(--surface-2); border-radius: 12px; padding: 12px; margin: 0; }
+.cv-row { display: flex; align-items: center; }
+.cv-row .list-row { flex: 1; min-width: 0; }
+.cv-row .file-actions { padding-right: 10px; }
+@media (max-width: 900px) {
+  .cv-layout { grid-template-columns: minmax(0, 1fr); }
+  .cv-side { position: static; order: 2; }
+  .cv-preview img { max-width: 520px; margin: 0 auto; }
+}

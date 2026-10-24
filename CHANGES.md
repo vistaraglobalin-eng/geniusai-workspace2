@@ -1,5 +1,16 @@
 # Changes
 
+## Revision 22: Resume & Career Studio, PDF to JPG on device
+
+- **Resume & Career Studio** (dashboard → Grow your business, sidebar → Resumes, All tools): build resumes that save as you type, with a live preview of the real PDF.
+- **4 templates** (Classic, Modern with optional photo, Compact, Executive), 8 colours; single-column, real-text PDFs that ATS screening software reads; **Word (.docx)** download too.
+- Sections: contact, summary, experience (reorder), education (CGPA/%), skills, projects, certifications, achievements, languages, optional personal details and declaration (common for Indian employers).
+- **Job match (free):** paste a job post, see a keyword score and which keywords are missing.
+- **AI help (uses credits):** write the summary, improve bullet points, tailoring tips for a job post, and a cover letter (PDF / Word).
+- Share, download, save to Files; duplicate and delete resumes.
+- **PDF → JPG/PNG** now runs on the phone (no server needed).
+- Database: run `supabase/migrations/202610240013_resumes.sql` once.
+
 ## Revision 21: Invoices & Receipts
 
 - New **Invoices & Receipts** (dashboard → Grow your business, sidebar → Invoices, All tools).
