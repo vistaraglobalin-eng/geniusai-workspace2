@@ -16,6 +16,21 @@ const UNITS = ["pcs", "nos", "kg", "g", "ltr", "ml", "m", "sq ft", "box", "set",
 const MODES = ["UPI", "Cash", "Bank transfer", "Cheque", "Card", "Other"];
 type Val = { target: { value: string } };
 
+/** Number box that keeps exactly what you type (so "299." or "0.5" work) and reports the number. */
+function NumField({ value, onChange, placeholder, max }: { value: number; onChange: (n: number) => void; placeholder?: string; max?: number }) {
+  const [text, setText] = useState(value ? String(value) : "");
+  useEffect(() => { if ((parseFloat(text) || 0) !== (value || 0)) setText(value ? String(value) : ""); }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
+  return (
+    <input className="text-input" inputMode="decimal" value={text} placeholder={placeholder ?? "0"}
+      onChange={(e: Val) => {
+        const t = e.target.value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "$1");
+        setText(t);
+        const n = parseFloat(t);
+        onChange(Number.isFinite(n) ? (max !== undefined ? Math.min(max, n) : n) : 0);
+      }} />
+  );
+}
+
 function Preview({ doc, settings }: { doc: InvoiceDoc; settings: InvoiceSettings }) {
   const holder = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -57,7 +72,7 @@ export function InvoiceEditor({ workspaceId, settings, customers, initial, kind:
   const [gst, setGst] = useState(seed?.gst ?? !!settings.gstin);
   const [pos, setPos] = useState(seed?.place_of_supply ?? (settings.state_code || ""));
   const [reverse, setReverse] = useState(seed?.reverse_charge ?? false);
-  const [items, setItems] = useState<Item[]>(seed?.items?.length ? seed.items : [{ ...NEW_ITEM, gst: settings.gstin ? 18 : 0 }]);
+  const [items, setItems] = useState<Item[]>(seed?.items?.length ? seed.items : [{ ...NEW_ITEM }]);
   const [notes, setNotes] = useState(seed?.notes ?? (kind === "receipt" ? "" : "Thank you for your business!"));
   const [terms, setTerms] = useState(seed?.terms ?? (kind === "receipt" ? "" : settings.terms));
   const [roundOff, setRoundOff] = useState(seed?.extra?.roundOff !== false);
@@ -114,7 +129,15 @@ export function InvoiceEditor({ workspaceId, settings, customers, initial, kind:
     if (!customer.name.trim()) return kind === "receipt" ? "Enter who the payment is from." : "Enter the customer's name.";
     if (custGstinProblem) return `Customer GSTIN: ${custGstinProblem}`;
     if (kind === "receipt") return Number(receipt.amount) > 0 ? null : "Enter the amount received.";
-    if (!items.some((it) => it.description.trim() && Number(it.qty) > 0)) return "Add at least one item with a description and quantity.";
+    const filled = items.filter((it) => it.description.trim() || Number(it.rate) > 0);
+    if (!filled.length) return "Add at least one item with a description, quantity and price.";
+    for (const [k, it] of filled.entries()) {
+      const name = it.description.trim() || `Item ${k + 1}`;
+      if (!it.description.trim()) return `Add a description for item ${k + 1}.`;
+      if (!(Number(it.qty) > 0)) return `Enter a quantity for “${name}”.`;
+      if (!(Number(it.rate) > 0)) return `Enter a price (Rate) for “${name}”.`;
+    }
+    if (!(totals.total > 0)) return "The total is ₹0. Check the prices.";
     if (gst && !pos) return "Choose the place of supply (the customer's state).";
     return null;
   }
@@ -304,17 +327,17 @@ export function InvoiceEditor({ workspaceId, settings, customers, initial, kind:
                   </div>
                   <div className="inv-item-grid">
                     <label className="field">HSN/SAC<input className="text-input" value={it.hsn} maxLength={8} inputMode="numeric" onChange={(e: Val) => setItem(i, { hsn: e.target.value.replace(/[^0-9]/g, "") })} /></label>
-                    <label className="field">Qty<input className="text-input" inputMode="decimal" value={String(it.qty)} onChange={(e: Val) => setItem(i, { qty: num(e.target.value) })} /></label>
+                    <label className="field">Qty<NumField value={it.qty} onChange={(n) => setItem(i, { qty: n })} /></label>
                     <label className="field">Unit<select className="text-input" value={it.unit} onChange={(e: Val) => setItem(i, { unit: e.target.value })}>{UNITS.map((u) => <option key={u}>{u}</option>)}</select></label>
-                    <label className="field">Rate (₹)<input className="text-input" inputMode="decimal" value={it.rate ? String(it.rate) : ""} placeholder="0" onChange={(e: Val) => setItem(i, { rate: num(e.target.value) })} /></label>
-                    <label className="field">Disc. %<input className="text-input" inputMode="decimal" value={it.discount ? String(it.discount) : ""} placeholder="0" onChange={(e: Val) => setItem(i, { discount: Math.min(100, num(e.target.value)) })} /></label>
+                    <label className="field">Rate (₹)<NumField value={it.rate} onChange={(n) => setItem(i, { rate: n })} /></label>
+                    <label className="field">Disc. %<NumField value={it.discount} max={100} onChange={(n) => setItem(i, { discount: n })} /></label>
                     {gst && <label className="field">GST %<select className="text-input" value={String(it.gst)} onChange={(e: Val) => setItem(i, { gst: Number(e.target.value) })}>{GST_RATES.map((r) => <option key={r} value={r}>{r}%</option>)}{!(GST_RATES as readonly number[]).includes(Number(it.gst)) && <option value={it.gst}>{it.gst}%</option>}</select></label>}
                   </div>
                   <p className="inv-line-total">₹ {inr(line ? r2(line.taxable + line.tax) : 0)}{gst && line?.tax ? <span> incl. ₹{inr(line.tax)} GST</span> : null}</p>
                 </div>
               );
             })}
-            <button type="button" className="secondary-button" onClick={() => setItems((l) => [...l, { ...NEW_ITEM, gst: gst ? l[l.length - 1]?.gst ?? 18 : 0 }])}><Plus size={16} aria-hidden="true" /> Add item</button>
+            <button type="button" className="secondary-button" onClick={() => setItems((l) => [...l, { ...NEW_ITEM, gst: l[l.length - 1]?.gst ?? 18 }])}><Plus size={16} aria-hidden="true" /> Add item</button>
           </section>
         )}
 
