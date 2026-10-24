@@ -19,10 +19,10 @@ export type InvoiceDoc = {
 export const PAGE_W = 1240, PAGE_H = 1754; // A4 at 150 dpi
 export type TextRun = { page: number; text: string; x: number; y: number; size: number };
 
-const FONT = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", Arial, sans-serif`;
+export const FONT = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", Arial, sans-serif`;
 const INK = "#16182a", MUTED = "#5b5f73", LINE = "#d9dbe3", SOFT = "#f4f5f8";
 
-type Images = { logo: HTMLImageElement | ImageBitmap | null; signature: HTMLImageElement | ImageBitmap | null };
+export type Images = { logo: HTMLImageElement | ImageBitmap | null; signature: HTMLImageElement | ImageBitmap | null };
 
 export async function loadImages(s: InvoiceSettings): Promise<Images> {
   const load = (src: string | null) => new Promise<HTMLImageElement | null>((res) => {
@@ -37,7 +37,7 @@ export function docTitle(d: Pick<InvoiceDoc, "kind" | "gst">) {
   return d.kind === "quotation" ? "QUOTATION" : d.kind === "receipt" ? "PAYMENT RECEIPT" : d.gst ? "TAX INVOICE" : "BILL OF SUPPLY";
 }
 
-class Pen {
+export class Pen {
   runs: TextRun[] = [];
   constructor(public ctx: CanvasRenderingContext2D, public page: number, public record: boolean) {}
   font(size: number, weight = 400) { this.ctx.font = `${weight} ${size}px ${FONT}`; }

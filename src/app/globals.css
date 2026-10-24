@@ -1474,3 +1474,18 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
   .rm-head { padding: 12px 14px; }
   .rm-body { padding: 12px 14px 14px; }
 }
+
+/* ---------- Business letters ---------- */
+.app-icon.pink     { background: linear-gradient(180deg, #ff5f8f, #e8366c); }
+.app-icon.yellow   { background: linear-gradient(180deg, #ffcc33, #f2a900); }
+.app-icon.graphite { background: linear-gradient(180deg, #5b6170, #3a3f4b); }
+.lt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.lt-grid .field.full { grid-column: 1 / -1; }
+.lt-grid .field { display: flex; flex-direction: column; gap: 5px; font-size: .78rem; font-weight: 600; color: var(--text-2); margin: 0; min-width: 0; }
+.lt-bodyhead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.lt-help { font-size: .78rem; color: var(--text-3); margin: 0; }
+.lt-body { font-size: .88rem; line-height: 1.5; resize: vertical; min-height: 260px; }
+.lt-styles { align-self: flex-start; }
+@media (max-width: 340px) {
+  .lt-grid { grid-template-columns: 1fr; }
+}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
-  BriefcaseBusiness, ChevronRight, Combine, PenLine, FileInput, FilePen, FileText, Image as ImageIcon, Languages,
+  BriefcaseBusiness, ChevronRight, Mail, Combine, PenLine, FileInput, FilePen, FileText, Image as ImageIcon, Languages,
   Layers, ListChecks, Lock, MessageSquareText, Minimize2, ReceiptText, ScanText, Scissors, Send, Signature, Table, Zap
 } from "lucide-react";
 import { getSupabasePublicEnv } from "@/lib/supabase/env";
@@ -34,6 +34,7 @@ const GROUPS: { title: string; rows: Row[] }[] = [
     rows: [
       { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations, UPI QR, receipts", Icon: ReceiptText, tint: "green" },
       { href: "/tools/photos", title: "Product Photos & Ads", text: "Remove background, marketplace photos, ad posts", Icon: ImageIcon, tint: "orange" },
+      { href: "/tools/letters", title: "Business letters", text: "Offer letters, salary slips, rent receipts", Icon: Mail, tint: "blue" },
       { href: "/tools/career", title: "Resume & Career Studio", text: "Resumes, job match, cover letters", Icon: BriefcaseBusiness, tint: "purple" }
     ]
   },
