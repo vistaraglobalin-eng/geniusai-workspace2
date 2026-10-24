@@ -2,7 +2,7 @@
 export const PUBLIC_PATH_PREFIXES = [
   "/login", "/auth/", "/api/health", "/api/billing/webhook",
   "/pricing", "/terms", "/privacy", "/refunds", "/contact",
-  "/s/", "/api/sign-requests/public/" // signing links: signers don't need an account
+  "/s/", "/api/sign-requests/public/", "/vendor/" // signing links: signers don't need an account
 ];
 
 /** Pages that are public only at exactly this path (the home page shows the landing page when signed out). */

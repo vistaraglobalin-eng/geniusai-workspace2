@@ -55,15 +55,17 @@ export function SignerView(p: Props) {
       return;
     }
     let cancelled = false;
+    const slow = setTimeout(() => { if (!cancelled) setLoadError((e) => e ?? "The document is taking too long to open. Check your connection and reload this page."); }, 45000);
     (async () => {
       try {
         const d = await open();
         if (!d.url) throw new Error(d.message ?? "missing");
         const bytes = new Uint8Array(await (await fetch(d.url)).arrayBuffer());
         await renderPdfPages(bytes, { maxPages: 80, isCancelled: () => cancelled, onProgress: (pg) => setPages(pg) });
+        clearTimeout(slow);
       } catch { if (!cancelled) setLoadError("The document couldn't be opened. Check your connection and reload this page."); }
     })();
-    return () => { cancelled = true; };
+    return () => { cancelled = true; clearTimeout(slow); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function sign() {
