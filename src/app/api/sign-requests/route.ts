@@ -68,6 +68,10 @@ export async function POST(request: NextRequest) {
     }).select("id").single();
     if (reqErr || !req) {
       if (reqErr && /does not exist|schema cache/i.test(reqErr.message)) return fail(503, "setup_needed", "Request signatures needs a one-time database update. Please run the latest SQL setup.");
+      if (reqErr && (reqErr.code === "42501" || /permission denied/i.test(reqErr.message))) {
+        console.error("SUPABASE_SERVICE_ROLE_KEY is not the service role (secret) key");
+        return fail(503, "server_key", "Server setup issue: the Supabase admin key in Vercel (SUPABASE_SERVICE_ROLE_KEY) is not the secret key. Nothing was sent.");
+      }
       return fail(500, "create_failed", "The request couldn't be created. Please try again.");
     }
     const { error: sErr } = await admin.from("signature_signers").insert(signers.map((s) => ({
