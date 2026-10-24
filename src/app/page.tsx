@@ -30,6 +30,12 @@ const GROUPS: { title: string; rows: Row[] }[] = [
     ]
   },
   {
+    title: "Grow your business",
+    rows: [
+      { href: "/tools/photos", title: "Product Photos & Ads", text: "Remove background, marketplace photos, ad posts", Icon: ImageIcon, tint: "orange" }
+    ]
+  },
+  {
     title: "Understand documents",
     rows: [
       { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks", Icon: MessageSquareText, tint: "orange" },
@@ -63,8 +69,7 @@ const ACTIONS = [
 
 const SOON = [
   { title: "Resume & Career Studio", Icon: BriefcaseBusiness },
-  { title: "Invoices & Receipts", Icon: ReceiptText },
-  { title: "Product Photos & Ads", Icon: ImageIcon }
+  { title: "Invoices & Receipts", Icon: ReceiptText }
 ] as const;
 
 function greeting(now: Date) {

@@ -1,5 +1,15 @@
 # Changes
 
+## Revision 20: Product Photos & Ads
+
+- New **Product Photos & Ads** studio (dashboard → Grow your business, sidebar → Photos & Ads, All tools).
+- **Background removal on the phone:** automatic for product photos on plain or light backgrounds (picks a strict mode by itself for light products on light backgrounds), plus Erase / Restore brushes, Tap to remove, Undo and Redo automatically. Or keep the original background.
+- **Sizes:** Marketplace 2000×2000 white (Amazon / Flipkart / Meesho), Post 1:1, Post 4:5, Story 9:16 (Reels / WhatsApp Status), Banner 1200×628.
+- **Backgrounds:** white, soft colours, gradients, any colour, or the original photo; soft or floor shadow; resize and drag the product.
+- **Ads:** four styles (Clean, Big sale, Split, Festive) with headline, line under it, price and struck-through old price, offer badge, button text, brand and phone; eight accent colours.
+- **Save to Files**, **Share** (all formats via the share sheet) or **Download** as JPG or PNG.
+- Nothing is uploaded until you save. Busy outdoor backgrounds need the brushes (an on-device AI cut-out can be added later).
+
 ## Revision 19: Automatic signing emails (Resend)
 
 - When a signer has an email address, they get a "Please sign" email with their private link (in order, one after another, when that option is chosen).
