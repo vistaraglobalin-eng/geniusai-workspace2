@@ -26,7 +26,7 @@ export function ShareApps({ items, label = "Send with" }: { items: ShareAppItem[
         const look = LOOK[it.kind];
         const inner = (<><span className={`share-app-icon ${it.kind}`}>{look.icon}</span><span className="share-app-label">{it.label ?? look.label}</span></>);
         return it.href
-          ? <a key={it.kind} className="share-app" href={it.href} target={it.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">{inner}</a>
+          ? <a key={it.kind} className="share-app" href={it.href} target={it.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" onClick={it.onClick}>{inner}</a>
           : <button key={it.kind} type="button" className="share-app" onClick={it.onClick} disabled={it.disabled}>{inner}</button>;
       })}
     </div>

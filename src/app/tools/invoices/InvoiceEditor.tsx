@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { AlertTriangle, Check, Copy, Download, FileCheck2, IndianRupee, Plus, Save, Share2, Trash2, X } from "lucide-react";
+import { AlertTriangle, BellRing, Check, Copy, Download, FileCheck2, IndianRupee, Plus, Save, Share2, Trash2, X } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { uploadWorkspaceFile } from "@/lib/storage/files";
 import { ShareSheet } from "@/components/ShareSheet";
@@ -394,6 +394,9 @@ export function InvoiceEditor({ workspaceId, settings, customers, initial, kind:
                     </div>
                   </div>
                 )
+            )}
+            {saved && kind === "invoice" && (saved.status === "unpaid" || saved.status === "partly_paid") && (
+              <Link className="secondary-button" href={`/tools/invoices/reminders?id=${saved.id}`}><BellRing size={16} aria-hidden="true" /> Send payment reminder</Link>
             )}
             {saved && kind === "quotation" && (
               <Link className="secondary-button" href={`/tools/invoices/new?kind=invoice&from=${saved.id}`}><FileCheck2 size={16} aria-hidden="true" /> Convert to invoice</Link>

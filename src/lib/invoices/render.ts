@@ -13,7 +13,7 @@ export type InvoiceSettings = {
 export type InvoiceDoc = {
   kind: DocKind; number: string; issue_date: string; due_date: string | null; customer: Party; place_of_supply: string;
   gst: boolean; reverse_charge: boolean; items: Item[]; notes: string; terms: string; amount_paid: number; status: string;
-  extra: { roundOff?: boolean; paymentMode?: string; against?: string; receiptAmount?: number; reference?: string };
+  extra: { roundOff?: boolean; paymentMode?: string; against?: string; receiptAmount?: number; reference?: string; reminders?: { at: string; channel: string; tone: "gentle" | "firm" | "final" }[] };
 };
 
 export const PAGE_W = 1240, PAGE_H = 1754; // A4 at 150 dpi

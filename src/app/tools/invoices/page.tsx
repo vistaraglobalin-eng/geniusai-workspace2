@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Building2, FileText, Plus, ReceiptText, ScrollText } from "lucide-react";
+import { BellRing, Building2, FileText, Plus, ReceiptText, ScrollText } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -67,7 +67,7 @@ export default async function InvoicesPage({ searchParams }: { searchParams: Pro
           )}
           <div className="inv-stats">
             <div className="panel-card"><span>To collect</span><strong>₹ {inr(due, 0)}</strong><em>{open.length} unpaid invoice{open.length === 1 ? "" : "s"}</em></div>
-            <div className={`panel-card${overdue.length ? " warn" : ""}`}><span>Overdue</span><strong>₹ {inr(overdueAmt, 0)}</strong><em>{overdue.length} past due date</em></div>
+            <Link href="/tools/invoices/reminders" className={`panel-card${overdue.length ? " warn" : ""}`}><span>Overdue</span><strong>₹ {inr(overdueAmt, 0)}</strong><em>{overdue.length ? "Send reminders ›" : "0 past due date"}</em></Link>
             <div className="panel-card"><span>Billed this month</span><strong>₹ {inr(billed, 0)}</strong><em>Issued invoices</em></div>
             <div className="panel-card"><span>Received this month</span><strong>₹ {inr(received, 0)}</strong><em>From receipts</em></div>
           </div>
@@ -80,6 +80,7 @@ export default async function InvoicesPage({ searchParams }: { searchParams: Pro
               <input type="hidden" name="tab" value={tab} />
               <input className="text-input" name="q" defaultValue={q ?? ""} placeholder="Search number or customer" aria-label="Search" />
             </form>
+            <Link className="quiet-button with-icon" href="/tools/invoices/reminders"><BellRing size={15} aria-hidden="true" /> Reminders{overdue.length ? ` (${overdue.length})` : ""}</Link>
             <Link className="quiet-button with-icon" href="/tools/invoices/settings"><Building2 size={15} aria-hidden="true" /> Business details</Link>
           </div>
 

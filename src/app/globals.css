@@ -1450,3 +1450,27 @@ input[type="checkbox"].edit-widget, input[type="radio"].edit-widget { padding: 0
   .cv-side { position: static; order: 2; }
   .cv-preview img { max-width: 520px; margin: 0 auto; }
 }
+
+/* ---------- Payment reminders ---------- */
+.rm-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px; }
+.rm-total { margin-left: auto; font-size: .82rem; color: var(--text-2); }
+.rm-total strong { color: var(--danger-text); font-variant-numeric: tabular-nums; }
+.rm-list { display: flex; flex-direction: column; gap: 10px; }
+.rm-card { padding: 0; overflow: hidden; }
+.rm-head { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px 16px; border: 0; background: none; text-align: left; color: inherit; font: inherit; cursor: pointer; }
+.rm-head .list-text { flex: 1; min-width: 0; }
+.rm-head > svg { color: var(--text-3); flex: none; }
+.rm-late { font-size: .72rem; font-weight: 700; color: var(--text-3); }
+.rm-late.warn { color: var(--warning-text); }
+.rm-late.bad { color: var(--danger-text); }
+.rm-body { display: flex; flex-direction: column; gap: 10px; padding: 0 16px 16px; border-top: 1px solid var(--border); padding-top: 14px; }
+.rm-tones { align-self: flex-start; }
+.rm-text { font-size: .86rem; line-height: 1.45; resize: vertical; min-height: 180px; }
+.rm-reset { align-self: flex-start; }
+.rm-hint { font-size: .78rem; color: var(--text-3); margin: 0; }
+.rm-log { display: flex; align-items: center; gap: 6px; font-size: .76rem; color: var(--text-3); margin: 0; }
+@media (max-width: 640px) {
+  .rm-total { margin-left: 0; width: 100%; }
+  .rm-head { padding: 12px 14px; }
+  .rm-body { padding: 12px 14px 14px; }
+}
