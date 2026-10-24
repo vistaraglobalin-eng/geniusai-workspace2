@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ShareApps, mailHref, smsHref, waHref } from "@/components/ShareApps";
 import type { ShareSource } from "@/components/ShareSheet";
 
-export type SignLink = { position: number; name: string; email: string | null; url: string; status?: string };
+export type SignLink = { position: number; name: string; email: string | null; url: string; status?: string; emailed?: boolean };
 
 const STATUS: Record<string, string> = { pending: "Not opened", viewed: "Opened", signed: "Signed", declined: "Declined" };
 
@@ -45,7 +45,7 @@ export function ShareLinks({ links, title, sender, attach }: { links: SignLink[]
         <li key={l.position} className="sr-link">
           <div className="sr-link-head">
             <span className="sr-dot" style={{ background: SIGNER_COLORS[(l.position - 1) % SIGNER_COLORS.length] }} aria-hidden="true">{l.position}</span>
-            <span className="list-text"><strong>{l.name}</strong><span>{l.email ?? "No email"}{l.status ? ` · ${STATUS[l.status] ?? l.status}` : ""}</span></span>
+            <span className="list-text"><strong>{l.name}</strong><span>{l.email ?? "No email"}{l.emailed ? " · Link emailed ✓" : ""}{l.status ? ` · ${STATUS[l.status] ?? l.status}` : ""}</span></span>
           </div>
           {l.status !== "signed" && l.status !== "declined" && (
             <ShareApps label={`Send ${l.name}'s link`} items={[

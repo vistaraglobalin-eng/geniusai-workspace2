@@ -6,6 +6,7 @@ import { FILES_BUCKET, MAX_UPLOAD_BYTES } from "@/lib/storage/files";
 import { PdfToolError, loadPdf } from "@/lib/pdf/tools";
 import { REQUEST_LIMITS, parseFields } from "@/lib/pdf/sign-request";
 import { clientMeta, logEvent, newAccessToken, signingLink } from "@/lib/sign-requests/server";
+import { emailInvite } from "@/lib/sign-requests/emails";
 import { UUID, fail } from "@/lib/agreements/server";
 
 export const maxDuration = 60;
@@ -83,9 +84,16 @@ export async function POST(request: NextRequest) {
     }
     const { ip, ua } = clientMeta(request);
     await logEvent(admin, { requestId: req.id, workspaceId: f.workspace_id, event: "created", ip, ua });
+    // Email the signing links (everyone, or just the first person when signing one after another).
+    const reqInfo = { id: req.id, created_by: user.id, sender_name: senderName, title, document_name: f.original_filename, message: message || null,
+      expires_at: new Date(Date.now() + days * 86_400_000).toISOString() };
+    const emailed = new Set<number>();
+    await Promise.all(signers.filter((s) => s.email && (order === "any" || s.position === 1)).map(async (s) => {
+      if (await emailInvite(admin, request.nextUrl.origin, reqInfo, { name: s.name, email: s.email, access_token: s.token })) emailed.add(s.position);
+    }));
     return NextResponse.json({
       id: req.id,
-      links: signers.map((s) => ({ position: s.position, name: s.name, email: s.email, url: signingLink(request, s.token) }))
+      links: signers.map((s) => ({ position: s.position, name: s.name, email: s.email, url: signingLink(request, s.token), emailed: emailed.has(s.position) }))
     });
   } catch (err) {
     if (err instanceof PdfToolError) return fail(422, "invalid", err.message);

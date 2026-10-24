@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { clientMeta, loadByToken, logEvent, signerBlock } from "@/lib/sign-requests/server";
 import { fail } from "@/lib/agreements/server";
+import { emailDeclined } from "@/lib/sign-requests/emails";
 
 export const dynamic = "force-dynamic";
 
@@ -21,5 +22,6 @@ export async function POST(request: NextRequest) {
   if (!updated) return fail(409, "done", "This document can't be declined now.");
   await admin.from("signature_requests").update({ status: "declined" }).eq("id", ctx.request.id).eq("status", "pending");
   await logEvent(admin, { requestId: ctx.request.id, workspaceId: ctx.request.workspace_id, signerId: ctx.signer.id, event: "declined", ip, ua });
+  await emailDeclined(admin, request.nextUrl.origin, ctx.request, ctx.signer.name, reason || null).catch(() => undefined);
   return NextResponse.json({ ok: true });
 }

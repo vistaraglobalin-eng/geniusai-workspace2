@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 19: Automatic signing emails (Resend)
+
+- When a signer has an email address, they get a "Please sign" email with their private link (in order, one after another, when that option is chosen).
+- When everyone has signed, the sender and every signer get an email with a link to the signed PDF.
+- If someone declines, the sender gets an email with the reason.
+- Turned on by two Vercel settings: `RESEND_API_KEY` and `EMAIL_FROM` (e.g. `GeniusAI Workspace <sign@yourdomain.com>`, on a domain verified in Resend). Optional `EMAIL_REPLY_TO`. Without them, nothing is emailed and links are shared by hand as before.
+
 ## Revision 18: Share in any format
 
 - **Share button** on every file (Files, Edit PDF, Sign PDF, signature requests, and a signer's own copy).

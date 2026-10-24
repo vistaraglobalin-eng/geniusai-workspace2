@@ -5,6 +5,7 @@ import { REQUEST_LIMITS, decodePng } from "@/lib/pdf/sign-request";
 import { SIGN_LIMITS } from "@/lib/pdf/sign";
 import { clientMeta, finalizeIfComplete, loadByToken, logEvent, signerBlock } from "@/lib/sign-requests/server";
 import { fail } from "@/lib/agreements/server";
+import { emailCompleted, emailInvite } from "@/lib/sign-requests/emails";
 
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
@@ -40,5 +41,15 @@ export async function POST(request: NextRequest) {
   await logEvent(admin, { requestId: ctx.request.id, workspaceId: ctx.request.workspace_id, signerId: ctx.signer.id, event: "signed", ip, ua });
 
   const result = await finalizeIfComplete(admin, ctx.request.id);
+  try {
+    const { data } = await admin.from("signature_signers").select("position, name, email, access_token, status").eq("request_id", ctx.request.id).order("position");
+    const all = (data ?? []) as { position: number; name: string; email: string | null; access_token: string; status: string }[];
+    const origin = request.nextUrl.origin;
+    if (result === "completed") await emailCompleted(admin, origin, ctx.request, all);
+    else if (ctx.request.signing_order === "sequential") {
+      const next = all.find((s) => s.status !== "signed");
+      if (next && next.status !== "declined") await emailInvite(admin, origin, ctx.request, next);
+    }
+  } catch (err) { console.error("sign emails", err); }
   return NextResponse.json({ ok: true, completed: result === "completed" });
 }
