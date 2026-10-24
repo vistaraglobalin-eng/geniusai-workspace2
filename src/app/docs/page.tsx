@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Combine, FilePen, FileType2, FileStack, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table } from "lucide-react";
+import { Combine, EyeOff, FilePen, FileType2, FileStack, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table } from "lucide-react";
 import { Hub } from "@/components/Hub";
 
 export const metadata: Metadata = { title: "Documents · GeniusAI Workspace" };
@@ -11,6 +11,7 @@ export default function DocsPage() {
       { title: "PDF", rows: [
         { href: "/tools/scan", title: "Scan & convert", text: "Photo, ID or screenshot to HD PDF, Word or text", Icon: ScanLine, tint: "red" },
         { href: "/tools/edit", title: "Edit PDF", text: "Text, highlights, notes, forms, images", Icon: PenLine, tint: "blue" },
+        { href: "/tools/edit", title: "Redact a PDF", text: "Black out PAN, Aadhaar, phone, account numbers", Icon: EyeOff, tint: "red" },
         { href: "/tools/edit", title: "Stamp a PDF", text: "Paid, Approved, company seal, signatory", Icon: Stamp, tint: "red" },
         { href: "/tools/pdf/merge", title: "Merge PDFs", text: "Combine files in the order you want", Icon: Combine, tint: "red" },
         { href: "/tools/pdf/compress", title: "Compress PDF", text: "Make files smaller to share", Icon: Minimize2, tint: "red" },

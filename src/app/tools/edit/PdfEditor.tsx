@@ -4,21 +4,22 @@ import Link from "next/link";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ArrowUpRight, Bold, BookmarkPlus, BringToFront, CheckCircle2, CheckSquare, Circle, Download, Eraser, FileText, Highlighter,
+  ArrowUpRight, Bold, EyeOff, Search, Replace, BookmarkPlus, BringToFront, CheckCircle2, CheckSquare, Circle, Download, Eraser, FileText, Highlighter,
   ImagePlus, Link2, ListChecks, Minus, MessageSquare, MousePointer2, Paperclip, PenLine, Plus, SendToBack, Slash, Square,
   SquareChevronDown, SquarePen, Stamp, StickyNote, Strikethrough, TextCursorInput, Trash2, Type, Underline, Undo2, Waves, Brush
 } from "lucide-react";
 import { UploadButton } from "@/components/UploadButton";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { ShareButton, storageSource } from "@/components/ShareSheet";
-import { FILES_BUCKET } from "@/lib/storage/files";
+import { FILES_BUCKET, uploadWorkspaceFile } from "@/lib/storage/files";
+import { REDACT_PRESETS, findInText, replaceInText } from "@/lib/pdf/redact";
 import { STAMP_INKS, STAMP_PRESETS, renderStamp, stampDate, type StampKind } from "@/lib/stamps/stamps";
 import { PdfPreviewError, renderPdfPages, type FormWidget, type PageView, type TextLine } from "@/lib/pdf/preview";
 
 export type EditFile = { id: string; name: string; objectKey: string; byteSize: number };
 
 type Tool =
-  | "select" | "edittext" | "text" | "whiteout" | "image" | "stamp" | "link"
+  | "select" | "edittext" | "find" | "redact" | "text" | "whiteout" | "image" | "stamp" | "link"
   | "highlight" | "marker" | "underline" | "squiggly" | "strike" | "note" | "comment"
   | "box" | "ellipse" | "line" | "arrow" | "draw"
   | "fill" | "ftext" | "fcheck" | "fdropdown";
@@ -30,6 +31,7 @@ type Item =
   | (Rect & { id: string; type: "text"; text: string; size: number; color: string; font: FontKey; bold: boolean; bg?: string; coverId?: string })
   | (Rect & { id: string; type: Mark; color: string })
   | (Rect & { id: string; type: "image"; data: string })
+  | (Rect & { id: string; type: "redact" })
   | (Rect & { id: string; type: "link"; target: "url" | "page"; url: string; toPage: number })
   | (Rect & { id: string; type: "field"; kind: FieldKind; name: string; optionsText: string; checked: boolean })
   | { id: string; type: "comment"; page: number; x: number; y: number; text: string }
@@ -57,6 +59,8 @@ const T = (key: Tool, label: string, Icon: typeof Type, hint: string): ToolDef =
 const GROUPS: { key: string; label: string; tools: ToolDef[] }[] = [
   { key: "edit", label: "Edit", tools: [
     T("edittext", "Edit text", SquarePen, "Tap any line of existing text to change it."),
+    T("find", "Find & replace", Search, "Search the text, then replace every match or black it out."),
+    T("redact", "Redact", EyeOff, "Drag over private details to black them out for good."),
     T("text", "Add text", Type, "Tap where the new text should start."),
     T("whiteout", "Whiteout", Eraser, "Drag over anything to cover it."),
     T("image", "Image", ImagePlus, "Choose a picture, then tap where it should go."),
@@ -87,13 +91,14 @@ const GROUPS: { key: string; label: string; tools: ToolDef[] }[] = [
   ] }
 ];
 const ALL_TOOLS: ToolDef[] = [T("select", "Select", MousePointer2, "Tap an edit to change, move or delete it."), ...GROUPS.flatMap((g) => g.tools)];
-const RECT_TOOLS: Partial<Record<Tool, Mark | "link" | "ftext" | "fdropdown">> = {
+const RECT_TOOLS: Partial<Record<Tool, Mark | "link" | "ftext" | "fdropdown" | "redact">> = {
+  redact: "redact",
   whiteout: "whiteout", highlight: "highlight", underline: "underline", squiggly: "squiggly", strike: "strike", box: "box", ellipse: "ellipse",
   link: "link", ftext: "ftext", fdropdown: "fdropdown"
 };
 const TYPE_LABEL: Record<string, string> = {
   whiteout: "Whiteout", highlight: "Highlight", underline: "Underline", squiggly: "Squiggly underline", strike: "Strikeout", box: "Box", ellipse: "Circle",
-  image: "Image", ink: "Drawing", line: "Line", arrow: "Arrow", link: "Link", comment: "Comment", field: "Form field"
+  image: "Image", redact: "Redaction", ink: "Drawing", line: "Line", arrow: "Arrow", link: "Link", comment: "Comment", field: "Form field"
 };
 
 const uid = () => crypto.randomUUID();
@@ -171,6 +176,10 @@ export function PdfEditor({ workspaceId, files, initialFileId, businessName = ""
   const [draftLine, setDraftLine] = useState<{ page: number; x1: number; y1: number; x2: number; y2: number } | null>(null);
   const [pendingImage, setPendingImage] = useState<{ data: string; aspect: number } | null>(null);
   const [style, setStyle] = useState({ size: 12, textColor: COLORS.text[0], font: "sans" as FontKey, bold: false, highlight: COLORS.highlight[0], line: COLORS.line[0], ink: COLORS.line[1], inkWidth: 2.5 });
+  const [findQ, setFindQ] = useState("");
+  const [replaceQ, setReplaceQ] = useState("");
+  const [preset, setPreset] = useState<string | null>(null);
+  const [findNote, setFindNote] = useState<string | null>(null);
   const [stamp, setStamp] = useState({ kind: "approved" as StampKind, color: STAMP_INKS[0].color, date: true, text: "", business: businessName, caption: "" });
   const stampOpts = { ...stamp, date: stamp.date ? stampDate() : null };
   const [fills, setFills] = useState<Record<string, string | boolean>>({});
@@ -278,12 +287,52 @@ export function PdfEditor({ workspaceId, files, initialFileId, businessName = ""
     select(textId, true);
   }
 
+  // ---- Find & replace / redact ----
+  const findActive = tool === "find" && (findQ.trim().length > 0 || preset !== null);
+  const matches = findActive
+    ? pages.flatMap((pg) => pg.lines.map((l, i) => ({ pg, l, i, m: usedLines.has(`${pg.number}:${i}`) ? [] : findInText(l.text, findQ, preset) }))).filter((x) => x.m.length > 0)
+    : [];
+  const matchCount = matches.reduce((a, x) => a + x.m.length, 0);
+  const noText = pages.length > 0 && pages.every((p) => p.lines.length === 0);
+
+  /** Where characters a..b sit within a line, as fractions of its width (measured in the line's font). */
+  function spanOf(l: TextLine, a: number, b: number): [number, number] {
+    const ctx = document.createElement("canvas").getContext("2d")!;
+    ctx.font = `${l.bold ? "700 " : ""}20px ${FONT_CSS[l.font]}`;
+    const total = ctx.measureText(l.text).width || 1;
+    return [ctx.measureText(l.text.slice(0, a)).width / total, Math.min(1, ctx.measureText(l.text.slice(0, b)).width / total)];
+  }
+  function replaceAll() {
+    if (!matches.length) return;
+    const next = [...items], used = new Set(usedLines);
+    for (const { pg, l, i, m } of matches) {
+      const coverId = uid(), padX = 1.5 / pg.width, padY = 0.8 / pg.height;
+      next.push({ id: coverId, type: "whiteout", page: pg.number, x: clamp(l.x - padX), y: clamp(l.y - padY), w: Math.min(1, l.w + padX * 2), h: Math.min(1, l.h + padY * 2), color: l.bg });
+      const top = l.y + l.h / 2 - (l.size * LINE_HEIGHT) / 2 / pg.height;
+      next.push({ id: uid(), type: "text", page: pg.number, x: l.x + 1 / pg.width, y: clamp(top), w: Math.min(1 - l.x, l.w * 1.25 + 20 / pg.width), h: (l.size * LINE_HEIGHT) / pg.height,
+        text: replaceInText(l.text, m, replaceQ), size: l.size, color: l.color, font: l.font, bold: l.bold, coverId });
+      used.add(`${pg.number}:${i}`);
+    }
+    commit(next); setUsedLines(used);
+    setFindNote(`Replaced ${matchCount} match${matchCount === 1 ? "" : "es"}. Press Save to keep the changes.`);
+  }
+  function redactAll() {
+    if (!matches.length) return;
+    const next = [...items];
+    for (const { pg, l, m } of matches) for (const r of m) {
+      const [a, b] = spanOf(l, r.start, r.end), padX = 1 / pg.width, padY = 0.6 / pg.height;
+      next.push({ id: uid(), type: "redact", page: pg.number, x: clamp(l.x + l.w * a - padX), y: clamp(l.y - padY), w: Math.min(1, l.w * (b - a) + padX * 2), h: Math.min(1, l.h + padY * 2) });
+    }
+    commit(next);
+    setFindNote(`Blacked out ${matchCount} match${matchCount === 1 ? "" : "es"}. Check them, then press Save.`);
+  }
+
   function pageDown(pg: PageView, e: { clientX: number; clientY: number; pointerId: number; currentTarget: HTMLElement; preventDefault(): void; target: EventTarget }) {
     if ((e.target as HTMLElement).closest?.(".edit-widget, .edit-line")) return;
     const box = e.currentTarget.getBoundingClientRect();
     const [x, y] = point(e, box);
     setError(null);
-    if (tool === "select" || tool === "fill" || tool === "edittext") { setSelected(null); return; }
+    if (tool === "select" || tool === "fill" || tool === "edittext" || tool === "find") { setSelected(null); return; }
     if (tool === "text" || tool === "note") {
       const note = tool === "note";
       const h = note ? (4 * 11 * LINE_HEIGHT) / pg.height : (style.size * LINE_HEIGHT) / pg.height;
@@ -412,10 +461,11 @@ export function PdfEditor({ workspaceId, files, initialFileId, businessName = ""
         r = { ...r, x: clamp(r.x, 0, 1 - w), y: clamp(r.y - h / 2, 0, 1 - h), w, h };
       }
       let item: Item;
-      if (kind === "link") item = { id: uid(), type: "link", ...r, target: "url", url: "", toPage: 1 };
+      if (kind === "redact") item = { id: uid(), type: "redact", ...r };
+      else if (kind === "link") item = { id: uid(), type: "link", ...r, target: "url", url: "", toPage: 1 };
       else if (kind === "ftext") item = { id: uid(), type: "field", kind: "text", ...r, name: nextFieldName("Text field"), optionsText: "", checked: false };
       else if (kind === "fdropdown") item = { id: uid(), type: "field", kind: "dropdown", ...r, name: nextFieldName("Dropdown"), optionsText: "Option 1, Option 2", checked: false };
-      else item = { id: uid(), type: kind, ...r, color: kind === "whiteout" ? "#ffffff" : kind === "highlight" ? style.highlight : style.line };
+      else item = { id: uid(), type: kind as Mark, ...r, color: kind === "whiteout" ? "#ffffff" : kind === "highlight" ? style.highlight : style.line };
       commit([...items, item]);
       if (kind === "link" || kind === "ftext" || kind === "fdropdown") select(item.id);
       setDraftRect(null);
@@ -457,7 +507,9 @@ export function PdfEditor({ workspaceId, files, initialFileId, businessName = ""
     if (!file) return;
     setError(null);
     const out: Record<string, unknown>[] = [];
+    const redactions = items.filter((i): i is Extract<Item, { type: "redact" }> => i.type === "redact");
     for (const it of items) {
+      if (it.type === "redact") continue;
       const { id: _id, ...rest } = it;
       if (it.type === "text") {
         if (!it.text.trim()) continue;
@@ -480,18 +532,34 @@ export function PdfEditor({ workspaceId, files, initialFileId, businessName = ""
     const original = new Map(widgets.map((w) => [w.name, w]));
     const fillList = Object.entries(fills).filter(([name]) => original.has(name.split("::")[0])).map(([name, value]) => ({ name: name.split("::")[0], value }));
     const doc = { fills: fillList, flatten, bookmarks: bookmarks.map(({ title, page }) => ({ title, page })), attachments: attachments.map(({ name, mime, data }) => ({ name, mime, data })) };
-    if (!out.length && !fillList.length && !flatten && !bookmarks.length && !attachments.length) { setError("Make at least one edit first."); return; }
+    const otherEdits = out.length > 0 || fillList.length > 0 || flatten || bookmarks.length > 0 || attachments.length > 0;
+    if (!otherEdits && !redactions.length) { setError("Make at least one edit first."); return; }
 
     setBusy(true); setSelected(null);
     try {
-      const body = JSON.stringify({ fileId: file.id, items: out, doc });
-      if (body.length > 4_300_000) { setError("These edits are too large to save at once. Remove some images or attachments and try again."); return; }
-      const res = await fetch("/api/edit", { method: "POST", headers: { "content-type": "application/json" }, body });
-      const data = (await res.json().catch(() => ({}))) as { name?: string; objectKey?: string; message?: string };
-      if (res.ok && data.objectKey) { setResult({ name: data.name ?? "Edited PDF", objectKey: data.objectKey }); startTransition(() => router.refresh()); }
-      else setError(data.message ?? "The PDF couldn't be saved. Please try again.");
-    } catch {
-      setError("The connection dropped. Check Files in a moment; if the edited copy isn't there, try again.");
+      let saved = { name: file.name, objectKey: file.objectKey };
+      if (otherEdits) {
+        const body = JSON.stringify({ fileId: file.id, items: out, doc });
+        if (body.length > 4_300_000) { setError("These edits are too large to save at once. Remove some images or attachments and try again."); return; }
+        const res = await fetch("/api/edit", { method: "POST", headers: { "content-type": "application/json" }, body });
+        const data = (await res.json().catch(() => ({}))) as { name?: string; objectKey?: string; message?: string };
+        if (!res.ok || !data.objectKey) { setError(data.message ?? "The PDF couldn't be saved. Please try again."); return; }
+        saved = { name: data.name ?? "Edited PDF", objectKey: data.objectKey };
+      }
+      if (redactions.length) {
+        // Burn the redactions into a fresh copy, in this browser.
+        const supabase = createSupabaseBrowserClient();
+        const { data: blob, error: dlError } = await supabase.storage.from(FILES_BUCKET).download(saved.objectKey);
+        if (dlError || !blob) { setError("The PDF couldn't be opened for redaction. Please try again."); return; }
+        const { redactPdf } = await import("@/lib/pdf/redact");
+        const baseName = file.name.replace(/\.pdf$/i, "");
+        const bytes = await redactPdf(new Uint8Array(await blob.arrayBuffer()), redactions.map(({ page, x, y, w, h }) => ({ page, x, y, w, h })), { title: baseName });
+        const up = await uploadWorkspaceFile(supabase, { workspaceId, file: new File([bytes as BlobPart], `${baseName} (redacted).pdf`, { type: "application/pdf" }), moduleKey: "documents" });
+        saved = { name: up.originalFilename, objectKey: up.objectKey };
+      }
+      setResult(saved); startTransition(() => router.refresh());
+    } catch (e) {
+      setError(e instanceof Error && /25 MB|type|sign in/i.test(e.message) ? e.message : "The connection dropped. Check Files in a moment; if the edited copy isn't there, try again.");
     } finally { setBusy(false); }
   }
 
@@ -694,7 +762,7 @@ export function PdfEditor({ workspaceId, files, initialFileId, businessName = ""
               </>
             ) : (
               <>
-                <span className="edit-hint">{activeHint}{tool === "fill" && widgets.length === 0 ? " This PDF has no form fields; add some with Text field, Checkbox or Dropdown." : ""}{tool === "edittext" && pages.length > 0 && pages.every((p) => p.lines.length === 0) ? " No editable text was found; this PDF may be a scan. Use Whiteout and Add text instead." : ""}</span>
+                <span className="edit-hint">{activeHint}{tool === "fill" && widgets.length === 0 ? " This PDF has no form fields; add some with Text field, Checkbox or Dropdown." : ""}{tool === "edittext" && noText ? " No editable text was found; this PDF may be a scan. Use Whiteout and Add text instead." : ""}{tool === "find" && noText ? " No text was found; this PDF may be a scan. Use Redact to black out details by hand." : ""}{tool === "redact" ? " Pages with redactions are saved as images, so the hidden words are really gone." : ""}</span>
                 {(tool === "highlight" || tool === "marker") && <Swatches colors={COLORS.highlight} value={style.highlight} onPick={(c) => setStyle((s) => ({ ...s, highlight: c }))} />}
                 {lineColorTools.includes(tool) && <Swatches colors={COLORS.line} value={style.line} onPick={(c) => setStyle((s) => ({ ...s, line: c }))} />}
                 {tool === "text" && <Swatches colors={COLORS.text} value={style.textColor} onPick={(c) => setStyle((s) => ({ ...s, textColor: c }))} />}
@@ -705,6 +773,21 @@ export function PdfEditor({ workspaceId, files, initialFileId, businessName = ""
                       {[1.5, 2.5, 5].map((w) => <button key={w} type="button" role="radio" aria-checked={style.inkWidth === w} aria-selected={style.inkWidth === w} onClick={() => setStyle((s) => ({ ...s, inkWidth: w }))}>{w === 1.5 ? "Fine" : w === 2.5 ? "Medium" : "Bold"}</button>)}
                     </div>
                   </>
+                )}
+                {tool === "find" && (
+                  <div className="edit-find">
+                    <input className="text-input edit-name-input" type="search" aria-label="Find" placeholder="Find text" value={preset ? "" : findQ} maxLength={200}
+                      onChange={(e: { target: { value: string } }) => { setFindQ(e.target.value); setPreset(null); setFindNote(null); }} />
+                    <input className="text-input edit-name-input" aria-label="Replace with" placeholder="Replace with" value={replaceQ} maxLength={200} onChange={(e: { target: { value: string } }) => setReplaceQ(e.target.value)} />
+                    <span className="edit-find-count" role="status">{findActive ? `${matchCount} found` : ""}</span>
+                    <button type="button" className="secondary-button with-icon" onClick={replaceAll} disabled={!matchCount}><Replace size={15} aria-hidden="true" /> Replace all</button>
+                    <button type="button" className="primary-button with-icon" onClick={redactAll} disabled={!matchCount}><EyeOff size={15} aria-hidden="true" /> Redact all</button>
+                    <div className="edit-find-presets" role="group" aria-label="Find private details">
+                      <span>Find private details:</span>
+                      {REDACT_PRESETS.map((p) => <button key={p.key} type="button" className={`chip${preset === p.key ? " on" : ""}`} aria-pressed={preset === p.key} onClick={() => { setPreset(preset === p.key ? null : p.key); setFindNote(null); }}>{p.label}</button>)}
+                    </div>
+                    {findNote && <span className="edit-find-note">{findNote}</span>}
+                  </div>
                 )}
                 {tool === "stamp" && (
                   <div className="edit-stamp">
@@ -790,6 +873,12 @@ export function PdfEditor({ workspaceId, files, initialFileId, businessName = ""
                       </div>
                     );
                   })}
+
+                  {/* Search matches */}
+                  {findActive && matches.filter((x) => x.pg.number === pg.number).flatMap(({ l, i, m }) => m.map((r, j) => {
+                    const [a, b] = spanOf(l, r.start, r.end);
+                    return <span key={`m-${i}-${j}`} className="edit-match" style={{ left: `${(l.x + l.w * a) * 100}%`, top: `${l.y * 100}%`, width: `${l.w * (b - a) * 100}%`, height: `${l.h * 100}%` }} />;
+                  }))}
 
                   {/* Grab handles for drawings, lines and arrows (Select tool). */}
                   {tool === "select" && pageItems.map((it) => {

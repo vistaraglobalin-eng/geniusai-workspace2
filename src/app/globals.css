@@ -1959,3 +1959,15 @@ a.home-card:hover { background: var(--surface-2); }
   .sc-modes { grid-template-columns: 1fr; }
   .sc-outputs { grid-template-columns: 1fr 1fr; }
 }
+/* Find & replace, redaction */
+.edit-redact { background: repeating-linear-gradient(135deg, #111 0 7px, #2a2622 7px 9px); outline: 1px solid #000; }
+.edit-draft.edit-redact { opacity: .85; }
+.edit-match { position: absolute; background: rgb(246 199 172 / 55%); outline: 2px solid #f2a07a; border-radius: 2px; pointer-events: none; mix-blend-mode: multiply; }
+.edit-find { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; width: 100%; }
+.edit-find .text-input { min-width: 150px; flex: 1 1 150px; }
+.edit-find-count { font-size: .82rem; font-weight: 600; color: var(--text-2); min-width: 56px; }
+.edit-find-presets { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; width: 100%; }
+.edit-find-presets > span { font-size: .8rem; color: var(--text-3); margin-right: 2px; }
+.edit-find-presets .chip { min-height: 32px; padding: 5px 11px; }
+.chip.on { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.edit-find-note { width: 100%; font-size: .82rem; color: var(--text-2); }
