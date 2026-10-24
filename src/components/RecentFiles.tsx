@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Download, FileText, Image as ImageIcon, PenLine, Sheet, Signature, Sparkles, Trash2 } from "lucide-react";
+import { Download, FileText, Image as ImageIcon, PenLine, Share2, Sheet, Signature, Sparkles, Trash2 } from "lucide-react";
+import { ShareSheet, storageSource } from "@/components/ShareSheet";
 import { isDocumentReadable } from "@/lib/documents/tasks";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { deleteWorkspaceFile, getFileDownloadUrl } from "@/lib/storage/files";
@@ -54,6 +55,7 @@ export function RecentFiles({
   const [confirmingId, setConfirmingId] = useState<string | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [sharing, setSharing] = useState<FileSummary | null>(null);
 
   async function download(file: FileSummary) {
     setError(null);
@@ -151,6 +153,16 @@ export function RecentFiles({
                     <button
                       type="button"
                       className="icon-button"
+                      title="Share"
+                      aria-label={`Share ${file.originalFilename}`}
+                      disabled={blocked}
+                      onClick={() => setSharing(file)}
+                    >
+                      <Share2 size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      className="icon-button"
                       title="Download"
                       aria-label={`Download ${file.originalFilename}`}
                       disabled={blocked || busy}
@@ -176,6 +188,7 @@ export function RecentFiles({
           );
         })}
       </ul>
+      {sharing && <ShareSheet source={storageSource(sharing.objectKey, sharing.originalFilename, sharing.mimeType)} onClose={() => setSharing(null)} />}
     </>
   );
 }

@@ -56,8 +56,8 @@ function sampleColours(data: Uint8ClampedArray, cw: number, ch: number, s: numbe
   return { bg: hex(bg), fg: best > 60 ? hex(fg) : "#111827" };
 }
 
-type TextItem = { str: string; transform: number[]; width: number; fontName: string };
-type Viewport = { convertToViewportPoint(x: number, y: number): number[] };
+export type TextItem = { str: string; transform: number[]; width: number; fontName: string };
+export type Viewport = { convertToViewportPoint(x: number, y: number): number[] };
 
 function fontInfo(name: string): { font: TextLine["font"]; bold: boolean } {
   const n = name.toLowerCase();
@@ -65,7 +65,7 @@ function fontInfo(name: string): { font: TextLine["font"]; bold: boolean } {
   return { font, bold: /bold|black|heavy|semibold|demi/.test(n) };
 }
 
-function readLines(items: TextItem[], vp: Viewport, W: number, H: number, fontName: (id: string) => string): Omit<TextLine, "color" | "bg">[] {
+export function readLines(items: TextItem[], vp: Viewport, W: number, H: number, fontName: (id: string) => string): Omit<TextLine, "color" | "bg">[] {
   type Run = { x: number; base: number; end: number; size: number; text: string; fid: string };
   const runs: Run[] = [];
   for (const it of items) {

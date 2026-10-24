@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { UploadButton } from "@/components/UploadButton";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { ShareButton, storageSource } from "@/components/ShareSheet";
 import { FILES_BUCKET } from "@/lib/storage/files";
 import { PdfPreviewError, renderPdfPages, type FormWidget, type PageView, type TextLine } from "@/lib/pdf/preview";
 
@@ -498,6 +499,7 @@ export function PdfEditor({ workspaceId, files, initialFileId }: { workspaceId: 
         <p><strong>{result.name}</strong> is in your Files. Your original PDF hasn&apos;t changed.</p>
         <div className="dg-result-actions">
           <button type="button" className="primary-button" onClick={download}><Download size={16} aria-hidden="true" /> Download edited PDF</button>
+          <ShareButton source={storageSource(result.objectKey, result.name, "application/pdf")} />
           <Link className="secondary-button" href="/files">Open Files</Link>
           <button type="button" className="quiet-button with-icon" onClick={() => setResult(null)}>Keep editing</button>
         </div>

@@ -9,6 +9,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { FILES_BUCKET } from "@/lib/storage/files";
 import { renderPdfPages, PdfPreviewError, type PageView } from "@/lib/pdf/preview";
 import { SIGNER_COLORS, ShareLinks, type SignLink } from "./ShareLinks";
+import { storageSource } from "@/components/ShareSheet";
 
 export type RequestFile = { id: string; name: string; objectKey: string; byteSize: number };
 type Kind = "signature" | "name" | "date";
@@ -143,7 +144,7 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
         <CheckCircle2 size={36} aria-hidden="true" />
         <h2>Ready to send</h2>
         <p>Send each person their own private link. They can sign on any phone or computer without an account. When everyone has signed, the signed PDF with a signing certificate is saved to your Files.</p>
-        <ShareLinks links={result.links} title={result.title} sender={senderName} />
+        <ShareLinks links={result.links} title={result.title} sender={senderName} attach={file ? storageSource(file.objectKey, file.name, "application/pdf") : undefined} />
         <div className="dg-result-actions">
           <Link className="primary-button" href={`/tools/sign/requests/${result.id}`}>Track this request</Link>
           <Link className="secondary-button" href="/tools/sign/requests">All requests</Link>

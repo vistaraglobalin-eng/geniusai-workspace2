@@ -1,15 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy, Mail, MessageCircle, Share2 } from "lucide-react";
+import { Check, Copy, Mail, MessageCircle, Paperclip, Share2 } from "lucide-react";
+import type { ShareSource } from "@/components/ShareSheet";
 
 export type SignLink = { position: number; name: string; email: string | null; url: string; status?: string };
 
 const STATUS: Record<string, string> = { pending: "Not opened", viewed: "Opened", signed: "Signed", declined: "Declined" };
 
 /** One row per signer with ways to send their private link: share sheet, WhatsApp, email, copy. */
-export function ShareLinks({ links, title, sender }: { links: SignLink[]; title: string; sender: string }) {
+export function ShareLinks({ links, title, sender, attach }: { links: SignLink[]; title: string; sender: string; attach?: ShareSource }) {
   const [copied, setCopied] = useState<number | null>(null);
+  const [pdf, setPdf] = useState<File | null>(null);
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const canFiles = (f: File) => { const n = navigator as Navigator & { canShare?: (d: { files: File[] }) => boolean }; try { return !!n.canShare?.({ files: [f] }); } catch { return false; } };
+
+  // Step 1 (tap): fetch a copy of the PDF. Step 2 (tap): share link + PDF together.
+  async function preparePdf() {
+    if (!attach) return;
+    setPdfBusy(true);
+    try { const b = await attach.getBlob(); setPdf(new File([b], attach.name, { type: "application/pdf" })); } catch { setPdf(null); }
+    finally { setPdfBusy(false); }
+  }
+  async function sharePdf(l: SignLink) {
+    if (!pdf) return;
+    if (canFiles(pdf)) { try { await navigator.share({ files: [pdf], text: text(l), title }); } catch { /* closed */ } }
+    else { const u = URL.createObjectURL(pdf); const a = document.createElement("a"); a.href = u; a.download = pdf.name; a.click(); setTimeout(() => URL.revokeObjectURL(u), 30000); }
+  }
   const text = (l: SignLink) => `Hi ${l.name}, ${sender} has sent you "${title}" to sign. Open your private signing link: ${l.url}`;
 
   async function copy(l: SignLink) {
@@ -35,6 +52,9 @@ export function ShareLinks({ links, title, sender }: { links: SignLink[]; title:
               <button type="button" className="quiet-button with-icon" onClick={() => share(l)}><Share2 size={15} aria-hidden="true" /> Share</button>
               <a className="quiet-button with-icon" href={`https://wa.me/?text=${encodeURIComponent(text(l))}`} target="_blank" rel="noopener noreferrer"><MessageCircle size={15} aria-hidden="true" /> WhatsApp</a>
               <a className="quiet-button with-icon" href={`mailto:${l.email ?? ""}?subject=${encodeURIComponent(`Please sign: ${title}`)}&body=${encodeURIComponent(text(l))}`}><Mail size={15} aria-hidden="true" /> Email</a>
+              {attach && (pdf
+                ? <button type="button" className="quiet-button with-icon" onClick={() => sharePdf(l)}><Paperclip size={15} aria-hidden="true" /> Link + PDF</button>
+                : <button type="button" className="quiet-button with-icon" onClick={preparePdf} disabled={pdfBusy}><Paperclip size={15} aria-hidden="true" /> {pdfBusy ? "Attaching…" : "Attach PDF"}</button>)}
               <button type="button" className="quiet-button with-icon" onClick={() => copy(l)}>
                 {copied === l.position ? <><Check size={15} aria-hidden="true" /> Copied</> : <><Copy size={15} aria-hidden="true" /> Copy link</>}
               </button>

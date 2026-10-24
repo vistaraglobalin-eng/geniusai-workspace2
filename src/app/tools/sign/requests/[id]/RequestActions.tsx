@@ -4,8 +4,11 @@ import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Ban, Download, RefreshCw } from "lucide-react";
 import { ShareLinks, type SignLink } from "../ShareLinks";
+import { ShareButton, storageSource } from "@/components/ShareSheet";
 
-export function RequestActions({ id, status, allSigned, title, sender }: { id: string; status: string; allSigned: boolean; title: string; sender: string }) {
+export function RequestActions({ id, status, allSigned, title, sender, completedKey, sourceKey, documentName }: {
+  id: string; status: string; allSigned: boolean; title: string; sender: string; completedKey: string | null; sourceKey: string; documentName: string;
+}) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [links, setLinks] = useState<SignLink[] | null>(null);
@@ -38,6 +41,9 @@ export function RequestActions({ id, status, allSigned, title, sender }: { id: s
           <Download size={16} aria-hidden="true" /> {busy === "download" ? "Preparing…" : "Download signed PDF"}
         </button>
       )}
+      {status === "completed" && completedKey && (
+        <ShareButton source={storageSource(completedKey, `${documentName.replace(/\.pdf$/i, "")} (signed by all).pdf`, "application/pdf")} />
+      )}
       {allSigned && (status === "pending" || status === "finalizing") && (
         <button type="button" className="primary-button" onClick={() => call("finalize")} disabled={!!busy}>
           <RefreshCw size={16} aria-hidden="true" /> {busy === "finalize" ? "Finishing…" : "Produce the signed PDF"}
@@ -46,7 +52,7 @@ export function RequestActions({ id, status, allSigned, title, sender }: { id: s
       {open && links && links.length > 0 && (
         <>
           <h2 className="dash-section-title">Signing links</h2>
-          <ShareLinks links={links} title={title} sender={sender} />
+          <ShareLinks links={links} title={title} sender={sender} attach={storageSource(sourceKey, documentName, "application/pdf")} />
         </>
       )}
       {open && !allSigned && (

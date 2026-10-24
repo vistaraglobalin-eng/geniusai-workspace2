@@ -1,5 +1,14 @@
 # Changes
 
+## Revision 18: Share in any format
+
+- **Share button** on every file (Files, Edit PDF, Sign PDF, signature requests, and a signer's own copy).
+- **Send as a file:** the PDF itself, a **Word (.docx)** file, or **JPG / PNG** images of each page; images can be sent as a PDF. Uses the phone's share sheet (WhatsApp, Mail, AirDrop, Files…), or downloads on a computer.
+- **Private link** that expires after 1, 7 or 30 days, with Share / WhatsApp / Email / Copy.
+- **Signature requests:** "Attach PDF" sends the signing link together with a copy of the PDF.
+- Conversions run on the person's own device; files aren't uploaded anywhere to convert them.
+- Fix: the signing page now opens for signers who aren't signed in (the PDF viewer file was behind the sign-in check).
+
 ## Revision 17: Request signatures
 
 - **Send a PDF for others to sign:** choose a PDF, add up to 10 signers, and place signature, name and date fields for each one.

@@ -28,10 +28,10 @@ export default async function RequestPage({ params }: { params: Promise<{ id: st
   const workspace = ctx.workspace;
 
   const { data: reqData } = await supabase.from("signature_requests")
-    .select("id, title, document_name, sender_name, message, status, signing_order, expires_at, created_at, completed_at, completed_file_id").eq("id", id).maybeSingle();
+    .select("id, title, document_name, sender_name, message, status, signing_order, expires_at, created_at, completed_at, completed_file_id, completed_object_key, source_object_key").eq("id", id).maybeSingle();
   if (!reqData) notFound();
   const r = reqData as { id: string; title: string; document_name: string; sender_name: string; message: string | null; status: string; signing_order: string;
-    expires_at: string; created_at: string; completed_at: string | null; completed_file_id: string | null };
+    expires_at: string; created_at: string; completed_at: string | null; completed_file_id: string | null; completed_object_key: string | null; source_object_key: string };
   const { data: sData } = await supabase.from("signature_signers")
     .select("id, position, name, email, status, viewed_at, signed_at, declined_at, decline_reason, fields").eq("request_id", id).order("position");
   const signers = (sData ?? []) as { id: string; position: number; name: string; email: string | null; status: string; viewed_at: string | null; signed_at: string | null;
@@ -79,7 +79,7 @@ export default async function RequestPage({ params }: { params: Promise<{ id: st
           {r.message && <p className="sr-message">“{r.message}”</p>}
         </section>
 
-        <RequestActions id={r.id} status={r.status} allSigned={signed === signers.length && signers.length > 0} title={r.document_name.replace(/\.pdf$/i, "")} sender={r.sender_name} />
+        <RequestActions id={r.id} status={r.status} completedKey={r.completed_object_key} sourceKey={r.source_object_key} documentName={r.document_name} allSigned={signed === signers.length && signers.length > 0} title={r.document_name.replace(/\.pdf$/i, "")} sender={r.sender_name} />
 
         <section className="panel-card">
           <h2 className="dash-section-title">Activity</h2>

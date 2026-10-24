@@ -8,6 +8,7 @@ import { UploadButton } from "@/components/UploadButton";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { FILES_BUCKET } from "@/lib/storage/files";
 import { SignaturePad, type Signature } from "./SignaturePad";
+import { ShareButton, storageSource } from "@/components/ShareSheet";
 
 export type SignFile = { id: string; name: string; objectKey: string; byteSize: number };
 type PageView = { number: number; width: number; height: number; url: string }; // CSS px at render scale; url = rendered image
@@ -176,6 +177,7 @@ export function SignPdf({ workspaceId, files, initialFileId, defaultName }: {
         <p><strong>{result.name}</strong> is in your Files, with a signing record on the last page. Your original PDF hasn&apos;t changed.</p>
         <div className="dg-result-actions">
           <button type="button" className="primary-button" onClick={download}><Download size={16} aria-hidden="true" /> Download signed PDF</button>
+          <ShareButton source={storageSource(result.objectKey, result.name, "application/pdf")} />
           <Link className="secondary-button" href="/files">Open Files</Link>
           <button type="button" className="quiet-button with-icon" onClick={() => { setResult(null); setPlacements([]); }}><Copy size={14} aria-hidden="true" /> Sign another</button>
         </div>

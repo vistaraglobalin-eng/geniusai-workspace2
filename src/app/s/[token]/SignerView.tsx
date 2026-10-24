@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CheckCircle2, ChevronDown, Download, PenLine, XCircle } from "lucide-react";
 import { renderPdfPages, type PageView } from "@/lib/pdf/preview";
 import { SignaturePad, type Signature } from "@/app/tools/sign/SignaturePad";
+import { ShareButton, urlSource } from "@/components/ShareSheet";
 
 type Field = { page: number; x: number; y: number; w: number; h: number; kind: "signature" | "name" | "date" };
 type Props = {
@@ -100,7 +101,10 @@ export function SignerView(p: Props) {
   }
 
   const downloadBtn = completedUrl && (
-    <a className="primary-button" href={completedUrl}><Download size={16} aria-hidden="true" /> Download the signed PDF</a>
+    <div className="dg-result-actions">
+      <a className="primary-button" href={completedUrl}><Download size={16} aria-hidden="true" /> Download the signed PDF</a>
+      <ShareButton source={urlSource(completedUrl, `${p.documentName.replace(/\.pdf$/i, "")} (signed).pdf`, "application/pdf")} />
+    </div>
   );
 
   if (declined) return <Card icon={<XCircle size={36} aria-hidden="true" />} title="You declined to sign" text={`We've let ${p.sender} know.`} />;
