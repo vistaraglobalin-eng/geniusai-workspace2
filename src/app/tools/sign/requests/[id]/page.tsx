@@ -44,7 +44,7 @@ export default async function RequestPage({ params }: { params: Promise<{ id: st
   const nameOf = (sid: string | null) => signers.find((s) => s.id === sid)?.name;
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="pdf" breadcrumb="Signature request">
+    <AppShell ctx={{ ...ctx, workspace }} active="sign" breadcrumb="Signature request">
       <Link href="/tools/sign/requests" className="back-link"><ChevronLeft size={16} aria-hidden="true" /> Signature requests</Link>
       <div className="welcome-row">
         <div>

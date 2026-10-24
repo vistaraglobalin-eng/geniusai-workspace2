@@ -1,36 +1,67 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { FilePen, FileStack, FileText, FolderOpen, Home, LayoutGrid, LogOut, Settings, ShieldCheck, Sparkles, Zap, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, Check, ChevronDown, Eye, Users } from "lucide-react";
+import { BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LogOut, Mail, PenLine, Plus, ReceiptText, Settings, Signature, Sparkles, Users, Wallet, Zap } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 import { roleLabel } from "@/lib/team/roles";
 
 
-export type NavKey = "overview" | "files" | "tools" | "pdf" | "documents" | "agreements" | "creative" | "invoices" | "expenses" | "letters" | "career" | "billing" | "settings";
+export type NavKey =
+  | "overview" | "money" | "docs" | "create" | "account"
+  | "invoices" | "expenses" | "pdf" | "edit" | "sign" | "agreements" | "documents" | "letters"
+  | "creative" | "cards" | "career" | "files" | "tools" | "billing" | "settings";
 
-type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home; tint?: string };
+type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home; tint: string };
+type NavGroup = { title: string; hub: string; area: NavKey; items: NavItem[] };
 
-/** Sidebar (desktop) and icon rail (tablet). */
-const SIDEBAR_NAV: NavItem[] = [
-  { key: "overview", href: "/", label: "Home", Icon: Home, tint: "blue" },
+/** The five areas. Sidebar (desktop) shows the groups; the phone tab bar shows one tab per area. */
+const GROUPS: NavGroup[] = [
+  { title: "Money", hub: "/money", area: "money", items: [
+    { key: "invoices", href: "/tools/invoices", label: "Invoices", Icon: ReceiptText, tint: "green" },
+    { key: "expenses", href: "/tools/expenses", label: "Expenses", Icon: Wallet, tint: "teal" }
+  ] },
+  { title: "Documents", hub: "/docs", area: "docs", items: [
+    { key: "pdf", href: "/tools/pdf", label: "PDF tools", Icon: FileStack, tint: "red" },
+    { key: "edit", href: "/tools/edit", label: "Edit PDF", Icon: PenLine, tint: "blue" },
+    { key: "sign", href: "/tools/sign", label: "Sign & send", Icon: Signature, tint: "indigo" },
+    { key: "agreements", href: "/tools/agreements", label: "Agreements", Icon: FilePen, tint: "purple" },
+    { key: "documents", href: "/tools/documents", label: "AI documents", Icon: Sparkles, tint: "cyan" },
+    { key: "letters", href: "/tools/letters", label: "Letters", Icon: Mail, tint: "blue" }
+  ] },
+  { title: "Create", hub: "/create", area: "create", items: [
+    { key: "creative", href: "/tools/photos", label: "Photos & Ads", Icon: ImageIcon, tint: "orange" },
+    { key: "cards", href: "/tools/cards", label: "Cards & letterhead", Icon: Contact, tint: "orange" },
+    { key: "career", href: "/tools/career", label: "Resumes", Icon: BriefcaseBusiness, tint: "purple" }
+  ] }
+];
+const ACCOUNT: NavItem[] = [
   { key: "files", href: "/files", label: "Files", Icon: FolderOpen, tint: "cyan" },
-  { key: "pdf", href: "/tools/pdf", label: "PDF Toolkit", Icon: FileStack, tint: "red" },
-  { key: "documents", href: "/tools/documents", label: "Document Genius", Icon: FileText, tint: "teal" },
-  { key: "agreements", href: "/tools/agreements", label: "Agreement Studio", Icon: FilePen, tint: "indigo" },
-  { key: "creative", href: "/tools/photos", label: "Photos & Ads", Icon: ImageIcon, tint: "orange" },
-  { key: "invoices", href: "/tools/invoices", label: "Invoices", Icon: ReceiptText, tint: "green" },
-  { key: "expenses", href: "/tools/expenses", label: "Expenses", Icon: Wallet, tint: "red" },
-  { key: "letters", href: "/tools/letters", label: "Letters & Cards", Icon: Mail, tint: "blue" },
-  { key: "career", href: "/tools/career", label: "Resumes", Icon: BriefcaseBusiness, tint: "purple" }
+  { key: "billing", href: "/billing", label: "Plans & credits", Icon: Zap, tint: "green" },
+  { key: "settings", href: "/settings", label: "Settings", Icon: Settings, tint: "gray" }
 ];
 
-/** Phone bottom bar: five thumb-sized targets. "Tools" covers every tool page. */
-const BOTTOM_NAV: (NavItem & { short: string; covers: NavKey[] })[] = [
-  { key: "overview", href: "/", label: "Home", short: "Home", Icon: Home, covers: ["overview"] },
-  { key: "files", href: "/files", label: "Files", short: "Files", Icon: FolderOpen, covers: ["files"] },
-  { key: "tools", href: "/tools", label: "All tools", short: "Tools", Icon: LayoutGrid, covers: ["tools", "pdf", "documents", "creative", "invoices", "expenses", "letters", "career"] },
-  { key: "agreements", href: "/tools/agreements", label: "Agreement Studio", short: "Agreements", Icon: FilePen, covers: ["agreements"] },
-  { key: "settings", href: "/settings", label: "Settings", short: "Settings", Icon: Settings, covers: ["settings", "billing"] }
+/** Phone tab bar: one tab per area. */
+const TABS: { href: string; label: string; Icon: typeof Home; covers: NavKey[] }[] = [
+  { href: "/", label: "Home", Icon: Home, covers: ["overview"] },
+  { href: "/money", label: "Money", Icon: IndianRupee, covers: ["money", "invoices", "expenses"] },
+  { href: "/docs", label: "Documents", Icon: FileText, covers: ["docs", "pdf", "edit", "sign", "agreements", "documents", "letters"] },
+  { href: "/create", label: "Create", Icon: Sparkles, covers: ["create", "creative", "cards", "career"] },
+  { href: "/account", label: "Account", Icon: CircleUserRound, covers: ["account", "files", "tools", "billing", "settings"] }
 ];
+
+/** The "+ New" menu: the most common things to start. */
+const NEW_ITEMS = [
+  { href: "/tools/invoices/new?kind=invoice", label: "New invoice", Icon: ReceiptText, tint: "green" },
+  { href: "/tools/expenses", label: "Add expense", Icon: Wallet, tint: "teal" },
+  { href: "/tools/sign", label: "Sign a PDF", Icon: Signature, tint: "indigo" },
+  { href: "/tools/letters", label: "Write a letter", Icon: Mail, tint: "blue" },
+  { href: "/tools/documents?task=summary", label: "Summarize a document", Icon: Sparkles, tint: "cyan" }
+] as const;
+
+const navLink = (item: NavItem, active: NavKey) => (
+  <Link key={item.key} className="nav-item" href={item.href} title={item.label} aria-current={active === item.key ? "page" : undefined}>
+    <span className={`app-icon sm ${item.tint}`}><item.Icon size={15} aria-hidden="true" /></span><span className="nav-label">{item.label}</span>
+  </Link>
+);
 
 /**
  * Frame for every signed-in page.
@@ -60,21 +91,28 @@ export function AppShell({
           <span className="brand-mark"><Sparkles size={20} aria-hidden="true" /></span>
           <span>GeniusAI<span className="brand-light"> Workspace</span></span>
         </Link>
+        <details className="new-menu">
+          <summary><span className="plus"><Plus size={17} aria-hidden="true" /></span><span className="nav-label">New</span></summary>
+          <div className="new-menu-list">
+            {NEW_ITEMS.map(({ href, label, Icon, tint }) => (
+              <Link key={label} href={href}><span className={`app-icon sm ${tint}`}><Icon size={15} aria-hidden="true" /></span>{label}</Link>
+            ))}
+          </div>
+        </details>
         <nav aria-label="Main">
-          
-          {SIDEBAR_NAV.map(({ key, href, label, Icon, tint }) => (
-            <Link key={key} className="nav-item" href={href} title={label} aria-current={active === key ? "page" : undefined}>
-              <span className={`app-icon sm ${tint ?? "gray"}`}><Icon size={15} aria-hidden="true" /></span><span className="nav-label">{label}</span>
-            </Link>
-          ))}
-          <div className="nav-divider" />
-          <Link className="nav-item" href="/billing" title="Plans & credits" aria-current={active === "billing" ? "page" : undefined}><span className="app-icon sm green"><Zap size={15} aria-hidden="true" /></span><span className="nav-label">Plans & credits</span></Link>
-          <Link className="nav-item" href="/settings" title="Settings" aria-current={active === "settings" ? "page" : undefined}>
-            <span className="app-icon sm gray"><Settings size={15} aria-hidden="true" /></span><span className="nav-label">Settings</span>
+          <Link className="nav-item" href="/" title="Home" aria-current={active === "overview" ? "page" : undefined}>
+            <span className="app-icon sm gray"><Home size={15} aria-hidden="true" /></span><span className="nav-label">Home</span>
           </Link>
+          {GROUPS.map((g) => (
+            <div key={g.title} role="group" aria-label={g.title}>
+              <div className="nav-group"><span>{g.title}</span><Link href={g.hub}>All</Link></div>
+              {g.items.map((i) => navLink(i, active))}
+            </div>
+          ))}
+          <div className="nav-group"><span>Account</span><Link href="/account">All</Link></div>
+          {ACCOUNT.map((i) => navLink(i, active))}
         </nav>
         <div className="sidebar-bottom">
-          <div className="secure-note"><ShieldCheck size={18} aria-hidden="true" /><div><strong>Privacy-first workspace</strong><span>Only your workspace can open your files.</span></div></div>
           <div className="profile">
             <div className="avatar" aria-hidden="true">{initial}</div>
             <div className="profile-text"><strong title={name}>{name}</strong><span title={workspace.name}>{workspace.name} · {roleLabel(workspace.role, workspace.access)}</span></div>
@@ -121,9 +159,9 @@ export function AppShell({
       </div>
 
       <nav className="bottom-nav" aria-label="Main">
-        {BOTTOM_NAV.map(({ key, href, short, Icon, covers }) => (
-          <Link key={key} href={href} aria-current={covers.includes(active) ? "page" : undefined}>
-            <Icon size={20} aria-hidden="true" />{short}
+        {TABS.map(({ href, label, Icon, covers }) => (
+          <Link key={href} href={href} aria-current={covers.includes(active) ? "page" : undefined}>
+            <Icon size={22} strokeWidth={covers.includes(active) ? 2.2 : 1.7} aria-hidden="true" />{label}
           </Link>
         ))}
       </nav>

@@ -25,7 +25,7 @@ export default async function NewRequestPage({ searchParams }: { searchParams: P
     .map((f) => ({ id: f.id, name: f.original_filename, objectKey: f.object_key, byteSize: Number(f.byte_size) }));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="pdf" breadcrumb="Request signatures">
+    <AppShell ctx={{ ...ctx, workspace }} active="sign" breadcrumb="Request signatures">
       <div className="welcome-row">
         <div>
           <h1>Request signatures</h1>

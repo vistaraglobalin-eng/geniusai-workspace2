@@ -1,8 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { cookies } from "next/headers";
+import { Geist, Playfair_Display } from "next/font/google";
 import { PREFS_COOKIE, htmlAttributes, parsePreferences } from "@/lib/preferences";
 import "./globals.css";
+
+// Self-hosted by Next.js (no request to Google at runtime): a clean sans for the interface
+// and an editorial serif for page titles.
+const sans = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const serif = Playfair_Display({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-serif", display: "swap" });
 
 export const metadata: Metadata = {
   title: "GeniusAI Workspace",
@@ -18,8 +24,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f5f7" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" }
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f0f" }
   ]
 };
 
@@ -28,7 +34,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   // colours: no white flash in dark mode, no layout shift.
   const prefs = parsePreferences((await cookies()).get(PREFS_COOKIE)?.value);
   return (
-    <html lang="en" {...htmlAttributes(prefs)}>
+    <html lang="en" {...htmlAttributes(prefs)} className={`${sans.variable} ${serif.variable}`}>
       <body>{children}</body>
     </html>
   );

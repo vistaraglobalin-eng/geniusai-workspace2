@@ -29,7 +29,7 @@ export default async function RequestsPage() {
   const date = (iso: string) => new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", timeZone: "Asia/Kolkata" }).format(new Date(iso));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="pdf" breadcrumb="Signature requests">
+    <AppShell ctx={{ ...ctx, workspace }} active="sign" breadcrumb="Signature requests">
       <div className="welcome-row">
         <div>
           <h1>Signature requests</h1>

@@ -25,7 +25,7 @@ export default async function EditPage({ searchParams }: { searchParams: Promise
     .map((f) => ({ id: f.id, name: f.original_filename, objectKey: f.object_key, byteSize: Number(f.byte_size) }));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="pdf" breadcrumb="Edit PDF">
+    <AppShell ctx={{ ...ctx, workspace }} active="edit" breadcrumb="Edit PDF">
       <div className="welcome-row">
         <div>
           <h1>Edit PDF</h1>

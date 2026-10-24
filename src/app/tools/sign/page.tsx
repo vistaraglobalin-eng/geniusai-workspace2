@@ -26,7 +26,7 @@ export default async function SignPage({ searchParams }: { searchParams: Promise
     .map((f) => ({ id: f.id, name: f.original_filename, objectKey: f.object_key, byteSize: Number(f.byte_size) }));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="pdf" breadcrumb="Sign PDF">
+    <AppShell ctx={{ ...ctx, workspace }} active="sign" breadcrumb="Sign PDF">
       <div className="welcome-row">
         <div>
           <h1>Sign a <span>PDF</span></h1>

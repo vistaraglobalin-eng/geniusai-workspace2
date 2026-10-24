@@ -1,74 +1,25 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import {
-  BriefcaseBusiness, ChevronRight, Mail, Wallet, Combine, PenLine, FileInput, FilePen, FileText, Image as ImageIcon, Languages,
-  Layers, ListChecks, Lock, MessageSquareText, Minimize2, ReceiptText, ScanText, Scissors, Send, Signature, Table, Zap
-} from "lucide-react";
+import { BellRing, ChevronRight, Combine, FileText, ListChecks, ReceiptText, Signature, Wallet, Zap } from "lucide-react";
 import { getSupabasePublicEnv } from "@/lib/supabase/env";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { SetupNotice } from "@/components/SetupNotice";
-import { UploadButton } from "@/components/UploadButton";
 import { RecentFiles } from "@/components/RecentFiles";
 import { AppShell, firstNameOf } from "@/components/AppShell";
 import { Landing } from "@/components/Landing";
 import { PromptBox } from "@/components/PromptBox";
 import { getTemplate } from "@/lib/agreements/templates";
-
-type Row = { href?: string; title: string; text: string; Icon: typeof FileText; tint: string; soon?: boolean };
-
-// Every service, grouped by the job people come to do.
-const GROUPS: { title: string; rows: Row[] }[] = [
-  {
-    title: "Create & sign",
-    rows: [
-      { href: "/tools/agreements", title: "Agreement Studio", text: "Draft India-ready agreements with AI", Icon: FilePen, tint: "indigo" },
-      { href: "/tools/agreements#templates", title: "Templates", text: "NDA, rental, employment and more", Icon: Layers, tint: "purple" },
-      { href: "/tools/sign", title: "Sign PDF", text: "Draw or type your signature", Icon: Signature, tint: "green" },
-      { href: "/tools/edit", title: "Edit PDF", text: "Edit text, mark up, shapes, links, forms", Icon: PenLine, tint: "blue" },
-      { href: "/tools/sign/requests", title: "Request signatures", text: "Send a PDF for others to sign by link", Icon: Send, tint: "teal" }
-    ]
-  },
-  {
-    title: "Grow your business",
-    rows: [
-      { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations, UPI QR, receipts", Icon: ReceiptText, tint: "green" },
-      { href: "/tools/photos", title: "Product Photos & Ads", text: "Remove background, marketplace photos, ad posts", Icon: ImageIcon, tint: "orange" },
-      { href: "/tools/expenses", title: "Expense tracker", text: "Bills, monthly totals, export for your CA", Icon: Wallet, tint: "red" },
-      { href: "/tools/letters", title: "Letters & visiting cards", text: "Visiting cards, letterhead, offer letters, salary slips", Icon: Mail, tint: "blue" },
-      { href: "/tools/career", title: "Resume & Career Studio", text: "Resumes, job match, cover letters", Icon: BriefcaseBusiness, tint: "purple" }
-    ]
-  },
-  {
-    title: "Understand documents",
-    rows: [
-      { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks", Icon: MessageSquareText, tint: "orange" },
-      { href: "/tools/documents?task=summary", title: "Summarize", text: "Key points from long documents", Icon: ListChecks, tint: "blue" },
-      { href: "/tools/documents?task=translate", title: "Translate", text: "Into 25 languages, incl. Hindi", Icon: Languages, tint: "teal" },
-      { href: "/tools/documents?task=extract_text", title: "Extract text", text: "From scans and photos (OCR)", Icon: ScanText, tint: "cyan" },
-      { href: "/tools/documents?task=tables", title: "Extract tables", text: "To a spreadsheet you can edit", Icon: Table, tint: "green" }
-    ]
-  },
-  {
-    title: "PDF tools",
-    rows: [
-      { href: "/tools/pdf/merge", title: "Merge PDFs", text: "Combine files in the order you want", Icon: Combine, tint: "red" },
-      { href: "/tools/pdf/split", title: "Split PDF", text: "By page ranges or every few pages", Icon: Scissors, tint: "orange" },
-      { href: "/tools/pdf/compress", title: "Compress PDF", text: "Make files smaller to share", Icon: Minimize2, tint: "green" },
-      { href: "/tools/pdf/office-to-pdf", title: "Convert to PDF", text: "Word, Excel, PowerPoint, images", Icon: FileInput, tint: "blue" },
-      { href: "/tools/pdf/protect", title: "Protect PDF", text: "Add a password", Icon: Lock, tint: "gray" },
-      { href: "/tools/pdf", title: "All PDF tools", text: "Rotate, reorder, number, watermark…", Icon: FileText, tint: "indigo" }
-    ]
-  }
-];
+import { DotRing } from "@/components/DotRing";
+import { inr, todayIso } from "@/lib/invoices/calc";
 
 const ACTIONS = [
-  { href: "/tools/agreements/new", label: "Draft", Icon: FilePen, tint: "indigo" },
-  { href: "/tools/agreements/explain", label: "Explain", Icon: MessageSquareText, tint: "orange" },
-  { href: "/tools/sign", label: "Sign", Icon: Signature, tint: "green" },
-  { href: "/tools/documents?task=summary", label: "Summarize", Icon: ListChecks, tint: "blue" },
-  { href: "/tools/documents?task=translate", label: "Translate", Icon: Languages, tint: "teal" },
-  { href: "/tools/pdf/merge", label: "Merge", Icon: Combine, tint: "red" }
+  { href: "/tools/invoices/new?kind=invoice", label: "Invoice", Icon: ReceiptText, tint: "green" },
+  { href: "/tools/expenses", label: "Expense", Icon: Wallet, tint: "teal" },
+  { href: "/tools/invoices/reminders", label: "Remind", Icon: BellRing, tint: "red" },
+  { href: "/tools/sign", label: "Sign", Icon: Signature, tint: "indigo" },
+  { href: "/tools/documents?task=summary", label: "Summarize", Icon: ListChecks, tint: "cyan" },
+  { href: "/tools/pdf/merge", label: "Merge", Icon: Combine, tint: "orange" }
 ] as const;
 
 const SOON: { title: string; Icon: typeof FileText }[] = [];
@@ -88,64 +39,82 @@ export default async function Home() {
   const workspace = ctx.workspace;
   const credits = ctx.credits ?? { available: 0, reserved: 0 };
 
-  const { data: agreementRows } = await supabase
-    .from("agreements")
-    .select("id, title, template_key, status, updated_at")
-    .eq("workspace_id", workspace.id)
-    .is("deleted_at", null)
-    .order("updated_at", { ascending: false })
-    .limit(4);
+  const month = todayIso().slice(0, 7), today = todayIso();
+  const [{ data: agreementRows }, { data: invRows }, { data: expRows }] = await Promise.all([
+    supabase.from("agreements").select("id, title, template_key, status, updated_at").eq("workspace_id", workspace.id).is("deleted_at", null).order("updated_at", { ascending: false }).limit(4),
+    supabase.from("invoices").select("id, number, issue_date, due_date, customer, total, amount_paid, status").eq("workspace_id", workspace.id).eq("kind", "invoice").neq("status", "cancelled").neq("status", "draft").order("due_date", { ascending: true }).limit(1000),
+    supabase.from("expenses").select("amount").eq("workspace_id", workspace.id).gte("spent_on", month + "-01").lte("spent_on", month + "-31").limit(5000)
+  ]);
   const agreements = (agreementRows ?? []) as { id: string; title: string; template_key: string; status: string; updated_at: string }[];
+  type Inv = { id: string; number: string; issue_date: string; due_date: string | null; customer: { name?: string } | null; total: number | string; amount_paid: number | string; status: string };
+  const invoices = ((invRows ?? []) as Inv[]).map((r) => ({ ...r, total: Number(r.total), amount_paid: Number(r.amount_paid) }));
+  const open = invoices.filter((r) => r.status === "unpaid" || r.status === "partly_paid");
+  const due = open.reduce((s, r) => s + Math.max(0, r.total - r.amount_paid), 0);
+  const overdue = open.filter((r) => r.due_date && r.due_date < today);
+  const overdueAmt = overdue.reduce((s, r) => s + Math.max(0, r.total - r.amount_paid), 0);
+  const monthInv = invoices.filter((r) => r.issue_date.startsWith(month));
+  const billed = monthInv.reduce((s, r) => s + r.total, 0);
+  const collected = monthInv.reduce((s, r) => s + Math.min(r.total, r.amount_paid), 0);
+  const pct = billed > 0 ? collected / billed : 0;
+  const spent = ((expRows ?? []) as { amount: number | string }[]).reduce((s, r) => s + Number(r.amount), 0);
+  const rupees = (n: number) => `₹ ${inr(n, 0)}`;
 
   const now = new Date();
-  const today = new Intl.DateTimeFormat("en-IN", { weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata" }).format(now);
+  const todayLong = new Intl.DateTimeFormat("en-IN", { weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata" }).format(now);
   const shortDate = (iso: string) => new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", timeZone: "Asia/Kolkata" }).format(new Date(iso));
 
   return (
     <AppShell ctx={{ ...ctx, workspace }} active="overview" breadcrumb="Home">
-      <header className="dash-head">
+      <header className="home-head">
         <div>
-          <p className="dash-date">{today}</p>
           <h1>{greeting(now)}, {firstNameOf(ctx)}</h1>
+          <p>{todayLong} · {workspace.name}</p>
         </div>
-        <div className="dash-head-actions">
-          <Link href="/billing" className="credit-pill" title="Plans & credits"><Zap size={15} aria-hidden="true" />{credits.available.toLocaleString("en-IN")} credits</Link>
-          <UploadButton workspaceId={workspace.id} label="Upload" />
-        </div>
+        <Link href="/billing" className="credit-pill" title="Plans & credits"><Zap size={15} aria-hidden="true" />{credits.available.toLocaleString("en-IN")}</Link>
       </header>
 
-      <section className="ask-card" aria-labelledby="ask-title">
-        <h2 id="ask-title">What do you want to get done?</h2>
-        <PromptBox heading="Describe an agreement and GeniusAI drafts it" compact />
-        <nav className="action-row" aria-label="Shortcuts">
-          {ACTIONS.map(({ href, label, Icon, tint }) => (
-            <Link key={label} href={href} className="action">
-              <span className={`app-icon lg ${tint}`}><Icon size={22} aria-hidden="true" /></span>
-              <span>{label}</span>
-            </Link>
-          ))}
-        </nav>
+      <section className="home-hero" aria-label="This month">
+        <DotRing value={pct} label={`${Math.round(pct * 100)}% of this month's invoices collected`} />
+        <div className="home-figure">
+          <span className="pill-accent" style={{ alignSelf: "flex-start" }}>{new Intl.DateTimeFormat("en-IN", { month: "long", timeZone: "Asia/Kolkata" }).format(now)}</span>
+          <span className="home-pct">{Math.round(pct * 100)}%</span>
+          <span className="home-pct-label">{billed > 0 ? <>of this month&apos;s invoices collected · <b>{rupees(collected)}</b> of {rupees(billed)}</> : <>No invoices this month yet · <Link href="/tools/invoices/new?kind=invoice" style={{ color: "var(--accent-text)", fontWeight: 600 }}>Create one</Link></>}</span>
+        </div>
       </section>
 
-      <div className="service-groups">
-        {GROUPS.map((g) => (
-          <section key={g.title} className="service-group" aria-labelledby={`g-${g.title}`}>
-            <h2 id={`g-${g.title}`}>{g.title}</h2>
-            <ul className="list-card">
-              {g.rows.map(({ href, title, text, Icon, tint, soon }) => {
-                const inner = (
-                  <>
-                    <span className={`app-icon ${tint}`}><Icon size={17} aria-hidden="true" /></span>
-                    <span className="list-text"><strong>{title}</strong><span>{text}</span></span>
-                    {soon ? <span className="soon-tag">Soon</span> : <ChevronRight size={17} className="list-chevron" aria-hidden="true" />}
-                  </>
-                );
-                return <li key={title}>{href && !soon ? <Link href={href} className="list-row">{inner}</Link> : <div className="list-row muted">{inner}</div>}</li>;
-              })}
-            </ul>
-          </section>
-        ))}
+      <div className="home-cards">
+        <Link href="/tools/invoices" className="home-card"><span>To collect</span><strong>{rupees(due)}</strong><em>{open.length} unpaid invoice{open.length === 1 ? "" : "s"}</em></Link>
+        <Link href="/tools/invoices/reminders" className="home-card"><span>Overdue</span><strong className={overdue.length ? "bad" : ""}>{rupees(overdueAmt)}</strong><em>{overdue.length ? "Send reminders ›" : "Nothing overdue"}</em></Link>
+        <Link href="/tools/expenses" className="home-card"><span>Spent this month</span><strong>{rupees(spent)}</strong><em>From your expenses</em></Link>
       </div>
+
+      <nav className="quick-row" aria-label="Quick actions">
+        {ACTIONS.map(({ href, label, Icon, tint }) => (
+          <Link key={label} href={href}><span className={`app-icon ${tint}`}><Icon size={24} aria-hidden="true" /></span>{label}</Link>
+        ))}
+      </nav>
+
+      {overdue.length > 0 && (
+        <section aria-labelledby="attn-h" style={{ marginBottom: 26 }}>
+          <h2 id="attn-h" className="home-section-title">Needs attention</h2>
+          <ul className="list-card attention-list">
+            {overdue.slice(0, 3).map((r) => (
+              <li key={r.id}>
+                <Link href={`/tools/invoices/reminders?id=${r.id}`} className="list-row">
+                  <span className="app-icon red"><BellRing size={17} aria-hidden="true" /></span>
+                  <span className="list-text"><strong>Remind {r.customer?.name || "customer"}</strong><span>{rupees(Math.max(0, r.total - r.amount_paid))} · due {shortDate(r.due_date as string)}</span></span>
+                  <ChevronRight size={17} className="list-chevron" aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section className="ask-card" aria-labelledby="ask-title">
+        <h2 id="ask-title" className="home-section-title">Draft with AI</h2>
+        <PromptBox heading="Describe an agreement and GeniusAI drafts it" compact />
+      </section>
 
       <h2 className="dash-section-title">Continue where you left off</h2>
       <div className="continue-grid">

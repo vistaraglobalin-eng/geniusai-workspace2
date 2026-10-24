@@ -18,7 +18,7 @@ export default async function CardsPage({ searchParams }: { searchParams: Promis
   const workspace = ctx.workspace;
   const { settings } = await loadInvoiceData(supabase, workspace.id);
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="letters" breadcrumb="Visiting cards & letterhead">
+    <AppShell ctx={{ ...ctx, workspace }} active="cards" breadcrumb="Visiting cards & letterhead">
       <div className="welcome-row">
         <div>
           <h1>Visiting cards & letterhead</h1>

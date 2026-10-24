@@ -22,7 +22,7 @@ export const PREFS_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 /** Display swatches (light-mode accent values, also used as the swatch colour). */
 export const ACCENT_SWATCHES: Record<Accent, { label: string; color: string }> = {
-  lavender: { label: "Indigo", color: "#4f46e5" },
+  lavender: { label: "Orange", color: "#c2470c" },
   ocean: { label: "Ocean", color: "#1d65a6" },
   emerald: { label: "Emerald", color: "#127050" },
   sunset: { label: "Sunset", color: "#b23c0b" },
