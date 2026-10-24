@@ -65,3 +65,17 @@ export async function emailDeclined(admin: SupabaseClient, origin: string, req: 
   });
   await sendEmail({ to: sender, subject: `Declined: ${req.title}`, html, text });
 }
+
+/** Gentle nudge to a signer who hasn't signed yet. Returns true if it was sent. */
+export async function emailReminder(admin: SupabaseClient, origin: string, req: Req, s: Signer): Promise<boolean> {
+  if (!emailConfigured() || !s.email) return false;
+  const replyTo = await senderEmail(admin, req.created_by);
+  const { html, text } = emailLayout({
+    heading: `Reminder: “${req.title}” is waiting for your signature`,
+    lines: [`Hi ${s.name},`, `${req.sender_name} is waiting for you to sign ${req.document_name}. It takes about a minute, and you don't need an account.`, `Your link works until ${when(req.expires_at)}.`],
+    quote: req.message,
+    button: { label: "Review and sign", url: `${origin}/s/${s.access_token}` },
+    footer: `Sent by GeniusAI Workspace on behalf of ${req.sender_name}. Don't forward this email: the link lets anyone sign as you.`
+  });
+  return sendEmail({ to: s.email, subject: `Reminder — please sign: ${req.title}`, html, text, replyTo });
+}

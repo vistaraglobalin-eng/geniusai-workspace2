@@ -2,24 +2,35 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Ban, Download, RefreshCw } from "lucide-react";
+import { Ban, BellRing, Download, RefreshCw } from "lucide-react";
 import { ShareLinks, type SignLink } from "../ShareLinks";
 import { ShareButton, storageSource } from "@/components/ShareSheet";
 
-export function RequestActions({ id, status, allSigned, title, sender, completedKey, sourceKey, documentName }: {
-  id: string; status: string; allSigned: boolean; title: string; sender: string; completedKey: string | null; sourceKey: string; documentName: string;
+export function RequestActions({ id, status, allSigned, title, sender, completedKey, sourceKey, documentName, canEdit = true }: {
+  id: string; status: string; allSigned: boolean; title: string; sender: string; completedKey: string | null; sourceKey: string; documentName: string; canEdit?: boolean;
 }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [links, setLinks] = useState<SignLink[] | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
   const open = status === "pending";
 
   useEffect(() => {
     if (!open) return;
     fetch(`/api/sign-requests/${id}/links`).then((r) => r.json()).then((d: { links?: SignLink[] }) => setLinks(d.links ?? [])).catch(() => setLinks([]));
   }, [id, open]);
+
+  async function remindAll() {
+    setBusy("remind"); setError(null); setInfo(null);
+    try {
+      const res = await fetch(`/api/sign-requests/${id}/remind`, { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+      const d = (await res.json().catch(() => ({}))) as { message?: string };
+      if (res.ok) setInfo(d.message ?? "Reminders sent."); else setError(d.message ?? "That didn't work. Please try again.");
+    } catch { setError("The connection dropped. Please try again."); }
+    finally { setBusy(null); }
+  }
 
   async function call(kind: "cancel" | "finalize" | "download") {
     if (kind === "cancel" && !window.confirm("Cancel this request? The signing links will stop working.")) return;
@@ -52,7 +63,13 @@ export function RequestActions({ id, status, allSigned, title, sender, completed
       {open && links && links.length > 0 && (
         <>
           <h2 className="dash-section-title">Signing links</h2>
-          <ShareLinks links={links} title={title} sender={sender} attach={storageSource(sourceKey, documentName, "application/pdf")} />
+          {canEdit && !allSigned && links.some((l) => l.email && (l.status === "pending" || l.status === "viewed")) && (
+            <button type="button" className="secondary-button with-icon" onClick={remindAll} disabled={!!busy}><BellRing size={15} aria-hidden="true" /> {busy === "remind" ? "Sending…" : "Email everyone a reminder"}</button>
+          )}
+          {info && <p className="form-message success" role="status">{info}</p>}
+          <ShareLinks links={links} title={title} sender={sender} attach={storageSource(sourceKey, documentName, "application/pdf")}
+            manage={{ requestId: id, canEdit, onChanged: (l) => { setLinks((ls) => (ls ?? []).map((x) => (x.id === l.id ? l : x))); startTransition(() => router.refresh()); } }} />
+          <p className="field-hint">Signers with an email also get automatic reminders every 3 days (up to 3 times).</p>
         </>
       )}
       {open && !allSigned && (

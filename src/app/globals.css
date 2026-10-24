@@ -2013,3 +2013,19 @@ a.home-card:hover { background: var(--surface-2); }
   .chat-main { min-height: 60vh; overflow: visible; }
   .chat-input { position: sticky; bottom: calc(var(--bottom-nav-h, 0px) + 4px); z-index: 4; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
 }
+.sr-manage { display: flex; flex-wrap: wrap; gap: 6px; padding-left: 34px; }
+.sr-manage .quiet-button { border: 1px solid var(--border); min-height: 36px; padding: 5px 11px; font-size: .8rem; }
+.sr-reassign { display: grid; grid-template-columns: 1fr 1fr auto auto; gap: 8px; align-items: center; padding-left: 34px; }
+.sr-reassign .field-hint { grid-column: 1 / -1; margin: 0; }
+.sr-link .form-message { margin: 0 0 0 34px; }
+@media (max-width: 600px) { .sr-manage, .sr-reassign { padding-left: 0; } .sr-reassign { grid-template-columns: 1fr; } .sr-link .form-message { margin-left: 0; } }
+.sr-bulk { display: grid; gap: 8px; margin-top: 4px; }
+.sr-bulk textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85rem; }
+/* Peach-only: app share tiles and signer badges */
+.share-app-icon, .share-app-icon.share, .share-app-icon.whatsapp, .share-app-icon.sms, .share-app-icon.email, .share-app-icon.attach,
+.share-app-icon.copy, .share-app-icon.copied, .share-app-icon.telegram, .share-app-icon.more, .share-app-icon.download, .share-app-icon.link {
+  background: var(--tile-bg); color: var(--tile-ink); box-shadow: inset 0 0 0 1px var(--tile-border);
+}
+.share-app-icon.copied { background: var(--ink); color: var(--on-ink); box-shadow: none; }
+.sr-dot { background: var(--ink) !important; color: var(--on-ink) !important; }
+.sr-chip.selected, .sr-mini.selected { --c: var(--ink) !important; }

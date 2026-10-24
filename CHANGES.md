@@ -8,6 +8,8 @@
 - Find & replace in Edit PDF: search the text, see matches highlighted, replace every match in the same font size and colour.
 - Redact in Edit PDF: drag black boxes, or "Redact all" for a search or for PAN, Aadhaar, phone, email, account numbers and GSTIN. On save, pages with redactions are rebuilt as images in the browser and the file is rebuilt from scratch, so hidden text is really removed. Saved as "<name> (redacted).pdf".
 - Chat with a document (/tools/chat): ask questions about a PDF, Word file or photo; answers come only from the document, mention page numbers, reply in the question's language, keep the last 6 turns as context and are saved per person and file. Uses credits per question (ai_jobs task "chat"; no database change).
+- Signing: bulk send (same PDF to up to 50 people, each a separate request with its own link), change a signer before they sign (old link stops working, new link emailed), email reminders per signer or for everyone (at most once per 20 hours), and a daily job (Vercel Cron, 10:00 IST) that closes expired requests and emails automatic reminders every 3 days, up to 3 times. Needs CRON_SECRET in Vercel and 202610250017_sign_reminders.sql.
+- Share icons and signer badges follow the peach-only look.
 - Stamps in Edit PDF: Approved, Paid, Received, Verified, Rejected, Draft, Confidential, Original, Copy, your own text, round company seal and "For <business> / Authorised Signatory", in red, blue, violet or black, with today's date.
 
 ## Revision 23: Reminders, Letters & Cards, Expenses, Team members

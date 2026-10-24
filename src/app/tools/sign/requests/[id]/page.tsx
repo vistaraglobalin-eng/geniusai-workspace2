@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const EVENT: Record<string, string> = {
-  created: "Request created", viewed: "Opened the document", signed: "Signed", declined: "Declined", completed: "Signed PDF produced", cancelled: "Request cancelled", link_copied: "Link copied"
+  created: "Request created", viewed: "Opened the document", signed: "Signed", declined: "Declined", completed: "Signed PDF produced", cancelled: "Request cancelled", link_copied: "Link copied", reminded: "Reminder emailed", reassigned: "Signer changed (new link)"
 };
 const when = (iso: string | null) => iso ? new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Kolkata" }).format(new Date(iso)) : "";
 
@@ -79,7 +79,7 @@ export default async function RequestPage({ params }: { params: Promise<{ id: st
           {r.message && <p className="sr-message">“{r.message}”</p>}
         </section>
 
-        <RequestActions id={r.id} status={r.status} completedKey={r.completed_object_key} sourceKey={r.source_object_key} documentName={r.document_name} allSigned={signed === signers.length && signers.length > 0} title={r.document_name.replace(/\.pdf$/i, "")} sender={r.sender_name} />
+        <RequestActions id={r.id} status={r.status} completedKey={r.completed_object_key} sourceKey={r.source_object_key} documentName={r.document_name} allSigned={signed === signers.length && signers.length > 0} title={r.document_name.replace(/\.pdf$/i, "")} sender={r.sender_name} canEdit={workspace.access !== "view"} />
 
         <section className="panel-card">
           <h2 className="dash-section-title">Activity</h2>

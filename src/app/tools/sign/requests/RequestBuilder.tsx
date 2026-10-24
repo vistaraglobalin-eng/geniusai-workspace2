@@ -19,6 +19,22 @@ type Drag = { id: string; mode: "move" | "resize"; sx: number; sy: number; orig:
 
 const MAX_PAGES = 60;
 const MAX_SIGNERS = 10;
+const BULK_MAX = 50;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** "Name, email" per line (comma, tab or semicolon). Email is optional. */
+function parsePeople(text: string): { people: { name: string; email: string }[]; problems: string[] } {
+  const people: { name: string; email: string }[] = [], problems: string[] = [];
+  text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean).forEach((line, i) => {
+    const parts = line.split(/[,\t;]/).map((p) => p.trim()).filter(Boolean);
+    const email = parts.find((p) => p.includes("@")) ?? "";
+    const name = parts.filter((p) => p !== email).join(" ").replace(/\s+/g, " ");
+    if (name.length < 2) problems.push(`Line ${i + 1}: add a name`);
+    else if (email && !EMAIL.test(email)) problems.push(`Line ${i + 1}: check the email`);
+    else people.push({ name: name.slice(0, 120), email: email.toLowerCase() });
+  });
+  return { people, problems };
+}
 const KINDS: { kind: Kind; label: string; Icon: typeof Type; pt: [number, number] }[] = [
   { kind: "signature", label: "Signature", Icon: SignatureIcon, pt: [170, 48] },
   { kind: "name", label: "Full name", Icon: Type, pt: [170, 20] },
@@ -46,12 +62,15 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
   const [days, setDays] = useState(30);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [result, setResult] = useState<{ id: string; links: SignLink[]; title: string } | null>(null);
+  const [result, setResult] = useState<{ id: string; links: SignLink[]; title: string; bulk?: boolean } | null>(null);
+  const [bulk, setBulk] = useState(false);
+  const [bulkText, setBulkText] = useState("");
+  const parsed = bulk ? parsePeople(bulkText) : { people: [], problems: [] };
   const drag = useRef<Drag | null>(null);
   const file = files.find((f) => f.id === fileId) ?? null;
   const activeKey = signers.some((s) => s.key === active) ? active : signers[0]?.key;
   const colorOf = (key: string) => SIGNER_COLORS[Math.max(0, signers.findIndex((s) => s.key === key)) % SIGNER_COLORS.length];
-  const labelOf = (key: string) => { const i = signers.findIndex((s) => s.key === key); return signers[i]?.name.trim() || `Signer ${i + 1}`; };
+  const labelOf = (key: string) => { if (bulk) return "Each person"; const i = signers.findIndex((s) => s.key === key); return signers[i]?.name.trim() || `Signer ${i + 1}`; };
 
   useEffect(() => {
     let cancelled = false;
@@ -109,9 +128,34 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
     setFields((fs) => fs.filter((f) => f.signer !== key));
   }
 
+  async function sendBulk() {
+    if (!file) return;
+    const tmpl = signers[0];
+    if (!parsed.people.length) return setError("Add the people who should sign — one per line: Name, email.");
+    if (parsed.problems.length) return setError(parsed.problems.slice(0, 3).join(". ") + ".");
+    if (parsed.people.length > BULK_MAX) return setError(`You can send to up to ${BULK_MAX} people at once.`);
+    if (!fields.some((f) => f.signer === tmpl.key && f.kind === "signature")) return setError("Place at least one signature field.");
+    if (senderName.trim().length < 2) return setError("Enter your name so signers know who sent this.");
+    setBusy(true);
+    try {
+      const res = await fetch("/api/sign-requests/bulk", {
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ fileId: file.id, senderName, message, expiresInDays: days, recipients: parsed.people,
+          fields: fields.filter((f) => f.signer === tmpl.key).map(({ kind: k, page, x, y, w, h }) => ({ kind: k, page, x, y, w, h })) })
+      });
+      const data = (await res.json().catch(() => ({}))) as { requests?: { id: string; name: string; email: string | null; url: string; emailed: boolean }[]; message?: string };
+      if (res.ok && data.requests) {
+        setResult({ id: "", bulk: true, title: file.name.replace(/\.pdf$/i, ""), links: data.requests.map((r, i) => ({ position: i + 1, name: r.name, email: r.email, url: r.url, emailed: r.emailed })) });
+        startTransition(() => router.refresh());
+      } else setError(data.message ?? "The requests couldn't be created. Please try again.");
+    } catch { setError("The connection dropped. Check Signature requests in a moment before trying again."); }
+    finally { setBusy(false); }
+  }
+
   async function send() {
     setError(null);
     if (!file) return setError("Choose a PDF first.");
+    if (bulk) return sendBulk();
     for (const [i, s] of signers.entries()) {
       if (s.name.trim().length < 2) return setError(`Enter a name for signer ${i + 1}.`);
       if (!fields.some((f) => f.signer === s.key && f.kind === "signature")) return setError(`Place at least one signature field for ${labelOf(s.key)}.`);
@@ -142,11 +186,11 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
     return (
       <section className="panel-card sign-done sr-done" aria-live="polite">
         <CheckCircle2 size={36} aria-hidden="true" />
-        <h2>Ready to send</h2>
-        <p>Send each person their own private link. They can sign on any phone or computer without an account. When everyone has signed, the signed PDF with a signing certificate is saved to your Files.</p>
+        <h2>{result.bulk ? `${result.links.length} separate requests ready` : "Ready to send"}</h2>
+        <p>{result.bulk ? "Each person got their own copy and private link, and is tracked separately. " : ""}Send each person their own private link. They can sign on any phone or computer without an account. When everyone has signed, the signed PDF with a signing certificate is saved to your Files.</p>
         <ShareLinks links={result.links} title={result.title} sender={senderName} attach={file ? storageSource(file.objectKey, file.name, "application/pdf") : undefined} />
         <div className="dg-result-actions">
-          <Link className="primary-button" href={`/tools/sign/requests/${result.id}`}>Track this request</Link>
+          {result.bulk ? <Link className="primary-button" href="/tools/sign/requests">Track all requests</Link> : <Link className="primary-button" href={`/tools/sign/requests/${result.id}`}>Track this request</Link>}
           <Link className="secondary-button" href="/tools/sign/requests">All requests</Link>
         </div>
       </section>
@@ -180,7 +224,18 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
 
         <section className="panel-card dg-step">
           <div className="dg-step-head"><span className="dg-step-num">2</span><h2>Who needs to sign?</h2></div>
-          {signers.map((s, i) => (
+          <div className="segmented" role="radiogroup" aria-label="How to send">
+            <label className={!bulk ? "selected" : ""}><input type="radio" name="sr-mode" checked={!bulk} onChange={() => setBulk(false)} /> Same document, signed together</label>
+            <label className={bulk ? "selected" : ""}><input type="radio" name="sr-mode" checked={bulk} onChange={() => { setBulk(true); setSigners((ss) => ss.slice(0, 1)); setFields((fs) => fs.filter((f) => f.signer === signers[0]?.key)); }} /> Separate copy for each person</label>
+          </div>
+          {bulk ? (
+            <div className="sr-bulk">
+              <label htmlFor="sr-bulk" className="field-hint">One person per line: <strong>Name, email</strong> (email optional). Up to {BULK_MAX}. Paste straight from Excel.</label>
+              <textarea id="sr-bulk" className="text-input" rows={6} value={bulkText} placeholder={"Ravi Sharma, ravi@example.com\nPriya Singh, priya@example.com\nAman Gupta"}
+                onChange={(e: { target: { value: string } }) => setBulkText(e.target.value)} />
+              <p className="field-hint">{parsed.people.length} {parsed.people.length === 1 ? "person" : "people"}{parsed.problems.length ? ` · ${parsed.problems[0]}` : ""}. Each gets their own copy, link and tracking — useful for offer letters, NDAs or policies.</p>
+            </div>
+          ) : signers.map((s, i) => (
             <div key={s.key} className="sr-signer" style={{ borderLeftColor: SIGNER_COLORS[i % SIGNER_COLORS.length] }}>
               <div className="sr-signer-row">
                 <input className="text-input" aria-label={`Signer ${i + 1} name`} placeholder={`Signer ${i + 1} full name`} value={s.name} maxLength={120}
@@ -193,12 +248,12 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
                 onChange={(e: { target: { value: string } }) => updateSigner(s.key, { email: e.target.value })} />
             </div>
           ))}
-          {signers.length < MAX_SIGNERS && (
+          {!bulk && signers.length < MAX_SIGNERS && (
             <button type="button" className="quiet-button with-icon" onClick={() => { const k = uid(); setSigners((ss) => [...ss, { key: k, name: "", email: "" }]); setActive(k); }}>
               <Plus size={15} aria-hidden="true" /> Add signer
             </button>
           )}
-          {signers.length > 1 && (
+          {!bulk && signers.length > 1 && (
             <div className="segmented" role="radiogroup" aria-label="Signing order">
               <label className={order === "any" ? "selected" : ""}><input type="radio" name="sr-order" checked={order === "any"} onChange={() => setOrder("any")} /> Any order</label>
               <label className={order === "sequential" ? "selected" : ""}><input type="radio" name="sr-order" checked={order === "sequential"} onChange={() => setOrder("sequential")} /> One after another</label>
@@ -214,7 +269,7 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
               <button key={s.key} type="button" role="radio" aria-checked={activeKey === s.key}
                 className={`sr-chip${activeKey === s.key ? " selected" : ""}`} style={{ ["--c" as string]: SIGNER_COLORS[i % SIGNER_COLORS.length] }}
                 onClick={() => setActive(s.key)}>
-                <span className="sr-dot" aria-hidden="true">{i + 1}</span>{s.name.trim() || `Signer ${i + 1}`}
+                <span className="sr-dot" aria-hidden="true">{i + 1}</span>{bulk ? "Each person" : s.name.trim() || `Signer ${i + 1}`}
                 <span className="sr-count">{fields.filter((f) => f.signer === s.key).length}</span>
               </button>
             ))}
@@ -246,7 +301,7 @@ export function RequestBuilder({ workspaceId, files, initialFileId, defaultName 
           </div>
           {error && <p className="form-message error" role="alert">{error}</p>}
           <button type="button" className="primary-button wide" onClick={send} disabled={busy || !file || pages.length === 0}>
-            <Send size={16} aria-hidden="true" /> {busy ? "Creating links…" : "Create signing links"}
+            <Send size={16} aria-hidden="true" /> {busy ? "Creating links…" : bulk ? `Create ${parsed.people.length || ""} separate requests`.replace("  ", " ") : "Create signing links"}
           </button>
           <p className="field-hint">Each signer gets a private link. You share it by WhatsApp, email or any app. Your original PDF stays unchanged.</p>
         </section>
