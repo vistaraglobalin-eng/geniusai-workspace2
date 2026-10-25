@@ -11,7 +11,7 @@ import { FilesSearch } from "./FilesSearch";
 import { DropZone } from "./DropZone";
 import { SpacesBar } from "./SpacesBar";
 import { SpaceUpload } from "./SpaceUpload";
-import { spacesMissing, type Space } from "@/lib/spaces";
+import type { Space } from "@/lib/spaces";
 
 export const metadata: Metadata = { title: "Files · GeniusAI Workspace" };
 
@@ -31,7 +31,7 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
     supabase.from("spaces").select("id, name").eq("workspace_id", workspace.id).order("name").limit(100),
     supabase.from("files").select("space_id").eq("workspace_id", workspace.id).is("deleted_at", null).limit(10000)
   ]);
-  const spacesOn = !spaceErr && !placeErr && !spacesMissing(spaceErr?.message);
+  const spacesOn = !spaceErr && !placeErr;
   const counts = new Map<string | null, number>();
   for (const r of (spacesOn ? placement ?? [] : []) as { space_id: string | null }[]) counts.set(r.space_id, (counts.get(r.space_id) ?? 0) + 1);
   const spaces: Space[] = spacesOn ? ((spaceRows ?? []) as Space[]).map((x) => ({ ...x, count: counts.get(x.id) ?? 0 })) : [];
