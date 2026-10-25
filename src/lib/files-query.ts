@@ -23,7 +23,8 @@ export type FileSort = keyof typeof FILE_SORTS;
 export const PAGE_SIZE = 30;
 export const MAX_LIMIT = 300;
 
-export type FilesQuery = { q: string; type: FileTypeFilter; sort: FileSort; limit: number };
+export type FilesQuery = { q: string; type: FileTypeFilter; sort: FileSort; limit: number; /** "" = all, "none" = not in a space, or a space id */ space: string };
+const SPACE_RE = /^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|none)$/i;
 
 export function parseFilesQuery(params: Record<string, string | string[] | undefined>): FilesQuery {
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
@@ -34,7 +35,8 @@ export function parseFilesQuery(params: Record<string, string | string[] | undef
   const sort = (Object.keys(FILE_SORTS) as FileSort[]).includes(one(params.sort) as FileSort) ? (one(params.sort) as FileSort) : "newest";
   const n = Number.parseInt(one(params.limit), 10);
   const limit = Number.isFinite(n) ? Math.min(Math.max(PAGE_SIZE, Math.ceil(n / PAGE_SIZE) * PAGE_SIZE), MAX_LIMIT) : PAGE_SIZE;
-  return { q, type, sort, limit };
+  const space = SPACE_RE.test(one(params.space)) ? one(params.space).toLowerCase() : "";
+  return { q, type, sort, limit, space };
 }
 
 /** Escapes user text for a SQL LIKE pattern (so "50%" or "a_b" match literally). */
@@ -49,6 +51,7 @@ export function filesHref(query: Partial<FilesQuery>, base: FilesQuery): string 
   if (merged.type !== "all") params.set("type", merged.type);
   if (merged.sort !== "newest") params.set("sort", merged.sort);
   if (merged.limit > PAGE_SIZE) params.set("limit", String(merged.limit));
+  if (merged.space) params.set("space", merged.space);
   const s = params.toString();
   return s ? `/files?${s}` : "/files";
 }

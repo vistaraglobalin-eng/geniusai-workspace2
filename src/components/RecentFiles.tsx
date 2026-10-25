@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Download, FileText, Image as ImageIcon, PenLine, Share2, Sheet, Signature, Sparkles, Trash2 } from "lucide-react";
+import { Download, FileText, Folder, FolderInput, Image as ImageIcon, PenLine, Share2, Sheet, Signature, Sparkles, Trash2 } from "lucide-react";
 import { ShareSheet, storageSource } from "@/components/ShareSheet";
 import { isDocumentReadable } from "@/lib/documents/tasks";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
@@ -43,12 +43,17 @@ export function RecentFiles({
   files,
   currentUserId,
   role,
-  showOpenInTool = false
+  showOpenInTool = false,
+  spaces,
+  canMove = false
 }: {
   files: FileSummary[];
   currentUserId: string;
   role: WorkspaceRole;
   showOpenInTool?: boolean;
+  /** When given, files show their space and can be moved between spaces. */
+  spaces?: { id: string; name: string }[];
+  canMove?: boolean;
 }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
@@ -56,6 +61,20 @@ export function RecentFiles({
   const [busyId, setBusyId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [sharing, setSharing] = useState<FileSummary | null>(null);
+  const [movingId, setMovingId] = useState<string | null>(null);
+  const [target, setTarget] = useState<string>("");
+  const spaceName = (id?: string | null) => (id && spaces ? spaces.find((s) => s.id === id)?.name : undefined);
+
+  async function move(file: FileSummary) {
+    setError(null); setBusyId(file.id);
+    try {
+      const res = await fetch("/api/files/move", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ fileIds: [file.id], spaceId: target || null }) });
+      const d = (await res.json().catch(() => ({}))) as { message?: string };
+      if (!res.ok) setError(d.message ?? `${file.originalFilename} couldn't be moved.`);
+      else { setMovingId(null); startTransition(() => router.refresh()); }
+    } catch { setError("The connection dropped. Please try again."); }
+    finally { setBusyId(null); }
+  }
 
   async function download(file: FileSummary) {
     setError(null);
@@ -108,10 +127,21 @@ export function RecentFiles({
                   {formatBytes(file.byteSize)} ·{" "}
                   <time dateTime={file.createdAt} suppressHydrationWarning>{formatWhen(file.createdAt)}</time>
                   {label && <em className={`scan-badge ${file.scanStatus}`}>{label}</em>}
+                  {spaceName(file.spaceId) && <em className="space-badge"><Folder size={11} aria-hidden="true" /> {spaceName(file.spaceId)}</em>}
                 </span>
               </span>
               <span className="file-actions">
-                {confirmingId === file.id ? (
+                {movingId === file.id ? (
+                  <>
+                    <label className="visually-hidden" htmlFor={`mv-${file.id}`}>Move to space</label>
+                    <select id={`mv-${file.id}`} className="select-input" value={target} onChange={(e) => setTarget(e.target.value)}>
+                      <option value="">Not in a space</option>
+                      {(spaces ?? []).map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+                    </select>
+                    <button type="button" className="primary-button" disabled={busy} onClick={() => move(file)}>{busy ? "Moving…" : "Move"}</button>
+                    <button type="button" className="quiet-button" onClick={() => setMovingId(null)}>Cancel</button>
+                  </>
+                ) : confirmingId === file.id ? (
                   <>
                     <button type="button" className="danger-button" disabled={busy} onClick={() => remove(file)}>
                       {busy ? "Deleting…" : "Delete"}
@@ -149,6 +179,12 @@ export function RecentFiles({
                       >
                         <Signature size={16} />
                       </Link>
+                    )}
+                    {canMove && spaces && spaces.length > 0 && !blocked && (
+                      <button type="button" className="icon-button" title="Move to space" aria-label={`Move ${file.originalFilename} to a space`}
+                        onClick={() => { setMovingId(file.id); setTarget(file.spaceId ?? ""); setConfirmingId(null); }}>
+                        <FolderInput size={16} />
+                      </button>
                     )}
                     <button
                       type="button"

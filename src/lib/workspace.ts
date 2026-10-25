@@ -24,6 +24,8 @@ export type FileSummary = {
   mimeType: string;
   byteSize: number;
   scanStatus: "pending" | "clean" | "quarantined" | "failed";
+  /** Set on the Files page when Spaces are installed. */
+  spaceId?: string | null;
   createdAt: string;
   uploadedBy: string;
 };

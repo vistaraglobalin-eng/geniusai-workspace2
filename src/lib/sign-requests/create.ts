@@ -56,10 +56,4 @@ export async function insertRequest(admin: SupabaseClient, o: {
   return { id: req.id as string, expiresAt, signers };
 }
 
-/** True when the user can change things in this workspace (member with edit access). */
-export async function canEditWorkspace(supabase: SupabaseClient, workspaceId: string, userId: string): Promise<boolean> {
-  const { data } = await supabase.from("workspace_members").select("access").eq("workspace_id", workspaceId).eq("user_id", userId).maybeSingle();
-  if (!data) return false;
-  const access = (data as { access?: string | null }).access;
-  return access !== "view";
-}
+export { canEditWorkspace } from "@/lib/team/access";

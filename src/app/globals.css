@@ -2029,3 +2029,23 @@ a.home-card:hover { background: var(--surface-2); }
 .share-app-icon.copied { background: var(--ink); color: var(--on-ink); box-shadow: none; }
 .sr-dot { background: var(--ink) !important; color: var(--on-ink) !important; }
 .sr-chip.selected, .sr-mini.selected { --c: var(--ink) !important; }
+
+/* Spaces (folders) */
+.spaces { display: grid; gap: 10px; margin-bottom: 14px; }
+.spaces-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.spaces-row::-webkit-scrollbar { display: none; }
+.space-chip { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: .85rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.space-chip span { font-size: .72rem; font-weight: 700; color: var(--text-3); background: var(--surface-2); border-radius: 99px; padding: 1px 7px; }
+.space-chip svg { color: var(--accent-text); }
+.space-chip.on { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.space-chip.on span { background: color-mix(in srgb, var(--on-ink) 18%, transparent); color: var(--on-ink); }
+.space-chip.on svg { color: var(--peach); }
+.space-chip.add { border-style: dashed; background: transparent; color: var(--text-2); cursor: pointer; }
+.space-chip.add:hover { background: var(--peach-soft); }
+.space-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.space-form .text-input { flex: 1 1 220px; max-width: 360px; }
+.space-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 10px 14px; border-radius: 14px; background: var(--peach-soft); }
+.space-head strong { display: inline-flex; align-items: center; gap: 6px; margin-right: 4px; }
+.space-head .field-hint { margin: 0; }
+.space-badge { display: inline-flex; align-items: center; gap: 3px; margin-left: 6px; font-style: normal; font-size: .72rem; font-weight: 600; color: var(--accent-text); background: var(--peach-soft); border-radius: 99px; padding: 1px 7px; }
+.file-actions .select-input { max-width: 170px; min-height: 38px; }

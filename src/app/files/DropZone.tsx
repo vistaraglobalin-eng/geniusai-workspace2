@@ -4,9 +4,10 @@ import { useRef, useState, useTransition, type DragEvent, type ReactNode } from 
 import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { UploadError, uploadWorkspaceFile } from "@/lib/storage/files";
+import { moveToSpace } from "./spaces-client";
 
 /** Drag files onto the library to upload them (desktop/tablet). Phones use the Upload button. */
-export function DropZone({ workspaceId, children }: { workspaceId: string; children: ReactNode }) {
+export function DropZone({ workspaceId, spaceId = null, children }: { workspaceId: string; spaceId?: string | null; children: ReactNode }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [dragging, setDragging] = useState(false);
@@ -23,16 +24,17 @@ export function DropZone({ workspaceId, children }: { workspaceId: string; child
     if (files.length === 0) return;
     const supabase = createSupabaseBrowserClient();
     let done = 0;
-    const problems: string[] = [];
+    const problems: string[] = [], ids: string[] = [];
     setStatus({ kind: "success", text: `Uploading ${files.length} file${files.length === 1 ? "" : "s"}…` });
     for (const file of files) {
       try {
-        await uploadWorkspaceFile(supabase, { workspaceId, file });
+        ids.push((await uploadWorkspaceFile(supabase, { workspaceId, file })).id);
         done++;
       } catch (err) {
         problems.push(`${file.name}: ${err instanceof UploadError ? err.message : "upload failed"}`);
       }
     }
+    if (spaceId && ids.length) await moveToSpace(ids, spaceId);
     setStatus(
       problems.length
         ? { kind: "error", text: `${done} uploaded. ${problems.join(" · ")}` }
