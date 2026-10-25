@@ -5,6 +5,7 @@ import { loadWorkspaceContext } from "@/lib/workspace";
 import { ALLOWED_MIME_TYPES, MAX_UPLOAD_BYTES } from "@/lib/storage/files";
 import { saveFileForUser } from "@/lib/storage/server-save";
 import { GoogleError, accessToken, downloadFromDrive } from "@/lib/integrations/google";
+import { emitFile } from "@/lib/integrations/emit";
 import { fail } from "@/lib/agreements/server";
 
 export const dynamic = "force-dynamic";
@@ -32,7 +33,8 @@ export async function POST(request: NextRequest) {
       const f = await downloadFromDrive(token, id, MAX_UPLOAD_BYTES);
       if (!(ALLOWED_MIME_TYPES as readonly string[]).includes(f.mime)) { problems.push(`${f.name}: this file type isn't supported`); continue; }
       const saved = await saveFileForUser(supabase, { workspaceId: ctx.workspace.id, userId: ctx.user.id, name: f.name, mime: f.mime, bytes: f.bytes });
-      if ("error" in saved) problems.push(`${f.name}: ${saved.error}`); else added.push({ id: saved.id, name: saved.name });
+      if ("error" in saved) problems.push(`${f.name}: ${saved.error}`);
+      else { added.push({ id: saved.id, name: saved.name }); await emitFile(createSupabaseAdminClient(), saved.id, request.nextUrl.origin).catch(() => undefined); }
     } catch (e) { problems.push(e instanceof GoogleError ? e.message : "A file couldn't be brought in."); }
   }
   return NextResponse.json({ added, problems }, { status: added.length ? 200 : 422 });

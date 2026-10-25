@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRightLeft, Check, HardDrive, Link2Off, PlugZap, X } from "lucide-react";
+import { ArrowRightLeft, Box, Check, HardDrive, Link2Off, PlugZap, X } from "lucide-react";
 import type { DriveStatus } from "@/lib/integrations/status";
 import { WebhookCard, type HookRow } from "./WebhookCard";
 
-export function ConnectedApps({ drive, hooks, isAdmin, hooksMissing }: { drive: DriveStatus; hooks: HookRow[]; isAdmin: boolean; hooksMissing: boolean }) {
+export function ConnectedApps({ drive, hooks, isAdmin, hooksMissing, dropboxReady }: { drive: DriveStatus; hooks: HookRow[]; isAdmin: boolean; hooksMissing: boolean; dropboxReady: boolean }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [busy, setBusy] = useState(false);
@@ -53,6 +53,15 @@ export function ConnectedApps({ drive, hooks, isAdmin, hooksMissing }: { drive: 
           <p className="lt-help">After changing a value in Vercel, redeploy, then refresh this page.</p>
         </section>
       )}
+      <section className="panel-card app-card">
+        <div className="app-card-head">
+          <span className="app-icon lg"><Box size={24} aria-hidden="true" /></span>
+          <div><h2>Dropbox</h2><p>Bring files in from Dropbox, and save any file to your Dropbox — using Dropbox&apos;s own windows, so GeniusAI never stores a Dropbox password or login.</p></div>
+        </div>
+        {dropboxReady
+          ? <div className="app-card-foot"><span className="app-connected"><Check size={15} aria-hidden="true" /> Ready</span><span className="lt-help">Use “From Dropbox” on Files, and “Save to Dropbox” on any file&apos;s page.</span></div>
+          : <p className="lt-help">Not set up on this server yet. The app owner adds the Dropbox app key in Vercel.</p>}
+      </section>
       <WebhookCard provider="slack" hooks={hooks} isAdmin={isAdmin} setupNeeded={hooksMissing} />
       <WebhookCard provider="webhook" hooks={hooks} isAdmin={isAdmin} setupNeeded={hooksMissing} />
       <section className="panel-card app-card">

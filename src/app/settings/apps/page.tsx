@@ -8,6 +8,7 @@ import { AppShell } from "@/components/AppShell";
 import { driveStatus } from "@/lib/integrations/status";
 import { ConnectedApps } from "./ConnectedApps";
 import type { HookRow } from "./WebhookCard";
+import { dropboxAppKey } from "@/lib/integrations/dropbox";
 
 export const metadata: Metadata = { title: "Connected apps · GeniusAI Workspace" };
 export const dynamic = "force-dynamic";
@@ -38,7 +39,7 @@ export default async function AppsPage({ searchParams }: { searchParams: Promise
         </div>
       </div>
       {notice && <p className={`form-message ${notice.ok ? "success" : "error"}`} role="status">{notice.text}</p>}
-      <ConnectedApps drive={drive} hooks={(hookData ?? []) as HookRow[]} isAdmin={isAdmin} hooksMissing={hooksMissing} />
+      <ConnectedApps drive={drive} hooks={(hookData ?? []) as HookRow[]} isAdmin={isAdmin} hooksMissing={hooksMissing} dropboxReady={!!dropboxAppKey()} />
     </AppShell>
   );
 }

@@ -12,6 +12,8 @@ import { DropZone } from "./DropZone";
 import { SpacesBar } from "./SpacesBar";
 import { SpaceUpload } from "./SpaceUpload";
 import { DriveImportButton } from "@/components/DriveButtons";
+import { DropboxImportButton } from "@/components/DropboxButtons";
+import { dropboxAppKey } from "@/lib/integrations/dropbox";
 import { driveStatus } from "@/lib/integrations/status";
 import type { Space } from "@/lib/spaces";
 
@@ -69,6 +71,7 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
         <div className="files-top-actions">
           <SpaceUpload workspaceId={workspace.id} spaceId={currentSpace} />
           {drive.connected && drive.pickerReady && workspace.access !== "view" && <DriveImportButton spaceId={currentSpace} />}
+          {dropboxAppKey() && workspace.access !== "view" && <DropboxImportButton appKey={dropboxAppKey()} spaceId={currentSpace} />}
         </div>
       </div>
 

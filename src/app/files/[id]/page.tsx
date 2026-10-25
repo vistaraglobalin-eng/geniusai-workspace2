@@ -10,6 +10,7 @@ import { listMembers, type MemberRow } from "@/lib/team/server";
 import { commentsMissing, type CommentRow } from "@/lib/comments/server";
 import { FileDetail } from "./FileDetail";
 import { driveStatus } from "@/lib/integrations/status";
+import { dropboxAppKey } from "@/lib/integrations/dropbox";
 
 export const metadata: Metadata = { title: "File · GeniusAI Workspace" };
 export const dynamic = "force-dynamic";
@@ -54,6 +55,7 @@ export default async function FilePage({ params }: { params: Promise<{ id: strin
         isAdmin={(workspace.role === "owner" || workspace.role === "admin") && workspace.access === "edit"}
         setupNeeded={setupNeeded}
         driveConnected={drive.connected}
+        dropboxKey={dropboxAppKey()}
         slackConnected={(slackCount ?? 0) > 0 && workspace.access !== "view"}
       />
     </AppShell>
