@@ -15,6 +15,7 @@
 - 8 new free letters: Employment certificate, Internship certificate, Warning letter, Resignation letter, Leave application, Letter to bank, Payment demand letter, Self-declaration.
 - Offline: service worker (public/sw.js) caches app code, and keeps copies of Scan & convert, Letters and Cards so they open and work without internet; other pages show /offline. No API responses or stored files are cached; copies are cleared on sign out. An "offline" pill shows while disconnected. App manifest uses the ivory colours.
 - Fix: /api/cron/* is now reachable by Vercel Cron (it was redirected to sign-in); the route still requires CRON_SECRET.
+- Export to Tally (/tools/tally): TallyPrime XML for masters (customers with GSTIN and state, Sales @ rate, Output/Input CGST/SGST/IGST, Round Off, expense heads, bank) and vouchers (Sales with bill references, Receipts against invoices, Payments for expenses with input GST split by state). Period presets (month, FY, custom), drafts optional, company and bank ledger names. Plus a GST sales register CSV for the CA.
 - Share icons and signer badges follow the peach-only look.
 - Stamps in Edit PDF: Approved, Paid, Received, Verified, Rejected, Draft, Confidential, Original, Copy, your own text, round company seal and "For <business> / Authorised Signatory", in red, blue, violet or black, with today's date.
 

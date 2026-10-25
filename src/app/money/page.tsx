@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BellRing, Building2, FileSpreadsheet, ReceiptText, ScrollText, Wallet, Receipt } from "lucide-react";
+import { ArrowRightLeft, BellRing, Building2, FileSpreadsheet, ReceiptText, ScrollText, Wallet, Receipt } from "lucide-react";
 import { Hub } from "@/components/Hub";
 
 export const metadata: Metadata = { title: "Money · GeniusAI Workspace" };
@@ -17,6 +17,9 @@ export default function MoneyPage() {
       ] },
       { title: "Spend", rows: [
         { href: "/tools/expenses", title: "Expenses", text: "Snap bills, see where money goes, export for your CA", Icon: Wallet, tint: "teal" }
+      ] },
+      { title: "Accounts", rows: [
+        { href: "/tools/tally", title: "Export to Tally", text: "Invoices, receipts and expenses into TallyPrime", Icon: ArrowRightLeft, tint: "teal" }
       ] },
       { title: "Set up", rows: [
         { href: "/tools/invoices/settings", title: "Business details", text: "Name, GSTIN, logo, bank, UPI and signature", Icon: Building2, tint: "gray" }

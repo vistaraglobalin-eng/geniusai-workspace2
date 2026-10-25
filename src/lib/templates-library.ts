@@ -16,6 +16,7 @@ export const LIBRARY: LibItem[] = [
   { id: "quote", title: "Quotation / estimate", text: "Send a quote, turn it into an invoice later", href: "/tools/invoices/new?kind=quotation", category: "Money & GST", kind: "free", tags: "estimate proforma quote" },
   { id: "receipt", title: "Payment receipt", text: "Acknowledge money received", href: "/tools/invoices/new?kind=receipt", category: "Money & GST", kind: "free", tags: "receipt payment received" },
   { id: "reminder", title: "Payment reminder", text: "WhatsApp, SMS or email in English or Hindi", href: "/tools/invoices/reminders", category: "Money & GST", kind: "free", tags: "overdue dues follow up hindi" },
+  { id: "tally", title: "Tally export", text: "Ledgers and vouchers for TallyPrime, sales register for your CA", href: "/tools/tally", category: "Money & GST", kind: "free", tags: "tally accounts ca gstr sales register xml" },
   { id: "expense", title: "Expense report", text: "Monthly or financial-year report for your CA", href: "/tools/expenses", category: "Money & GST", kind: "free", tags: "expenses ca report itr" },
   ...LETTERS.map((t): LibItem => ({ id: `l-${t.key}`, title: t.label, text: t.note, href: `/tools/letters/${t.key}`, category: letterCat(t.category, t.key), kind: "free", tags: `letter ${t.category}` })),
   ...AGREEMENTS.map((t): LibItem => ({ id: `a-${t.key}`, title: t.title, text: t.description, href: `/tools/agreements/new?template=${t.key}`, category: agreementCat(t.category), kind: "ai", tags: `agreement contract ${t.category}` })),
