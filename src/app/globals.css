@@ -2139,3 +2139,11 @@ a.home-card:hover { background: var(--surface-2); }
 .tl-card-top strong { font-size: .95rem; }
 .tl-card-text { color: var(--text-3); font-size: .82rem; line-height: 1.4; }
 .tl-go { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--text-3); }
+/* Offline */
+.offline-bar { position: fixed; left: 50%; transform: translateX(-50%); top: calc(10px + env(safe-area-inset-top)); z-index: 100; display: flex; align-items: center; gap: 8px; max-width: calc(100vw - 24px);
+  padding: 9px 14px; border-radius: 999px; background: var(--ink); color: var(--on-ink); font-size: .8rem; font-weight: 600; box-shadow: var(--shadow-md); }
+.offline-page { max-width: 520px; margin: 0 auto; padding: 72px 20px; display: grid; gap: 14px; justify-items: start; }
+.offline-page h1 { margin: 6px 0 0; }
+.offline-page p { margin: 0; color: var(--text-2); }
+.offline-page ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.offline-page a { font-weight: 600; }

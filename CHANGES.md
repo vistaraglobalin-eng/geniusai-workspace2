@@ -13,6 +13,8 @@
 - File page (/files/[id]): preview (PDF pages or image), Download, Share, Edit, Sign, Ask AI, and comments: threads with replies, comment on a page, resolve/reopen, delete, @mentions of workspace members. Mentions and replies go to the Inbox (/inbox, bell with unread count in the top bar) and by email once Resend is set up. Needs 202610250019_comments.sql.
 - Templates library (/templates): 36 Indian formats in one searchable place (HR & staff, Money & GST, Agreements, Property & rent, Business, Personal, Brand & careers), marked Free (form, on device) or AI (drafted, uses credits).
 - 8 new free letters: Employment certificate, Internship certificate, Warning letter, Resignation letter, Leave application, Letter to bank, Payment demand letter, Self-declaration.
+- Offline: service worker (public/sw.js) caches app code, and keeps copies of Scan & convert, Letters and Cards so they open and work without internet; other pages show /offline. No API responses or stored files are cached; copies are cleared on sign out. An "offline" pill shows while disconnected. App manifest uses the ivory colours.
+- Fix: /api/cron/* is now reachable by Vercel Cron (it was redirected to sign-in); the route still requires CRON_SECRET.
 - Share icons and signer badges follow the peach-only look.
 - Stamps in Edit PDF: Approved, Paid, Received, Verified, Rejected, Draft, Confidential, Original, Copy, your own text, round company seal and "For <business> / Authorised Signatory", in red, blue, violet or black, with today's date.
 
