@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Award, Building2, Contact, FileType2, ChevronRight, DoorOpen, FilePenLine, Handshake, House, PenLine, ShieldCheck, TrendingUp, UserCheck, Wallet } from "lucide-react";
+import { Award, BadgeCheck, BellRing, Building2, CalendarDays, GraduationCap, Landmark, LogOut, ScrollText, TriangleAlert, Contact, FileType2, ChevronRight, DoorOpen, FilePenLine, Handshake, House, PenLine, ShieldCheck, TrendingUp, UserCheck, Wallet } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -13,7 +13,9 @@ export const dynamic = "force-dynamic";
 
 const ICONS: Record<TemplateKey, typeof Award> = {
   offer: Handshake, appointment: FilePenLine, experience: Award, relieving: DoorOpen, salary_slip: Wallet, increment: TrendingUp,
-  noc: ShieldCheck, rent_receipt: House, authorization: UserCheck, custom: PenLine
+  noc: ShieldCheck, rent_receipt: House, authorization: UserCheck, custom: PenLine,
+  employment_cert: BadgeCheck, internship: GraduationCap, warning: TriangleAlert, resignation: LogOut, leave: CalendarDays,
+  bank_request: Landmark, payment_demand: BellRing, self_declaration: ScrollText
 };
 const GROUPS = [
   { key: "Staff", title: "For your staff" },
