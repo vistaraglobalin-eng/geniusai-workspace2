@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRightLeft, Check, HardDrive, Link2Off, PlugZap } from "lucide-react";
+import { ArrowRightLeft, Check, HardDrive, Link2Off, PlugZap, X } from "lucide-react";
 import type { DriveStatus } from "@/lib/integrations/status";
 
 export function ConnectedApps({ drive }: { drive: DriveStatus }) {
@@ -37,6 +37,21 @@ export function ConnectedApps({ drive }: { drive: DriveStatus }) {
             </div>
           )}
       </section>
+      {drive.checks.some((c) => !c.ok) && (drive.configured || drive.checks.some((c) => c.ok)) && (
+        <section className="panel-card app-card">
+          <h2 className="app-check-title">Google setup check</h2>
+          <p className="lt-help">Something in the Google settings in Vercel needs fixing. Values are never shown here.</p>
+          <ul className="app-checks">
+            {drive.checks.map((c) => (
+              <li key={c.label} className={c.ok ? "ok" : "bad"}>
+                {c.ok ? <Check size={15} aria-hidden="true" /> : <X size={15} aria-hidden="true" />}
+                <span><code>{c.label}</code>{c.ok ? " looks right" : ` — ${c.fix}`}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="lt-help">After changing a value in Vercel, redeploy, then refresh this page.</p>
+        </section>
+      )}
       <section className="panel-card app-card">
         <div className="app-card-head">
           <span className="app-icon lg"><ArrowRightLeft size={24} aria-hidden="true" /></span>

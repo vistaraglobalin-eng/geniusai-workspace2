@@ -132,3 +132,24 @@ export async function downloadFromDrive(token: string, id: string, maxBytes: num
   const base = (meta.name ?? "Drive file").slice(0, 200);
   return { name: exp && !base.toLowerCase().endsWith(`.${exp.ext}`) ? `${base}.${exp.ext}` : base, mime: exp ? exp.mime : meta.mimeType, bytes };
 }
+
+export type SetupCheck = { label: string; ok: boolean; fix?: string };
+
+/** Checks the Google settings in Vercel for common mix-ups, without revealing any value. */
+export function googleSetupChecks(): SetupCheck[] {
+  const id = process.env.GOOGLE_CLIENT_ID?.trim() ?? "", secret = process.env.GOOGLE_CLIENT_SECRET?.trim() ?? "";
+  const key = process.env.GOOGLE_API_KEY?.trim() ?? "", rawNum = process.env.GOOGLE_PROJECT_NUMBER?.trim() ?? "";
+  const num = rawNum.replace(/\D/g, "");
+  const idNum = /^(\d+)-/.exec(id)?.[1] ?? "";
+  const swapped = (v: string) => (v.startsWith("GOCSPX-") ? " It contains the Client secret instead." : v.endsWith(".apps.googleusercontent.com") ? " It contains the Client ID instead." : v.startsWith("AIza") ? " It contains the API key instead." : "");
+  return [
+    { label: "GOOGLE_CLIENT_ID", ok: /^\d+-[a-z0-9]+\.apps\.googleusercontent\.com$/.test(id),
+      fix: id ? `Should end with .apps.googleusercontent.com.${swapped(id)}` : "Missing in Vercel." },
+    { label: "GOOGLE_CLIENT_SECRET", ok: /^GOCSPX-[A-Za-z0-9_-]{20,}$/.test(secret),
+      fix: secret ? `Should start with GOCSPX-.${swapped(secret)}` : "Missing in Vercel." },
+    { label: "GOOGLE_API_KEY", ok: /^AIza[0-9A-Za-z_-]{35}$/.test(key),
+      fix: !key ? "Missing in Vercel." : key.startsWith("AIza") ? `Starts right but has the wrong length (${key.length} characters; should be 39). Copy it again with Show key.` : `Should start with AIza and be 39 characters.${swapped(key)}` },
+    { label: "GOOGLE_PROJECT_NUMBER", ok: /^\d{6,15}$/.test(num) && num === rawNum.replace(/\s/g, "") && (!idNum || idNum === num),
+      fix: !num ? "Missing in Vercel." : num !== rawNum.replace(/\s/g, "") ? "Use digits only (the Project number, not the Project ID)." : idNum && idNum !== num ? "Doesn't match the Client ID's project. Use the Project number of the project where you made the Client ID." : "Should be the 12-digit Project number." }
+  ];
+}

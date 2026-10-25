@@ -2169,3 +2169,10 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
 .drive-btn-wrap { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .drive-btn-wrap .form-message { margin: 0; }
 .files-top-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.app-check-title { margin: 0; font-size: 1.05rem; }
+.app-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.app-checks li { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; overflow-wrap: anywhere; }
+.app-checks li svg { flex: none; margin-top: 3px; }
+.app-checks li.ok svg { color: var(--text-3); }
+.app-checks li.bad { color: var(--danger-text); }
+.app-checks code { font-size: .8rem; background: var(--surface-2); border-radius: 6px; padding: 1px 5px; color: var(--text); }
