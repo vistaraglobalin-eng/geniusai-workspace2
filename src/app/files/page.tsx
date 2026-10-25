@@ -11,6 +11,8 @@ import { FilesSearch } from "./FilesSearch";
 import { DropZone } from "./DropZone";
 import { SpacesBar } from "./SpacesBar";
 import { SpaceUpload } from "./SpaceUpload";
+import { DriveImportButton } from "@/components/DriveButtons";
+import { driveStatus } from "@/lib/integrations/status";
 import type { Space } from "@/lib/spaces";
 
 export const metadata: Metadata = { title: "Files · GeniusAI Workspace" };
@@ -32,6 +34,7 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
     supabase.from("files").select("space_id").eq("workspace_id", workspace.id).is("deleted_at", null).limit(10000)
   ]);
   const spacesOn = !spaceErr && !placeErr;
+  const drive = await driveStatus(supabase, ctx.user.id);
   const counts = new Map<string | null, number>();
   for (const r of (spacesOn ? placement ?? [] : []) as { space_id: string | null }[]) counts.set(r.space_id, (counts.get(r.space_id) ?? 0) + 1);
   const spaces: Space[] = spacesOn ? ((spaceRows ?? []) as Space[]).map((x) => ({ ...x, count: counts.get(x.id) ?? 0 })) : [];
@@ -63,7 +66,10 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
           <h1>Files</h1>
           <p className="subtitle">Everything in {workspace.name}, shared by all your tools.</p>
         </div>
-        <SpaceUpload workspaceId={workspace.id} spaceId={currentSpace} />
+        <div className="files-top-actions">
+          <SpaceUpload workspaceId={workspace.id} spaceId={currentSpace} />
+          {drive.connected && drive.pickerReady && workspace.access !== "view" && <DriveImportButton spaceId={currentSpace} />}
+        </div>
       </div>
 
       {spacesOn && (

@@ -9,6 +9,7 @@ import { AppShell } from "@/components/AppShell";
 import { listMembers, type MemberRow } from "@/lib/team/server";
 import { commentsMissing, type CommentRow } from "@/lib/comments/server";
 import { FileDetail } from "./FileDetail";
+import { driveStatus } from "@/lib/integrations/status";
 
 export const metadata: Metadata = { title: "File · GeniusAI Workspace" };
 export const dynamic = "force-dynamic";
@@ -33,6 +34,7 @@ export default async function FilePage({ params }: { params: Promise<{ id: strin
     listMembers(createSupabaseAdminClient(), workspace.id).catch((): MemberRow[] => [])
   ]);
   const setupNeeded = !!cErr && commentsMissing(cErr.message);
+  const drive = await driveStatus(supabase, ctx.user.id);
   // Opening a file marks its notifications for you as read.
   if (!setupNeeded && ctx.unread > 0) {
     await createSupabaseAdminClient().from("notifications").update({ read_at: new Date().toISOString() })
@@ -49,6 +51,7 @@ export default async function FilePage({ params }: { params: Promise<{ id: strin
         me={ctx.user.id}
         isAdmin={(workspace.role === "owner" || workspace.role === "admin") && workspace.access === "edit"}
         setupNeeded={setupNeeded}
+        driveConnected={drive.connected}
       />
     </AppShell>
   );
