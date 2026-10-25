@@ -49,7 +49,7 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
   const { data, count, error } = await request.order(sort.column, { ascending: sort.ascending }).order("id").range(0, query.limit - 1);
 
   type Row = { id: string; object_key: string; original_filename: string; mime_type: string; byte_size: number; scan_status: FileSummary["scanStatus"]; created_at: string; uploaded_by: string; space_id?: string | null };
-  const files: FileSummary[] = ((data ?? []) as Row[]).map((f) => ({
+  const files: FileSummary[] = ((data ?? []) as unknown as Row[]).map((f) => ({
     id: f.id, objectKey: f.object_key, originalFilename: f.original_filename, mimeType: f.mime_type,
     byteSize: Number(f.byte_size), scanStatus: f.scan_status, createdAt: f.created_at, uploadedBy: f.uploaded_by, spaceId: f.space_id ?? null
   }));
