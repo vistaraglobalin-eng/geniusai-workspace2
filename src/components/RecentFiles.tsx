@@ -122,7 +122,7 @@ export function RecentFiles({
             <li key={file.id} className="file-row">
               <span className="file-icon"><FileIcon mime={file.mimeType} /></span>
               <span className="file-meta">
-                <strong title={file.originalFilename}>{file.originalFilename}</strong>
+                {showOpenInTool ? <Link className="file-name-link" href={`/files/${file.id}`} title={file.originalFilename}><strong>{file.originalFilename}</strong></Link> : <strong title={file.originalFilename}>{file.originalFilename}</strong>}
                 <span>
                   {formatBytes(file.byteSize)} ·{" "}
                   <time dateTime={file.createdAt} suppressHydrationWarning>{formatWhen(file.createdAt)}</time>

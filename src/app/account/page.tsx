@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Building2, FolderOpen, LayoutGrid, Palette, ShieldCheck, UserRound, Users, Zap } from "lucide-react";
+import { Building2, FolderOpen, Inbox, LayoutGrid, Palette, ShieldCheck, UserRound, Users, Zap } from "lucide-react";
 import { Hub } from "@/components/Hub";
 
 export const metadata: Metadata = { title: "Account · GeniusAI Workspace" };
@@ -9,7 +9,8 @@ export default function AccountPage() {
   return (
     <Hub area="account" path="/account" title="Account" tag="Your workspace" intro="Your files, team, plan and settings." sections={[
       { title: "Workspace", rows: [
-        { href: "/files", title: "Files", text: "Everything you've uploaded or saved", Icon: FolderOpen, tint: "cyan" },
+        { href: "/inbox", title: "Inbox", text: "Mentions and replies on your files", Icon: Inbox, tint: "cyan" },
+        { href: "/files", title: "Files", text: "Everything you've uploaded or saved, in spaces", Icon: FolderOpen, tint: "cyan" },
         { href: "/settings/team", title: "Team members", text: "Invite people, choose who can edit", Icon: Users, tint: "teal" },
         { href: "/billing", title: "Plans & credits", text: "Credits for AI tools", Icon: Zap, tint: "green" },
         { href: "/tools/invoices/settings", title: "Business details", text: "Used on invoices, letters and cards", Icon: Building2, tint: "gray" }

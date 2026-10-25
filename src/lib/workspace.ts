@@ -40,6 +40,8 @@ export type WorkspaceContext = {
   credits: { available: number; reserved: number } | null;
   plan: { name: string; status: string } | null;
   recentFiles: FileSummary[];
+  /** Unread mentions and replies for you in this workspace (0 before the Comments update is installed). */
+  unread: number;
 };
 
 type MembershipRow = {
@@ -95,7 +97,8 @@ export async function loadWorkspaceContext(supabase: SupabaseClient): Promise<Wo
     workspaces: memberships.map(({ m, ws: w }) => ({ id: w.id, name: w.name, role: m.role, access: m.access === "view" ? "view" : "edit" })),
     credits: null,
     plan: null,
-    recentFiles: []
+    recentFiles: [],
+    unread: 0
   };
   if (!membership || !ws) return base;
 
@@ -108,7 +111,7 @@ export async function loadWorkspaceContext(supabase: SupabaseClient): Promise<Wo
     access: membership.access === "view" ? "view" : "edit"
   };
 
-  const [creditsResult, subscriptionResult, filesResult] = await Promise.all([
+  const [creditsResult, subscriptionResult, filesResult, unreadResult] = await Promise.all([
     supabase.from("credit_accounts").select("available_credits, reserved_credits").eq("workspace_id", ws.id).maybeSingle(),
     supabase
       .from("subscriptions")
@@ -121,7 +124,8 @@ export async function loadWorkspaceContext(supabase: SupabaseClient): Promise<Wo
       .eq("workspace_id", ws.id)
       .is("deleted_at", null)
       .order("created_at", { ascending: false })
-      .limit(8)
+      .limit(8),
+    supabase.from("notifications").select("id", { count: "exact", head: true }).eq("user_id", user.id).eq("workspace_id", ws.id).is("read_at", null)
   ]);
 
   const credits = creditsResult.data as { available_credits: number; reserved_credits: number } | null;
@@ -158,6 +162,7 @@ export async function loadWorkspaceContext(supabase: SupabaseClient): Promise<Wo
       scanStatus: f.scan_status,
       createdAt: f.created_at,
       uploadedBy: f.uploaded_by
-    }))
+    })),
+    unread: unreadResult.error ? 0 : unreadResult.count ?? 0
   };
 }

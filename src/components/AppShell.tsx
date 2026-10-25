@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap } from "lucide-react";
+import { Bell, BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 import { roleLabel } from "@/lib/team/roles";
 
@@ -152,6 +152,9 @@ export function AppShell({
           </div>
           <div className="top-actions">
             <span className="topbar-email">{user.email}</span>
+            <Link className="icon-button inbox-bell" href="/inbox" aria-label={ctx.unread ? `Inbox, ${ctx.unread} unread` : "Inbox"} title="Inbox">
+              <Bell size={18} aria-hidden="true" />{ctx.unread > 0 && <span className="bell-badge">{ctx.unread > 9 ? "9+" : ctx.unread}</span>}
+            </Link>
             <Link className="avatar small" href="/settings#profile" aria-label="Your profile and settings">{initial}</Link>
           </div>
         </header>
