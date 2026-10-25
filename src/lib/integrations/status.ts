@@ -14,3 +14,10 @@ export async function driveStatus(supabase: SupabaseClient, userId: string): Pro
     setupNeeded: !!error && /does not exist|schema cache/i.test(error.message)
   };
 }
+
+/** Has this person connected OneDrive (and is it set up on the server)? */
+export async function oneDriveStatus(supabase: SupabaseClient, userId: string) {
+  const { msConfig } = await import("./onedrive");
+  const { data, error } = await supabase.from("user_integrations").select("account_email").eq("user_id", userId).eq("provider", "onedrive").maybeSingle();
+  return { configured: !!msConfig(), connected: !error && !!data, email: (data as { account_email: string | null } | null)?.account_email ?? null };
+}

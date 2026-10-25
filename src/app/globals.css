@@ -2190,3 +2190,25 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
 .hook-events { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 2px 12px; }
 .hook-events legend { font-size: .8rem; font-weight: 600; color: var(--text-2); margin-bottom: 6px; padding: 0; }
 .hook-events .check-row { font-size: .86rem; }
+/* OneDrive browser */
+.od-backdrop { position: fixed; inset: 0; z-index: 200; background: rgb(26 23 20 / 40%); display: grid; place-items: center; padding: 16px; }
+.od-sheet { width: min(560px, 100%); max-height: min(80vh, 720px); display: flex; flex-direction: column; background: var(--surface); border-radius: 22px; box-shadow: var(--shadow-md); overflow: hidden; }
+.od-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px 8px; }
+.od-head strong { display: inline-flex; align-items: center; gap: 8px; }
+.od-search { position: relative; margin: 0 16px 8px; }
+.od-trail { display: flex; align-items: center; gap: 8px; padding: 0 16px 8px; min-height: 36px; font-size: .9rem; }
+.od-trail .quiet-button { min-height: 32px; padding: 4px 8px; }
+.od-list { list-style: none; margin: 0; padding: 0 8px; overflow-y: auto; flex: 1; border-top: 1px solid var(--border); }
+.od-item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 8px; border: 0; background: none; text-align: left; color: var(--text); border-radius: 12px; cursor: pointer; }
+.od-item:hover:not(:disabled) { background: var(--surface-2); }
+.od-item:disabled { opacity: .45; cursor: default; }
+.od-item.on { background: var(--peach-soft); }
+.od-icon { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--tile-bg); color: var(--tile-ink); flex: none; }
+.od-item.on .od-icon { background: var(--ink); color: var(--on-ink); }
+.od-name { display: grid; min-width: 0; }
+.od-name span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; font-size: .9rem; }
+.od-name small { color: var(--text-3); font-size: .76rem; }
+.od-skel { display: block; height: 120px; border-radius: 12px; margin: 10px 4px; }
+.od-empty { padding: 20px 8px; }
+.od-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); }
+.od-foot .lt-help { margin: 0; }

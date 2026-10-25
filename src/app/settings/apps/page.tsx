@@ -5,7 +5,7 @@ import { ChevronLeft } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
-import { driveStatus } from "@/lib/integrations/status";
+import { driveStatus, oneDriveStatus } from "@/lib/integrations/status";
 import { ConnectedApps } from "./ConnectedApps";
 import type { HookRow } from "./WebhookCard";
 import { dropboxAppKey } from "@/lib/integrations/dropbox";
@@ -13,14 +13,14 @@ import { dropboxAppKey } from "@/lib/integrations/dropbox";
 export const metadata: Metadata = { title: "Connected apps · GeniusAI Workspace" };
 export const dynamic = "force-dynamic";
 
-export default async function AppsPage({ searchParams }: { searchParams: Promise<{ google?: string; msg?: string }> }) {
+export default async function AppsPage({ searchParams }: { searchParams: Promise<{ google?: string; onedrive?: string; msg?: string }> }) {
   const sp = await searchParams;
   const supabase = await createSupabaseServerClient();
   const ctx = await loadWorkspaceContext(supabase);
   if (!ctx) redirect("/login?next=/settings/apps");
   if (!ctx.workspace) redirect("/onboarding");
   const workspace = ctx.workspace;
-  const drive = await driveStatus(supabase, ctx.user.id);
+  const [drive, onedrive] = await Promise.all([driveStatus(supabase, ctx.user.id), oneDriveStatus(supabase, ctx.user.id)]);
   const isAdmin = (workspace.role === "owner" || workspace.role === "admin") && workspace.access === "edit";
   const { data: hookData, error: hookErr } = await supabase.from("workspace_integrations")
     .select("id, provider, name, url_hint, events, last_status, last_at").eq("workspace_id", workspace.id).order("created_at");
@@ -28,7 +28,11 @@ export default async function AppsPage({ searchParams }: { searchParams: Promise
   const notice = sp.google === "connected" ? { ok: true, text: "Google Drive is connected." }
     : sp.google === "cancelled" ? { ok: false, text: "Google Drive wasn't connected — you cancelled on Google's screen." }
     : sp.google === "error" ? { ok: false, text: sp.msg?.slice(0, 200) || "Google Drive couldn't be connected." }
-    : sp.google === "not_configured" ? { ok: false, text: "Google Drive isn't set up on this server yet." } : null;
+    : sp.google === "not_configured" ? { ok: false, text: "Google Drive isn't set up on this server yet." }
+    : sp.onedrive === "connected" ? { ok: true, text: "OneDrive is connected." }
+    : sp.onedrive === "cancelled" ? { ok: false, text: "OneDrive wasn't connected — you cancelled on Microsoft's screen." }
+    : sp.onedrive === "error" ? { ok: false, text: sp.msg?.slice(0, 200) || "OneDrive couldn't be connected." }
+    : sp.onedrive === "not_configured" ? { ok: false, text: "OneDrive isn't set up on this server yet." } : null;
   return (
     <AppShell ctx={{ ...ctx, workspace }} active="settings" breadcrumb="Connected apps">
       <Link href="/account" className="back-link"><ChevronLeft size={16} aria-hidden="true" /> Account</Link>
@@ -39,7 +43,7 @@ export default async function AppsPage({ searchParams }: { searchParams: Promise
         </div>
       </div>
       {notice && <p className={`form-message ${notice.ok ? "success" : "error"}`} role="status">{notice.text}</p>}
-      <ConnectedApps drive={drive} hooks={(hookData ?? []) as HookRow[]} isAdmin={isAdmin} hooksMissing={hooksMissing} dropboxReady={!!dropboxAppKey()} />
+      <ConnectedApps drive={drive} hooks={(hookData ?? []) as HookRow[]} isAdmin={isAdmin} hooksMissing={hooksMissing} dropboxReady={!!dropboxAppKey()} onedrive={onedrive} />
     </AppShell>
   );
 }

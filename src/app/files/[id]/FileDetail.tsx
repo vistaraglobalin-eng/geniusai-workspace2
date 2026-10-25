@@ -11,6 +11,7 @@ import { renderPdfPages, type PageView } from "@/lib/pdf/preview";
 import { COMMENT_MAX, segments } from "@/lib/comments/mentions";
 import { DriveSaveButton } from "@/components/DriveButtons";
 import { DropboxSaveButton } from "@/components/DropboxButtons";
+import { OneDriveSaveButton } from "@/components/OneDriveButtons";
 
 type C = { id: string; parent_id: string | null; author_id: string | null; author_name: string; body: string; page: number | null; resolved_at: string | null; edited_at: string | null; created_at: string };
 type Member = { id: string; name: string; email: string | null };
@@ -152,8 +153,8 @@ function Preview({ file, onPage }: { file: FileInfo; onPage: (n: number) => void
   );
 }
 
-export function FileDetail({ file, comments: initial0, members, me, isAdmin, setupNeeded, driveConnected = false, slackConnected = false, dropboxKey = "" }: {
-  file: FileInfo; comments: C[]; members: Member[]; me: string; isAdmin: boolean; setupNeeded: boolean; driveConnected?: boolean; slackConnected?: boolean; dropboxKey?: string;
+export function FileDetail({ file, comments: initial0, members, me, isAdmin, setupNeeded, driveConnected = false, slackConnected = false, dropboxKey = "", oneDriveConnected = false }: {
+  file: FileInfo; comments: C[]; members: Member[]; me: string; isAdmin: boolean; setupNeeded: boolean; driveConnected?: boolean; slackConnected?: boolean; dropboxKey?: string; oneDriveConnected?: boolean;
 }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
@@ -236,6 +237,7 @@ export function FileDetail({ file, comments: initial0, members, me, isAdmin, set
             <Link className="secondary-button" href={`/tools/chat?file=${file.id}`}><MessageSquareText size={15} aria-hidden="true" /> Ask AI</Link>
             {driveConnected && <DriveSaveButton fileId={file.id} />}
             {dropboxKey && <DropboxSaveButton appKey={dropboxKey} fileId={file.id} />}
+            {oneDriveConnected && <OneDriveSaveButton fileId={file.id} />}
             {slackConnected && <SlackShareButton fileId={file.id} />}
           </div>
         </div>

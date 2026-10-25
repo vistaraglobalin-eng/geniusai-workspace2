@@ -3,14 +3,20 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRightLeft, Box, Check, HardDrive, Link2Off, PlugZap, X } from "lucide-react";
+import { ArrowRightLeft, Box, Check, Cloud, HardDrive, Link2Off, PlugZap, X } from "lucide-react";
 import type { DriveStatus } from "@/lib/integrations/status";
 import { WebhookCard, type HookRow } from "./WebhookCard";
 
-export function ConnectedApps({ drive, hooks, isAdmin, hooksMissing, dropboxReady }: { drive: DriveStatus; hooks: HookRow[]; isAdmin: boolean; hooksMissing: boolean; dropboxReady: boolean }) {
+export function ConnectedApps({ drive, hooks, isAdmin, hooksMissing, dropboxReady, onedrive }: { drive: DriveStatus; hooks: HookRow[]; isAdmin: boolean; hooksMissing: boolean; dropboxReady: boolean; onedrive: { configured: boolean; connected: boolean; email: string | null } }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [busy, setBusy] = useState(false);
+  async function disconnectOneDrive() {
+    if (!window.confirm("Disconnect OneDrive? Files already copied stay where they are.")) return;
+    setBusy(true);
+    await fetch("/api/integrations/onedrive/disconnect", { method: "POST" }).catch(() => null);
+    setBusy(false); startTransition(() => router.refresh());
+  }
   async function disconnect() {
     if (!window.confirm("Disconnect Google Drive? Files already copied stay where they are.")) return;
     setBusy(true);
@@ -53,6 +59,21 @@ export function ConnectedApps({ drive, hooks, isAdmin, hooksMissing, dropboxRead
           <p className="lt-help">After changing a value in Vercel, redeploy, then refresh this page.</p>
         </section>
       )}
+      <section className="panel-card app-card">
+        <div className="app-card-head">
+          <span className="app-icon lg"><Cloud size={24} aria-hidden="true" /></span>
+          <div><h2>OneDrive</h2><p>Browse your OneDrive (personal or work) to bring files in, and save files to a “GeniusAI Workspace” folder in it.</p></div>
+        </div>
+        {!onedrive.configured ? <p className="lt-help">Not set up on this server yet. The app owner adds the Microsoft app keys in Vercel.</p>
+          : onedrive.connected ? (
+            <div className="app-card-foot">
+              <span className="app-connected"><Check size={15} aria-hidden="true" /> Connected{onedrive.email ? ` as ${onedrive.email}` : ""}</span>
+              <button type="button" className="quiet-button with-icon danger-text" onClick={disconnectOneDrive} disabled={busy}><Link2Off size={15} aria-hidden="true" /> Disconnect</button>
+            </div>
+          ) : (
+            <div className="app-card-foot"><a className="primary-button" href="/api/integrations/onedrive/start?next=/settings/apps"><PlugZap size={16} aria-hidden="true" /> Connect OneDrive</a></div>
+          )}
+      </section>
       <section className="panel-card app-card">
         <div className="app-card-head">
           <span className="app-icon lg"><Box size={24} aria-hidden="true" /></span>

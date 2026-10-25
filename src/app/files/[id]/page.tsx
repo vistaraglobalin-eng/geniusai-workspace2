@@ -9,7 +9,7 @@ import { AppShell } from "@/components/AppShell";
 import { listMembers, type MemberRow } from "@/lib/team/server";
 import { commentsMissing, type CommentRow } from "@/lib/comments/server";
 import { FileDetail } from "./FileDetail";
-import { driveStatus } from "@/lib/integrations/status";
+import { driveStatus, oneDriveStatus } from "@/lib/integrations/status";
 import { dropboxAppKey } from "@/lib/integrations/dropbox";
 
 export const metadata: Metadata = { title: "File · GeniusAI Workspace" };
@@ -35,7 +35,7 @@ export default async function FilePage({ params }: { params: Promise<{ id: strin
     listMembers(createSupabaseAdminClient(), workspace.id).catch((): MemberRow[] => [])
   ]);
   const setupNeeded = !!cErr && commentsMissing(cErr.message);
-  const drive = await driveStatus(supabase, ctx.user.id);
+  const [drive, onedrive] = await Promise.all([driveStatus(supabase, ctx.user.id), oneDriveStatus(supabase, ctx.user.id)]);
   // Only admins can read connection rows, so ask the server whether Slack is connected.
   const { count: slackCount } = await createSupabaseAdminClient().from("workspace_integrations").select("id", { count: "exact", head: true }).eq("workspace_id", workspace.id).eq("provider", "slack");
   // Opening a file marks its notifications for you as read.
@@ -56,6 +56,7 @@ export default async function FilePage({ params }: { params: Promise<{ id: strin
         setupNeeded={setupNeeded}
         driveConnected={drive.connected}
         dropboxKey={dropboxAppKey()}
+        oneDriveConnected={onedrive.connected}
         slackConnected={(slackCount ?? 0) > 0 && workspace.access !== "view"}
       />
     </AppShell>

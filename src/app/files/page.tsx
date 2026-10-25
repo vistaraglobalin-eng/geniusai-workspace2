@@ -14,7 +14,8 @@ import { SpaceUpload } from "./SpaceUpload";
 import { DriveImportButton } from "@/components/DriveButtons";
 import { DropboxImportButton } from "@/components/DropboxButtons";
 import { dropboxAppKey } from "@/lib/integrations/dropbox";
-import { driveStatus } from "@/lib/integrations/status";
+import { driveStatus, oneDriveStatus } from "@/lib/integrations/status";
+import { OneDriveImportButton } from "@/components/OneDriveButtons";
 import type { Space } from "@/lib/spaces";
 
 export const metadata: Metadata = { title: "Files · GeniusAI Workspace" };
@@ -36,7 +37,7 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
     supabase.from("files").select("space_id").eq("workspace_id", workspace.id).is("deleted_at", null).limit(10000)
   ]);
   const spacesOn = !spaceErr && !placeErr;
-  const drive = await driveStatus(supabase, ctx.user.id);
+  const [drive, onedrive] = await Promise.all([driveStatus(supabase, ctx.user.id), oneDriveStatus(supabase, ctx.user.id)]);
   const counts = new Map<string | null, number>();
   for (const r of (spacesOn ? placement ?? [] : []) as { space_id: string | null }[]) counts.set(r.space_id, (counts.get(r.space_id) ?? 0) + 1);
   const spaces: Space[] = spacesOn ? ((spaceRows ?? []) as Space[]).map((x) => ({ ...x, count: counts.get(x.id) ?? 0 })) : [];
@@ -72,6 +73,7 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
           <SpaceUpload workspaceId={workspace.id} spaceId={currentSpace} />
           {drive.connected && drive.pickerReady && workspace.access !== "view" && <DriveImportButton spaceId={currentSpace} />}
           {dropboxAppKey() && workspace.access !== "view" && <DropboxImportButton appKey={dropboxAppKey()} spaceId={currentSpace} />}
+          {onedrive.connected && workspace.access !== "view" && <OneDriveImportButton spaceId={currentSpace} />}
         </div>
       </div>
 
