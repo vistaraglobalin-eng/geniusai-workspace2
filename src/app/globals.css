@@ -2176,3 +2176,17 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
 .app-checks li.ok svg { color: var(--text-3); }
 .app-checks li.bad { color: var(--danger-text); }
 .app-checks code { font-size: .8rem; background: var(--surface-2); border-radius: 6px; padding: 1px 5px; color: var(--text); }
+/* Slack / Zapier connections */
+.hook-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hook-list > li { border: 1px solid var(--border); border-radius: 14px; padding: 10px 12px; display: grid; gap: 8px; }
+.hook-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 10px; align-items: baseline; }
+.hook-name { display: inline-flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.hook-name svg { color: var(--accent-text); align-self: center; }
+.hook-name small, .hook-status { color: var(--text-3); font-size: .76rem; }
+.hook-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.hook-actions .quiet-button { min-height: 34px; padding: 4px 10px; font-size: .8rem; border: 1px solid var(--border); }
+.hook-edit { display: grid; gap: 10px; justify-items: start; }
+.hook-form { display: grid; gap: 12px; }
+.hook-events { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 2px 12px; }
+.hook-events legend { font-size: .8rem; font-weight: 600; color: var(--text-2); margin-bottom: 6px; padding: 0; }
+.hook-events .check-row { font-size: .86rem; }

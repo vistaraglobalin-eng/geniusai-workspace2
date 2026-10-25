@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 import { FILES_BUCKET } from "@/lib/storage/files";
 import { saveFileForUser } from "@/lib/storage/server-save";
+import { emitSignature } from "@/lib/integrations/emit";
 import { buildCompletedPdf, type CompletedSigner, type SignField } from "@/lib/pdf/sign-request";
 
 export const newAccessToken = () => randomBytes(32).toString("base64url"); // 43 chars, 256 bits
@@ -113,6 +114,8 @@ export async function finalizeIfComplete(admin: SupabaseClient, requestId: strin
       completed_sha256: createHash("sha256").update(bytes).digest("hex")
     }).eq("id", req.id);
     await logEvent(admin, { requestId: req.id, workspaceId: req.workspace_id, event: "completed" });
+    const prod = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+    await emitSignature(admin, req.id, "completed", prod ? `https://${prod.replace(/^https?:\/\//, "")}` : "").catch(() => undefined);
     await admin.from("audit_logs").insert({
       workspace_id: req.workspace_id, actor_user_id: req.created_by, action_key: "signature_request.completed", target_type: "signature_request", target_id: req.id,
       metadata: { file_id: fileId, signers: signers.map((s) => ({ name: s.name, signed_at: s.signed_at, ip: s.ip })) }

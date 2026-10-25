@@ -1,5 +1,6 @@
 "use client";
 
+import { announce } from "@/lib/integrations/emit-client";
 import Link from "next/link";
 import { useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -83,10 +84,11 @@ export function ExpenseBook({ workspaceId, month, today, rows, prevTotal, settin
       }
       const row = { spent_on: draft.spent_on, amount, category: draft.category, vendor: draft.vendor.trim().slice(0, 120), payment_mode: draft.payment_mode, gst_amount: gst,
         vendor_gstin: draft.vendor_gstin.trim().toUpperCase().slice(0, 15), note: draft.note.trim().slice(0, 500), bill_file_id: billId };
-      const { error: err } = draft.id
-        ? await supabase.from("expenses").update({ ...row, updated_at: new Date().toISOString() }).eq("id", draft.id)
-        : await supabase.from("expenses").insert({ workspace_id: workspaceId, ...row });
+      const { data: savedRow, error: err } = draft.id
+        ? await supabase.from("expenses").update({ ...row, updated_at: new Date().toISOString() }).eq("id", draft.id).select("id").maybeSingle()
+        : await supabase.from("expenses").insert({ workspace_id: workspaceId, ...row }).select("id").single();
       if (err) { setError("It couldn't be saved. Please try again."); return; }
+      if (!draft.id) announce("expense", (savedRow as { id?: string } | null)?.id);
       setMessage(draft.id ? "Expense updated." : `Added ${rupees(amount)} for ${draft.category}.`);
       setDraft(null);
       if (draft.spent_on.slice(0, 7) !== month) router.push(`/tools/expenses?m=${draft.spent_on.slice(0, 7)}`); else refresh();

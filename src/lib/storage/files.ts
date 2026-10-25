@@ -1,3 +1,4 @@
+import { announce } from "@/lib/integrations/emit-client";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { ModuleKey } from "@/lib/modules";
 
@@ -122,6 +123,7 @@ export async function uploadWorkspaceFile(
     throw new UploadError("record_failed", "The file couldn't be saved to your workspace. Please try again.");
   }
 
+  announce("file", id);
   return { id, objectKey, originalFilename: file.name, mimeType: file.type, byteSize: file.size };
 }
 

@@ -5,8 +5,9 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRightLeft, Check, HardDrive, Link2Off, PlugZap, X } from "lucide-react";
 import type { DriveStatus } from "@/lib/integrations/status";
+import { WebhookCard, type HookRow } from "./WebhookCard";
 
-export function ConnectedApps({ drive }: { drive: DriveStatus }) {
+export function ConnectedApps({ drive, hooks, isAdmin, hooksMissing }: { drive: DriveStatus; hooks: HookRow[]; isAdmin: boolean; hooksMissing: boolean }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [busy, setBusy] = useState(false);
@@ -52,6 +53,8 @@ export function ConnectedApps({ drive }: { drive: DriveStatus }) {
           <p className="lt-help">After changing a value in Vercel, redeploy, then refresh this page.</p>
         </section>
       )}
+      <WebhookCard provider="slack" hooks={hooks} isAdmin={isAdmin} setupNeeded={hooksMissing} />
+      <WebhookCard provider="webhook" hooks={hooks} isAdmin={isAdmin} setupNeeded={hooksMissing} />
       <section className="panel-card app-card">
         <div className="app-card-head">
           <span className="app-icon lg"><ArrowRightLeft size={24} aria-hidden="true" /></span>

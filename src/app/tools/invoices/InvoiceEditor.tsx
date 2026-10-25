@@ -1,5 +1,6 @@
 "use client";
 
+import { announce } from "@/lib/integrations/emit-client";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -162,6 +163,7 @@ export function InvoiceEditor({ workspaceId, settings, customers, initial, kind:
         if (err) { setError(err); return null; }
         const next = { ...saved, ...payload } as SavedDoc;
         setSaved(next); setMessage(issue ? `${docTitle(doc)} ${saved.number} saved.` : "Draft saved.");
+        announce("invoice", saved.id);
         startTransition(() => router.refresh());
         return next;
       }
@@ -170,6 +172,7 @@ export function InvoiceEditor({ workspaceId, settings, customers, initial, kind:
       if (from?.kind === "quotation" && kind === "invoice") await updateDocument(supabase, from.id, { status: "accepted" });
       const next = { ...payload, id: res.id, number: res.number, workspace_id: workspaceId, related_id: null, file_id: null } as SavedDoc;
       setSaved(next);
+      announce("invoice", res.id);
       setMessage(`${docTitle(doc)} ${res.number} created.`);
       router.replace(`/tools/invoices/${res.id}`);
       return next;
@@ -215,6 +218,7 @@ export function InvoiceEditor({ workspaceId, settings, customers, initial, kind:
       const paid = r2((saved.amount_paid || 0) + amount);
       const status = paid >= total ? "paid" : "partly_paid";
       await updateDocument(supabase, saved.id, { amount_paid: paid, status });
+      announce("invoice", res.id); announce("invoice", saved.id);
       setSaved({ ...saved, amount_paid: paid, status });
       setPaying(false);
       setMessage(`Payment of ₹${inr(amount)} recorded. Receipt ${res.number} created.`);
@@ -227,7 +231,7 @@ export function InvoiceEditor({ workspaceId, settings, customers, initial, kind:
     setBusy("Updating…");
     const err = await updateDocument(supabase, saved.id, { status });
     setBusy(null);
-    if (err) setError(err); else { setSaved({ ...saved, status }); startTransition(() => router.refresh()); }
+    if (err) setError(err); else { setSaved({ ...saved, status }); announce("invoice", saved.id); startTransition(() => router.refresh()); }
   }
 
   const title = saved ? `${docTitle(doc)} ${saved.number}` : `New ${kind === "quotation" ? "quotation" : kind === "receipt" ? "receipt" : gst ? "tax invoice" : "bill of supply"}`;

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { AtSign, Check, CornerDownRight, Download, FileText, MessageSquareText, PenLine, RotateCcw, Send, Signature, Trash2 } from "lucide-react";
+import { AtSign, Check, Hash, CornerDownRight, Download, FileText, MessageSquareText, PenLine, RotateCcw, Send, Signature, Trash2 } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { FILES_BUCKET } from "@/lib/storage/files";
 import { ShareButton, storageSource } from "@/components/ShareSheet";
@@ -90,6 +90,24 @@ function Composer({ members, me, placeholder, onSend, autoFocus, page, onClearPa
   );
 }
 
+function SlackShareButton({ fileId }: { fileId: string }) {
+  const [state, setState] = useState<"idle" | "busy" | "done" | string>("idle");
+  async function send() {
+    setState("busy");
+    const r = await fetch("/api/integrations/slack/share", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ fileId }) }).catch(() => null);
+    const d = r ? ((await r.json().catch(() => ({}))) as { message?: string }) : {};
+    setState(r?.ok ? "done" : d.message ?? "It couldn't be sent to Slack.");
+  }
+  return (
+    <span className="drive-btn-wrap">
+      <button type="button" className="secondary-button with-icon" onClick={send} disabled={state === "busy" || state === "done"}>
+        <Hash size={15} aria-hidden="true" /> {state === "busy" ? "Sending…" : state === "done" ? "Sent to Slack" : "Send to Slack"}
+      </button>
+      {state !== "idle" && state !== "busy" && state !== "done" && <span className="form-message error" role="alert">{state}</span>}
+    </span>
+  );
+}
+
 function Body({ body, me }: { body: string; me: string }) {
   return <p className="cm-body">{segments(body).map((s, i) => s.mention ? <span key={i} className={`cm-mention${s.mention === me ? " me" : ""}`}>{s.text}</span> : <span key={i}>{s.text}</span>)}</p>;
 }
@@ -133,8 +151,8 @@ function Preview({ file, onPage }: { file: FileInfo; onPage: (n: number) => void
   );
 }
 
-export function FileDetail({ file, comments: initial0, members, me, isAdmin, setupNeeded, driveConnected = false }: {
-  file: FileInfo; comments: C[]; members: Member[]; me: string; isAdmin: boolean; setupNeeded: boolean; driveConnected?: boolean;
+export function FileDetail({ file, comments: initial0, members, me, isAdmin, setupNeeded, driveConnected = false, slackConnected = false }: {
+  file: FileInfo; comments: C[]; members: Member[]; me: string; isAdmin: boolean; setupNeeded: boolean; driveConnected?: boolean; slackConnected?: boolean;
 }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
@@ -216,6 +234,7 @@ export function FileDetail({ file, comments: initial0, members, me, isAdmin, set
             {file.mime === "application/pdf" && <Link className="secondary-button" href={`/tools/sign?file=${file.id}`}><Signature size={15} aria-hidden="true" /> Sign</Link>}
             <Link className="secondary-button" href={`/tools/chat?file=${file.id}`}><MessageSquareText size={15} aria-hidden="true" /> Ask AI</Link>
             {driveConnected && <DriveSaveButton fileId={file.id} />}
+            {slackConnected && <SlackShareButton fileId={file.id} />}
           </div>
         </div>
         <Preview file={file} onPage={(n) => { setPage(n); panel.current?.scrollIntoView({ behavior: "smooth", block: "start" }); }} />

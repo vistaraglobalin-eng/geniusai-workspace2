@@ -35,6 +35,8 @@ export default async function FilePage({ params }: { params: Promise<{ id: strin
   ]);
   const setupNeeded = !!cErr && commentsMissing(cErr.message);
   const drive = await driveStatus(supabase, ctx.user.id);
+  // Only admins can read connection rows, so ask the server whether Slack is connected.
+  const { count: slackCount } = await createSupabaseAdminClient().from("workspace_integrations").select("id", { count: "exact", head: true }).eq("workspace_id", workspace.id).eq("provider", "slack");
   // Opening a file marks its notifications for you as read.
   if (!setupNeeded && ctx.unread > 0) {
     await createSupabaseAdminClient().from("notifications").update({ read_at: new Date().toISOString() })
@@ -52,6 +54,7 @@ export default async function FilePage({ params }: { params: Promise<{ id: strin
         isAdmin={(workspace.role === "owner" || workspace.role === "admin") && workspace.access === "edit"}
         setupNeeded={setupNeeded}
         driveConnected={drive.connected}
+        slackConnected={(slackCount ?? 0) > 0 && workspace.access !== "view"}
       />
     </AppShell>
   );
