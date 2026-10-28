@@ -15,6 +15,7 @@ export type AnalyticsEvent =
   | "file_uploaded"
   | "ai_task_completed"
   | "ai_task_failed"
+  | "compare_completed"
   | "onboarding_completed";
 
 type Props = Record<string, string | number | boolean | null | undefined>;

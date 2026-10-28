@@ -2285,3 +2285,25 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
 .pb-score-bar { grid-column: 1 / -1; height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
 .pb-score-bar i { display: block; height: 100%; border-radius: 999px; background: var(--accent); }
 .pb-quote { margin-top: 10px; }
+
+/* Version compare (/tools/compare) */
+.vc-pickers { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 10px; align-items: end; }
+.vc-pickers .field + .field { margin-top: 0; }
+.vc-swap { margin-bottom: 2px; }
+.vc-ai { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.vc-ai-result { border: 1px solid var(--accent-border); border-radius: 12px; padding: 4px 14px 10px; background: var(--accent-softer); }
+.vc-legend { display: flex; gap: 10px; font-size: .75rem; }
+.vc-blocks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.vc-block { border: 1px solid var(--border); border-left-width: 4px; border-radius: 10px; padding: 10px 12px; background: var(--surface); }
+.vc-block.changed { border-left-color: color-mix(in srgb, #d99a2b 70%, transparent); }
+.vc-block.added { border-left-color: color-mix(in srgb, #1f9d55 70%, transparent); }
+.vc-block.removed { border-left-color: color-mix(in srgb, #d64545 70%, transparent); }
+.vc-block p { margin: 4px 0 0; font-size: .88rem; line-height: 1.6; color: var(--text); overflow-wrap: anywhere; white-space: pre-wrap; }
+.vc-block.same p { color: var(--text-3); }
+.vc-tag { font-size: .7rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--text-3); }
+/* Own green/red (translucent, so they read in light and dark): here colour carries meaning. */
+.vc-ins { background: color-mix(in srgb, #1f9d55 20%, transparent); color: inherit; text-decoration: underline 2px color-mix(in srgb, #1f9d55 65%, transparent); text-underline-offset: 3px; border-radius: 3px; padding: 0 2px; }
+.vc-del { background: color-mix(in srgb, #d64545 16%, transparent); color: inherit; text-decoration: line-through 1.5px color-mix(in srgb, #d64545 80%, transparent); border-radius: 3px; padding: 0 2px; }
+.vc-gap { text-align: center; font-size: .78rem; color: var(--text-3); padding: 2px 0; }
+.vc-layout .dg-step { grid-column: 1 / -1; }
+@media (max-width: 640px) { .vc-pickers { grid-template-columns: minmax(0, 1fr); } .vc-swap { justify-self: center; transform: rotate(90deg); } }

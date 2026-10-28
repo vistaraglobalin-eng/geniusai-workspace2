@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 30: Compare versions
+
+- Compare versions (/tools/compare, also in All tools, Docs and Agreement Studio): pick an older and a newer version (PDF with text, Word .docx or text). Every edited, added and removed paragraph is shown with word-level highlights (green added, red struck-through removed) and page numbers. Unchanged text is folded away ("Show unchanged" to see it). Download the changes as Markdown.
+- Free and private: PDFs are read and compared on the device; Word and text files are read by the server without AI (/api/documents/text). Line wrapping, spacing, case and curly quotes are ignored so only real changes show.
+- Optional "Explain what these changes mean (AI)": sends only the changed text and returns key changes (money, dates, obligations, liability, risk) and minor edits. Uses a few credits (module documents, task compare).
+- No database change.
+
 ## Revision 29: Firm playbook
 
 - Firm playbook (/tools/agreements/playbook, also in Agreement Studio, All tools and Docs): save your standard contract terms once (topic, standard position, acceptable fallback, importance), or start from 10 common terms for Indian businesses and edit them. Up to 40 rules per workspace; editors change them, view-only members can read.
