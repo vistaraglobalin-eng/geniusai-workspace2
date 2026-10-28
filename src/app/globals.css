@@ -2266,3 +2266,22 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
 .li-amend-head .link-button { display: inline-flex; align-items: center; gap: 4px; text-transform: none; letter-spacing: 0; }
 .cf-item .li-amend p { margin: 6px 0 0; color: var(--text); white-space: pre-wrap; }
 @media (max-width: 640px) { .li-sides { grid-template-columns: minmax(0, 1fr); } }
+
+/* Firm playbook (/tools/agreements/playbook) */
+.pb-rules { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.pb-rule { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--surface); }
+.pb-rule-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.pb-rule-head strong { font-size: .9rem; color: var(--text); }
+.pb-rule p { margin: 6px 0 0; font-size: .84rem; line-height: 1.5; color: var(--text-2); }
+.pb-rule p.pb-fallback { color: var(--text-3); }
+.pb-rule-actions { display: flex; gap: 16px; margin-top: 8px; }
+.pb-rule-actions .link-button { display: inline-flex; align-items: center; gap: 4px; }
+.pb-form { display: flex; flex-direction: column; gap: 10px; }
+.pb-form .field + .field { margin-top: 0; }
+.pb-form-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.pb-score { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; column-gap: 10px; row-gap: 8px; }
+.pb-score strong { font-size: 2rem; line-height: 1; color: var(--text); }
+.pb-score span { font-size: .85rem; color: var(--text-2); }
+.pb-score-bar { grid-column: 1 / -1; height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.pb-score-bar i { display: block; height: 100%; border-radius: 999px; background: var(--accent); }
+.pb-quote { margin-top: 10px; }

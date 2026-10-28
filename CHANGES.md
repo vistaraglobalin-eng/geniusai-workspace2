@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 29: Firm playbook
+
+- Firm playbook (/tools/agreements/playbook, also in Agreement Studio, All tools and Docs): save your standard contract terms once (topic, standard position, acceptable fallback, importance), or start from 10 common terms for Indian businesses and edit them. Up to 40 rules per workspace; editors change them, view-only members can read.
+- Check a contract: every rule is marked Meets standard, Acceptable fallback, Deviates, Missing or Not applicable, with the contract's clause and quote, a short explanation and suggested wording (Copy button) for each gap. A score shows the share of applicable rules met, plus "Other terms to look at".
+- Download as Markdown; recent checks can be reopened and read correctly even after the playbook changes.
+- Uses credits like other AI tools (module contracts, task playbook). Needs 202610280023_playbook.sql (16 security checks; all 151 local database checks pass).
+
 ## Revision 28: Usage analytics (optional)
 
 - Anonymous usage analytics with PostHog, off until NEXT_PUBLIC_POSTHOG_KEY is set (optional NEXT_PUBLIC_POSTHOG_HOST, default EU cloud).

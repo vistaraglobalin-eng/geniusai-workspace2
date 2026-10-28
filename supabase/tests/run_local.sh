@@ -32,3 +32,6 @@ run -f $M/202610230009_refunds.sql
 echo "== refunds"; PGOPTIONS= psql -d $DB -q -v ON_ERROR_STOP=1 -t -f refunds_tests.sql 2>&1 | grep -E "PASS|FAIL|ERROR" | sed 's/^psql:[^ ]* //'
 run -f $M/202610230010_agreements.sql
 echo "== agreements"; PGOPTIONS= psql -d $DB -q -v ON_ERROR_STOP=1 -t -f agreements_tests.sql 2>&1 | grep -E "PASS|FAIL|ERROR" | sed 's/^psql:[^ ]* //'
+for m in $M/2026102400{11,12,13,14,15,16}_*.sql $M/2026102500{17,18,19,20,21,22}_*.sql; do run -f "$m"; done
+run -f $M/202610280023_playbook.sql
+echo "== playbook"; PGOPTIONS= psql -d $DB -q -v ON_ERROR_STOP=1 -t -f playbook_tests.sql 2>&1 | grep -E "PASS|FAIL|ERROR" | sed 's/^psql:[^ ]* //'

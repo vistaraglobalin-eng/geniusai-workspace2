@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Combine, EyeOff, FilePen, FileType2, FileStack, LayoutTemplate, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table, GitCompareArrows, Landmark } from "lucide-react";
+import { Combine, EyeOff, FilePen, FileType2, FileStack, LayoutTemplate, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table, GitCompareArrows, Landmark, BookCheck } from "lucide-react";
 import { Hub } from "@/components/Hub";
 
 export const metadata: Metadata = { title: "Documents · GeniusAI Workspace" };
@@ -33,6 +33,7 @@ export default function DocsPage() {
         { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks", Icon: MessageSquareText, tint: "orange" },
         { href: "/tools/agreements/conflicts", title: "Find conflicts", text: "Compare contracts and policies clause by clause", Icon: GitCompareArrows, tint: "orange" },
         { href: "/tools/agreements/law-impact", title: "New-law impact check", text: "Which contracts must change for a new rule", Icon: Landmark, tint: "orange" },
+        { href: "/tools/agreements/playbook", title: "Firm playbook", text: "Check contracts against your standard terms", Icon: BookCheck, tint: "orange" },
         { href: "/tools/documents?task=translate", title: "Translate", text: "Into 25 languages, incl. Hindi", Icon: Languages, tint: "teal" },
         { href: "/tools/documents?task=extract_text", title: "Read scanned text (OCR)", text: "From scans and photos", Icon: ScanText, tint: "cyan" },
         { href: "/tools/documents?task=tables", title: "Extract tables", text: "To a spreadsheet you can edit", Icon: Table, tint: "green" }

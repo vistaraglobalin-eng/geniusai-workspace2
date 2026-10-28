@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, MessageSquareText, GitCompareArrows, Landmark } from "lucide-react";
+import { ArrowUpRight, FilePen, MessageSquareText, GitCompareArrows, Landmark, BookCheck } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -68,6 +68,11 @@ export default async function AgreementStudioPage() {
         <Link href="/tools/agreements/law-impact" className="as-template as-explain">
           <span className="as-template-icon"><Landmark size={20} aria-hidden="true" /></span>
           <span className="as-template-text"><strong>New-law impact check</strong><span>A new law, rule or policy? See which contracts must change, the exact clauses and suggested wording.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/agreements/playbook" className="as-template as-explain">
+          <span className="as-template-icon"><BookCheck size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>Firm playbook</strong><span>Save your standard terms once, then check any contract against them, with suggested wording for every gap.</span></span>
           <span className="as-cat">Review</span>
         </Link>
       </div>
