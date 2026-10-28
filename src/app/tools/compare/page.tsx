@@ -29,7 +29,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const has = (id?: string) => (id && files.some((f) => f.id === id) ? id : undefined);
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="tools" breadcrumb="Compare versions">
+    <AppShell ctx={{ ...ctx, workspace }} active="compare" breadcrumb="Compare versions">
       <div className="welcome-row">
         <div>
           <h1>Compare <span>versions</span></h1>

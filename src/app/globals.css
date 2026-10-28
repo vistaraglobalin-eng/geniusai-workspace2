@@ -2371,3 +2371,17 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
 .rm-loading { display: flex; align-items: center; gap: 8px; font-family: var(--font-sans), system-ui, sans-serif; font-size: .8em; color: var(--rm-muted); }
 .rm-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 2em; padding-top: 1.2em; border-top: 1px solid var(--rm-rule); font-family: var(--font-sans), system-ui, sans-serif; font-size: 15px; }
 .rm-doc .form-message { font-family: var(--font-sans), system-ui, sans-serif; font-size: 14px; }
+
+/* Contract review highlights (home, Agreement Studio) */
+.home-review { margin: 0 0 26px; }
+.home-review-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.home-review-head a { display: inline-flex; align-items: center; gap: 2px; font-size: .8rem; font-weight: 600; color: var(--accent-text); white-space: nowrap; }
+.home-review-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.home-review-card { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); min-width: 0; transition: border-color .15s, box-shadow .15s; }
+.home-review-card:hover { border-color: var(--accent-border); box-shadow: var(--shadow-md); }
+.home-review-card > span:last-child { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.home-review-card strong { font-size: .86rem; color: var(--text); }
+.home-review-card em { font-style: normal; font-size: .74rem; line-height: 1.4; color: var(--text-2); }
+@media (max-width: 900px) { .home-review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.as-review-grid { margin-bottom: 18px; }
+.as-review { border-color: var(--accent-border); }

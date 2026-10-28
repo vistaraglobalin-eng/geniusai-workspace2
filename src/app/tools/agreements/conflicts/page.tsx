@@ -39,7 +39,7 @@ export default async function ConflictsPage() {
     .map((j) => ({ id: j.id, filenames: j.input_params?.filenames ?? [], credits: j.charged_credits, createdAt: j.created_at }));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="agreements" breadcrumb="Find conflicts">
+    <AppShell ctx={{ ...ctx, workspace }} active="conflicts" breadcrumb="Find conflicts">
       <Link href="/tools/agreements" className="back-link"><ArrowLeft size={16} aria-hidden="true" /> Agreement Studio</Link>
       <div className="welcome-row">
         <div>

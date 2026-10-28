@@ -39,6 +39,40 @@ export default async function AgreementStudioPage() {
         </div>
       </div>
 
+      <div className="section-heading" id="review"><div><h2>Review contracts with AI</h2><p>Find conflicts, check new laws, compare drafts and apply your own standard terms.</p></div></div>
+      <div className="as-templates as-review-grid">
+        <Link href="/tools/agreements/explain" className="as-template as-review">
+          <span className="as-template-icon"><MessageSquareText size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>Explain a contract</strong><span>Upload an agreement you received: plain-language summary, risks and questions to ask.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/agreements/conflicts" className="as-template as-review">
+          <span className="as-template-icon"><GitCompareArrows size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>Find conflicts</strong><span>Compare 2 to 5 contracts or policies and see where they contradict each other, clause by clause.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/agreements/law-impact" className="as-template as-review">
+          <span className="as-template-icon"><Landmark size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>New-law impact check</strong><span>A new law, rule or policy? See which contracts must change, the exact clauses and suggested wording.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/agreements/playbook" className="as-template as-review">
+          <span className="as-template-icon"><BookCheck size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>Firm playbook</strong><span>Save your standard terms once, then check any contract against them, with suggested wording for every gap.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/compare" className="as-template as-review">
+          <span className="as-template-icon"><Diff size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>Compare versions</strong><span>What changed between two drafts? Every added, removed and edited word, with page numbers. Free.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/agreements/clause-map" className="as-template as-review">
+          <span className="as-template-icon"><Network size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>Clause map</strong><span>See how a contract fits together, and catch broken references and undefined terms.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+      </div>
+
       <section className="panel-card as-hero">
         <PromptBox />
       </section>
@@ -55,36 +89,6 @@ export default async function AgreementStudioPage() {
             </Link>
           );
         })}
-        <Link href="/tools/agreements/explain" className="as-template as-explain">
-          <span className="as-template-icon"><MessageSquareText size={20} aria-hidden="true" /></span>
-          <span className="as-template-text"><strong>Explain a contract</strong><span>Upload an agreement you received: plain-language summary, risks and questions to ask.</span></span>
-          <span className="as-cat">Review</span>
-        </Link>
-        <Link href="/tools/agreements/conflicts" className="as-template as-explain">
-          <span className="as-template-icon"><GitCompareArrows size={20} aria-hidden="true" /></span>
-          <span className="as-template-text"><strong>Find conflicts</strong><span>Compare 2 to 5 contracts or policies and see where they contradict each other, clause by clause.</span></span>
-          <span className="as-cat">Review</span>
-        </Link>
-        <Link href="/tools/agreements/law-impact" className="as-template as-explain">
-          <span className="as-template-icon"><Landmark size={20} aria-hidden="true" /></span>
-          <span className="as-template-text"><strong>New-law impact check</strong><span>A new law, rule or policy? See which contracts must change, the exact clauses and suggested wording.</span></span>
-          <span className="as-cat">Review</span>
-        </Link>
-        <Link href="/tools/agreements/playbook" className="as-template as-explain">
-          <span className="as-template-icon"><BookCheck size={20} aria-hidden="true" /></span>
-          <span className="as-template-text"><strong>Firm playbook</strong><span>Save your standard terms once, then check any contract against them, with suggested wording for every gap.</span></span>
-          <span className="as-cat">Review</span>
-        </Link>
-        <Link href="/tools/compare" className="as-template as-explain">
-          <span className="as-template-icon"><Diff size={20} aria-hidden="true" /></span>
-          <span className="as-template-text"><strong>Compare versions</strong><span>What changed between two drafts? Every added, removed and edited word, with page numbers. Free.</span></span>
-          <span className="as-cat">Review</span>
-        </Link>
-        <Link href="/tools/agreements/clause-map" className="as-template as-explain">
-          <span className="as-template-icon"><Network size={20} aria-hidden="true" /></span>
-          <span className="as-template-text"><strong>Clause map</strong><span>See how a contract fits together, and catch broken references and undefined terms.</span></span>
-          <span className="as-cat">Review</span>
-        </Link>
       </div>
 
       <section className="panel-card" aria-labelledby="my-agreements">

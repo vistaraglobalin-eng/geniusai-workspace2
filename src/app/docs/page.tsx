@@ -8,6 +8,15 @@ export const dynamic = "force-dynamic";
 export default function DocsPage() {
   return (
     <Hub area="docs" path="/docs" title="Documents" tag="PDF, sign and AI" intro="Edit and sign PDFs, send them for signing, draft agreements and letters, and let AI read long documents for you." sections={[
+      { title: "Contract review", rows: [
+        { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks", Icon: MessageSquareText, tint: "orange" },
+        { href: "/tools/agreements/conflicts", title: "Find conflicts", text: "Compare contracts and policies clause by clause", Icon: GitCompareArrows, tint: "orange" },
+        { href: "/tools/agreements/law-impact", title: "New-law impact check", text: "Which contracts must change for a new rule", Icon: Landmark, tint: "orange" },
+        { href: "/tools/agreements/playbook", title: "Firm playbook", text: "Check contracts against your standard terms", Icon: BookCheck, tint: "orange" },
+        { href: "/tools/compare", title: "Compare versions", text: "Every change between two drafts, word by word", Icon: Diff, tint: "orange" },
+        { href: "/tools/read", title: "Read mode", text: "Phone-friendly view of any PDF or Word file", Icon: BookOpen, tint: "teal" },
+        { href: "/tools/agreements/clause-map", title: "Clause map", text: "How clauses and definitions connect", Icon: Network, tint: "orange" }
+      ] },
       { title: "PDF", rows: [
         { href: "/tools/scan", title: "Scan & convert", text: "Photo, ID or screenshot to HD PDF, Word or text", Icon: ScanLine, tint: "red" },
         { href: "/tools/edit", title: "Edit PDF", text: "Text, highlights, notes, forms, images", Icon: PenLine, tint: "blue" },
@@ -30,13 +39,6 @@ export default function DocsPage() {
       { title: "AI", rows: [
         { href: "/tools/chat", title: "Chat with a document", text: "Ask questions, get answers with page numbers", Icon: MessageSquareText, tint: "cyan" },
         { href: "/tools/documents?task=summary", title: "Summarize", text: "Key points from long documents", Icon: ListChecks, tint: "cyan" },
-        { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks", Icon: MessageSquareText, tint: "orange" },
-        { href: "/tools/agreements/conflicts", title: "Find conflicts", text: "Compare contracts and policies clause by clause", Icon: GitCompareArrows, tint: "orange" },
-        { href: "/tools/agreements/law-impact", title: "New-law impact check", text: "Which contracts must change for a new rule", Icon: Landmark, tint: "orange" },
-        { href: "/tools/agreements/playbook", title: "Firm playbook", text: "Check contracts against your standard terms", Icon: BookCheck, tint: "orange" },
-        { href: "/tools/compare", title: "Compare versions", text: "Every change between two drafts, word by word", Icon: Diff, tint: "orange" },
-        { href: "/tools/read", title: "Read mode", text: "Phone-friendly view of any PDF or Word file", Icon: BookOpen, tint: "teal" },
-        { href: "/tools/agreements/clause-map", title: "Clause map", text: "How clauses and definitions connect", Icon: Network, tint: "orange" },
         { href: "/tools/documents?task=translate", title: "Translate", text: "Into 25 languages, incl. Hindi", Icon: Languages, tint: "teal" },
         { href: "/tools/documents?task=extract_text", title: "Read scanned text (OCR)", text: "From scans and photos", Icon: ScanText, tint: "cyan" },
         { href: "/tools/documents?task=tables", title: "Extract tables", text: "To a spreadsheet you can edit", Icon: Table, tint: "green" }
