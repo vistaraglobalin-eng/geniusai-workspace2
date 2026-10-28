@@ -28,7 +28,7 @@ export default async function ReadPage({ searchParams }: { searchParams: Promise
     .map((f) => ({ id: f.id, name: f.original_filename, mimeType: f.mime_type, objectKey: f.object_key, byteSize: Number(f.byte_size) }));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="tools" breadcrumb="Read mode">
+    <AppShell ctx={{ ...ctx, workspace }} active="read" breadcrumb="Read mode">
       <ReadMode files={files} initialFileId={files.some((f) => f.id === file) ? file : undefined} />
     </AppShell>
   );

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { BellRing, ChevronRight, FileText, ListChecks, ReceiptText, Signature, Wallet, Zap, ScanLine } from "lucide-react";
+import { BellRing, ChevronRight, FileText, ListChecks, ReceiptText, Signature, Wallet, Zap, ScanLine, GitCompareArrows, Landmark, Diff, BookOpen } from "lucide-react";
 import { getSupabasePublicEnv } from "@/lib/supabase/env";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
@@ -20,6 +20,13 @@ const ACTIONS = [
   { href: "/tools/sign", label: "Sign", Icon: Signature, tint: "indigo" },
   { href: "/tools/documents?task=summary", label: "Summarize", Icon: ListChecks, tint: "cyan" },
   { href: "/tools/scan", label: "Scan", Icon: ScanLine, tint: "orange" }
+] as const;
+
+const REVIEW = [
+  { href: "/tools/agreements/conflicts", label: "Find conflicts", text: "Where contracts and policies disagree", Icon: GitCompareArrows },
+  { href: "/tools/agreements/law-impact", label: "New-law check", text: "Which contracts must change", Icon: Landmark },
+  { href: "/tools/compare", label: "Compare versions", text: "Every change between drafts", Icon: Diff },
+  { href: "/tools/read", label: "Read mode", text: "Any PDF, easy to read on phone", Icon: BookOpen }
 ] as const;
 
 const SOON: { title: string; Icon: typeof FileText }[] = [];
@@ -93,6 +100,21 @@ export default async function Home() {
           <Link key={label} href={href}><span className={`app-icon ${tint}`}><Icon size={24} aria-hidden="true" /></span>{label}</Link>
         ))}
       </nav>
+
+      <section className="home-review" aria-labelledby="review-h">
+        <div className="home-review-head">
+          <h2 id="review-h" className="home-section-title">Review contracts with AI</h2>
+          <Link href="/tools/agreements#review">All review tools <ChevronRight size={14} aria-hidden="true" /></Link>
+        </div>
+        <div className="home-review-grid">
+          {REVIEW.map(({ href, label, text, Icon }) => (
+            <Link key={href} href={href} className="home-review-card">
+              <span className="app-icon orange"><Icon size={20} aria-hidden="true" /></span>
+              <span><strong>{label}</strong><em>{text}</em></span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {overdue.length > 0 && (
         <section aria-labelledby="attn-h" style={{ marginBottom: 26 }}>

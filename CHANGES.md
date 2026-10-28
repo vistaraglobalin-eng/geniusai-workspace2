@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 33: Easier to find the review tools
+
+- Home: a "Review contracts with AI" section with Find conflicts, New-law check, Compare versions and Read mode.
+- Sidebar: a new "Contract review" group (Find conflicts, New-law check, Firm playbook, Compare versions, Clause map, Read mode), each highlighted when open.
+- Documents tab (phone): "Contract review" is now the first section.
+- Agreement Studio: "Review contracts with AI" now comes first, above drafting and templates.
+
 ## Revision 32: Read mode
 
 - Read mode (/tools/read, plus a "Read mode" button on a file's page, All tools and Docs): any PDF, Word, text or CSV file shown as reflowed text that fits a phone screen. No zooming or side-scrolling.

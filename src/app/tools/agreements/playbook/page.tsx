@@ -44,7 +44,7 @@ export default async function PlaybookPage() {
     .map((j) => ({ id: j.id, filename: j.input_params?.filename ?? "Contract", credits: j.charged_credits, createdAt: j.created_at }));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="agreements" breadcrumb="Firm playbook">
+    <AppShell ctx={{ ...ctx, workspace }} active="playbook" breadcrumb="Firm playbook">
       <Link href="/tools/agreements" className="back-link"><ArrowLeft size={16} aria-hidden="true" /> Agreement Studio</Link>
       <div className="welcome-row">
         <div>

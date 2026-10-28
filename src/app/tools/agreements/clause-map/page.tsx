@@ -39,7 +39,7 @@ export default async function ClauseMapPage() {
     .map((j) => ({ id: j.id, filename: j.input_params?.filename ?? "Contract", credits: j.charged_credits, createdAt: j.created_at }));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="agreements" breadcrumb="Clause map">
+    <AppShell ctx={{ ...ctx, workspace }} active="clause-map" breadcrumb="Clause map">
       <Link href="/tools/agreements" className="back-link"><ArrowLeft size={16} aria-hidden="true" /> Agreement Studio</Link>
       <div className="welcome-row">
         <div>

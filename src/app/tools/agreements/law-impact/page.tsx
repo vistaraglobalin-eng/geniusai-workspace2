@@ -39,7 +39,7 @@ export default async function LawImpactPage() {
     .map((j) => ({ id: j.id, filenames: j.input_params?.filenames ?? [], credits: j.charged_credits, createdAt: j.created_at }));
 
   return (
-    <AppShell ctx={{ ...ctx, workspace }} active="agreements" breadcrumb="New-law impact check">
+    <AppShell ctx={{ ...ctx, workspace }} active="law-impact" breadcrumb="New-law impact check">
       <Link href="/tools/agreements" className="back-link"><ArrowLeft size={16} aria-hidden="true" /> Agreement Studio</Link>
       <div className="welcome-row">
         <div>
