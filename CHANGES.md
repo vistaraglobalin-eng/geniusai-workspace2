@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 26: New-law impact check
+
+- New-law impact check (/tools/agreements/law-impact, also in Agreement Studio, All tools and Docs): choose one new law, rule, circular or policy (for example DPDP Rules, an RBI or SEBI circular, a GST notification, or your own new policy) and up to 5 contracts.
+- Each contract is marked Update needed, Review or Not affected, with a one-line reason. Each required change shows a severity, a plain-English explanation, the rule's section and quote next to the contract's clause and quote (or "Missing from the contract" with where to add it), and ready-to-use suggested wording with a Copy button.
+- Summary, the rule's effective date or deadline, a Deadlines box, and counts by result. Download as Markdown; recent checks are listed and can be reopened.
+- Uses credits like other AI tools (module contracts, task law_impact). The reply is validated before it is stored; every contract sent gets a result, and an unusable reply fails the job and returns the credits. No database change.
+
 ## Revision 25: Conflict Finder
 
 - Find conflicts (/tools/agreements/conflicts, also in Agreement Studio, All tools and Docs): choose 2 to 5 documents (contracts, policies, terms, regulations; PDF, Word, text or photos, up to 23 MB together) and get a report of where they contradict each other.
