@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature, Send, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet } from "lucide-react";
+import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature, Send, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, GitCompareArrows } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -17,6 +17,7 @@ const HUBS = [
   { href: "/tools/edit", title: "Edit PDF", text: "Add text, whiteout, highlight, notes, drawings and images.", Icon: PenLine, color: "blue" },
   { href: "/tools/sign", title: "Sign PDF", text: "Draw or type your signature and place it on any PDF. Free.", Icon: Signature, color: "mint" },
   { href: "/tools/agreements/explain", title: "Explain a contract", text: "Plain-language summary and risks before you sign.", Icon: MessageSquareText, color: "blue" },
+  { href: "/tools/agreements/conflicts", title: "Find conflicts", text: "Compare contracts and policies; see where they contradict each other.", Icon: GitCompareArrows, color: "rose" },
   { href: "/tools/sign/requests", title: "Request signatures", text: "Send a PDF for others to sign by private link. Free.", Icon: Send, color: "mint" },
   { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations and receipts with UPI QR. Free.", Icon: ReceiptText, color: "mint" },
   { href: "/tools/expenses", title: "Expense tracker", text: "Photograph bills, track spending by category, export for your CA. Free.", Icon: Wallet, color: "rose" },
