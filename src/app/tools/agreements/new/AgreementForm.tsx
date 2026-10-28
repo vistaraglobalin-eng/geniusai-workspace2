@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Wand2 } from "lucide-react";
 import { getTemplate, type Field } from "@/lib/agreements/templates";
 import { DISCLAIMER, MAX_PROMPT_CHARS } from "@/lib/agreements/prompts";
+import { VoiceButton, appendSpoken } from "@/components/VoiceButton";
 
 function FieldInput({ field, value, error, onChange }: { field: Field; value: string; error?: string; onChange: (v: string) => void }) {
   const id = `f-${field.key}`;
@@ -83,6 +84,7 @@ export function AgreementForm({ templateKey, initialPrompt, creditsAvailable }: 
           <textarea id="custom-prompt" className="text-input" rows={6} maxLength={MAX_PROMPT_CHARS} value={prompt}
             onChange={(e: { target: { value: string } }) => setPrompt(e.target.value)}
             placeholder="Who are the parties, what is being agreed, amounts, dates, city…" />
+          <VoiceButton className="voice-row" onText={(s) => setPrompt((prev) => appendSpoken(prev, s))} />
           <span className="field-hint">{prompt.length.toLocaleString("en-IN")} / {MAX_PROMPT_CHARS.toLocaleString("en-IN")} characters. Missing details become [placeholders] you can fill in later.</span>
         </div>
       )}

@@ -17,6 +17,7 @@ export type AnalyticsEvent =
   | "ai_task_failed"
   | "compare_completed"
   | "language_changed"
+  | "voice_input_used"
   | "onboarding_completed";
 
 type Props = Record<string, string | number | boolean | null | undefined>;

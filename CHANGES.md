@@ -1,5 +1,11 @@
 # Changes
 
+## Revision 38: Voice input
+
+- Mic button to speak instead of typing (src/components/VoiceButton.tsx), on: Chat with a document (ask questions), the AI drafting box on Home and Agreements, the custom agreement brief, New-law check focus, payment reminder messages, letter text, file comments and the Quizzes focus field.
+- Dictates in the interface language (English, Hindi and the 8 regional languages, as Indian locales). Tap to start, tap again to stop; words appear live above the button and are added to what's already typed.
+- Uses the browser's own speech recognition (Safari on iPhone, Chrome): audio is handled by Apple or Google, not sent to GeniusAI. The button hides itself where the browser has no speech recognition; a blocked microphone shows a clear message. New analytics event: voice_input_used. No database change.
+
 ## Revision 37: Regional-language screens
 
 - Ten interface languages: English, हिन्दी, বাংলা, मराठी, தமிழ், తెలుగు, ગુજરાતી, ಕನ್ನಡ, മലയാളം and ਪੰਜਾਬੀ. The top-bar button is now a language menu (each language in its own script, with its English name), and Settings → Appearance → Language is a list.
