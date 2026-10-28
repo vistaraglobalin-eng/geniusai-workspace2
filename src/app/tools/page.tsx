@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature, Send, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap } from "lucide-react";
+import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature, Send, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -27,6 +27,7 @@ const HUBS = [
   { href: "/tools/sign/requests", title: "Request signatures", text: "Send a PDF for others to sign by private link. Free.", Icon: Send, color: "mint" },
   { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations and receipts with UPI QR. Free.", Icon: ReceiptText, color: "mint" },
   { href: "/tools/expenses", title: "Expense tracker", text: "Photograph bills, track spending by category, export for your CA. Free.", Icon: Wallet, color: "rose" },
+  { href: "/tools/statement", title: "Bank statement to Excel", text: "Any bank statement PDF or photo into a checked Excel sheet.", Icon: FileSpreadsheet, color: "mint" },
   { href: "/tools/letters", title: "Letters & visiting cards", text: "Visiting cards, letterhead, offer letters, salary slips and rent receipts. Free.", Icon: Mail, color: "blue" },
   { href: "/tools/career", title: "Resume & Career Studio", text: "ATS-friendly resumes, job match and cover letters.", Icon: BriefcaseBusiness, color: "lavender" },
   { href: "/tools/photos", title: "Product Photos & Ads", text: "Remove backgrounds, marketplace photos and ad posts. Free.", Icon: ImageIcon, color: "peach" }
