@@ -3,6 +3,9 @@ import type { ReactNode } from "react";
 import { ArrowRightLeft, Bell, BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LayoutTemplate, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 import { roleLabel } from "@/lib/team/roles";
+import { t, type Lang } from "@/lib/i18n";
+import { getLang } from "@/lib/i18n-server";
+import { LanguageSwitch } from "@/components/LanguageSwitch";
 
 
 export type NavKey =
@@ -73,9 +76,9 @@ const NEW_ITEMS = [
   { href: "/tools/documents?task=summary", label: "Summarize a document", Icon: Sparkles, tint: "cyan" }
 ] as const;
 
-const navLink = (item: NavItem, active: NavKey) => (
-  <Link key={item.key} className="nav-item" href={item.href} title={item.label} aria-current={active === item.key ? "page" : undefined}>
-    <span className={`app-icon sm ${item.tint}`}><item.Icon size={15} aria-hidden="true" /></span><span className="nav-label">{item.label}</span>
+const navLink = (item: NavItem, active: NavKey, lang: Lang) => (
+  <Link key={item.key} className="nav-item" href={item.href} title={t(lang, item.label)} aria-current={active === item.key ? "page" : undefined}>
+    <span className={`app-icon sm ${item.tint}`}><item.Icon size={15} aria-hidden="true" /></span><span className="nav-label">{t(lang, item.label)}</span>
   </Link>
 );
 
@@ -83,7 +86,7 @@ const navLink = (item: NavItem, active: NavKey) => (
  * Frame for every signed-in page.
  * Desktop: full sidebar · Tablet: icon rail · Phone: bottom tab bar (see globals.css).
  */
-export function AppShell({
+export async function AppShell({
   ctx,
   active,
   breadcrumb,
@@ -97,10 +100,12 @@ export function AppShell({
   const { workspace, user } = ctx;
   const name = ctx.displayName?.trim() || user.email?.split("@")[0] || "there";
   const initial = (name[0] ?? "G").toUpperCase();
+  const lang = await getLang();
+  const tr = (s: string) => t(lang, s);
 
   return (
     <div className="app-shell">
-      <a className="skip-link" href="#main">Skip to content</a>
+      <a className="skip-link" href="#main">{tr("Skip to content")}</a>
 
       <aside className="sidebar">
         <Link className="brand" href="/" aria-label="GeniusAI Workspace home">
@@ -108,32 +113,32 @@ export function AppShell({
           <span>GeniusAI<span className="brand-light"> Workspace</span></span>
         </Link>
         <details className="new-menu">
-          <summary><span className="plus"><Plus size={17} aria-hidden="true" /></span><span className="nav-label">New</span></summary>
+          <summary><span className="plus"><Plus size={17} aria-hidden="true" /></span><span className="nav-label">{tr("New")}</span></summary>
           <div className="new-menu-list">
             {NEW_ITEMS.map(({ href, label, Icon, tint }) => (
-              <Link key={label} href={href}><span className={`app-icon sm ${tint}`}><Icon size={15} aria-hidden="true" /></span>{label}</Link>
+              <Link key={label} href={href}><span className={`app-icon sm ${tint}`}><Icon size={15} aria-hidden="true" /></span>{tr(label)}</Link>
             ))}
           </div>
         </details>
-        <nav aria-label="Main">
-          <Link className="nav-item" href="/" title="Home" aria-current={active === "overview" ? "page" : undefined}>
-            <span className="app-icon sm gray"><Home size={15} aria-hidden="true" /></span><span className="nav-label">Home</span>
+        <nav aria-label={tr("Main")}>
+          <Link className="nav-item" href="/" title={tr("Home")} aria-current={active === "overview" ? "page" : undefined}>
+            <span className="app-icon sm gray"><Home size={15} aria-hidden="true" /></span><span className="nav-label">{tr("Home")}</span>
           </Link>
           {GROUPS.map((g) => (
-            <div key={g.title} role="group" aria-label={g.title}>
-              <div className="nav-group"><span>{g.title}</span><Link href={g.hub}>All</Link></div>
-              {g.items.map((i) => navLink(i, active))}
+            <div key={g.title} role="group" aria-label={tr(g.title)}>
+              <div className="nav-group"><span>{tr(g.title)}</span><Link href={g.hub}>{tr("All")}</Link></div>
+              {g.items.map((i) => navLink(i, active, lang))}
             </div>
           ))}
-          <div className="nav-group"><span>Account</span><Link href="/account">All</Link></div>
-          {ACCOUNT.map((i) => navLink(i, active))}
+          <div className="nav-group"><span>{tr("Account")}</span><Link href="/account">{tr("All")}</Link></div>
+          {ACCOUNT.map((i) => navLink(i, active, lang))}
         </nav>
         <div className="sidebar-bottom">
           <div className="profile">
             <div className="avatar" aria-hidden="true">{initial}</div>
             <div className="profile-text"><strong title={name}>{name}</strong><span title={workspace.name}>{workspace.name} · {roleLabel(workspace.role, workspace.access)}</span></div>
             <form action="/auth/signout" method="post" className="signout-form">
-              <button type="submit" className="icon-button" aria-label="Sign out of this device" title="Sign out"><LogOut size={16} aria-hidden="true" /></button>
+              <button type="submit" className="icon-button" aria-label={tr("Sign out of this device")} title={tr("Sign out")}><LogOut size={16} aria-hidden="true" /></button>
             </form>
           </div>
         </div>
@@ -144,9 +149,9 @@ export function AppShell({
           <div className="breadcrumb">
             {ctx.workspaces.length > 1 ? (
               <details className="ws-switch">
-                <summary aria-label="Switch workspace">{workspace.name}<ChevronDown size={14} aria-hidden="true" /></summary>
+                <summary aria-label={tr("Switch workspace")}>{workspace.name}<ChevronDown size={14} aria-hidden="true" /></summary>
                 <div className="ws-menu" role="menu">
-                  <span className="ws-menu-label">Your workspaces</span>
+                  <span className="ws-menu-label">{tr("Your workspaces")}</span>
                   {ctx.workspaces.map((w) => (
                     <form key={w.id} action="/api/workspace/switch" method="post">
                       <input type="hidden" name="workspaceId" value={w.id} />
@@ -157,18 +162,19 @@ export function AppShell({
                       </button>
                     </form>
                   ))}
-                  <Link href="/settings/team" className="ws-menu-link"><Users size={15} aria-hidden="true" /> Team members</Link>
+                  <Link href="/settings/team" className="ws-menu-link"><Users size={15} aria-hidden="true" /> {tr("Team members")}</Link>
                 </div>
               </details>
             ) : workspace.name}
-            <span aria-hidden="true">/</span> {breadcrumb}
+            <span aria-hidden="true">/</span> {tr(breadcrumb)}
           </div>
           <div className="top-actions">
             <span className="topbar-email">{user.email}</span>
-            <Link className="icon-button inbox-bell" href="/inbox" aria-label={ctx.unread ? `Inbox, ${ctx.unread} unread` : "Inbox"} title="Inbox">
+            <LanguageSwitch lang={lang} />
+            <Link className="icon-button inbox-bell" href="/inbox" aria-label={ctx.unread ? (lang === "hi" ? `इनबॉक्स, ${ctx.unread} नए` : `Inbox, ${ctx.unread} unread`) : tr("Inbox")} title={tr("Inbox")}>
               <Bell size={18} aria-hidden="true" />{ctx.unread > 0 && <span className="bell-badge">{ctx.unread > 9 ? "9+" : ctx.unread}</span>}
             </Link>
-            <Link className="avatar small" href="/settings#profile" aria-label="Your profile and settings">{initial}</Link>
+            <Link className="avatar small" href="/settings#profile" aria-label={tr("Your profile and settings")}>{initial}</Link>
           </div>
         </header>
         <main id="main" className="content" tabIndex={-1}>
@@ -177,10 +183,10 @@ export function AppShell({
         </main>
       </div>
 
-      <nav className="bottom-nav" aria-label="Main">
+      <nav className="bottom-nav" aria-label={tr("Main")}>
         {TABS.map(({ href, label, Icon, covers }) => (
-          <Link key={href} href={href} aria-label={label} aria-current={covers.includes(active) ? "page" : undefined}>
-            <Icon size={22} strokeWidth={covers.includes(active) ? 2.1 : 1.7} aria-hidden="true" /><span className="tab-label">{label}</span>
+          <Link key={href} href={href} aria-label={tr(label)} aria-current={covers.includes(active) ? "page" : undefined}>
+            <Icon size={22} strokeWidth={covers.includes(active) ? 2.1 : 1.7} aria-hidden="true" /><span className="tab-label">{tr(label)}</span>
           </Link>
         ))}
       </nav>

@@ -1,7 +1,9 @@
-// Appearance preferences: theme, accent colour, text size and motion.
+// Appearance preferences: theme, accent colour, text size, motion and interface language.
 // Stored in a first-party cookie (so the server renders the right theme with no
 // flash) and in profiles.preferences (so they follow the user across devices).
 // Shared by server and client code; contains no secrets.
+
+import { LANGUAGES, type Lang } from "./i18n";
 
 export const THEMES = ["system", "light", "dark"] as const;
 export const ACCENTS = ["lavender", "ocean", "emerald", "sunset", "rose", "graphite"] as const;
@@ -13,9 +15,9 @@ export type Accent = (typeof ACCENTS)[number];
 export type TextSize = (typeof TEXT_SIZES)[number];
 export type Motion = (typeof MOTIONS)[number];
 
-export type Preferences = { theme: Theme; accent: Accent; text: TextSize; motion: Motion };
+export type Preferences = { theme: Theme; accent: Accent; text: TextSize; motion: Motion; lang: Lang };
 
-export const DEFAULT_PREFERENCES: Preferences = { theme: "system", accent: "lavender", text: "default", motion: "system" };
+export const DEFAULT_PREFERENCES: Preferences = { theme: "system", accent: "lavender", text: "default", motion: "system", lang: "en" };
 
 export const PREFS_COOKIE = "gw_prefs";
 export const PREFS_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
@@ -49,7 +51,8 @@ export function parsePreferences(input: unknown): Preferences {
     theme: pick(THEMES, obj.theme, DEFAULT_PREFERENCES.theme),
     accent: pick(ACCENTS, obj.accent, DEFAULT_PREFERENCES.accent),
     text: pick(TEXT_SIZES, obj.text, DEFAULT_PREFERENCES.text),
-    motion: pick(MOTIONS, obj.motion, DEFAULT_PREFERENCES.motion)
+    motion: pick(MOTIONS, obj.motion, DEFAULT_PREFERENCES.motion),
+    lang: pick(LANGUAGES, obj.lang, DEFAULT_PREFERENCES.lang)
   };
 }
 

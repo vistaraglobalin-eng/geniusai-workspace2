@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 36: Hindi interface
+
+- Language switch: a "हिन्दी / English" button in the top bar (one tap), and Settings → Appearance → Language. The choice is kept on the device (preferences cookie, so the first page is already in the right language) and synced to the account with the other appearance settings. `<html lang>` follows it.
+- In Hindi: the sidebar, phone tab bar, "+ New" menu, Home (greeting, money cards, quick actions, review section, credits), the Money, Documents, Create and Account pages, All tools (including PDF tool names), and the Language setting. Dates on Home use Hindi month and day names.
+- Product words people know in English (PDF, Excel, UPI, GST, Tally, AI) stay in Latin script. Tool screens themselves are still English for now; anything not yet translated shows in English.
+- Translations live in src/lib/i18n.ts, looked up by the English text, so more screens can be added one string at a time. New analytics event: language_changed. No database change (profiles.preferences accepts the new "lang" key).
+
 ## Revision 35: Bank statement to Excel
 
 - Bank statement to Excel (/tools/statement, in the sidebar and tab under Money, the Documents tab, All tools, and a "Statement to Excel" button on a PDF's page): turn any bank statement PDF or photo into an Excel workbook.

@@ -37,7 +37,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   // colours: no white flash in dark mode, no layout shift.
   const prefs = parsePreferences((await cookies()).get(PREFS_COOKIE)?.value);
   return (
-    <html lang="en" {...htmlAttributes(prefs)} className={`${sans.variable} ${serif.variable}`}>
+    <html lang={prefs.lang} {...htmlAttributes(prefs)} className={`${sans.variable} ${serif.variable}`}>
       <body>{children}<OfflineSupport /><Suspense fallback={null}><Analytics /></Suspense></body>
     </html>
   );

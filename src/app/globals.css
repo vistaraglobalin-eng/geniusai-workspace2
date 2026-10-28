@@ -2442,3 +2442,11 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
 .bs-table .desc span { display: block; font-size: .72rem; color: var(--text-3); }
 .bs-table tr.bad td { background: var(--danger-bg); }
 @media (max-width: 640px) { .bs-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Language switch (top bar) */
+.lang-switch { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-size: .8rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.lang-switch:hover { border-color: var(--accent-border); color: var(--accent-text); }
+.lang-switch:disabled { opacity: .6; cursor: progress; }
+.lang-switch svg { color: var(--accent-text); }
+/* Devanagari needs a little more line height than Latin text. */
+html[lang="hi"] body { line-height: 1.6; }

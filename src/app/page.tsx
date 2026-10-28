@@ -12,6 +12,8 @@ import { PromptBox } from "@/components/PromptBox";
 import { getTemplate } from "@/lib/agreements/templates";
 import { DotRing } from "@/components/DotRing";
 import { inr, todayIso } from "@/lib/invoices/calc";
+import { localeOf, t } from "@/lib/i18n";
+import { getLang } from "@/lib/i18n-server";
 
 const ACTIONS = [
   { href: "/tools/invoices/new?kind=invoice", label: "Invoice", Icon: ReceiptText, tint: "green" },
@@ -66,51 +68,54 @@ export default async function Home() {
   const spent = ((expRows ?? []) as { amount: number | string }[]).reduce((s, r) => s + Number(r.amount), 0);
   const rupees = (n: number) => `₹ ${inr(n, 0)}`;
 
+  const lang = await getLang();
+  const tr = (s: string) => t(lang, s);
+  const loc = localeOf(lang);
   const now = new Date();
-  const todayLong = new Intl.DateTimeFormat("en-IN", { weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata" }).format(now);
-  const shortDate = (iso: string) => new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", timeZone: "Asia/Kolkata" }).format(new Date(iso));
+  const todayLong = new Intl.DateTimeFormat(loc, { weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata" }).format(now);
+  const shortDate = (iso: string) => new Intl.DateTimeFormat(loc, { day: "numeric", month: "short", timeZone: "Asia/Kolkata" }).format(new Date(iso));
 
   return (
     <AppShell ctx={{ ...ctx, workspace }} active="overview" breadcrumb="Home">
       <header className="home-head">
         <div>
-          <h1>{greeting(now)}, {firstNameOf(ctx)}</h1>
+          <h1>{tr(greeting(now))}, {firstNameOf(ctx)}</h1>
           <p>{todayLong} · {workspace.name}</p>
         </div>
-        <Link href="/billing" className="credit-pill" title="Plans & credits"><Zap size={15} aria-hidden="true" />{credits.available.toLocaleString("en-IN")}</Link>
+        <Link href="/billing" className="credit-pill" title={tr("Plans & credits")}><Zap size={15} aria-hidden="true" />{credits.available.toLocaleString("en-IN")}</Link>
       </header>
 
-      <section className="home-hero" aria-label="This month">
-        <DotRing value={pct} label={`${Math.round(pct * 100)}% of this month's invoices collected`} />
+      <section className="home-hero" aria-label={tr("This month")}>
+        <DotRing value={pct} label={`${Math.round(pct * 100)}% ${tr("of this month's invoices collected")}`} />
         <div className="home-figure">
-          <span className="pill-accent" style={{ alignSelf: "flex-start" }}>{new Intl.DateTimeFormat("en-IN", { month: "long", timeZone: "Asia/Kolkata" }).format(now)}</span>
+          <span className="pill-accent" style={{ alignSelf: "flex-start" }}>{new Intl.DateTimeFormat(loc, { month: "long", timeZone: "Asia/Kolkata" }).format(now)}</span>
           <span className="home-pct">{Math.round(pct * 100)}%</span>
-          <span className="home-pct-label">{billed > 0 ? <>of this month&apos;s invoices collected · <b>{rupees(collected)}</b> of {rupees(billed)}</> : <>No invoices this month yet · <Link href="/tools/invoices/new?kind=invoice" style={{ color: "var(--accent-text)", fontWeight: 600 }}>Create one</Link></>}</span>
+          <span className="home-pct-label">{billed > 0 ? <>{tr("of this month's invoices collected")} · <b>{rupees(collected)}</b> / {rupees(billed)}</> : <>{tr("No invoices this month yet")} · <Link href="/tools/invoices/new?kind=invoice" style={{ color: "var(--accent-text)", fontWeight: 600 }}>{tr("Create one")}</Link></>}</span>
         </div>
       </section>
 
       <div className="home-cards">
-        <Link href="/tools/invoices" className="home-card"><span>To collect</span><strong>{rupees(due)}</strong><em>{open.length} unpaid invoice{open.length === 1 ? "" : "s"}</em></Link>
-        <Link href="/tools/invoices/reminders" className="home-card"><span>Overdue</span><strong className={overdue.length ? "bad" : ""}>{rupees(overdueAmt)}</strong><em>{overdue.length ? "Send reminders ›" : "Nothing overdue"}</em></Link>
-        <Link href="/tools/expenses" className="home-card"><span>Spent this month</span><strong>{rupees(spent)}</strong><em>From your expenses</em></Link>
+        <Link href="/tools/invoices" className="home-card"><span>{tr("To collect")}</span><strong>{rupees(due)}</strong><em>{open.length} {tr(open.length === 1 ? "unpaid invoice" : "unpaid invoices")}</em></Link>
+        <Link href="/tools/invoices/reminders" className="home-card"><span>{tr("Overdue")}</span><strong className={overdue.length ? "bad" : ""}>{rupees(overdueAmt)}</strong><em>{tr(overdue.length ? "Send reminders ›" : "Nothing overdue")}</em></Link>
+        <Link href="/tools/expenses" className="home-card"><span>{tr("Spent this month")}</span><strong>{rupees(spent)}</strong><em>{tr("From your expenses")}</em></Link>
       </div>
 
-      <nav className="quick-row" aria-label="Quick actions">
+      <nav className="quick-row" aria-label={tr("Quick actions")}>
         {ACTIONS.map(({ href, label, Icon, tint }) => (
-          <Link key={label} href={href}><span className={`app-icon ${tint}`}><Icon size={24} aria-hidden="true" /></span>{label}</Link>
+          <Link key={label} href={href}><span className={`app-icon ${tint}`}><Icon size={24} aria-hidden="true" /></span>{tr(label)}</Link>
         ))}
       </nav>
 
       <section className="home-review" aria-labelledby="review-h">
         <div className="home-review-head">
-          <h2 id="review-h" className="home-section-title">Review contracts with AI</h2>
-          <Link href="/tools/agreements#review">All review tools <ChevronRight size={14} aria-hidden="true" /></Link>
+          <h2 id="review-h" className="home-section-title">{tr("Review contracts with AI")}</h2>
+          <Link href="/tools/agreements#review">{tr("All review tools")} <ChevronRight size={14} aria-hidden="true" /></Link>
         </div>
         <div className="home-review-grid">
           {REVIEW.map(({ href, label, text, Icon }) => (
             <Link key={href} href={href} className="home-review-card">
               <span className="app-icon orange"><Icon size={20} aria-hidden="true" /></span>
-              <span><strong>{label}</strong><em>{text}</em></span>
+              <span><strong>{tr(label)}</strong><em>{tr(text)}</em></span>
             </Link>
           ))}
         </div>
@@ -118,13 +123,13 @@ export default async function Home() {
 
       {overdue.length > 0 && (
         <section aria-labelledby="attn-h" style={{ marginBottom: 26 }}>
-          <h2 id="attn-h" className="home-section-title">Needs attention</h2>
+          <h2 id="attn-h" className="home-section-title">{tr("Needs attention")}</h2>
           <ul className="list-card attention-list">
             {overdue.slice(0, 3).map((r) => (
               <li key={r.id}>
                 <Link href={`/tools/invoices/reminders?id=${r.id}`} className="list-row">
                   <span className="app-icon red"><BellRing size={17} aria-hidden="true" /></span>
-                  <span className="list-text"><strong>Remind {r.customer?.name || "customer"}</strong><span>{rupees(Math.max(0, r.total - r.amount_paid))} · due {shortDate(r.due_date as string)}</span></span>
+                  <span className="list-text"><strong>{tr("Remind")} {r.customer?.name || tr("customer")}</strong><span>{rupees(Math.max(0, r.total - r.amount_paid))} · {tr("due")} {shortDate(r.due_date as string)}</span></span>
                   <ChevronRight size={17} className="list-chevron" aria-hidden="true" />
                 </Link>
               </li>
@@ -134,39 +139,39 @@ export default async function Home() {
       )}
 
       <section className="ask-card" aria-labelledby="ask-title">
-        <h2 id="ask-title" className="home-section-title">Draft with AI</h2>
-        <PromptBox heading="Describe an agreement and GeniusAI drafts it" compact />
+        <h2 id="ask-title" className="home-section-title">{tr("Draft with AI")}</h2>
+        <PromptBox heading={tr("Describe an agreement and GeniusAI drafts it")} compact />
       </section>
 
-      <h2 className="dash-section-title">Continue where you left off</h2>
+      <h2 className="dash-section-title">{tr("Continue where you left off")}</h2>
       <div className="continue-grid">
         <section className="panel-card" aria-labelledby="recent-agreements">
-          <div className="panel-title"><div><h3 id="recent-agreements">Agreements</h3></div><Link href="/tools/agreements">See all</Link></div>
+          <div className="panel-title"><div><h3 id="recent-agreements">{tr("Agreements")}</h3></div><Link href="/tools/agreements">{tr("See all")}</Link></div>
           {agreements.length === 0 ? (
-            <p className="dash-empty">No agreements yet. <Link href="/tools/agreements">Draft your first one</Link>.</p>
+            <p className="dash-empty">{tr("No agreements yet.")} <Link href="/tools/agreements">{tr("Draft your first one")}</Link></p>
           ) : (
             <ul className="mini-list">
               {agreements.map((a) => (
                 <li key={a.id}>
                   <Link href={`/tools/agreements/${a.id}`}>
                     <span className="mini-title">{a.title}</span>
-                    <span className="mini-meta">{getTemplate(a.template_key)?.title ?? "Custom document"}, {shortDate(a.updated_at)}</span>
+                    <span className="mini-meta">{getTemplate(a.template_key)?.title ?? tr("Custom document")}, {shortDate(a.updated_at)}</span>
                   </Link>
-                  <span className={`as-status ${a.status}`}>{a.status === "final" ? "Final" : "Draft"}</span>
+                  <span className={`as-status ${a.status}`}>{tr(a.status === "final" ? "Final" : "Draft")}</span>
                 </li>
               ))}
             </ul>
           )}
         </section>
         <section className="panel-card" aria-labelledby="recent-files">
-          <div className="panel-title"><div><h3 id="recent-files">Files</h3></div><Link href="/files">See all</Link></div>
+          <div className="panel-title"><div><h3 id="recent-files">{tr("Files")}</h3></div><Link href="/files">{tr("See all")}</Link></div>
           <RecentFiles files={ctx.recentFiles.slice(0, 4)} currentUserId={ctx.user.id} role={workspace.role} />
         </section>
         <section className="panel-card credits-card" aria-labelledby="credits-h">
-          <div className="panel-title"><div><h3 id="credits-h">Credits</h3></div><Link href="/billing">Buy credits</Link></div>
+          <div className="panel-title"><div><h3 id="credits-h">{tr("Credits")}</h3></div><Link href="/billing">{tr("Buy credits")}</Link></div>
           <p className="credits-big">{credits.available.toLocaleString("en-IN")}</p>
-          <p className="dash-empty">available for AI tools{credits.reserved > 0 ? `, ${credits.reserved.toLocaleString("en-IN")} in use now` : ""}. PDF tools and signing are free.</p>
-          <p className="dash-fine">A typical agreement draft uses 10–25 credits.</p>
+          <p className="dash-empty">{tr("available for AI tools")}{credits.reserved > 0 ? `, ${credits.reserved.toLocaleString("en-IN")} ${tr("in use now")}` : ""}. {tr("PDF tools and signing are free.")}</p>
+          <p className="dash-fine">{tr("A typical agreement draft uses 10–25 credits.")}</p>
         </section>
       </div>
 
@@ -181,7 +186,7 @@ export default async function Home() {
       </section>
       )}
 
-      <footer>Files are stored privately in {workspace.name}. AI tools send a file to the AI provider only when you run a task on it.</footer>
+      <footer>{tr("Files are stored privately in")} {workspace.name}. {tr("AI tools send a file to the AI provider only when you run a task on it.")}</footer>
     </AppShell>
   );
 }

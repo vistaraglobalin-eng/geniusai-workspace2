@@ -18,7 +18,7 @@ export default function AccountPage() {
       ] },
       { title: "You", rows: [
         { href: "/settings#profile", title: "Profile", text: "Your name and email", Icon: UserRound, tint: "blue" },
-        { href: "/settings#appearance", title: "Appearance", text: "Light or dark, colour, text size", Icon: Palette, tint: "purple" },
+        { href: "/settings#appearance", title: "Appearance", text: "Light or dark, colour, text size, language", Icon: Palette, tint: "purple" },
         { href: "/settings#privacy", title: "Privacy & security", text: "Sign out everywhere, download or delete data", Icon: ShieldCheck, tint: "gray" }
       ] },
       { title: "Everything", rows: [
