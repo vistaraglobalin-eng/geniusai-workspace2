@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, MessageSquareText, GitCompareArrows, Landmark, BookCheck, Diff } from "lucide-react";
+import { ArrowUpRight, FilePen, MessageSquareText, GitCompareArrows, Landmark, BookCheck, Diff, Network } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -78,6 +78,11 @@ export default async function AgreementStudioPage() {
         <Link href="/tools/compare" className="as-template as-explain">
           <span className="as-template-icon"><Diff size={20} aria-hidden="true" /></span>
           <span className="as-template-text"><strong>Compare versions</strong><span>What changed between two drafts? Every added, removed and edited word, with page numbers. Free.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/agreements/clause-map" className="as-template as-explain">
+          <span className="as-template-icon"><Network size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>Clause map</strong><span>See how a contract fits together, and catch broken references and undefined terms.</span></span>
           <span className="as-cat">Review</span>
         </Link>
       </div>

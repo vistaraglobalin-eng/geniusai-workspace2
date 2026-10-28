@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 31: Clause map
+
+- Clause map (/tools/agreements/clause-map, also in Agreement Studio, All tools and Docs): maps one contract's clauses (up to 80) and defined terms (up to 60) as an interactive diagram: terms on the left, clauses on the right, lines for "uses this term", dashed arrows for "refers to this clause". Tap a clause or term to light up what it depends on and what depends on it, with details (summary, page, depends on, referred to by, terms used).
+- Problems found, checked by the app rather than taken on trust from the AI: references to clauses or schedules that don't exist, terms used but never defined, definitions no clause uses, and clauses that depend on each other. Tap a problem to jump to it in the map.
+- Download as Markdown; recent maps can be reopened with their problems intact.
+- Uses credits like other AI tools (module contracts, task clause_map). No database change.
+
 ## Revision 30: Compare versions
 
 - Compare versions (/tools/compare, also in All tools, Docs and Agreement Studio): pick an older and a newer version (PDF with text, Word .docx or text). Every edited, added and removed paragraph is shown with word-level highlights (green added, red struck-through removed) and page numbers. Unchanged text is folded away ("Show unchanged" to see it). Download the changes as Markdown.
