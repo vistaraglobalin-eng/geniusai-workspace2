@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { AtSign, Check, Hash, CornerDownRight, Download, FileText, MessageSquareText, PenLine, RotateCcw, Send, Signature, Trash2 } from "lucide-react";
+import { AtSign, Check, Hash, CornerDownRight, Download, FileText, MessageSquareText, PenLine, RotateCcw, Send, Signature, Trash2, BookOpen } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { FILES_BUCKET } from "@/lib/storage/files";
 import { ShareButton, storageSource } from "@/components/ShareSheet";
@@ -12,6 +12,8 @@ import { COMMENT_MAX, segments } from "@/lib/comments/mentions";
 import { DriveSaveButton } from "@/components/DriveButtons";
 import { DropboxSaveButton } from "@/components/DropboxButtons";
 import { OneDriveSaveButton } from "@/components/OneDriveButtons";
+
+const READABLE_MIMES = ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "text/plain", "text/csv"];
 
 type C = { id: string; parent_id: string | null; author_id: string | null; author_name: string; body: string; page: number | null; resolved_at: string | null; edited_at: string | null; created_at: string };
 type Member = { id: string; name: string; email: string | null };
@@ -235,6 +237,7 @@ export function FileDetail({ file, comments: initial0, members, me, isAdmin, set
             {file.mime === "application/pdf" && <Link className="secondary-button" href={`/tools/edit?file=${file.id}`}><PenLine size={15} aria-hidden="true" /> Edit</Link>}
             {file.mime === "application/pdf" && <Link className="secondary-button" href={`/tools/sign?file=${file.id}`}><Signature size={15} aria-hidden="true" /> Sign</Link>}
             <Link className="secondary-button" href={`/tools/chat?file=${file.id}`}><MessageSquareText size={15} aria-hidden="true" /> Ask AI</Link>
+            {READABLE_MIMES.includes(file.mime) && <Link className="secondary-button" href={`/tools/read?file=${file.id}`}><BookOpen size={15} aria-hidden="true" /> Read mode</Link>}
             {driveConnected && <DriveSaveButton fileId={file.id} />}
             {dropboxKey && <DropboxSaveButton appKey={dropboxKey} fileId={file.id} />}
             {oneDriveConnected && <OneDriveSaveButton fileId={file.id} />}

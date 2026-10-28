@@ -1,5 +1,13 @@
 # Changes
 
+## Revision 32: Read mode
+
+- Read mode (/tools/read, plus a "Read mode" button on a file's page, All tools and Docs): any PDF, Word, text or CSV file shown as reflowed text that fits a phone screen. No zooming or side-scrolling.
+- Headings, numbered clauses like 3.1 and (a), and page markers are kept; stray page numbers are removed. Shows an estimated reading time.
+- Text size (6 steps) and light, sepia or dark background, remembered on this device.
+- Free and private: PDFs are read on the device (same reader as Compare versions); Word and text files use the existing text route. No AI, no credits, no database change.
+- Scanned PDFs without text show a message pointing to Read scanned text (OCR).
+
 ## Revision 31: Clause map
 
 - Clause map (/tools/agreements/clause-map, also in Agreement Studio, All tools and Docs): maps one contract's clauses (up to 80) and defined terms (up to 60) as an interactive diagram: terms on the left, clauses on the right, lines for "uses this term", dashed arrows for "refers to this clause". Tap a clause or term to light up what it depends on and what depends on it, with details (summary, page, depends on, referred to by, terms used).
