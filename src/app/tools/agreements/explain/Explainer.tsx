@@ -9,6 +9,7 @@ import { MarkdownView } from "@/components/MarkdownView";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { DOCUMENT_MIME_TYPES } from "@/lib/documents/tasks";
 import { DISCLAIMER } from "@/lib/agreements/prompts";
+import { track } from "@/lib/analytics";
 
 export type ExplainFile = { id: string; name: string; mimeType: string; byteSize: number };
 export type ExplainJob = { id: string; filename: string; credits: number; createdAt: string };
@@ -34,8 +35,13 @@ export function Explainer({ workspaceId, files, history, creditsAvailable, initi
       const res = await fetch("/api/agreements/explain", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ fileId: selected.id, requestId: requestId.current }) });
       const data = (await res.json().catch(() => ({}))) as { text?: string; truncated?: boolean; creditsCharged?: number; message?: string; error?: string };
       requestId.current = crypto.randomUUID();
-      if (res.ok && data.text) setResult({ filename: selected.name, text: data.text, truncated: Boolean(data.truncated), credits: data.creditsCharged });
-      else setError({ text: data.message ?? "Something went wrong.", buy: data.error === "insufficient_credits" });
+      if (res.ok && data.text) {
+        setResult({ filename: selected.name, text: data.text, truncated: Boolean(data.truncated), credits: data.creditsCharged });
+        track("ai_task_completed", { task: "explain", credits: data.creditsCharged });
+      } else {
+        setError({ text: data.message ?? "Something went wrong.", buy: data.error === "insufficient_credits" });
+        track("ai_task_failed", { task: "explain", reason: data.error ?? "unknown" });
+      }
     } catch {
       setError({ text: "The connection dropped. Check Recent explanations below in a minute." });
     } finally {

@@ -6,6 +6,7 @@ import { UploadCloud } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { ALLOWED_MIME_TYPES, UploadError, uploadWorkspaceFile, type UploadedFile } from "@/lib/storage/files";
 import type { ModuleKey } from "@/lib/modules";
+import { track } from "@/lib/analytics";
 
 export function UploadButton({
   workspaceId,
@@ -34,6 +35,7 @@ export function UploadButton({
     try {
       const uploaded = await uploadWorkspaceFile(createSupabaseBrowserClient(), { workspaceId, file, moduleKey });
       setMessage({ kind: "success", text: `Uploaded ${file.name}` });
+      track("file_uploaded", { module: moduleKey ?? "files", type: (file.type.split("/")[1] ?? "other").slice(0, 40) });
       onUploaded?.(uploaded);
       startTransition(() => router.refresh());
     } catch (err) {

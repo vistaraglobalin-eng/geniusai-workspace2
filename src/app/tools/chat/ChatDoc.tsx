@@ -9,6 +9,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { DOCUMENT_MIME_TYPES } from "@/lib/documents/tasks";
 import { MAX_CHAT_FILES, fileSetKey } from "@/lib/documents/chat";
 import { renderMarkdownHtml } from "@/lib/markdown";
+import { track } from "@/lib/analytics";
 
 export type ChatFile = { id: string; name: string; mimeType: string; byteSize: number };
 type Turn = { id: string; q: string; a: string | null; credits: number | null; error?: string };
@@ -91,7 +92,9 @@ export function ChatDoc({ workspaceId, userId, files, initialFileId, credits, re
     setQ(""); setAsking(true);
     try {
       const res = await fetch("/api/documents/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fileIds: chosen.map((f) => f.id), requestId: id, question, history }) });
-      const body = (await res.json().catch(() => ({}))) as { text?: string; creditsCharged?: number; message?: string; truncated?: boolean };
+      const body = (await res.json().catch(() => ({}))) as { text?: string; creditsCharged?: number; message?: string; truncated?: boolean; error?: string };
+      if (res.ok && body.text) track("ai_task_completed", { task: "chat", documents: chosen.length, credits: body.creditsCharged });
+      else track("ai_task_failed", { task: "chat", reason: body.error ?? "unknown" });
       setTurns((t) => t.map((x) => (x.id === id ? (res.ok && body.text
         ? { ...x, a: body.text + (body.truncated ? "\n\n*(The answer was cut short. Ask for the rest.)*" : ""), credits: body.creditsCharged ?? null }
         : { ...x, error: body.message ?? "That didn't work. Please try again." }) : x)));

@@ -28,5 +28,6 @@ export async function completeOnboarding(_prev: OnboardingState, formData: FormD
     return { error: known ? MESSAGES[known] : "Something went wrong while setting up your workspace. Please try again." };
   }
 
-  redirect("/");
+  // "welcome" lets the analytics tracker count a finished onboarding once; the dashboard ignores it.
+  redirect("/?welcome=1");
 }

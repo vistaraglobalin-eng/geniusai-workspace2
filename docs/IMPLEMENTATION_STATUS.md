@@ -26,6 +26,9 @@
 - Conflict Finder (revision 25): compare 2 to 5 documents for cross-document conflicts. Report parser tested (21 checks); page layout rendered at phone and desktop widths. Not yet run against the live Claude API. No migration.
 - New-law impact check (revision 26): one new rule against up to 5 contracts, with suggested amendment wording. Report checker tested (22 checks); layout rendered at phone width. Not yet run against the live Claude API. No migration.
 - Chat with several documents (revision 27): up to 5 files per question; single-file chat unchanged (prompt verified identical). Not yet run against the live Claude API. No migration.
+- Firm playbook (revision 29): migration 202610280023 tested locally (16 checks; full suite 151 checks pass); report checker tested (20 checks). **Apply 202610280023_playbook.sql to the Supabase project.** Not yet run against the live Claude API.
+- Compare versions (revision 30): comparison engine tested (22 checks incl. a 3,000-paragraph document) and end to end on two real PDFs through the app's PDF line reader. AI explanation not yet run against the live Claude API. No migration.
+- Clause map (revision 31): map checker tested (23 checks); the diagram component rendered with a sample contract at phone width (with and without a selection). Not yet run against the live Claude API. No migration.
 - Live database checked on 28 Oct 2026: every migration through 202610250022 is in place; 202610240014 (indexes) was missing and has now been applied.
 
 ## Not yet complete

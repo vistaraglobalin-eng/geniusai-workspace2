@@ -8,6 +8,7 @@ import { UploadButton } from "@/components/UploadButton";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { DOCUMENT_MIME_TYPES } from "@/lib/documents/tasks";
 import { DISCLAIMER } from "@/lib/agreements/prompts";
+import { track } from "@/lib/analytics";
 import {
   MAX_CONTRACTS, MAX_FOCUS_CHARS, MIN_CONTRACTS, STATUS_LABEL, countByStatus, parseImpactReport, reportToMarkdown,
   type ImpactReport, type ImpactStatus, type Severity
@@ -63,8 +64,13 @@ export function LawImpact({ workspaceId, files, history, creditsAvailable }: {
       });
       const data = (await res.json().catch(() => ({}))) as { report?: ImpactReport; truncated?: boolean; creditsCharged?: number; message?: string; error?: string };
       requestId.current = crypto.randomUUID();
-      if (res.ok && data.report) setResult({ report: data.report, credits: data.creditsCharged, truncated: Boolean(data.truncated) });
-      else setError({ text: data.message ?? "Something went wrong.", buy: data.error === "insufficient_credits" });
+      if (res.ok && data.report) {
+        setResult({ report: data.report, credits: data.creditsCharged, truncated: Boolean(data.truncated) });
+        track("ai_task_completed", { task: "law_impact", documents: contracts.length + 1, update_needed: countByStatus(data.report).update_needed, credits: data.creditsCharged });
+      } else {
+        setError({ text: data.message ?? "Something went wrong.", buy: data.error === "insufficient_credits" });
+        track("ai_task_failed", { task: "law_impact", reason: data.error ?? "unknown" });
+      }
     } catch {
       setError({ text: "The connection dropped. Check Recent checks below in a minute." });
     } finally {

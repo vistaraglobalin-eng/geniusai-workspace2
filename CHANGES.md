@@ -1,5 +1,41 @@
 # Changes
 
+## Revision 32: Read mode
+
+- Read mode (/tools/read, plus a "Read mode" button on a file's page, All tools and Docs): any PDF, Word, text or CSV file shown as reflowed text that fits a phone screen. No zooming or side-scrolling.
+- Headings, numbered clauses like 3.1 and (a), and page markers are kept; stray page numbers are removed. Shows an estimated reading time.
+- Text size (6 steps) and light, sepia or dark background, remembered on this device.
+- Free and private: PDFs are read on the device (same reader as Compare versions); Word and text files use the existing text route. No AI, no credits, no database change.
+- Scanned PDFs without text show a message pointing to Read scanned text (OCR).
+
+## Revision 31: Clause map
+
+- Clause map (/tools/agreements/clause-map, also in Agreement Studio, All tools and Docs): maps one contract's clauses (up to 80) and defined terms (up to 60) as an interactive diagram: terms on the left, clauses on the right, lines for "uses this term", dashed arrows for "refers to this clause". Tap a clause or term to light up what it depends on and what depends on it, with details (summary, page, depends on, referred to by, terms used).
+- Problems found, checked by the app rather than taken on trust from the AI: references to clauses or schedules that don't exist, terms used but never defined, definitions no clause uses, and clauses that depend on each other. Tap a problem to jump to it in the map.
+- Download as Markdown; recent maps can be reopened with their problems intact.
+- Uses credits like other AI tools (module contracts, task clause_map). No database change.
+
+## Revision 30: Compare versions
+
+- Compare versions (/tools/compare, also in All tools, Docs and Agreement Studio): pick an older and a newer version (PDF with text, Word .docx or text). Every edited, added and removed paragraph is shown with word-level highlights (green added, red struck-through removed) and page numbers. Unchanged text is folded away ("Show unchanged" to see it). Download the changes as Markdown.
+- Free and private: PDFs are read and compared on the device; Word and text files are read by the server without AI (/api/documents/text). Line wrapping, spacing, case and curly quotes are ignored so only real changes show.
+- Optional "Explain what these changes mean (AI)": sends only the changed text and returns key changes (money, dates, obligations, liability, risk) and minor edits. Uses a few credits (module documents, task compare).
+- No database change.
+
+## Revision 29: Firm playbook
+
+- Firm playbook (/tools/agreements/playbook, also in Agreement Studio, All tools and Docs): save your standard contract terms once (topic, standard position, acceptable fallback, importance), or start from 10 common terms for Indian businesses and edit them. Up to 40 rules per workspace; editors change them, view-only members can read.
+- Check a contract: every rule is marked Meets standard, Acceptable fallback, Deviates, Missing or Not applicable, with the contract's clause and quote, a short explanation and suggested wording (Copy button) for each gap. A score shows the share of applicable rules met, plus "Other terms to look at".
+- Download as Markdown; recent checks can be reopened and read correctly even after the playbook changes.
+- Uses credits like other AI tools (module contracts, task playbook). Needs 202610280023_playbook.sql (16 security checks; all 151 local database checks pass).
+
+## Revision 28: Usage analytics (optional)
+
+- Anonymous usage analytics with PostHog, off until NEXT_PUBLIC_POSTHOG_KEY is set (optional NEXT_PUBLIC_POSTHOG_HOST, default EU cloud).
+- Counts page views, uploads (module and file type only), AI task results (task, number of documents, credits, error code) and finished onboarding.
+- No cookies and no personal data: a random ID in the browser, IDs and private link codes (signing and invite links) removed from page paths, no person profiles. Turned off by Do Not Track or Global Privacy Control. No package added; events go straight to PostHog's capture API.
+- Privacy Policy section 9 updated to describe it. No database change.
+
 ## Revision 27: Chat with several documents
 
 - Chat (/tools/chat) now takes up to 5 documents at once: tick them in the list and ask one question across all of them. Answers name the source file and page for each fact, show where the documents differ, and use a table for comparisons.

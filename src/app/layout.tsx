@@ -4,6 +4,8 @@ import { cookies } from "next/headers";
 import { Geist, Playfair_Display } from "next/font/google";
 import { PREFS_COOKIE, htmlAttributes, parsePreferences } from "@/lib/preferences";
 import { OfflineSupport } from "@/components/OfflineSupport";
+import { Analytics } from "@/components/Analytics";
+import { Suspense } from "react";
 import "./globals.css";
 
 // Self-hosted by Next.js (no request to Google at runtime): a clean sans for the interface
@@ -36,7 +38,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const prefs = parsePreferences((await cookies()).get(PREFS_COOKIE)?.value);
   return (
     <html lang="en" {...htmlAttributes(prefs)} className={`${sans.variable} ${serif.variable}`}>
-      <body>{children}<OfflineSupport /></body>
+      <body>{children}<OfflineSupport /><Suspense fallback={null}><Analytics /></Suspense></body>
     </html>
   );
 }
