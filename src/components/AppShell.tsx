@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ArrowRightLeft, Bell, BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LayoutTemplate, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen } from "lucide-react";
+import { ArrowRightLeft, Bell, BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LayoutTemplate, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 import { roleLabel } from "@/lib/team/roles";
 
@@ -9,7 +9,7 @@ export type NavKey =
   | "overview" | "money" | "docs" | "create" | "account"
   | "invoices" | "expenses" | "tally" | "scan" | "chat" | "pdf" | "edit" | "sign" | "agreements" | "documents" | "letters"
   | "creative" | "cards" | "career" | "templates" | "files" | "tools" | "billing" | "settings"
-  | "conflicts" | "law-impact" | "playbook" | "compare" | "clause-map" | "read";
+  | "conflicts" | "law-impact" | "playbook" | "compare" | "clause-map" | "read" | "study";
 
 type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home; tint: string };
 type NavGroup = { title: string; hub: string; area: NavKey; items: NavItem[] };
@@ -29,6 +29,7 @@ const GROUPS: NavGroup[] = [
     { key: "agreements", href: "/tools/agreements", label: "Agreements", Icon: FilePen, tint: "purple" },
     { key: "chat", href: "/tools/chat", label: "Chat with a doc", Icon: MessageSquareText, tint: "cyan" },
     { key: "documents", href: "/tools/documents", label: "AI documents", Icon: Sparkles, tint: "cyan" },
+    { key: "study", href: "/tools/study", label: "Quizzes & flashcards", Icon: GraduationCap, tint: "purple" },
     { key: "letters", href: "/tools/letters", label: "Letters", Icon: Mail, tint: "blue" },
     { key: "templates", href: "/templates", label: "Templates", Icon: LayoutTemplate, tint: "blue" }
   ] },
@@ -56,7 +57,7 @@ const ACCOUNT: NavItem[] = [
 const TABS: { href: string; label: string; Icon: typeof Home; covers: NavKey[] }[] = [
   { href: "/", label: "Home", Icon: Home, covers: ["overview"] },
   { href: "/money", label: "Money", Icon: IndianRupee, covers: ["money", "invoices", "expenses", "tally"] },
-  { href: "/docs", label: "Documents", Icon: FileText, covers: ["docs", "scan", "chat", "pdf", "edit", "sign", "agreements", "documents", "letters", "templates", "conflicts", "law-impact", "playbook", "compare", "clause-map", "read"] },
+  { href: "/docs", label: "Documents", Icon: FileText, covers: ["docs", "scan", "chat", "pdf", "edit", "sign", "agreements", "documents", "letters", "templates", "conflicts", "law-impact", "playbook", "compare", "clause-map", "read", "study"] },
   { href: "/create", label: "Create", Icon: Sparkles, covers: ["create", "creative", "cards", "career"] },
   { href: "/account", label: "Account", Icon: CircleUserRound, covers: ["account", "files", "tools", "billing", "settings"] }
 ];

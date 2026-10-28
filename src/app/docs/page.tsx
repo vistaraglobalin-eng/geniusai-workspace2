@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Combine, EyeOff, FilePen, FileType2, FileStack, LayoutTemplate, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen } from "lucide-react";
+import { Combine, EyeOff, FilePen, FileType2, FileStack, LayoutTemplate, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap } from "lucide-react";
 import { Hub } from "@/components/Hub";
 
 export const metadata: Metadata = { title: "Documents · GeniusAI Workspace" };
@@ -37,6 +37,7 @@ export default function DocsPage() {
         { href: "/tools/letters", title: "Business letters", text: "Offer letters, salary slips, NOC, rent receipts", Icon: Mail, tint: "blue" }
       ] },
       { title: "AI", rows: [
+        { href: "/tools/study", title: "Quizzes & flashcards", text: "Practice tests from notes or a chapter, in Hindi too", Icon: GraduationCap, tint: "purple" },
         { href: "/tools/chat", title: "Chat with a document", text: "Ask questions, get answers with page numbers", Icon: MessageSquareText, tint: "cyan" },
         { href: "/tools/documents?task=summary", title: "Summarize", text: "Key points from long documents", Icon: ListChecks, tint: "cyan" },
         { href: "/tools/documents?task=translate", title: "Translate", text: "Into 25 languages, incl. Hindi", Icon: Languages, tint: "teal" },

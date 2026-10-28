@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { AtSign, Check, Hash, CornerDownRight, Download, FileText, MessageSquareText, PenLine, RotateCcw, Send, Signature, Trash2, BookOpen } from "lucide-react";
+import { AtSign, Check, Hash, CornerDownRight, Download, FileText, MessageSquareText, PenLine, RotateCcw, Send, Signature, Trash2, BookOpen, GraduationCap } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { FILES_BUCKET } from "@/lib/storage/files";
 import { ShareButton, storageSource } from "@/components/ShareSheet";
@@ -238,6 +238,7 @@ export function FileDetail({ file, comments: initial0, members, me, isAdmin, set
             {file.mime === "application/pdf" && <Link className="secondary-button" href={`/tools/sign?file=${file.id}`}><Signature size={15} aria-hidden="true" /> Sign</Link>}
             <Link className="secondary-button" href={`/tools/chat?file=${file.id}`}><MessageSquareText size={15} aria-hidden="true" /> Ask AI</Link>
             {READABLE_MIMES.includes(file.mime) && <Link className="secondary-button" href={`/tools/read?file=${file.id}`}><BookOpen size={15} aria-hidden="true" /> Read mode</Link>}
+            <Link className="secondary-button" href={`/tools/study?file=${file.id}`}><GraduationCap size={15} aria-hidden="true" /> Quiz me</Link>
             {driveConnected && <DriveSaveButton fileId={file.id} />}
             {dropboxKey && <DropboxSaveButton appKey={dropboxKey} fileId={file.id} />}
             {oneDriveConnected && <OneDriveSaveButton fileId={file.id} />}

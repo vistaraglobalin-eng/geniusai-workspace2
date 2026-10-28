@@ -1,5 +1,13 @@
 # Changes
 
+## Revision 34: Quizzes & flashcards
+
+- Quizzes & flashcards (/tools/study, in the sidebar under Documents, the Documents tab, All tools, and a "Quiz me" button on a file's page): turn notes, a chapter or any document (PDF, Word, text, or a photo of notes) into a practice quiz or flashcards.
+- Choose 5, 10 or 20 items, Easy, Medium or Hard, and one of 10 languages (English, Hindi, Bengali, Marathi, Tamil, Telugu, Gujarati, Kannada, Malayalam, Punjabi), plus an optional focus ("chapter 3", "formulas").
+- Quiz: tap answers, check them, see the score, the correct answers in green and an explanation with the page for each question; try again. Flashcards: tap to flip, swipe through with next and previous.
+- Download as a printable worksheet with an answer key, for teachers. Recent sets are listed and can be reopened.
+- Uses credits like other AI tools (module documents, task study). The reply is checked (4 distinct options, one valid answer) before it is stored; an unusable reply returns the credits. No database change.
+
 ## Revision 33: Easier to find the review tools
 
 - Home: a "Review contracts with AI" section with Find conflicts, New-law check, Compare versions and Read mode.
