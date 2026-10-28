@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 27: Chat with several documents
+
+- Chat (/tools/chat) now takes up to 5 documents at once: tick them in the list and ask one question across all of them. Answers name the source file and page for each fact, show where the documents differ, and use a table for comparisons.
+- New suggestions when several documents are ticked (compare in a table, payment-term differences, dates by document, contradictions, Hindi).
+- Each conversation belongs to its exact set of documents; earlier single-document chats still appear when that one document is chosen.
+- One document behaves exactly as before (same instructions, limits and credits). Several documents allow longer answers and must be under 23 MB together. No database change.
+
 ## Revision 26: New-law impact check
 
 - New-law impact check (/tools/agreements/law-impact, also in Agreement Studio, All tools and Docs): choose one new law, rule, circular or policy (for example DPDP Rules, an RBI or SEBI circular, a GST notification, or your own new policy) and up to 5 contracts.

@@ -25,6 +25,7 @@
 - Dashboard text sizes raised for readability; placeholder upload button is now visibly disabled.
 - Conflict Finder (revision 25): compare 2 to 5 documents for cross-document conflicts. Report parser tested (21 checks); page layout rendered at phone and desktop widths. Not yet run against the live Claude API. No migration.
 - New-law impact check (revision 26): one new rule against up to 5 contracts, with suggested amendment wording. Report checker tested (22 checks); layout rendered at phone width. Not yet run against the live Claude API. No migration.
+- Chat with several documents (revision 27): up to 5 files per question; single-file chat unchanged (prompt verified identical). Not yet run against the live Claude API. No migration.
 - Live database checked on 28 Oct 2026: every migration through 202610250022 is in place; 202610240014 (indexes) was missing and has now been applied.
 
 ## Not yet complete

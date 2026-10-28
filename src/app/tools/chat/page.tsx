@@ -29,8 +29,8 @@ export default async function ChatPage({ searchParams }: { searchParams: Promise
     <AppShell ctx={{ ...ctx, workspace }} active="chat" breadcrumb="Chat with a document">
       <div className="welcome-row">
         <div>
-          <h1>Chat with a document</h1>
-          <p className="subtitle">Ask anything about a PDF, Word file or photo — payment terms, deadlines, who signs, what a clause means. Answers point to the page.</p>
+          <h1>Chat with documents</h1>
+          <p className="subtitle">Ask anything about a PDF, Word file or photo, or tick up to 5 to compare them: payment terms, deadlines, who signs, what a clause means. Answers point to the document and page.</p>
         </div>
       </div>
       <ChatDoc workspaceId={workspace.id} userId={ctx.user.id} files={files} initialFileId={files.some((f) => f.id === file) ? file : undefined} credits={ctx.credits?.available ?? 0} readOnly={workspace.access === "view"} />
