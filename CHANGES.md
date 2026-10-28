@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 37: Regional-language screens
+
+- Ten interface languages: English, हिन्दी, বাংলা, मराठी, தமிழ், తెలుగు, ગુજરાતી, ಕನ್ನಡ, മലയാളം and ਪੰਜਾਬੀ. The top-bar button is now a language menu (each language in its own script, with its English name), and Settings → Appearance → Language is a list.
+- Every language covers the same screens as Hindi: sidebar, phone tabs, "+ New" menu, Home, the Money, Documents, Create and Account pages, All tools and PDF tool names (247 strings each, checked by script). Dates on Home use the chosen language.
+- Dictionaries moved to src/lib/locales/<code>.ts and are read only on the server (src/lib/i18n-server.ts), so phones download none of them. src/lib/i18n.ts keeps the language list and the few strings client components show (language menu, settings hint, voice typing messages).
+- Machine-quality translations written for this release; a native speaker's review of the regional languages is recommended before a big launch. No database change.
+
 ## Revision 36: Hindi interface
 
 - Language switch: a "हिन्दी / English" button in the top bar (one tap), and Settings → Appearance → Language. The choice is kept on the device (preferences cookie, so the first page is already in the right language) and synced to the account with the other appearance settings. `<html lang>` follows it.

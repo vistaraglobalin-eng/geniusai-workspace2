@@ -7,8 +7,7 @@ import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
 import { PDF_TOOL_ICONS } from "@/components/ToolIcons";
 import { PDF_TOOLS, TOOL_INFO } from "@/lib/pdf/catalog";
-import { t } from "@/lib/i18n";
-import { getLang } from "@/lib/i18n-server";
+import { getLang, t } from "@/lib/i18n-server";
 
 export const metadata: Metadata = { title: "All tools · GeniusAI Workspace" };
 

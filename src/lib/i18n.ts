@@ -1,303 +1,40 @@
-// Interface language. English is the source text; Hindi is looked up by the English string,
-// so anything not yet translated simply stays in English. Shared by server and client code.
-// Product words people already use in English (PDF, Excel, UPI, GST, Tally, AI) stay in Latin script.
+// Interface languages. Client-safe and tiny: the menus' and screens' text lives in
+// src/lib/locales/<code>.ts and is only read on the server (src/lib/i18n-server.ts),
+// so phones never download every language.
 
-export const LANGUAGES = ["en", "hi"] as const;
+export const LANGUAGES = ["en", "hi", "bn", "mr", "ta", "te", "gu", "kn", "ml", "pa"] as const;
 export type Lang = (typeof LANGUAGES)[number];
-export const LANGUAGE_NAMES: Record<Lang, string> = { en: "English", hi: "हिन्दी" };
 
-/** Intl locale for dates and numbers (Indian digit grouping in both). */
-export const localeOf = (lang: Lang) => (lang === "hi" ? "hi-IN" : "en-IN");
-
-const HI: Record<string, string> = {
-  // Shell
-  "Skip to content": "सीधे सामग्री पर जाएँ",
-  "Home": "होम",
-  "New": "नया",
-  "All": "सभी",
-  "Main": "मुख्य",
-  "Inbox": "इनबॉक्स",
-  "Your profile and settings": "आपकी प्रोफ़ाइल और सेटिंग्स",
-  "Sign out": "साइन आउट",
-  "Sign out of this device": "इस डिवाइस से साइन आउट करें",
-  "Switch workspace": "वर्कस्पेस बदलें",
-  "Your workspaces": "आपके वर्कस्पेस",
-  "Language": "भाषा",
-  "Switch to English": "English में बदलें",
-  "Switch to Hindi": "हिन्दी में बदलें",
-
-  "PDF": "PDF",
-
-  // Areas and groups
-  "Money": "पैसा",
-  "Documents": "दस्तावेज़",
-  "Create": "बनाएँ",
-  "Account": "खाता",
-  "Contract review": "अनुबंध जाँच",
-
-  // Sidebar items
-  "Invoices": "इनवॉइस",
-  "Expenses": "ख़र्चे",
-  "Export to Tally": "Tally में भेजें",
-  "Statement to Excel": "स्टेटमेंट से Excel",
-  "Scan & convert": "स्कैन और बदलें",
-  "PDF tools": "PDF टूल्स",
-  "Edit PDF": "PDF एडिट करें",
-  "Sign & send": "साइन करें और भेजें",
-  "Agreements": "एग्रीमेंट",
-  "Chat with a doc": "दस्तावेज़ से पूछें",
-  "AI documents": "AI दस्तावेज़",
-  "Quizzes & flashcards": "क्विज़ और फ़्लैशकार्ड",
-  "Letters": "पत्र",
-  "Templates": "टेम्पलेट",
-  "Find conflicts": "टकराव खोजें",
-  "New-law check": "नए क़ानून की जाँच",
-  "Firm playbook": "फ़र्म प्लेबुक",
-  "Compare versions": "वर्ज़न की तुलना",
-  "Clause map": "क्लॉज़ मैप",
-  "Read mode": "पढ़ने का मोड",
-  "Photos & Ads": "फ़ोटो और विज्ञापन",
-  "Cards & letterhead": "कार्ड और लेटरहेड",
-  "Resumes": "रिज़्यूमे",
-  "Files": "फ़ाइलें",
-  "Plans & credits": "प्लान और क्रेडिट",
-  "Settings": "सेटिंग्स",
-
-  // + New menu
-  "New invoice": "नया इनवॉइस",
-  "Add expense": "ख़र्च जोड़ें",
-  "Scan or convert": "स्कैन या बदलें",
-  "Sign a PDF": "PDF पर साइन करें",
-  "Write a letter": "पत्र लिखें",
-  "Summarize a document": "दस्तावेज़ का सारांश",
-
-  // Home
-  "Good morning": "सुप्रभात",
-  "Good afternoon": "नमस्कार",
-  "Good evening": "शुभ संध्या",
-  "This month": "इस महीने",
-  "of this month's invoices collected": "इस महीने के इनवॉइस की वसूली",
-  "No invoices this month yet": "इस महीने अभी कोई इनवॉइस नहीं",
-  "Create one": "एक बनाएँ",
-  "To collect": "वसूली बाकी",
-  "Overdue": "समय निकल गया",
-  "Send reminders ›": "याद दिलाएँ ›",
-  "Nothing overdue": "कुछ भी बकाया नहीं",
-  "Spent this month": "इस महीने ख़र्च",
-  "From your expenses": "आपके ख़र्चों से",
-  "unpaid invoice": "बकाया इनवॉइस",
-  "unpaid invoices": "बकाया इनवॉइस",
-  "Quick actions": "तुरंत करें",
-  "Invoice": "इनवॉइस",
-  "Expense": "ख़र्च",
-  "Remind": "याद दिलाएँ",
-  "Sign": "साइन",
-  "Summarize": "सारांश",
-  "Scan": "स्कैन",
-  "Review contracts with AI": "AI से अनुबंध जाँचें",
-  "All review tools": "सभी जाँच टूल्स",
-  "Where contracts and policies disagree": "जहाँ अनुबंध और नीतियाँ मेल नहीं खातीं",
-  "Which contracts must change": "किन अनुबंधों को बदलना होगा",
-  "Every change between drafts": "ड्राफ़्ट के बीच हर बदलाव",
-  "Any PDF, easy to read on phone": "कोई भी PDF, फ़ोन पर आसानी से पढ़ें",
-  "Needs attention": "ध्यान दें",
-  "customer": "ग्राहक",
-  "due": "देय",
-  "Draft with AI": "AI से ड्राफ़्ट करें",
-  "Describe an agreement and GeniusAI drafts it": "एग्रीमेंट के बारे में बताइए, GeniusAI उसे ड्राफ़्ट करेगा",
-  "Continue where you left off": "जहाँ छोड़ा था, वहीं से शुरू करें",
-  "See all": "सभी देखें",
-  "No agreements yet.": "अभी कोई एग्रीमेंट नहीं।",
-  "Draft your first one": "पहला ड्राफ़्ट बनाएँ",
-  "Custom document": "कस्टम दस्तावेज़",
-  "Final": "फ़ाइनल",
-  "Draft": "ड्राफ़्ट",
-  "Credits": "क्रेडिट",
-  "Buy credits": "क्रेडिट ख़रीदें",
-  "available for AI tools": "AI टूल्स के लिए उपलब्ध",
-  "in use now": "अभी उपयोग में",
-  "PDF tools and signing are free.": "PDF टूल्स और साइन करना मुफ़्त है।",
-  "A typical agreement draft uses 10–25 credits.": "एक सामान्य एग्रीमेंट ड्राफ़्ट में 10–25 क्रेडिट लगते हैं।",
-  "Files are stored privately in": "फ़ाइलें निजी रूप से यहाँ रखी जाती हैं:",
-  "AI tools send a file to the AI provider only when you run a task on it.": "AI टूल्स फ़ाइल को AI प्रदाता के पास तभी भेजते हैं जब आप उस पर कोई काम चलाते हैं।",
-
-  // Hub pages: headers
-  "Get paid faster": "जल्दी भुगतान पाएँ",
-  "GST invoices, quotations, receipts, payment reminders and your expenses — in one place.": "GST इनवॉइस, कोटेशन, रसीदें, भुगतान रिमाइंडर और आपके ख़र्चे — सब एक जगह।",
-  "PDF, sign and AI": "PDF, साइन और AI",
-  "Edit and sign PDFs, send them for signing, draft agreements and letters, and let AI read long documents for you.": "PDF एडिट और साइन करें, साइन के लिए भेजें, एग्रीमेंट और पत्र बनाएँ, और लंबे दस्तावेज़ AI से पढ़वाएँ।",
-  "Look professional": "प्रोफ़ेशनल दिखें",
-  "Product photos and ad posts, visiting cards, letterhead and resumes — made on your phone, free.": "प्रोडक्ट फ़ोटो, विज्ञापन पोस्ट, विज़िटिंग कार्ड, लेटरहेड और रिज़्यूमे — फ़ोन पर, मुफ़्त।",
-  "Your workspace": "आपका वर्कस्पेस",
-  "Your files, team, plan and settings.": "आपकी फ़ाइलें, टीम, प्लान और सेटिंग्स।",
-
-  // Money hub
-  "Bill and collect": "बिल बनाएँ और वसूलें",
-  "GST tax invoice with UPI QR code": "UPI QR कोड के साथ GST टैक्स इनवॉइस",
-  "Quotations": "कोटेशन",
-  "Send a quote, convert it to an invoice later": "कोटेशन भेजें, बाद में उसे इनवॉइस बनाएँ",
-  "Receipts": "रसीदें",
-  "Payment receipts for money received": "मिले हुए पैसों की रसीद",
-  "Payment reminders": "भुगतान रिमाइंडर",
-  "WhatsApp, SMS or email in one tap": "एक टैप में WhatsApp, SMS या ईमेल",
-  "All invoices": "सभी इनवॉइस",
-  "To collect, overdue and paid": "बाकी, बकाया और भुगतान हो चुके",
-  "Spend": "ख़र्च",
-  "Snap bills, see where money goes, export for your CA": "बिल की फ़ोटो लें, देखें पैसा कहाँ जाता है, CA के लिए एक्सपोर्ट करें",
-  "Accounts": "हिसाब-किताब",
-  "Bank statement to Excel": "बैंक स्टेटमेंट से Excel",
-  "Statement PDF or photo into a checked Excel sheet": "स्टेटमेंट PDF या फ़ोटो से जाँची हुई Excel शीट",
-  "Invoices, receipts and expenses into TallyPrime": "इनवॉइस, रसीदें और ख़र्चे TallyPrime में",
-  "Set up": "सेटअप",
-  "Business details": "व्यवसाय की जानकारी",
-  "Name, GSTIN, logo, bank, UPI and signature": "नाम, GSTIN, लोगो, बैंक, UPI और साइन",
-
-  // Documents hub
-  "Explain a contract": "अनुबंध समझाएँ",
-  "Plain-language summary and risks": "आसान भाषा में सारांश और जोखिम",
-  "Compare contracts and policies clause by clause": "अनुबंधों और नीतियों की क्लॉज़-दर-क्लॉज़ तुलना",
-  "New-law impact check": "नए क़ानून का असर जाँचें",
-  "Which contracts must change for a new rule": "नए नियम के लिए किन अनुबंधों को बदलना होगा",
-  "Check contracts against your standard terms": "अपनी मानक शर्तों से अनुबंध जाँचें",
-  "Every change between two drafts, word by word": "दो ड्राफ़्ट के बीच हर बदलाव, शब्द-दर-शब्द",
-  "Phone-friendly view of any PDF or Word file": "किसी भी PDF या Word फ़ाइल को फ़ोन पर आसानी से पढ़ें",
-  "How clauses and definitions connect": "क्लॉज़ और परिभाषाएँ कैसे जुड़ी हैं",
-  "Photo, ID or screenshot to HD PDF, Word or text": "फ़ोटो, ID या स्क्रीनशॉट से HD PDF, Word या टेक्स्ट",
-  "Text, highlights, notes, forms, images": "टेक्स्ट, हाइलाइट, नोट्स, फ़ॉर्म, इमेज",
-  "Redact a PDF": "PDF में जानकारी छिपाएँ",
-  "Black out PAN, Aadhaar, phone, account numbers": "PAN, आधार, फ़ोन, खाता नंबर छिपाएँ",
-  "Stamp a PDF": "PDF पर स्टाम्प लगाएँ",
-  "Paid, Approved, company seal, signatory": "Paid, Approved, कंपनी सील, हस्ताक्षरकर्ता",
-  "Merge PDFs": "PDF जोड़ें",
-  "Combine files in the order you want": "फ़ाइलों को अपने क्रम में जोड़ें",
-  "Compress PDF": "PDF छोटा करें",
-  "Make files smaller to share": "भेजने के लिए फ़ाइल छोटी करें",
-  "PDF to Word": "PDF से Word",
-  "Editable Word or text from any PDF": "किसी भी PDF से एडिट होने वाला Word या टेक्स्ट",
-  "All PDF tools": "सभी PDF टूल्स",
-  "Split, rotate, protect, convert and more": "अलग करें, घुमाएँ, सुरक्षित करें, बदलें और भी बहुत कुछ",
-  "Draw or type your signature": "अपना साइन बनाएँ या टाइप करें",
-  "Request signatures": "साइन मँगवाएँ",
-  "Send for others to sign by private link": "निजी लिंक से दूसरों को साइन के लिए भेजें",
-  "Write": "लिखें",
-  "Templates library": "टेम्पलेट लाइब्रेरी",
-  "35+ Indian formats: HR, bank, GST, rent, agreements": "35+ भारतीय फ़ॉर्मैट: HR, बैंक, GST, किराया, एग्रीमेंट",
-  "Draft India-ready agreements with AI": "AI से भारत के लिए तैयार एग्रीमेंट बनाएँ",
-  "Business letters": "व्यावसायिक पत्र",
-  "Offer letters, salary slips, NOC, rent receipts": "ऑफ़र लेटर, सैलरी स्लिप, NOC, किराया रसीद",
-  "AI": "AI",
-  "Practice tests from notes or a chapter, in Hindi too": "नोट्स या अध्याय से अभ्यास टेस्ट, हिन्दी में भी",
-  "Every transaction, with balances checked": "हर लेन-देन, बैलेंस की जाँच के साथ",
-  "Chat with a document": "दस्तावेज़ से बात करें",
-  "Ask questions, get answers with page numbers": "सवाल पूछें, पेज नंबर के साथ जवाब पाएँ",
-  "Key points from long documents": "लंबे दस्तावेज़ों के मुख्य बिंदु",
-  "Translate": "अनुवाद",
-  "Into 25 languages, incl. Hindi": "हिन्दी सहित 25 भाषाओं में",
-  "Read scanned text (OCR)": "स्कैन किया टेक्स्ट पढ़ें (OCR)",
-  "From scans and photos": "स्कैन और फ़ोटो से",
-  "Extract tables": "टेबल निकालें",
-  "To a spreadsheet you can edit": "एडिट होने वाली स्प्रेडशीट में",
-
-  // Create hub
-  "Sell": "बेचें",
-  "Product photos": "प्रोडक्ट फ़ोटो",
-  "Remove background, marketplace-ready photos": "बैकग्राउंड हटाएँ, मार्केटप्लेस के लिए तैयार फ़ोटो",
-  "Ad posts": "विज्ञापन पोस्ट",
-  "Instagram, WhatsApp status and banners": "Instagram, WhatsApp स्टेटस और बैनर",
-  "Brand": "ब्रांड",
-  "Visiting card": "विज़िटिंग कार्ड",
-  "6 designs with a QR code, print or share": "QR कोड के साथ 6 डिज़ाइन, प्रिंट करें या भेजें",
-  "Letterhead": "लेटरहेड",
-  "PDF or Word with your logo": "आपके लोगो के साथ PDF या Word",
-  "Career": "करियर",
-  "Professional resumes, job match, cover letters": "प्रोफ़ेशनल रिज़्यूमे, जॉब मैच, कवर लेटर",
-
-  // Account hub
-  "Workspace": "वर्कस्पेस",
-  "Mentions and replies on your files": "आपकी फ़ाइलों पर ज़िक्र और जवाब",
-  "Everything you've uploaded or saved, in spaces": "आपकी अपलोड या सेव की हुई हर चीज़",
-  "Connected apps": "जुड़े हुए ऐप",
-  "Google Drive, Tally and more": "Google Drive, Tally और भी",
-  "Team members": "टीम सदस्य",
-  "Invite people, choose who can edit": "लोगों को बुलाएँ, तय करें कौन एडिट कर सकता है",
-  "Credits for AI tools": "AI टूल्स के लिए क्रेडिट",
-  "Used on invoices, letters and cards": "इनवॉइस, पत्र और कार्ड पर इस्तेमाल",
-  "You": "आप",
-  "Profile": "प्रोफ़ाइल",
-  "Your name and email": "आपका नाम और ईमेल",
-  "Appearance": "दिखावट",
-  "Light or dark, colour, text size": "लाइट या डार्क, रंग, अक्षर का आकार",
-  "Light or dark, colour, text size, language": "लाइट या डार्क, रंग, अक्षर का आकार, भाषा",
-  "Privacy & security": "निजता और सुरक्षा",
-  "Sign out everywhere, download or delete data": "हर जगह से साइन आउट, डेटा डाउनलोड या डिलीट करें",
-  "Everything": "सब कुछ",
-  "All tools": "सभी टूल्स",
-  "Every tool in one list": "हर टूल एक सूची में",
-
-  // All tools page
-  "What do you need": "आपको क्या",
-  "to do?": "करना है?",
-  "Jump straight in.": "सीधे शुरू करें।",
-  "PDF Toolkit": "PDF टूलकिट",
-  "Merge, split, compress, protect, convert and more. Free.": "जोड़ें, अलग करें, छोटा करें, सुरक्षित करें, बदलें और भी। मुफ़्त।",
-  "Document Genius": "डॉक्यूमेंट जीनियस",
-  "AI summaries, translation, OCR, Markdown and tables.": "AI सारांश, अनुवाद, OCR, Markdown और टेबल।",
-  "Agreement Studio": "एग्रीमेंट स्टूडियो",
-  "Draft India-ready agreements with AI, edit and export.": "AI से भारत के लिए तैयार एग्रीमेंट बनाएँ, एडिट और एक्सपोर्ट करें।",
-  "Add text, whiteout, highlight, notes, drawings and images.": "टेक्स्ट, व्हाइटआउट, हाइलाइट, नोट्स, ड्रॉइंग और इमेज जोड़ें।",
-  "Sign PDF": "PDF साइन करें",
-  "Draw or type your signature and place it on any PDF. Free.": "अपना साइन बनाएँ या टाइप करें और किसी भी PDF पर लगाएँ। मुफ़्त।",
-  "Plain-language summary and risks before you sign.": "साइन करने से पहले आसान भाषा में सारांश और जोखिम।",
-  "Compare contracts and policies; see where they contradict each other.": "अनुबंधों और नीतियों की तुलना करें; देखें कहाँ वे एक-दूसरे से टकराते हैं।",
-  "See which contracts must change for a new law, rule or policy.": "देखें नए क़ानून, नियम या नीति के लिए किन अनुबंधों को बदलना होगा।",
-  "Check any contract against your own standard terms.": "किसी भी अनुबंध को अपनी मानक शर्तों से जाँचें।",
-  "See every change between two drafts, word by word. Free.": "दो ड्राफ़्ट के बीच हर बदलाव, शब्द-दर-शब्द। मुफ़्त।",
-  "Any PDF or Word file as easy-to-read text on your phone. Free.": "कोई भी PDF या Word फ़ाइल, फ़ोन पर आसानी से पढ़ें। मुफ़्त।",
-  "Turn notes or a chapter into a practice quiz or flashcards.": "नोट्स या अध्याय से अभ्यास क्विज़ या फ़्लैशकार्ड बनाएँ।",
-  "How a contract's clauses and definitions connect, and what's broken.": "अनुबंध के क्लॉज़ और परिभाषाएँ कैसे जुड़ी हैं, और कहाँ गड़बड़ है।",
-  "Send a PDF for others to sign by private link. Free.": "निजी लिंक से PDF दूसरों को साइन के लिए भेजें। मुफ़्त।",
-  "Invoices & Receipts": "इनवॉइस और रसीदें",
-  "GST invoices, quotations and receipts with UPI QR. Free.": "UPI QR के साथ GST इनवॉइस, कोटेशन और रसीदें। मुफ़्त।",
-  "Expense tracker": "ख़र्च ट्रैकर",
-  "Photograph bills, track spending by category, export for your CA. Free.": "बिल की फ़ोटो लें, श्रेणी के अनुसार ख़र्च देखें, CA के लिए एक्सपोर्ट करें। मुफ़्त।",
-  "Any bank statement PDF or photo into a checked Excel sheet.": "किसी भी बैंक स्टेटमेंट PDF या फ़ोटो से जाँची हुई Excel शीट।",
-  "Letters & visiting cards": "पत्र और विज़िटिंग कार्ड",
-  "Visiting cards, letterhead, offer letters, salary slips and rent receipts. Free.": "विज़िटिंग कार्ड, लेटरहेड, ऑफ़र लेटर, सैलरी स्लिप और किराया रसीद। मुफ़्त।",
-  "Resume & Career Studio": "रिज़्यूमे और करियर स्टूडियो",
-  "ATS-friendly resumes, job match and cover letters.": "ATS के अनुकूल रिज़्यूमे, जॉब मैच और कवर लेटर।",
-  "Product Photos & Ads": "प्रोडक्ट फ़ोटो और विज्ञापन",
-  "Remove backgrounds, marketplace photos and ad posts. Free.": "बैकग्राउंड हटाएँ, मार्केटप्लेस फ़ोटो और विज्ञापन पोस्ट। मुफ़्त।",
-
-  // PDF tool names
-  "Merge PDF": "PDF जोड़ें",
-  "Split PDF": "PDF अलग करें",
-  "Remove pages": "पेज हटाएँ",
-  "Extract pages": "पेज निकालें",
-  "Reorder pages": "पेज का क्रम बदलें",
-  "Rotate PDF": "PDF घुमाएँ",
-  "Add page numbers": "पेज नंबर जोड़ें",
-  "Add watermark": "वॉटरमार्क लगाएँ",
-  "JPG / PNG to PDF": "JPG / PNG से PDF",
-  "Repair PDF": "PDF ठीक करें",
-  "Protect PDF": "PDF पर पासवर्ड लगाएँ",
-  "Unlock PDF": "PDF का पासवर्ड हटाएँ",
-  "Office to PDF": "Office से PDF",
-  "PDF to JPG": "PDF से JPG",
-
-  // Settings
-  "Choose the language for menus and main screens. AI tools can also reply in Hindi.": "मेन्यू और मुख्य स्क्रीन की भाषा चुनें। AI टूल्स हिन्दी में भी जवाब दे सकते हैं।"
+/** Each language in its own script, so people can find theirs. */
+export const LANGUAGE_NAMES: Record<Lang, string> = {
+  en: "English", hi: "हिन्दी", bn: "বাংলা", mr: "मराठी", ta: "தமிழ்",
+  te: "తెలుగు", gu: "ગુજરાતી", kn: "ಕನ್ನಡ", ml: "മലയാളം", pa: "ਪੰਜਾਬੀ"
 };
 
-/** Translates interface text; untranslated text is returned unchanged. */
-export function t(lang: Lang, english: string): string {
-  return lang === "hi" ? HI[english] ?? english : english;
-}
+/** Same languages in English, for screen readers and the settings hint. */
+export const LANGUAGE_ENGLISH: Record<Lang, string> = {
+  en: "English", hi: "Hindi", bn: "Bengali", mr: "Marathi", ta: "Tamil",
+  te: "Telugu", gu: "Gujarati", kn: "Kannada", ml: "Malayalam", pa: "Punjabi"
+};
+
+/** BCP-47 locale: Intl dates and numbers (Indian digit grouping) and speech recognition. */
+export const localeOf = (lang: Lang) => `${lang}-IN`;
 
 export function isLang(v: unknown): v is Lang {
   return typeof v === "string" && (LANGUAGES as readonly string[]).includes(v);
 }
 
-/** For tests: English strings that have no Hindi yet. */
-export function missingHindi(strings: string[]): string[] {
-  return strings.filter((s) => !(s in HI));
-}
+/** The few strings shown by client components (the rest are translated on the server). */
+type ClientText = { language: string; hint: string; speak: string; listening: string; noVoice: string; voiceDenied: string };
+export const CLIENT_TEXT: Record<Lang, ClientText> = {
+  en: { language: "Language", hint: "Choose the language for menus and main screens. AI tools can also reply in your language.", speak: "Speak instead of typing", listening: "Listening… tap to stop", noVoice: "Voice typing isn't available in this browser. Try Safari or Chrome.", voiceDenied: "Allow the microphone for this site to use voice typing." },
+  hi: { language: "भाषा", hint: "मेन्यू और मुख्य स्क्रीन की भाषा चुनें। AI टूल्स आपकी भाषा में भी जवाब दे सकते हैं।", speak: "टाइप करने की बजाय बोलें", listening: "सुन रहे हैं… रोकने के लिए टैप करें", noVoice: "इस ब्राउज़र में बोलकर लिखना उपलब्ध नहीं है। Safari या Chrome आज़माएँ।", voiceDenied: "बोलकर लिखने के लिए इस साइट को माइक्रोफ़ोन की अनुमति दें।" },
+  bn: { language: "ভাষা", hint: "মেনু ও প্রধান স্ক্রিনের ভাষা বেছে নিন। AI টুলস আপনার ভাষাতেও উত্তর দিতে পারে।", speak: "টাইপ না করে বলুন", listening: "শুনছি… থামাতে ট্যাপ করুন", noVoice: "এই ব্রাউজারে বলে লেখা যায় না। Safari বা Chrome ব্যবহার করুন।", voiceDenied: "বলে লেখার জন্য এই সাইটকে মাইক্রোফোনের অনুমতি দিন।" },
+  mr: { language: "भाषा", hint: "मेनू आणि मुख्य स्क्रीनची भाषा निवडा. AI टूल्स तुमच्या भाषेतही उत्तर देऊ शकतात.", speak: "टाइप करण्याऐवजी बोला", listening: "ऐकत आहे… थांबवण्यासाठी टॅप करा", noVoice: "या ब्राउझरमध्ये बोलून लिहिता येत नाही. Safari किंवा Chrome वापरा.", voiceDenied: "बोलून लिहिण्यासाठी या साइटला मायक्रोफोनची परवानगी द्या." },
+  ta: { language: "மொழி", hint: "மெனு மற்றும் முதன்மைத் திரைகளின் மொழியைத் தேர்வுசெய்யுங்கள். AI கருவிகள் உங்கள் மொழியிலும் பதிலளிக்கும்.", speak: "தட்டச்சுக்குப் பதிலாகப் பேசுங்கள்", listening: "கேட்கிறது… நிறுத்தத் தட்டுங்கள்", noVoice: "இந்த உலாவியில் குரல் தட்டச்சு இல்லை. Safari அல்லது Chrome பயன்படுத்துங்கள்.", voiceDenied: "குரல் தட்டச்சுக்கு இந்தத் தளத்திற்கு மைக்ரோஃபோன் அனுமதி தாருங்கள்." },
+  te: { language: "భాష", hint: "మెనూలు మరియు ప్రధాన స్క్రీన్‌ల భాషను ఎంచుకోండి. AI టూల్స్ మీ భాషలో కూడా సమాధానం ఇస్తాయి.", speak: "టైప్ చేయడానికి బదులు మాట్లాడండి", listening: "వింటోంది… ఆపడానికి ట్యాప్ చేయండి", noVoice: "ఈ బ్రౌజర్‌లో మాట్లాడి టైప్ చేయడం లేదు. Safari లేదా Chrome ప్రయత్నించండి.", voiceDenied: "మాట్లాడి టైప్ చేయడానికి ఈ సైట్‌కు మైక్రోఫోన్ అనుమతి ఇవ్వండి." },
+  gu: { language: "ભાષા", hint: "મેનુ અને મુખ્ય સ્ક્રીનની ભાષા પસંદ કરો. AI ટૂલ્સ તમારી ભાષામાં પણ જવાબ આપી શકે છે.", speak: "ટાઇપ કરવાને બદલે બોલો", listening: "સાંભળી રહ્યા છીએ… રોકવા ટૅપ કરો", noVoice: "આ બ્રાઉઝરમાં બોલીને લખવાનું ઉપલબ્ધ નથી. Safari અથવા Chrome વાપરો.", voiceDenied: "બોલીને લખવા માટે આ સાઇટને માઇક્રોફોનની પરવાનગી આપો." },
+  kn: { language: "ಭಾಷೆ", hint: "ಮೆನು ಮತ್ತು ಮುಖ್ಯ ಪರದೆಗಳ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ. AI ಟೂಲ್‌ಗಳು ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲೂ ಉತ್ತರಿಸಬಹುದು.", speak: "ಟೈಪ್ ಮಾಡುವ ಬದಲು ಮಾತನಾಡಿ", listening: "ಕೇಳುತ್ತಿದೆ… ನಿಲ್ಲಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ", noVoice: "ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಮಾತಿನ ಮೂಲಕ ಟೈಪ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. Safari ಅಥವಾ Chrome ಬಳಸಿ.", voiceDenied: "ಮಾತಿನ ಮೂಲಕ ಟೈಪ್ ಮಾಡಲು ಈ ಸೈಟ್‌ಗೆ ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ನೀಡಿ." },
+  ml: { language: "ഭാഷ", hint: "മെനുവിന്റെയും പ്രധാന സ്ക്രീനുകളുടെയും ഭാഷ തിരഞ്ഞെടുക്കുക. AI ടൂളുകൾക്ക് നിങ്ങളുടെ ഭാഷയിലും മറുപടി നൽകാം.", speak: "ടൈപ്പ് ചെയ്യുന്നതിന് പകരം സംസാരിക്കുക", listening: "കേൾക്കുന്നു… നിർത്താൻ ടാപ്പ് ചെയ്യുക", noVoice: "ഈ ബ്രൗസറിൽ ശബ്ദത്തിലൂടെ ടൈപ്പ് ചെയ്യാനാവില്ല. Safari അല്ലെങ്കിൽ Chrome ഉപയോഗിക്കുക.", voiceDenied: "ശബ്ദത്തിലൂടെ ടൈപ്പ് ചെയ്യാൻ ഈ സൈറ്റിന് മൈക്രോഫോൺ അനുമതി നൽകുക." },
+  pa: { language: "ਭਾਸ਼ਾ", hint: "ਮੀਨੂ ਅਤੇ ਮੁੱਖ ਸਕ੍ਰੀਨਾਂ ਦੀ ਭਾਸ਼ਾ ਚੁਣੋ। AI ਟੂਲ ਤੁਹਾਡੀ ਭਾਸ਼ਾ ਵਿੱਚ ਵੀ ਜਵਾਬ ਦੇ ਸਕਦੇ ਹਨ।", speak: "ਟਾਈਪ ਕਰਨ ਦੀ ਬਜਾਏ ਬੋਲੋ", listening: "ਸੁਣ ਰਹੇ ਹਾਂ… ਰੋਕਣ ਲਈ ਟੈਪ ਕਰੋ", noVoice: "ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਬੋਲ ਕੇ ਲਿਖਣਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। Safari ਜਾਂ Chrome ਵਰਤੋ।", voiceDenied: "ਬੋਲ ਕੇ ਲਿਖਣ ਲਈ ਇਸ ਸਾਈਟ ਨੂੰ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।" }
+};

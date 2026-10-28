@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { ComponentType } from "react";
-import { t, type Lang } from "@/lib/i18n";
+import type { Lang } from "@/lib/i18n";
+import { t } from "@/lib/i18n-server";
 
 export type HubRow = { href: string; title: string; text: string; Icon: ComponentType<{ size?: number; "aria-hidden"?: boolean | "true" }>; tint: string };
 export type HubSection = { title: string; rows: HubRow[] };

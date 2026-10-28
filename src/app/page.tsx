@@ -12,8 +12,8 @@ import { PromptBox } from "@/components/PromptBox";
 import { getTemplate } from "@/lib/agreements/templates";
 import { DotRing } from "@/components/DotRing";
 import { inr, todayIso } from "@/lib/invoices/calc";
-import { localeOf, t } from "@/lib/i18n";
-import { getLang } from "@/lib/i18n-server";
+import { localeOf } from "@/lib/i18n";
+import { getLang, t } from "@/lib/i18n-server";
 
 const ACTIONS = [
   { href: "/tools/invoices/new?kind=invoice", label: "Invoice", Icon: ReceiptText, tint: "green" },
