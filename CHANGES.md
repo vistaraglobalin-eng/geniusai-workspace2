@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 28: Usage analytics (optional)
+
+- Anonymous usage analytics with PostHog, off until NEXT_PUBLIC_POSTHOG_KEY is set (optional NEXT_PUBLIC_POSTHOG_HOST, default EU cloud).
+- Counts page views, uploads (module and file type only), AI task results (task, number of documents, credits, error code) and finished onboarding.
+- No cookies and no personal data: a random ID in the browser, IDs and private link codes (signing and invite links) removed from page paths, no person profiles. Turned off by Do Not Track or Global Privacy Control. No package added; events go straight to PostHog's capture API.
+- Privacy Policy section 9 updated to describe it. No database change.
+
 ## Revision 27: Chat with several documents
 
 - Chat (/tools/chat) now takes up to 5 documents at once: tick them in the list and ask one question across all of them. Answers name the source file and page for each fact, show where the documents differ, and use a table for comparisons.

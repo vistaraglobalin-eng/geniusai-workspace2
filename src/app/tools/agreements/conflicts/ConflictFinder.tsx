@@ -8,6 +8,7 @@ import { UploadButton } from "@/components/UploadButton";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { DOCUMENT_MIME_TYPES } from "@/lib/documents/tasks";
 import { DISCLAIMER } from "@/lib/agreements/prompts";
+import { track } from "@/lib/analytics";
 import {
   MAX_DOCS, MAX_FOCUS_CHARS, MIN_DOCS, countBySeverity, parseConflictReport, reportToMarkdown,
   type ConflictReport, type ConflictSide, type Severity
@@ -54,8 +55,13 @@ export function ConflictFinder({ workspaceId, files, history, creditsAvailable }
       });
       const data = (await res.json().catch(() => ({}))) as { report?: ConflictReport; truncated?: boolean; creditsCharged?: number; message?: string; error?: string };
       requestId.current = crypto.randomUUID();
-      if (res.ok && data.report) setResult({ report: data.report, credits: data.creditsCharged, truncated: Boolean(data.truncated) });
-      else setError({ text: data.message ?? "Something went wrong.", buy: data.error === "insufficient_credits" });
+      if (res.ok && data.report) {
+        setResult({ report: data.report, credits: data.creditsCharged, truncated: Boolean(data.truncated) });
+        track("ai_task_completed", { task: "conflicts", documents: selected.length, conflicts: data.report.conflicts.length, credits: data.creditsCharged });
+      } else {
+        setError({ text: data.message ?? "Something went wrong.", buy: data.error === "insufficient_credits" });
+        track("ai_task_failed", { task: "conflicts", reason: data.error ?? "unknown" });
+      }
     } catch {
       setError({ text: "The connection dropped. Check Recent checks below in a minute." });
     } finally {

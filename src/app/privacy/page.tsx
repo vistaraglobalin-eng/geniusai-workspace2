@@ -126,6 +126,12 @@ export default function PrivacyPage() {
           We use only essential cookies: sign-in cookies that keep you logged in, and a preferences cookie that remembers your theme, and a cookie that remembers which workspace you last opened. We don&apos;t use
           advertising or third-party tracking cookies. Razorpay may set its own cookies inside the payment window.
         </p>
+        <p>
+          To see which features help and where people get stuck, we may count anonymous usage with PostHog: pages opened (with
+          document IDs and private link codes removed), files uploaded (type only, never the content or name), and whether AI tasks
+          succeeded. This uses a random number stored in your browser, not a cookie, and is never linked to your name, email or
+          documents. It is turned off if your browser sends a &ldquo;Do Not Track&rdquo; or Global Privacy Control signal.
+        </p>
 
         <h2>10. Children</h2>
         <p>{SITE.productName} is not intended for anyone under 18. Please don&apos;t use it if you are under 18.</p>
