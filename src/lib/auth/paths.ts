@@ -3,6 +3,7 @@ export const PUBLIC_PATH_PREFIXES = [
   "/login", "/auth/", "/api/health", "/api/billing/webhook",
   "/pricing", "/terms", "/privacy", "/refunds", "/contact",
   "/s/", "/api/sign-requests/public/", "/vendor/", // signing links: signers don't need an account
+  "/f/", "/api/shared/", // shared-folder links: guests don't need an account
   "/offline", // shown by the service worker without internet
   "/api/cron/" // Vercel Cron; the route checks CRON_SECRET itself
 ];

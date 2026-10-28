@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Check, Folder, FolderPlus, Pencil, Trash2, X } from "lucide-react";
+import { Check, Folder, FolderPlus, Pencil, Share2, Trash2, X } from "lucide-react";
+import { ShareSpace } from "./ShareSpace";
 import type { Space } from "@/lib/spaces";
 import { filesHref, PAGE_SIZE, type FilesQuery } from "@/lib/files-query";
 
@@ -12,6 +13,7 @@ export function SpacesBar({ spaces, query, total, unsorted, canEdit }: { spaces:
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [mode, setMode] = useState<"idle" | "new" | "rename">("idle");
+  const [sharing, setSharing] = useState(false);
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -67,11 +69,13 @@ export function SpacesBar({ spaces, query, total, unsorted, canEdit }: { spaces:
       {current && canEdit && mode === "idle" && (
         <div className="space-head">
           <strong><Folder size={16} aria-hidden="true" /> {current.name}</strong>
+          <button type="button" className="quiet-button with-icon" onClick={() => setSharing(!sharing)} aria-expanded={sharing}><Share2 size={14} aria-hidden="true" /> Share</button>
           <button type="button" className="quiet-button with-icon" onClick={() => { setMode("rename"); setName(current.name); }}><Pencil size={14} aria-hidden="true" /> Rename</button>
           <button type="button" className="quiet-button with-icon danger-text" onClick={remove} disabled={busy}><Trash2 size={14} aria-hidden="true" /> Delete space</button>
           <span className="field-hint">New uploads here go into this space.</span>
         </div>
       )}
+      {current && canEdit && sharing && <ShareSpace key={current.id} spaceId={current.id} spaceName={current.name} onClose={() => setSharing(false)} />}
       {error && <p className="form-message error" role="alert">{error}</p>}
     </section>
   );

@@ -18,6 +18,7 @@ export type AnalyticsEvent =
   | "compare_completed"
   | "language_changed"
   | "voice_input_used"
+  | "space_shared"
   | "onboarding_completed";
 
 type Props = Record<string, string | number | boolean | null | undefined>;
