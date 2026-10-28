@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, MessageSquareText, GitCompareArrows } from "lucide-react";
+import { ArrowUpRight, FilePen, MessageSquareText, GitCompareArrows, Landmark } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -63,6 +63,11 @@ export default async function AgreementStudioPage() {
         <Link href="/tools/agreements/conflicts" className="as-template as-explain">
           <span className="as-template-icon"><GitCompareArrows size={20} aria-hidden="true" /></span>
           <span className="as-template-text"><strong>Find conflicts</strong><span>Compare 2 to 5 contracts or policies and see where they contradict each other, clause by clause.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/agreements/law-impact" className="as-template as-explain">
+          <span className="as-template-icon"><Landmark size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>New-law impact check</strong><span>A new law, rule or policy? See which contracts must change, the exact clauses and suggested wording.</span></span>
           <span className="as-cat">Review</span>
         </Link>
       </div>

@@ -2244,3 +2244,25 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
   .cf-sides { grid-template-columns: minmax(0, 1fr); }
   .cf-vs { justify-self: center; transform: rotate(90deg); }
 }
+
+/* New-law impact check (/tools/agreements/law-impact) */
+.li-deadlines { display: flex; flex-direction: column; gap: 4px; }
+.li-deadlines ul { margin: 0; padding-left: 18px; }
+.li-contracts { display: flex; flex-direction: column; gap: 10px; }
+.li-contract { border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.li-contract.update_needed { border-color: var(--danger-border); }
+.li-contract > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; padding: 14px; }
+.li-contract > summary::-webkit-details-marker { display: none; }
+.li-contract > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 14px; }
+.li-contract-name { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.li-contract-name strong { font-size: .95rem; color: var(--text); overflow-wrap: anywhere; }
+.li-contract-name span { font-size: .8rem; line-height: 1.45; color: var(--text-2); }
+.li-contract > .cf-list, .li-contract > .li-none { padding: 0 14px 14px; margin: 0; }
+.li-sides { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.li-missing { margin: 6px 0 0; font-size: .84rem; font-weight: 600; color: var(--danger-text); }
+.cf-item p.li-missing { color: var(--danger-text); }
+.li-amend { margin-top: 12px; border: 1px dashed var(--accent-border); border-radius: 10px; padding: 10px 12px; background: var(--accent-softer); }
+.li-amend-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .75rem; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: .03em; }
+.li-amend-head .link-button { display: inline-flex; align-items: center; gap: 4px; text-transform: none; letter-spacing: 0; }
+.cf-item .li-amend p { margin: 6px 0 0; color: var(--text); white-space: pre-wrap; }
+@media (max-width: 640px) { .li-sides { grid-template-columns: minmax(0, 1fr); } }
