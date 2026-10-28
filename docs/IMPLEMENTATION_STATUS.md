@@ -23,6 +23,8 @@
 - App-side upload/download/delete helpers in `src/lib/storage/files.ts`.
 - ESLint 9 flat config added so `npm run lint` works.
 - Dashboard text sizes raised for readability; placeholder upload button is now visibly disabled.
+- Conflict Finder (revision 25): compare 2 to 5 documents for cross-document conflicts. Report parser tested (21 checks); page layout rendered at phone and desktop widths. Not yet run against the live Claude API. No migration.
+- Live database checked on 28 Oct 2026: every migration through 202610250022 is in place; 202610240014 (indexes) was missing and has now been applied.
 
 ## Not yet complete
 - Phase 2 and 3 of `docs/PRODUCT_SPEC.md` (billing, command palette & full-text search, folders/trash, preview, sharing, notifications, 2FA, PDF tools, signing, templates, integrations, PWA).
@@ -31,7 +33,6 @@
 - Workspace switcher and settings page (rename workspace, edit profile).
 - Server-side virus/malware scanning that sets `files.scan_status` (and removes quarantined objects).
 - Member invitation flow (server-side).
-- Remaining tools: Resume & Career Studio, Product Photo & Ad Studio, Invoice & Receipt Manager. (Contract Explainer is now part of Agreement Studio.)
 - The roadmap in `docs/PRODUCT_SPEC.md` §11: e-signatures, fillable forms, PDF text editing, collaboration, developer API, Drive import and the remaining PDF tools.
 - Subscriptions and GST invoices; a background queue for very long jobs.
 - Production hardening and a security review.

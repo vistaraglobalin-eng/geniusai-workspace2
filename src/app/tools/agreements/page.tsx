@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, MessageSquareText } from "lucide-react";
+import { ArrowUpRight, FilePen, MessageSquareText, GitCompareArrows } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -58,6 +58,11 @@ export default async function AgreementStudioPage() {
         <Link href="/tools/agreements/explain" className="as-template as-explain">
           <span className="as-template-icon"><MessageSquareText size={20} aria-hidden="true" /></span>
           <span className="as-template-text"><strong>Explain a contract</strong><span>Upload an agreement you received: plain-language summary, risks and questions to ask.</span></span>
+          <span className="as-cat">Review</span>
+        </Link>
+        <Link href="/tools/agreements/conflicts" className="as-template as-explain">
+          <span className="as-template-icon"><GitCompareArrows size={20} aria-hidden="true" /></span>
+          <span className="as-template-text"><strong>Find conflicts</strong><span>Compare 2 to 5 contracts or policies and see where they contradict each other, clause by clause.</span></span>
           <span className="as-cat">Review</span>
         </Link>
       </div>

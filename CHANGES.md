@@ -1,5 +1,13 @@
 # Changes
 
+## Revision 25: Conflict Finder
+
+- Find conflicts (/tools/agreements/conflicts, also in Agreement Studio, All tools and Docs): choose 2 to 5 documents (contracts, policies, terms, regulations; PDF, Word, text or photos, up to 23 MB together) and get a report of where they contradict each other.
+- Each conflict shows a severity (high, medium, low), a plain-English explanation, the two clashing passages with document name, page and clause plus a short exact quote, and a suggested fix. Also a summary, counts by severity and "Also worth checking" notes.
+- Optional focus box ("data storage", "payment terms", "DPDP Act") tells the AI what to check closely.
+- Download the report as Markdown; recent checks are listed and can be reopened.
+- Uses credits like other AI tools (module contracts, task conflicts); the AI's reply is checked and stored as a validated report, and a reply that isn't a usable report fails the job and returns the credits. No database change.
+
 ## Revision 24: New look, Scanner, Stamps
 
 - New look: off-white peach background, baby peach as the only accent, black pill buttons, serif titles, floating round dock on phones.
