@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ArrowRightLeft, Bell, BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LayoutTemplate, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet, ScrollText, TrendingUp } from "lucide-react";
+import { ArrowRightLeft, Bell, BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LayoutTemplate, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet, ScrollText } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 import { roleLabel } from "@/lib/team/roles";
 import type { Lang } from "@/lib/i18n";
@@ -12,7 +12,7 @@ export type NavKey =
   | "overview" | "money" | "docs" | "create" | "account"
   | "invoices" | "expenses" | "tally" | "scan" | "chat" | "pdf" | "edit" | "sign" | "agreements" | "documents" | "letters"
   | "creative" | "cards" | "career" | "templates" | "files" | "tools" | "billing" | "settings"
-  | "conflicts" | "law-impact" | "playbook" | "compare" | "clause-map" | "read" | "study" | "statement" | "exam" | "policies" | "sales";
+  | "conflicts" | "law-impact" | "playbook" | "compare" | "clause-map" | "read" | "study" | "statement" | "exam" | "policies";
 
 type NavItem = { key: NavKey; href: string; label: string; Icon: typeof Home; tint: string };
 type NavGroup = { title: string; hub: string; area: NavKey; items: NavItem[] };
@@ -23,8 +23,7 @@ const GROUPS: NavGroup[] = [
     { key: "invoices", href: "/tools/invoices", label: "Invoices", Icon: ReceiptText, tint: "green" },
     { key: "expenses", href: "/tools/expenses", label: "Expenses", Icon: Wallet, tint: "teal" },
     { key: "tally", href: "/tools/tally", label: "Export to Tally", Icon: ArrowRightLeft, tint: "teal" },
-    { key: "statement", href: "/tools/statement", label: "Statement to Excel", Icon: FileSpreadsheet, tint: "green" },
-    { key: "sales", href: "/tools/sales", label: "Sales report", Icon: TrendingUp, tint: "indigo" }
+    { key: "statement", href: "/tools/statement", label: "Statement to Excel", Icon: FileSpreadsheet, tint: "green" }
   ] },
   { title: "Documents", hub: "/docs", area: "docs", items: [
     { key: "scan", href: "/tools/scan", label: "Scan & convert", Icon: ScanLine, tint: "red" },
@@ -63,7 +62,7 @@ const ACCOUNT: NavItem[] = [
 /** Phone tab bar: one tab per area. */
 const TABS: { href: string; label: string; Icon: typeof Home; covers: NavKey[] }[] = [
   { href: "/", label: "Home", Icon: Home, covers: ["overview"] },
-  { href: "/money", label: "Money", Icon: IndianRupee, covers: ["money", "invoices", "expenses", "tally", "statement", "sales"] },
+  { href: "/money", label: "Money", Icon: IndianRupee, covers: ["money", "invoices", "expenses", "tally", "statement"] },
   { href: "/docs", label: "Documents", Icon: FileText, covers: ["docs", "scan", "chat", "pdf", "edit", "sign", "agreements", "documents", "letters", "templates", "conflicts", "law-impact", "playbook", "compare", "clause-map", "read", "study", "exam", "policies"] },
   { href: "/create", label: "Create", Icon: Sparkles, covers: ["create", "creative", "cards", "career"] },
   { href: "/account", label: "Account", Icon: CircleUserRound, covers: ["account", "files", "tools", "billing", "settings"] }

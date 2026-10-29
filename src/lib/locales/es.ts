@@ -266,11 +266,6 @@ const es: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Cartas de oferta en lote",
-  "Offer, appointment or experience letters for many people at once": "Cartas de oferta, nombramiento o experiencia para muchas personas a la vez",
-
-  // Sales report
-  "Sales report": "Informe de ventas",
-  "Sales": "Ventas",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Ventas de Shopify, Stripe y HubSpot en un informe, con próximos pasos de IA"
+  "Offer, appointment or experience letters for many people at once": "Cartas de oferta, nombramiento o experiencia para muchas personas a la vez"
 };
 export default es;

@@ -266,11 +266,6 @@ const zhTW: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "批次錄取通知書",
-  "Offer, appointment or experience letters for many people at once": "一次為多人產生錄取、任命或工作證明信",
-
-  // Sales report
-  "Sales report": "銷售報告",
-  "Sales": "銷售",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify、Stripe 和 HubSpot 的銷售彙整成一份報告，附 AI 建議"
+  "Offer, appointment or experience letters for many people at once": "一次為多人產生錄取、任命或工作證明信"
 };
 export default zhTW;

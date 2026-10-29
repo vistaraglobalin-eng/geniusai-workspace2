@@ -266,11 +266,6 @@ const cs: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Hromadné nabídkové dopisy",
-  "Offer, appointment or experience letters for many people at once": "Nabídkové dopisy, jmenování nebo potvrzení o zaměstnání pro více lidí najednou",
-
-  // Sales report
-  "Sales report": "Přehled prodejů",
-  "Sales": "Prodej",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Prodeje ze Shopify, Stripe a HubSpot v jednom přehledu s doporučeními AI"
+  "Offer, appointment or experience letters for many people at once": "Nabídkové dopisy, jmenování nebo potvrzení o zaměstnání pro více lidí najednou"
 };
 export default cs;

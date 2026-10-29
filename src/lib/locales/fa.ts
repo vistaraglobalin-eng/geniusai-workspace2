@@ -266,11 +266,6 @@ const fa: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "نامه‌های پیشنهاد گروهی",
-  "Offer, appointment or experience letters for many people at once": "نامه‌های پیشنهاد کار، استخدام یا سابقه برای چند نفر به‌طور هم‌زمان",
-
-  // Sales report
-  "Sales report": "گزارش فروش",
-  "Sales": "فروش",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "فروش Shopify، Stripe و HubSpot در یک گزارش، با پیشنهادهای هوش مصنوعی"
+  "Offer, appointment or experience letters for many people at once": "نامه‌های پیشنهاد کار، استخدام یا سابقه برای چند نفر به‌طور هم‌زمان"
 };
 export default fa;

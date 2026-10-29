@@ -266,11 +266,6 @@ const ne: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "एकैपटक धेरै अफर लेटर",
-  "Offer, appointment or experience letters for many people at once": "धेरै जनाका लागि एकैपटक अफर, नियुक्ति वा अनुभव पत्र",
-
-  // Sales report
-  "Sales report": "बिक्री रिपोर्ट",
-  "Sales": "बिक्री",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe र HubSpot को बिक्री एउटै रिपोर्टमा, AI सुझावसहित"
+  "Offer, appointment or experience letters for many people at once": "धेरै जनाका लागि एकैपटक अफर, नियुक्ति वा अनुभव पत्र"
 };
 export default ne;
