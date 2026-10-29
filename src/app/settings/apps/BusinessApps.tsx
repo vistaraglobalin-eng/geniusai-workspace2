@@ -37,9 +37,9 @@ const COPY: Record<Provider, { title: string; Icon: typeof ShoppingBag; color: s
     blurb: "Deals won, lost and still open from your CRM — win rate and pipeline value.",
     keyLabel: "Access token", keyPlaceholder: "pat-na1-…",
     steps: [
-      "In HubSpot, open Settings (gear) → Integrations → Private Apps → Create a private app, name it GeniusAI.",
-      "On the Scopes tab tick crm.objects.deals.read (and crm.objects.contacts.read for lead scoring later) → Create app.",
-      "Copy the access token (starts with pat-) and paste it below."
+      "In HubSpot (you need to be a Super Admin), open Development → Legacy apps → Create legacy app → Private, and name it GeniusAI.",
+      "On the Scopes tab add crm.objects.deals.read (and crm.objects.contacts.read for lead scoring later) → Update → Create app → Continue creating.",
+      "Open the app's Auth tab → Show token → Copy, and paste it below. (Older HubSpot accounts: Settings → Integrations → Private Apps.)"
     ]
   }
 };
@@ -120,6 +120,7 @@ function AppCard({ provider, conn, isAdmin, setupNeeded }: { provider: Provider;
                 {legacy ? "I'm using the Dev Dashboard (new apps)" : "I already have an older app with a shpat_ token"}
               </button>
             )}
+            {!ready && <p className="lt-help">Fill in {provider === "shopify" ? "all the boxes" : "the key"} and the button turns on.</p>}
             <p className="lt-help">We check the key with {c.title} first (read-only), then save it encrypted. It&apos;s never shown again.</p>
             <div className="app-card-foot">
               <button type="button" className="primary-button" disabled={!ready || busy} onClick={() => call("POST", { key, shop, clientId: needsClientId ? clientId : "" })}>{busy ? "Checking…" : "Test and connect"}</button>
