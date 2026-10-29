@@ -252,6 +252,12 @@ const ar: Record<string, string> = {
   "Question papers": "أوراق الامتحان",
   "Question paper maker": "صانع أوراق الامتحان",
   "Exam papers with sections, marks and answer key": "أوراق امتحان بأقسام ودرجات ومفتاح إجابات",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "ورقة امتحان كاملة بأقسام ودرجات ومفتاح إجابات، من أي فصل."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ورقة امتحان كاملة بأقسام ودرجات ومفتاح إجابات، من أي فصل.",
+
+  // Policy Q&A
+  "Policy Q&A": "أسئلة السياسات",
+  "Company policy Q&A": "أسئلة سياسات الشركة",
+  "Employees ask, answers come from your HR policies": "يسأل الموظفون والإجابات من سياسات الموارد البشرية لديك",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "يطرح الموظفون أسئلتهم ويحصلون على إجابات من سياسات الموارد البشرية الخاصة بك مع ذكر المصادر."
 };
 export default ar;

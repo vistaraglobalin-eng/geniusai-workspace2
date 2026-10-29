@@ -252,6 +252,12 @@ const cs: Record<string, string> = {
   "Question papers": "Písemky",
   "Question paper maker": "Tvůrce písemek",
   "Exam papers with sections, marks and answer key": "Písemky s oddíly, body a klíčem odpovědí",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kompletní písemka s oddíly, body a klíčem odpovědí z jakékoli kapitoly."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kompletní písemka s oddíly, body a klíčem odpovědí z jakékoli kapitoly.",
+
+  // Policy Q&A
+  "Policy Q&A": "Dotazy na směrnice",
+  "Company policy Q&A": "Dotazy na firemní směrnice",
+  "Employees ask, answers come from your HR policies": "Zaměstnanci se ptají, odpovědi z vašich HR směrnic",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Zaměstnanci se ptají a dostávají odpovědi z vašich vlastních HR směrnic, se zdroji."
 };
 export default cs;

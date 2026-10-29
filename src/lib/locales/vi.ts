@@ -252,6 +252,12 @@ const vi: Record<string, string> = {
   "Question papers": "Đề thi",
   "Question paper maker": "Tạo đề thi",
   "Exam papers with sections, marks and answer key": "Đề thi có phần, thang điểm và đáp án",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Một đề thi hoàn chỉnh có phần, thang điểm và đáp án từ bất kỳ chương nào."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Một đề thi hoàn chỉnh có phần, thang điểm và đáp án từ bất kỳ chương nào.",
+
+  // Policy Q&A
+  "Policy Q&A": "Hỏi đáp quy định",
+  "Company policy Q&A": "Hỏi đáp quy định công ty",
+  "Employees ask, answers come from your HR policies": "Nhân viên hỏi, câu trả lời lấy từ quy định nhân sự của bạn",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Nhân viên đặt câu hỏi và nhận câu trả lời từ chính quy định nhân sự của bạn, kèm nguồn."
 };
 export default vi;

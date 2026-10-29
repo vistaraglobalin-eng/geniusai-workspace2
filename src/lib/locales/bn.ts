@@ -275,6 +275,12 @@ const bn: Record<string, string> = {
   "Question papers": "প্রশ্নপত্র",
   "Question paper maker": "প্রশ্নপত্র তৈরি",
   "Exam papers with sections, marks and answer key": "বিভাগ, নম্বর ও উত্তরমালা সহ পরীক্ষার প্রশ্নপত্র",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "যেকোনো অধ্যায় থেকে বিভাগ, নম্বর ও উত্তরমালা সহ সম্পূর্ণ প্রশ্নপত্র।"
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "যেকোনো অধ্যায় থেকে বিভাগ, নম্বর ও উত্তরমালা সহ সম্পূর্ণ প্রশ্নপত্র।",
+
+  // Policy Q&A
+  "Policy Q&A": "নীতি প্রশ্নোত্তর",
+  "Company policy Q&A": "কোম্পানির নীতি প্রশ্নোত্তর",
+  "Employees ask, answers come from your HR policies": "কর্মীরা প্রশ্ন করেন, উত্তর আসে আপনার HR নীতি থেকে",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "কর্মীরা প্রশ্ন করেন এবং আপনার নিজস্ব HR নীতি থেকে উৎস সহ উত্তর পান।"
 };
 export default bn;

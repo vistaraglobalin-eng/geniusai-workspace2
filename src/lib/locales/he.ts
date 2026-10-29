@@ -252,6 +252,12 @@ const he: Record<string, string> = {
   "Question papers": "מבחנים",
   "Question paper maker": "יוצר מבחנים",
   "Exam papers with sections, marks and answer key": "מבחנים עם חלקים, ניקוד ומפתח תשובות",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "מבחן מלא עם חלקים, ניקוד ומפתח תשובות, מכל פרק."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "מבחן מלא עם חלקים, ניקוד ומפתח תשובות, מכל פרק.",
+
+  // Policy Q&A
+  "Policy Q&A": "שאלות על נהלים",
+  "Company policy Q&A": "שאלות על נוהלי החברה",
+  "Employees ask, answers come from your HR policies": "עובדים שואלים, התשובות מנוהלי משאבי האנוש שלכם",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "עובדים שואלים ומקבלים תשובות מנוהלי משאבי האנוש שלכם, עם מקורות."
 };
 export default he;

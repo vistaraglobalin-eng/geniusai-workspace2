@@ -252,6 +252,12 @@ const uk: Record<string, string> = {
   "Question papers": "Контрольні роботи",
   "Question paper maker": "Конструктор контрольних",
   "Exam papers with sections, marks and answer key": "Контрольні з розділами, балами та ключем відповідей",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Повна контрольна робота з розділами, балами та ключем відповідей з будь-якого розділу."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Повна контрольна робота з розділами, балами та ключем відповідей з будь-якого розділу.",
+
+  // Policy Q&A
+  "Policy Q&A": "Питання щодо політик",
+  "Company policy Q&A": "Питання про політики компанії",
+  "Employees ask, answers come from your HR policies": "Працівники питають — відповіді з ваших HR-політик",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Працівники ставлять запитання й отримують відповіді з ваших власних HR-політик із джерелами."
 };
 export default uk;

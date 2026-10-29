@@ -252,6 +252,12 @@ const ptBR: Record<string, string> = {
   "Question papers": "Provas",
   "Question paper maker": "Gerador de provas",
   "Exam papers with sections, marks and answer key": "Provas com seções, pontuação e gabarito",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Uma prova completa com seções, pontuação e gabarito, a partir de qualquer capítulo."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Uma prova completa com seções, pontuação e gabarito, a partir de qualquer capítulo.",
+
+  // Policy Q&A
+  "Policy Q&A": "Dúvidas sobre políticas",
+  "Company policy Q&A": "Dúvidas sobre políticas da empresa",
+  "Employees ask, answers come from your HR policies": "Funcionários perguntam; respostas vêm das suas políticas de RH",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Funcionários fazem perguntas e recebem respostas das suas próprias políticas de RH, com fontes."
 };
 export default ptBR;

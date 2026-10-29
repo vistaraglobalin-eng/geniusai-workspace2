@@ -252,6 +252,12 @@ const id: Record<string, string> = {
   "Question papers": "Soal ujian",
   "Question paper maker": "Pembuat soal ujian",
   "Exam papers with sections, marks and answer key": "Soal ujian dengan bagian, skor, dan kunci jawaban",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Soal ujian lengkap dengan bagian, skor, dan kunci jawaban dari bab mana pun."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Soal ujian lengkap dengan bagian, skor, dan kunci jawaban dari bab mana pun.",
+
+  // Policy Q&A
+  "Policy Q&A": "Tanya jawab kebijakan",
+  "Company policy Q&A": "Tanya jawab kebijakan perusahaan",
+  "Employees ask, answers come from your HR policies": "Karyawan bertanya, jawaban dari kebijakan HR Anda",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Karyawan bertanya dan mendapat jawaban dari kebijakan HR Anda sendiri, lengkap dengan sumbernya."
 };
 export default id;

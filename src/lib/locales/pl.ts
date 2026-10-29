@@ -252,6 +252,12 @@ const pl: Record<string, string> = {
   "Question papers": "Sprawdziany",
   "Question paper maker": "Kreator sprawdzianów",
   "Exam papers with sections, marks and answer key": "Sprawdziany z częściami, punktacją i kluczem odpowiedzi",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Pełny sprawdzian z częściami, punktacją i kluczem odpowiedzi, z dowolnego rozdziału."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Pełny sprawdzian z częściami, punktacją i kluczem odpowiedzi, z dowolnego rozdziału.",
+
+  // Policy Q&A
+  "Policy Q&A": "Pytania o zasady",
+  "Company policy Q&A": "Pytania o zasady firmy",
+  "Employees ask, answers come from your HR policies": "Pracownicy pytają, odpowiedzi pochodzą z Waszych zasad HR",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Pracownicy zadają pytania i dostają odpowiedzi z Waszych własnych zasad HR, ze źródłami."
 };
 export default pl;

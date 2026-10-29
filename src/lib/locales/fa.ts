@@ -252,6 +252,12 @@ const fa: Record<string, string> = {
   "Question papers": "برگه‌های امتحان",
   "Question paper maker": "سازندهٔ برگهٔ امتحان",
   "Exam papers with sections, marks and answer key": "برگه‌های امتحان با بخش‌ها، بارم و کلید پاسخ",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "یک برگهٔ امتحان کامل با بخش‌ها، بارم و کلید پاسخ، از هر فصلی."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "یک برگهٔ امتحان کامل با بخش‌ها، بارم و کلید پاسخ، از هر فصلی.",
+
+  // Policy Q&A
+  "Policy Q&A": "پرسش‌وپاسخ سیاست‌ها",
+  "Company policy Q&A": "پرسش‌وپاسخ سیاست‌های شرکت",
+  "Employees ask, answers come from your HR policies": "کارکنان می‌پرسند، پاسخ‌ها از سیاست‌های منابع انسانی شما",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "کارکنان می‌پرسند و پاسخ‌ها را از سیاست‌های منابع انسانی خودتان، همراه با منبع، دریافت می‌کنند."
 };
 export default fa;

@@ -252,6 +252,12 @@ const zhCN: Record<string, string> = {
   "Question papers": "试卷",
   "Question paper maker": "试卷生成器",
   "Exam papers with sections, marks and answer key": "含题型分区、分值和答案的试卷",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "根据任意章节生成含题型分区、分值和答案的完整试卷。"
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "根据任意章节生成含题型分区、分值和答案的完整试卷。",
+
+  // Policy Q&A
+  "Policy Q&A": "制度问答",
+  "Company policy Q&A": "公司制度问答",
+  "Employees ask, answers come from your HR policies": "员工提问，答案来自你们的人事制度",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "员工提问，并从你们自己的人事制度中获得附出处的答案。"
 };
 export default zhCN;

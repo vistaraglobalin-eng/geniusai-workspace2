@@ -252,6 +252,12 @@ const es: Record<string, string> = {
   "Question papers": "Exámenes",
   "Question paper maker": "Creador de exámenes",
   "Exam papers with sections, marks and answer key": "Exámenes con secciones, puntos y clave de respuestas",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Un examen completo con secciones, puntos y clave de respuestas, a partir de cualquier capítulo."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Un examen completo con secciones, puntos y clave de respuestas, a partir de cualquier capítulo.",
+
+  // Policy Q&A
+  "Policy Q&A": "Preguntas de políticas",
+  "Company policy Q&A": "Preguntas sobre políticas de la empresa",
+  "Employees ask, answers come from your HR policies": "Los empleados preguntan; las respuestas salen de tus políticas de RR. HH.",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Los empleados preguntan y reciben respuestas de tus propias políticas de RR. HH., con fuentes."
 };
 export default es;

@@ -275,6 +275,12 @@ const ta: Record<string, string> = {
   "Question papers": "வினாத்தாள்கள்",
   "Question paper maker": "வினாத்தாள் உருவாக்கி",
   "Exam papers with sections, marks and answer key": "பிரிவுகள், மதிப்பெண்கள், விடைக்குறிப்புடன் தேர்வு வினாத்தாள்",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "எந்தப் பாடத்திலிருந்தும் பிரிவுகள், மதிப்பெண்கள், விடைக்குறிப்புடன் முழு வினாத்தாள்."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "எந்தப் பாடத்திலிருந்தும் பிரிவுகள், மதிப்பெண்கள், விடைக்குறிப்புடன் முழு வினாத்தாள்.",
+
+  // Policy Q&A
+  "Policy Q&A": "கொள்கை கேள்வி-பதில்",
+  "Company policy Q&A": "நிறுவனக் கொள்கை கேள்வி-பதில்",
+  "Employees ask, answers come from your HR policies": "ஊழியர்கள் கேட்கிறார்கள், பதில்கள் உங்கள் HR கொள்கைகளிலிருந்து",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ஊழியர்கள் கேள்வி கேட்டு, உங்கள் சொந்த HR கொள்கைகளிலிருந்து ஆதாரத்துடன் பதில் பெறுகிறார்கள்."
 };
 export default ta;

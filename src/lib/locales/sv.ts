@@ -252,6 +252,12 @@ const sv: Record<string, string> = {
   "Question papers": "Prov",
   "Question paper maker": "Provskapare",
   "Exam papers with sections, marks and answer key": "Prov med delar, poäng och facit",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Ett komplett prov med delar, poäng och facit, från vilket kapitel som helst."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Ett komplett prov med delar, poäng och facit, från vilket kapitel som helst.",
+
+  // Policy Q&A
+  "Policy Q&A": "Policyfrågor",
+  "Company policy Q&A": "Frågor om företagets policyer",
+  "Employees ask, answers come from your HR policies": "Anställda frågar, svaren kommer från era HR-policyer",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Anställda ställer frågor och får svar från era egna HR-policyer, med källor."
 };
 export default sv;

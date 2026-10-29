@@ -252,6 +252,12 @@ const ms: Record<string, string> = {
   "Question papers": "Kertas soalan",
   "Question paper maker": "Pembuat kertas soalan",
   "Exam papers with sections, marks and answer key": "Kertas peperiksaan dengan bahagian, markah dan skema jawapan",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kertas peperiksaan lengkap dengan bahagian, markah dan skema jawapan, daripada mana-mana bab."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kertas peperiksaan lengkap dengan bahagian, markah dan skema jawapan, daripada mana-mana bab.",
+
+  // Policy Q&A
+  "Policy Q&A": "Soal jawab polisi",
+  "Company policy Q&A": "Soal jawab polisi syarikat",
+  "Employees ask, answers come from your HR policies": "Pekerja bertanya, jawapan daripada polisi HR anda",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Pekerja bertanya dan mendapat jawapan daripada polisi HR anda sendiri, dengan sumber."
 };
 export default ms;

@@ -37,6 +37,9 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
     supabase.from("files").select("space_id").eq("workspace_id", workspace.id).is("deleted_at", null).limit(10000)
   ]);
   const spacesOn = !spaceErr && !placeErr;
+  // Policy library flag needs its own database update; until then nothing is marked.
+  const { data: policyRows } = spacesOn ? await supabase.from("spaces").select("id").eq("workspace_id", workspace.id).eq("is_policy_library", true) : { data: null };
+  const policyIds = ((policyRows ?? []) as { id: string }[]).map((r) => r.id);
   const [drive, onedrive] = await Promise.all([driveStatus(supabase, ctx.user.id), oneDriveStatus(supabase, ctx.user.id)]);
   const counts = new Map<string | null, number>();
   for (const r of (spacesOn ? placement ?? [] : []) as { space_id: string | null }[]) counts.set(r.space_id, (counts.get(r.space_id) ?? 0) + 1);
@@ -78,7 +81,8 @@ export default async function FilesPage({ searchParams }: { searchParams: Promis
       </div>
 
       {spacesOn && (
-        <SpacesBar spaces={spaces} query={query} total={placement?.length ?? 0} unsorted={counts.get(null) ?? 0} canEdit={workspace.access !== "view"} />
+        <SpacesBar spaces={spaces} query={query} total={placement?.length ?? 0} unsorted={counts.get(null) ?? 0} canEdit={workspace.access !== "view"}
+          isAdmin={workspace.role === "owner" || workspace.role === "admin"} policyIds={policyIds} />
       )}
 
       <div className="files-toolbar">

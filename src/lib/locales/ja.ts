@@ -252,6 +252,12 @@ const ja: Record<string, string> = {
   "Question papers": "試験問題",
   "Question paper maker": "試験問題メーカー",
   "Exam papers with sections, marks and answer key": "大問・配点・解答付きの試験問題",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "どの章からでも、大問・配点・解答付きの試験問題を作成します。"
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "どの章からでも、大問・配点・解答付きの試験問題を作成します。",
+
+  // Policy Q&A
+  "Policy Q&A": "規程Q&A",
+  "Company policy Q&A": "社内規程Q&A",
+  "Employees ask, answers come from your HR policies": "社員の質問に、人事規程から回答",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "社員が質問すると、自社の人事規程から出典付きで回答します。"
 };
 export default ja;

@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Check, Folder, FolderPlus, Pencil, Share2, Trash2, X } from "lucide-react";
+import { BookCheck, Check, Folder, FolderPlus, Pencil, Share2, Trash2, X } from "lucide-react";
 import { ShareSpace } from "./ShareSpace";
 import type { Space } from "@/lib/spaces";
 import { filesHref, PAGE_SIZE, type FilesQuery } from "@/lib/files-query";
 
 /** Spaces: folders across the top of Files. Pick one to see only its files; create, rename or delete. */
-export function SpacesBar({ spaces, query, total, unsorted, canEdit }: { spaces: Space[]; query: FilesQuery; total: number; unsorted: number; canEdit: boolean }) {
+export function SpacesBar({ spaces, query, total, unsorted, canEdit, isAdmin = false, policyIds = [] }: { spaces: Space[]; query: FilesQuery; total: number; unsorted: number; canEdit: boolean; isAdmin?: boolean; policyIds?: string[] }) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [mode, setMode] = useState<"idle" | "new" | "rename">("idle");
@@ -38,6 +38,11 @@ export function SpacesBar({ spaces, query, total, unsorted, canEdit }: { spaces:
     if (!current) return;
     if (await call(`/api/spaces/${current.id}`, "PATCH", { name })) { setMode("idle"); startTransition(() => router.refresh()); }
   }
+  async function togglePolicy() {
+    if (!current) return;
+    const on = !policyIds.includes(current.id);
+    if (await call(`/api/spaces/${current.id}`, "PATCH", { policyLibrary: on })) startTransition(() => router.refresh());
+  }
   async function remove() {
     if (!current || !window.confirm(`Delete the space “${current.name}”? Its files stay in Files, just without a space.`)) return;
     if (await call(`/api/spaces/${current.id}`, "DELETE")) startTransition(() => router.push(href(""), { scroll: false }));
@@ -49,7 +54,7 @@ export function SpacesBar({ spaces, query, total, unsorted, canEdit }: { spaces:
         <Link className={`space-chip${!query.space ? " on" : ""}`} href={href("")} scroll={false} aria-current={!query.space ? "true" : undefined}>All files <span>{total}</span></Link>
         {spaces.map((s) => (
           <Link key={s.id} className={`space-chip${query.space === s.id ? " on" : ""}`} href={href(s.id)} scroll={false} aria-current={query.space === s.id ? "true" : undefined}>
-            <Folder size={14} aria-hidden="true" />{s.name} <span>{s.count ?? 0}</span>
+            {policyIds.includes(s.id) ? <BookCheck size={14} aria-label="Policy library" /> : <Folder size={14} aria-hidden="true" />}{s.name} <span>{s.count ?? 0}</span>
           </Link>
         ))}
         {spaces.length > 0 && (
@@ -70,6 +75,12 @@ export function SpacesBar({ spaces, query, total, unsorted, canEdit }: { spaces:
         <div className="space-head">
           <strong><Folder size={16} aria-hidden="true" /> {current.name}</strong>
           <button type="button" className="quiet-button with-icon" onClick={() => setSharing(!sharing)} aria-expanded={sharing}><Share2 size={14} aria-hidden="true" /> Share</button>
+          {isAdmin && (
+            <button type="button" className={`quiet-button with-icon${policyIds.includes(current.id) ? " is-on" : ""}`} onClick={togglePolicy} disabled={busy} aria-pressed={policyIds.includes(current.id)}
+              title="Everyone in the workspace, including view-only employees, can ask questions about these files in Policy Q&A">
+              <BookCheck size={14} aria-hidden="true" /> {policyIds.includes(current.id) ? "Policy library: on" : "Use for policy Q&A"}
+            </button>
+          )}
           <button type="button" className="quiet-button with-icon" onClick={() => { setMode("rename"); setName(current.name); }}><Pencil size={14} aria-hidden="true" /> Rename</button>
           <button type="button" className="quiet-button with-icon danger-text" onClick={remove} disabled={busy}><Trash2 size={14} aria-hidden="true" /> Delete space</button>
           <span className="field-hint">New uploads here go into this space.</span>

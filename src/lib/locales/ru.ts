@@ -252,6 +252,12 @@ const ru: Record<string, string> = {
   "Question papers": "Экзаменационные билеты",
   "Question paper maker": "Конструктор контрольных",
   "Exam papers with sections, marks and answer key": "Контрольные с разделами, баллами и ключом ответов",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Полная контрольная работа с разделами, баллами и ключом ответов по любой главе."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Полная контрольная работа с разделами, баллами и ключом ответов по любой главе.",
+
+  // Policy Q&A
+  "Policy Q&A": "Вопросы по политикам",
+  "Company policy Q&A": "Вопросы о политиках компании",
+  "Employees ask, answers come from your HR policies": "Сотрудники спрашивают — ответы из ваших HR-политик",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Сотрудники задают вопросы и получают ответы из ваших собственных HR-политик со ссылками на источники."
 };
 export default ru;

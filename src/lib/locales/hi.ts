@@ -276,6 +276,12 @@ const hi: Record<string, string> = {
   "Question papers": "प्रश्न पत्र",
   "Question paper maker": "प्रश्न पत्र बनाएँ",
   "Exam papers with sections, marks and answer key": "खंड, अंक और उत्तर कुंजी के साथ परीक्षा पत्र",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "किसी भी अध्याय से खंड, अंक और उत्तर कुंजी के साथ पूरा परीक्षा पत्र।"
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "किसी भी अध्याय से खंड, अंक और उत्तर कुंजी के साथ पूरा परीक्षा पत्र।",
+
+  // Policy Q&A
+  "Policy Q&A": "नीति प्रश्नोत्तर",
+  "Company policy Q&A": "कंपनी नीति प्रश्नोत्तर",
+  "Employees ask, answers come from your HR policies": "कर्मचारी पूछें, जवाब आपकी HR नीतियों से",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "कर्मचारी सवाल पूछें और आपकी अपनी HR नीतियों से स्रोत सहित जवाब पाएँ।"
 };
 export default hi;

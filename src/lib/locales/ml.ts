@@ -275,6 +275,12 @@ const ml: Record<string, string> = {
   "Question papers": "ചോദ്യപേപ്പറുകൾ",
   "Question paper maker": "ചോദ്യപേപ്പർ നിർമ്മാണം",
   "Exam papers with sections, marks and answer key": "വിഭാഗങ്ങളും മാർക്കും ഉത്തരസൂചികയുമുള്ള പരീക്ഷാ ചോദ്യപേപ്പർ",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "ഏത് അധ്യായത്തിൽ നിന്നും വിഭാഗങ്ങളും മാർക്കും ഉത്തരസൂചികയുമുള്ള പൂർണ്ണ ചോദ്യപേപ്പർ."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ഏത് അധ്യായത്തിൽ നിന്നും വിഭാഗങ്ങളും മാർക്കും ഉത്തരസൂചികയുമുള്ള പൂർണ്ണ ചോദ്യപേപ്പർ.",
+
+  // Policy Q&A
+  "Policy Q&A": "നയ ചോദ്യോത്തരം",
+  "Company policy Q&A": "കമ്പനി നയ ചോദ്യോത്തരം",
+  "Employees ask, answers come from your HR policies": "ജീവനക്കാർ ചോദിക്കുന്നു, ഉത്തരം നിങ്ങളുടെ HR നയങ്ങളിൽ നിന്ന്",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ജീവനക്കാർ ചോദ്യങ്ങൾ ചോദിക്കുകയും നിങ്ങളുടെ സ്വന്തം HR നയങ്ങളിൽ നിന്ന് ഉറവിടത്തോടെ ഉത്തരം നേടുകയും ചെയ്യുന്നു."
 };
 export default ml;

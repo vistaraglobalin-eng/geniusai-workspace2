@@ -2593,3 +2593,16 @@ html[data-motion="reduce"] .voice-btn.on { animation: none; }
   .qp-qs > li { break-inside: avoid; }
   .qp-noprint { display: none !important; }
 }
+
+/* Company policy Q&A (/tools/policies) */
+.pq-setup { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; max-width: 640px; }
+.pq-setup h2 { margin: 4px 0 0; font-size: 1.15rem; }
+.pq-setup p { margin: 0; color: var(--text-2); line-height: 1.55; }
+.pq-steps { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; line-height: 1.5; }
+.pq-docs { display: flex; flex-direction: column; gap: 10px; }
+.pq-docs h2 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: .95rem; }
+.pq-docs ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.pq-docs li { display: grid; grid-template-columns: 16px 1fr; gap: 8px; align-items: start; font-size: .86rem; }
+.pq-docs li span { overflow-wrap: anywhere; }
+.pq-docs li svg { margin-top: 3px; color: var(--text-3); }
+.quiet-button.is-on { color: var(--accent-text); border-color: var(--accent-border); background: color-mix(in srgb, var(--accent-text) 8%, var(--surface)); }

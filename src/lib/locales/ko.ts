@@ -252,6 +252,12 @@ const ko: Record<string, string> = {
   "Question papers": "시험지",
   "Question paper maker": "시험지 만들기",
   "Exam papers with sections, marks and answer key": "영역, 배점, 정답지가 있는 시험지",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "어떤 단원으로든 영역, 배점, 정답지가 있는 완전한 시험지를 만듭니다."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "어떤 단원으로든 영역, 배점, 정답지가 있는 완전한 시험지를 만듭니다.",
+
+  // Policy Q&A
+  "Policy Q&A": "규정 Q&A",
+  "Company policy Q&A": "회사 규정 Q&A",
+  "Employees ask, answers come from your HR policies": "직원이 묻고, 답은 인사 규정에서",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "직원이 질문하면 회사의 인사 규정에서 출처와 함께 답을 찾아 줍니다."
 };
 export default ko;
