@@ -246,6 +246,12 @@ const vi: Record<string, string> = {
   "Protect PDF": "Đặt mật khẩu PDF",
   "Unlock PDF": "Mở khóa PDF",
   "Office to PDF": "Office sang PDF",
-  "PDF to JPG": "PDF sang JPG"
+  "PDF to JPG": "PDF sang JPG",
+
+  // Question papers
+  "Question papers": "Đề thi",
+  "Question paper maker": "Tạo đề thi",
+  "Exam papers with sections, marks and answer key": "Đề thi có phần, thang điểm và đáp án",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Một đề thi hoàn chỉnh có phần, thang điểm và đáp án từ bất kỳ chương nào."
 };
 export default vi;

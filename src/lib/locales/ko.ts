@@ -246,6 +246,12 @@ const ko: Record<string, string> = {
   "Protect PDF": "PDF 암호 설정",
   "Unlock PDF": "PDF 암호 해제",
   "Office to PDF": "Office를 PDF로",
-  "PDF to JPG": "PDF를 JPG로"
+  "PDF to JPG": "PDF를 JPG로",
+
+  // Question papers
+  "Question papers": "시험지",
+  "Question paper maker": "시험지 만들기",
+  "Exam papers with sections, marks and answer key": "영역, 배점, 정답지가 있는 시험지",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "어떤 단원으로든 영역, 배점, 정답지가 있는 완전한 시험지를 만듭니다."
 };
 export default ko;

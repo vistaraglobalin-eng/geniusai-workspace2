@@ -246,6 +246,12 @@ const hu: Record<string, string> = {
   "Protect PDF": "PDF védelme",
   "Unlock PDF": "PDF feloldása",
   "Office to PDF": "Office-ból PDF",
-  "PDF to JPG": "PDF-ből JPG"
+  "PDF to JPG": "PDF-ből JPG",
+
+  // Question papers
+  "Question papers": "Dolgozatok",
+  "Question paper maker": "Dolgozatkészítő",
+  "Exam papers with sections, marks and answer key": "Dolgozatok feladatrészekkel, pontozással és megoldókulccsal",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Teljes dolgozat feladatrészekkel, pontozással és megoldókulccsal, bármely fejezetből."
 };
 export default hu;

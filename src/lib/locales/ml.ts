@@ -269,6 +269,12 @@ const ml: Record<string, string> = {
   "Protect PDF": "PDF-ന് പാസ്‌വേഡ് ഇടുക",
   "Unlock PDF": "PDF പാസ്‌വേഡ് നീക്കുക",
   "Office to PDF": "Office-ൽ നിന്ന് PDF",
-  "PDF to JPG": "PDF-ൽ നിന്ന് JPG"
+  "PDF to JPG": "PDF-ൽ നിന്ന് JPG",
+
+  // Question papers
+  "Question papers": "ചോദ്യപേപ്പറുകൾ",
+  "Question paper maker": "ചോദ്യപേപ്പർ നിർമ്മാണം",
+  "Exam papers with sections, marks and answer key": "വിഭാഗങ്ങളും മാർക്കും ഉത്തരസൂചികയുമുള്ള പരീക്ഷാ ചോദ്യപേപ്പർ",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ഏത് അധ്യായത്തിൽ നിന്നും വിഭാഗങ്ങളും മാർക്കും ഉത്തരസൂചികയുമുള്ള പൂർണ്ണ ചോദ്യപേപ്പർ."
 };
 export default ml;

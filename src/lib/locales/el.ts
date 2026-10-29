@@ -246,6 +246,12 @@ const el: Record<string, string> = {
   "Protect PDF": "Προστασία PDF",
   "Unlock PDF": "Ξεκλείδωμα PDF",
   "Office to PDF": "Office σε PDF",
-  "PDF to JPG": "PDF σε JPG"
+  "PDF to JPG": "PDF σε JPG",
+
+  // Question papers
+  "Question papers": "Διαγωνίσματα",
+  "Question paper maker": "Δημιουργός διαγωνισμάτων",
+  "Exam papers with sections, marks and answer key": "Διαγωνίσματα με ενότητες, βαθμολογία και απαντήσεις",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Ένα πλήρες διαγώνισμα με ενότητες, βαθμολογία και απαντήσεις, από οποιοδήποτε κεφάλαιο."
 };
 export default el;

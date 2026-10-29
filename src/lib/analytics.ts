@@ -19,6 +19,7 @@ export type AnalyticsEvent =
   | "language_changed"
   | "voice_input_used"
   | "space_shared"
+  | "question_paper_exported"
   | "onboarding_completed";
 
 type Props = Record<string, string | number | boolean | null | undefined>;

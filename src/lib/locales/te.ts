@@ -269,6 +269,12 @@ const te: Record<string, string> = {
   "Protect PDF": "PDF కి పాస్‌వర్డ్ పెట్టండి",
   "Unlock PDF": "PDF పాస్‌వర్డ్ తీసేయండి",
   "Office to PDF": "Office నుండి PDF",
-  "PDF to JPG": "PDF నుండి JPG"
+  "PDF to JPG": "PDF నుండి JPG",
+
+  // Question papers
+  "Question papers": "ప్రశ్నపత్రాలు",
+  "Question paper maker": "ప్రశ్నపత్రం తయారీ",
+  "Exam papers with sections, marks and answer key": "విభాగాలు, మార్కులు, జవాబు కీతో పరీక్ష ప్రశ్నపత్రం",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ఏ పాఠం నుండైనా విభాగాలు, మార్కులు, జవాబు కీతో పూర్తి ప్రశ్నపత్రం."
 };
 export default te;

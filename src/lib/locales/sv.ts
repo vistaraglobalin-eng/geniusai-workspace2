@@ -246,6 +246,12 @@ const sv: Record<string, string> = {
   "Protect PDF": "Lösenordsskydda PDF",
   "Unlock PDF": "Lås upp PDF",
   "Office to PDF": "Office till PDF",
-  "PDF to JPG": "PDF till JPG"
+  "PDF to JPG": "PDF till JPG",
+
+  // Question papers
+  "Question papers": "Prov",
+  "Question paper maker": "Provskapare",
+  "Exam papers with sections, marks and answer key": "Prov med delar, poäng och facit",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Ett komplett prov med delar, poäng och facit, från vilket kapitel som helst."
 };
 export default sv;

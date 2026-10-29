@@ -269,6 +269,12 @@ const gu: Record<string, string> = {
   "Protect PDF": "PDF પર પાસવર્ડ લગાવો",
   "Unlock PDF": "PDF નો પાસવર્ડ દૂર કરો",
   "Office to PDF": "Office થી PDF",
-  "PDF to JPG": "PDF થી JPG"
+  "PDF to JPG": "PDF થી JPG",
+
+  // Question papers
+  "Question papers": "પ્રશ્નપત્રો",
+  "Question paper maker": "પ્રશ્નપત્ર બનાવો",
+  "Exam papers with sections, marks and answer key": "વિભાગ, ગુણ અને જવાબ સૂચિ સાથે પરીક્ષા પ્રશ્નપત્ર",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "કોઈપણ પ્રકરણમાંથી વિભાગ, ગુણ અને જવાબ સૂચિ સાથે સંપૂર્ણ પ્રશ્નપત્ર."
 };
 export default gu;

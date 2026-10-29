@@ -246,6 +246,12 @@ const he: Record<string, string> = {
   "Protect PDF": "הגנה על PDF",
   "Unlock PDF": "ביטול נעילת PDF",
   "Office to PDF": "Office ל-PDF",
-  "PDF to JPG": "PDF ל-JPG"
+  "PDF to JPG": "PDF ל-JPG",
+
+  // Question papers
+  "Question papers": "מבחנים",
+  "Question paper maker": "יוצר מבחנים",
+  "Exam papers with sections, marks and answer key": "מבחנים עם חלקים, ניקוד ומפתח תשובות",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "מבחן מלא עם חלקים, ניקוד ומפתח תשובות, מכל פרק."
 };
 export default he;

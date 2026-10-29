@@ -246,6 +246,12 @@ const th: Record<string, string> = {
   "Protect PDF": "ตั้งรหัสผ่าน PDF",
   "Unlock PDF": "ปลดรหัสผ่าน PDF",
   "Office to PDF": "Office เป็น PDF",
-  "PDF to JPG": "PDF เป็น JPG"
+  "PDF to JPG": "PDF เป็น JPG",
+
+  // Question papers
+  "Question papers": "ข้อสอบ",
+  "Question paper maker": "สร้างข้อสอบ",
+  "Exam papers with sections, marks and answer key": "ข้อสอบพร้อมตอน คะแนน และเฉลย",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ข้อสอบฉบับสมบูรณ์พร้อมตอน คะแนน และเฉลย จากบทเรียนใดก็ได้"
 };
 export default th;

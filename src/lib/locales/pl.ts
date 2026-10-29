@@ -246,6 +246,12 @@ const pl: Record<string, string> = {
   "Protect PDF": "Zabezpiecz PDF",
   "Unlock PDF": "Odblokuj PDF",
   "Office to PDF": "Office do PDF",
-  "PDF to JPG": "PDF do JPG"
+  "PDF to JPG": "PDF do JPG",
+
+  // Question papers
+  "Question papers": "Sprawdziany",
+  "Question paper maker": "Kreator sprawdzianów",
+  "Exam papers with sections, marks and answer key": "Sprawdziany z częściami, punktacją i kluczem odpowiedzi",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Pełny sprawdzian z częściami, punktacją i kluczem odpowiedzi, z dowolnego rozdziału."
 };
 export default pl;

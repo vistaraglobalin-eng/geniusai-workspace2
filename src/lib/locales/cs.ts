@@ -246,6 +246,12 @@ const cs: Record<string, string> = {
   "Protect PDF": "Zabezpečit PDF",
   "Unlock PDF": "Odemknout PDF",
   "Office to PDF": "Office do PDF",
-  "PDF to JPG": "PDF do JPG"
+  "PDF to JPG": "PDF do JPG",
+
+  // Question papers
+  "Question papers": "Písemky",
+  "Question paper maker": "Tvůrce písemek",
+  "Exam papers with sections, marks and answer key": "Písemky s oddíly, body a klíčem odpovědí",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kompletní písemka s oddíly, body a klíčem odpovědí z jakékoli kapitoly."
 };
 export default cs;

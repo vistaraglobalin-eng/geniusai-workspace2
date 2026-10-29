@@ -246,6 +246,12 @@ const fa: Record<string, string> = {
   "Protect PDF": "رمزگذاری PDF",
   "Unlock PDF": "برداشتن رمز PDF",
   "Office to PDF": "Office به PDF",
-  "PDF to JPG": "PDF به JPG"
+  "PDF to JPG": "PDF به JPG",
+
+  // Question papers
+  "Question papers": "برگه‌های امتحان",
+  "Question paper maker": "سازندهٔ برگهٔ امتحان",
+  "Exam papers with sections, marks and answer key": "برگه‌های امتحان با بخش‌ها، بارم و کلید پاسخ",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "یک برگهٔ امتحان کامل با بخش‌ها، بارم و کلید پاسخ، از هر فصلی."
 };
 export default fa;

@@ -246,6 +246,12 @@ const nl: Record<string, string> = {
   "Protect PDF": "PDF beveiligen",
   "Unlock PDF": "PDF ontgrendelen",
   "Office to PDF": "Office naar PDF",
-  "PDF to JPG": "PDF naar JPG"
+  "PDF to JPG": "PDF naar JPG",
+
+  // Question papers
+  "Question papers": "Toetsen",
+  "Question paper maker": "Toetsenmaker",
+  "Exam papers with sections, marks and answer key": "Toetsen met onderdelen, punten en antwoordmodel",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Een volledige toets met onderdelen, punten en antwoordmodel, uit elk hoofdstuk."
 };
 export default nl;

@@ -269,6 +269,12 @@ const mr: Record<string, string> = {
   "Protect PDF": "PDF ला पासवर्ड लावा",
   "Unlock PDF": "PDF चा पासवर्ड काढा",
   "Office to PDF": "Office ते PDF",
-  "PDF to JPG": "PDF ते JPG"
+  "PDF to JPG": "PDF ते JPG",
+
+  // Question papers
+  "Question papers": "प्रश्नपत्रिका",
+  "Question paper maker": "प्रश्नपत्रिका तयार करा",
+  "Exam papers with sections, marks and answer key": "विभाग, गुण आणि उत्तरसूचीसह परीक्षा प्रश्नपत्रिका",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "कोणत्याही धड्यापासून विभाग, गुण आणि उत्तरसूचीसह संपूर्ण प्रश्नपत्रिका."
 };
 export default mr;

@@ -246,6 +246,12 @@ const ro: Record<string, string> = {
   "Protect PDF": "Protejează PDF",
   "Unlock PDF": "Deblochează PDF",
   "Office to PDF": "Office în PDF",
-  "PDF to JPG": "PDF în JPG"
+  "PDF to JPG": "PDF în JPG",
+
+  // Question papers
+  "Question papers": "Lucrări de examen",
+  "Question paper maker": "Generator de lucrări",
+  "Exam papers with sections, marks and answer key": "Lucrări cu secțiuni, punctaj și barem",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "O lucrare completă cu secțiuni, punctaj și barem, din orice capitol."
 };
 export default ro;

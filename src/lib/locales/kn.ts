@@ -269,6 +269,12 @@ const kn: Record<string, string> = {
   "Protect PDF": "PDF ಗೆ ಪಾಸ್‌ವರ್ಡ್ ಹಾಕಿ",
   "Unlock PDF": "PDF ಪಾಸ್‌ವರ್ಡ್ ತೆಗೆಯಿರಿ",
   "Office to PDF": "Office ನಿಂದ PDF",
-  "PDF to JPG": "PDF ನಿಂದ JPG"
+  "PDF to JPG": "PDF ನಿಂದ JPG",
+
+  // Question papers
+  "Question papers": "ಪ್ರಶ್ನೆಪತ್ರಿಕೆಗಳು",
+  "Question paper maker": "ಪ್ರಶ್ನೆಪತ್ರಿಕೆ ತಯಾರಕ",
+  "Exam papers with sections, marks and answer key": "ವಿಭಾಗ, ಅಂಕ ಮತ್ತು ಉತ್ತರ ಕೀಲಿಯೊಂದಿಗೆ ಪರೀಕ್ಷಾ ಪ್ರಶ್ನೆಪತ್ರಿಕೆ",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ಯಾವುದೇ ಅಧ್ಯಾಯದಿಂದ ವಿಭಾಗ, ಅಂಕ ಮತ್ತು ಉತ್ತರ ಕೀಲಿಯೊಂದಿಗೆ ಪೂರ್ಣ ಪ್ರಶ್ನೆಪತ್ರಿಕೆ."
 };
 export default kn;

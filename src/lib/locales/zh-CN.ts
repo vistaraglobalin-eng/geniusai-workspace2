@@ -246,6 +246,12 @@ const zhCN: Record<string, string> = {
   "Protect PDF": "加密 PDF",
   "Unlock PDF": "解除 PDF 密码",
   "Office to PDF": "Office 转 PDF",
-  "PDF to JPG": "PDF 转 JPG"
+  "PDF to JPG": "PDF 转 JPG",
+
+  // Question papers
+  "Question papers": "试卷",
+  "Question paper maker": "试卷生成器",
+  "Exam papers with sections, marks and answer key": "含题型分区、分值和答案的试卷",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "根据任意章节生成含题型分区、分值和答案的完整试卷。"
 };
 export default zhCN;

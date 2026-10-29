@@ -246,6 +246,12 @@ const fil: Record<string, string> = {
   "Protect PDF": "Protektahan ang PDF",
   "Unlock PDF": "I-unlock ang PDF",
   "Office to PDF": "Office papuntang PDF",
-  "PDF to JPG": "PDF papuntang JPG"
+  "PDF to JPG": "PDF papuntang JPG",
+
+  // Question papers
+  "Question papers": "Mga pagsusulit",
+  "Question paper maker": "Gumawa ng pagsusulit",
+  "Exam papers with sections, marks and answer key": "Pagsusulit na may mga bahagi, puntos at susi sa pagwawasto",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kumpletong pagsusulit na may mga bahagi, puntos at susi sa pagwawasto, mula sa anumang kabanata."
 };
 export default fil;

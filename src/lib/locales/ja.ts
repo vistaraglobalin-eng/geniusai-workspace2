@@ -246,6 +246,12 @@ const ja: Record<string, string> = {
   "Protect PDF": "PDF にパスワード",
   "Unlock PDF": "PDF のパスワード解除",
   "Office to PDF": "Office を PDF に",
-  "PDF to JPG": "PDF を JPG に"
+  "PDF to JPG": "PDF を JPG に",
+
+  // Question papers
+  "Question papers": "試験問題",
+  "Question paper maker": "試験問題メーカー",
+  "Exam papers with sections, marks and answer key": "大問・配点・解答付きの試験問題",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "どの章からでも、大問・配点・解答付きの試験問題を作成します。"
 };
 export default ja;

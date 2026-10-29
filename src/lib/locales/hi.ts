@@ -270,6 +270,12 @@ const hi: Record<string, string> = {
   "Protect PDF": "PDF पर पासवर्ड लगाएँ",
   "Unlock PDF": "PDF का पासवर्ड हटाएँ",
   "Office to PDF": "Office से PDF",
-  "PDF to JPG": "PDF से JPG"
+  "PDF to JPG": "PDF से JPG",
+
+  // Question papers
+  "Question papers": "प्रश्न पत्र",
+  "Question paper maker": "प्रश्न पत्र बनाएँ",
+  "Exam papers with sections, marks and answer key": "खंड, अंक और उत्तर कुंजी के साथ परीक्षा पत्र",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "किसी भी अध्याय से खंड, अंक और उत्तर कुंजी के साथ पूरा परीक्षा पत्र।"
 };
 export default hi;

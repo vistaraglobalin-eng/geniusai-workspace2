@@ -246,6 +246,12 @@ const zhTW: Record<string, string> = {
   "Protect PDF": "加密 PDF",
   "Unlock PDF": "解除 PDF 密碼",
   "Office to PDF": "Office 轉 PDF",
-  "PDF to JPG": "PDF 轉 JPG"
+  "PDF to JPG": "PDF 轉 JPG",
+
+  // Question papers
+  "Question papers": "試卷",
+  "Question paper maker": "試卷產生器",
+  "Exam papers with sections, marks and answer key": "含題型分區、配分和解答的試卷",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "根據任一章節產生含題型分區、配分和解答的完整試卷。"
 };
 export default zhTW;

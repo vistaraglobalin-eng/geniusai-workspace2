@@ -246,6 +246,12 @@ const sw: Record<string, string> = {
   "Protect PDF": "Linda PDF",
   "Unlock PDF": "Fungua PDF",
   "Office to PDF": "Office kwenda PDF",
-  "PDF to JPG": "PDF kwenda JPG"
+  "PDF to JPG": "PDF kwenda JPG",
+
+  // Question papers
+  "Question papers": "Karatasi za mtihani",
+  "Question paper maker": "Kitengeneza mtihani",
+  "Exam papers with sections, marks and answer key": "Karatasi za mtihani zenye sehemu, alama na majibu",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Karatasi kamili ya mtihani yenye sehemu, alama na majibu, kutoka sura yoyote."
 };
 export default sw;

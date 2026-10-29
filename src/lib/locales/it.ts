@@ -246,6 +246,12 @@ const it: Record<string, string> = {
   "Protect PDF": "Proteggi PDF",
   "Unlock PDF": "Sblocca PDF",
   "Office to PDF": "Da Office a PDF",
-  "PDF to JPG": "Da PDF a JPG"
+  "PDF to JPG": "Da PDF a JPG",
+
+  // Question papers
+  "Question papers": "Compiti in classe",
+  "Question paper maker": "Generatore di compiti",
+  "Exam papers with sections, marks and answer key": "Verifiche con sezioni, punteggi e soluzioni",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Una verifica completa con sezioni, punteggi e soluzioni, da qualsiasi capitolo."
 };
 export default it;
