@@ -2526,3 +2526,18 @@ html[data-motion="reduce"] .voice-btn.on { animation: none; }
 .spin { animation: gai-spin 1s linear infinite; }
 @keyframes gai-spin { to { transform: rotate(360deg); } }
 @media (max-width: 640px) { .sf-files .file-row .secondary-button { padding: 0 10px; } }
+
+/* Language menu groups (India / International) */
+.lang-group { display: block; padding: 8px 10px 4px; font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
+.lang-list [role="group"] + [role="group"] { border-top: 1px solid var(--border); margin-top: 4px; }
+
+/* Right-to-left languages (Arabic, Urdu, Persian, Hebrew): mirror the shell.
+   Most layout is flex/grid and flips by itself; these are the physically positioned parts. */
+[dir="rtl"] .sidebar { inset: 0 0 0 auto; border-right: 0; border-left: 1px solid var(--border); }
+[dir="rtl"] .main-panel { margin-left: 0; margin-right: var(--sidebar-w); }
+[dir="rtl"] .lang-list { right: auto; left: 0; }
+[dir="rtl"] .lang-list button { text-align: right; }
+[dir="rtl"] .voice-wrap:not(.voice-row) .voice-status { right: auto; left: 0; }
+[dir="rtl"] .list-chevron, [dir="rtl"] .card-arrow { transform: scaleX(-1); }
+/* Numbers, amounts, emails and file names stay left to right inside RTL text. */
+[dir="rtl"] .credit-pill, [dir="rtl"] .home-card strong, [dir="rtl"] .topbar-email, [dir="rtl"] .home-pct { direction: ltr; unicode-bidi: isolate; }

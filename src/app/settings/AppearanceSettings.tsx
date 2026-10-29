@@ -9,7 +9,7 @@ import {
   type Accent, type Motion, type Preferences, type TextSize, type Theme
 } from "@/lib/preferences";
 import { savePreferences } from "./actions";
-import { CLIENT_TEXT, LANGUAGES, LANGUAGE_ENGLISH, LANGUAGE_NAMES, isLang } from "@/lib/i18n";
+import { CLIENT_TEXT, INDIAN_LANGUAGES, LANGUAGE_ENGLISH, LANGUAGE_NAMES, WORLD_LANGUAGES, dirOf, isLang } from "@/lib/i18n";
 
 const THEME_OPTIONS: { value: Theme; label: string; Icon: typeof Sun }[] = [
   { value: "system", label: "Match device", Icon: Monitor },
@@ -30,6 +30,7 @@ function applyToDocument(prefs: Preferences) {
   const root = document.documentElement;
   for (const [key, value] of Object.entries(htmlAttributes(prefs))) root.setAttribute(key, value);
   root.lang = prefs.lang;
+  root.dir = dirOf(prefs.lang);
   const secure = window.location.protocol === "https:" ? "; Secure" : "";
   document.cookie = `${PREFS_COOKIE}=${serializePreferences(prefs)}; Path=/; Max-Age=${PREFS_COOKIE_MAX_AGE}; SameSite=Lax${secure}`;
 }
@@ -68,8 +69,10 @@ export function AppearanceSettings({ initial }: { initial: Preferences }) {
         </div>
         <select className="text-input lang-select" aria-labelledby="lang-label" value={prefs.lang}
           onChange={(e) => { if (isLang(e.target.value)) update({ lang: e.target.value }); }}>
-          {LANGUAGES.map((l) => (
-            <option key={l} value={l} lang={l}>{LANGUAGE_NAMES[l]}{l === "en" ? "" : ` · ${LANGUAGE_ENGLISH[l]}`}</option>
+          {([["India", INDIAN_LANGUAGES], ["International", WORLD_LANGUAGES]] as const).map(([group, list]) => (
+            <optgroup key={group} label={group}>
+              {list.map((l) => <option key={l} value={l} lang={l}>{LANGUAGE_NAMES[l]}{l === "en" ? "" : ` · ${LANGUAGE_ENGLISH[l]}`}</option>)}
+            </optgroup>
           ))}
         </select>
       </div>

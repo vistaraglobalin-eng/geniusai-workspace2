@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Mic, Square } from "lucide-react";
-import { CLIENT_TEXT, isLang, localeOf, type Lang } from "@/lib/i18n";
+import { CLIENT_TEXT, isLang, speechLocaleOf, type Lang } from "@/lib/i18n";
 import { track } from "@/lib/analytics";
 
 // Minimal typing for the browser's Web Speech API (Safari and Chrome ship it prefixed).
@@ -36,7 +36,7 @@ function pageLang(): Lang {
 
 /**
  * Mic button for any text box: tap, speak, tap again (or pause) to stop. Text goes to onText.
- * Dictates in the interface language (English is recognised as Indian English). Hidden in
+ * Dictates in the interface language (English is recognised as Indian English, others in their main region). Hidden in
  * browsers without speech recognition. Audio is handled by the browser (Apple or Google), not
  * sent to GeniusAI.
  */
@@ -63,7 +63,7 @@ export function VoiceButton({ onText, disabled, className = "" }: { onText: (tex
     setError(null); setInterim("");
     const r = new Ctor();
     const lang = pageLang();
-    r.lang = localeOf(lang);
+    r.lang = speechLocaleOf(lang);
     r.continuous = true;
     r.interimResults = true;
     r.maxAlternatives = 1;
