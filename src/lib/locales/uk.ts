@@ -246,6 +246,12 @@ const uk: Record<string, string> = {
   "Protect PDF": "Захистити PDF",
   "Unlock PDF": "Зняти захист із PDF",
   "Office to PDF": "Office у PDF",
-  "PDF to JPG": "PDF у JPG"
+  "PDF to JPG": "PDF у JPG",
+
+  // Question papers
+  "Question papers": "Контрольні роботи",
+  "Question paper maker": "Конструктор контрольних",
+  "Exam papers with sections, marks and answer key": "Контрольні з розділами, балами та ключем відповідей",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Повна контрольна робота з розділами, балами та ключем відповідей з будь-якого розділу."
 };
 export default uk;

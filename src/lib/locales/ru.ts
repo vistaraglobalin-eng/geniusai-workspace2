@@ -246,6 +246,12 @@ const ru: Record<string, string> = {
   "Protect PDF": "Защитить PDF",
   "Unlock PDF": "Снять защиту с PDF",
   "Office to PDF": "Office в PDF",
-  "PDF to JPG": "PDF в JPG"
+  "PDF to JPG": "PDF в JPG",
+
+  // Question papers
+  "Question papers": "Экзаменационные билеты",
+  "Question paper maker": "Конструктор контрольных",
+  "Exam papers with sections, marks and answer key": "Контрольные с разделами, баллами и ключом ответов",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Полная контрольная работа с разделами, баллами и ключом ответов по любой главе."
 };
 export default ru;

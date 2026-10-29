@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature, Send, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet } from "lucide-react";
+import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature, Send, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet, ScrollText } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -24,6 +24,7 @@ const HUBS = [
   { href: "/tools/compare", title: "Compare versions", text: "See every change between two drafts, word by word. Free.", Icon: Diff, color: "peach" },
   { href: "/tools/read", title: "Read mode", text: "Any PDF or Word file as easy-to-read text on your phone. Free.", Icon: BookOpen, color: "mint" },
   { href: "/tools/study", title: "Quizzes & flashcards", text: "Turn notes or a chapter into a practice quiz or flashcards.", Icon: GraduationCap, color: "lavender" },
+  { href: "/tools/exam", title: "Question paper maker", text: "A full exam paper with sections, marks and an answer key, from any chapter.", Icon: ScrollText, color: "peach" },
   { href: "/tools/agreements/clause-map", title: "Clause map", text: "How a contract's clauses and definitions connect, and what's broken.", Icon: Network, color: "blue" },
   { href: "/tools/sign/requests", title: "Request signatures", text: "Send a PDF for others to sign by private link. Free.", Icon: Send, color: "mint" },
   { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations and receipts with UPI QR. Free.", Icon: ReceiptText, color: "mint" },

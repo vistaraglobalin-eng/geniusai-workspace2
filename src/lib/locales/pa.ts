@@ -269,6 +269,12 @@ const pa: Record<string, string> = {
   "Protect PDF": "PDF 'ਤੇ ਪਾਸਵਰਡ ਲਗਾਓ",
   "Unlock PDF": "PDF ਦਾ ਪਾਸਵਰਡ ਹਟਾਓ",
   "Office to PDF": "Office ਤੋਂ PDF",
-  "PDF to JPG": "PDF ਤੋਂ JPG"
+  "PDF to JPG": "PDF ਤੋਂ JPG",
+
+  // Question papers
+  "Question papers": "ਪ੍ਰਸ਼ਨ ਪੱਤਰ",
+  "Question paper maker": "ਪ੍ਰਸ਼ਨ ਪੱਤਰ ਬਣਾਓ",
+  "Exam papers with sections, marks and answer key": "ਭਾਗਾਂ, ਅੰਕਾਂ ਅਤੇ ਉੱਤਰ ਕੁੰਜੀ ਨਾਲ ਪ੍ਰੀਖਿਆ ਪ੍ਰਸ਼ਨ ਪੱਤਰ",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ਕਿਸੇ ਵੀ ਅਧਿਆਇ ਤੋਂ ਭਾਗਾਂ, ਅੰਕਾਂ ਅਤੇ ਉੱਤਰ ਕੁੰਜੀ ਨਾਲ ਪੂਰਾ ਪ੍ਰਸ਼ਨ ਪੱਤਰ।"
 };
 export default pa;

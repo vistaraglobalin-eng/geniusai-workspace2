@@ -246,6 +246,12 @@ const ms: Record<string, string> = {
   "Protect PDF": "Lindungi PDF",
   "Unlock PDF": "Buka kunci PDF",
   "Office to PDF": "Office ke PDF",
-  "PDF to JPG": "PDF ke JPG"
+  "PDF to JPG": "PDF ke JPG",
+
+  // Question papers
+  "Question papers": "Kertas soalan",
+  "Question paper maker": "Pembuat kertas soalan",
+  "Exam papers with sections, marks and answer key": "Kertas peperiksaan dengan bahagian, markah dan skema jawapan",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kertas peperiksaan lengkap dengan bahagian, markah dan skema jawapan, daripada mana-mana bab."
 };
 export default ms;

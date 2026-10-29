@@ -246,6 +246,12 @@ const ar: Record<string, string> = {
   "Protect PDF": "حماية PDF",
   "Unlock PDF": "إلغاء قفل PDF",
   "Office to PDF": "Office إلى PDF",
-  "PDF to JPG": "PDF إلى JPG"
+  "PDF to JPG": "PDF إلى JPG",
+
+  // Question papers
+  "Question papers": "أوراق الامتحان",
+  "Question paper maker": "صانع أوراق الامتحان",
+  "Exam papers with sections, marks and answer key": "أوراق امتحان بأقسام ودرجات ومفتاح إجابات",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ورقة امتحان كاملة بأقسام ودرجات ومفتاح إجابات، من أي فصل."
 };
 export default ar;

@@ -246,6 +246,12 @@ const tr: Record<string, string> = {
   "Protect PDF": "PDF koru",
   "Unlock PDF": "PDF kilidini aç",
   "Office to PDF": "Office'ten PDF'e",
-  "PDF to JPG": "PDF'ten JPG'ye"
+  "PDF to JPG": "PDF'ten JPG'ye",
+
+  // Question papers
+  "Question papers": "Sınav kâğıtları",
+  "Question paper maker": "Sınav hazırlayıcı",
+  "Exam papers with sections, marks and answer key": "Bölümleri, puanları ve cevap anahtarıyla sınav kâğıtları",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Herhangi bir üniteden bölümleri, puanları ve cevap anahtarıyla eksiksiz bir sınav."
 };
 export default tr;

@@ -246,6 +246,12 @@ const ne: Record<string, string> = {
   "Protect PDF": "PDF मा पासवर्ड राख्नुहोस्",
   "Unlock PDF": "PDF को पासवर्ड हटाउनुहोस्",
   "Office to PDF": "Office बाट PDF",
-  "PDF to JPG": "PDF बाट JPG"
+  "PDF to JPG": "PDF बाट JPG",
+
+  // Question papers
+  "Question papers": "प्रश्नपत्र",
+  "Question paper maker": "प्रश्नपत्र बनाउनुहोस्",
+  "Exam papers with sections, marks and answer key": "खण्ड, अङ्क र उत्तर कुञ्जीसहितको परीक्षा प्रश्नपत्र",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "कुनै पनि अध्यायबाट खण्ड, अङ्क र उत्तर कुञ्जीसहितको पूर्ण प्रश्नपत्र।"
 };
 export default ne;

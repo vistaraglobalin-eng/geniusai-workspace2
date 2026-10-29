@@ -246,6 +246,12 @@ const id: Record<string, string> = {
   "Protect PDF": "Lindungi PDF",
   "Unlock PDF": "Buka kunci PDF",
   "Office to PDF": "Office ke PDF",
-  "PDF to JPG": "PDF ke JPG"
+  "PDF to JPG": "PDF ke JPG",
+
+  // Question papers
+  "Question papers": "Soal ujian",
+  "Question paper maker": "Pembuat soal ujian",
+  "Exam papers with sections, marks and answer key": "Soal ujian dengan bagian, skor, dan kunci jawaban",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Soal ujian lengkap dengan bagian, skor, dan kunci jawaban dari bab mana pun."
 };
 export default id;

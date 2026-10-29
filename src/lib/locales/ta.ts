@@ -269,6 +269,12 @@ const ta: Record<string, string> = {
   "Protect PDF": "PDF-க்கு கடவுச்சொல் இடு",
   "Unlock PDF": "PDF கடவுச்சொல்லை நீக்கு",
   "Office to PDF": "Office → PDF",
-  "PDF to JPG": "PDF → JPG"
+  "PDF to JPG": "PDF → JPG",
+
+  // Question papers
+  "Question papers": "வினாத்தாள்கள்",
+  "Question paper maker": "வினாத்தாள் உருவாக்கி",
+  "Exam papers with sections, marks and answer key": "பிரிவுகள், மதிப்பெண்கள், விடைக்குறிப்புடன் தேர்வு வினாத்தாள்",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "எந்தப் பாடத்திலிருந்தும் பிரிவுகள், மதிப்பெண்கள், விடைக்குறிப்புடன் முழு வினாத்தாள்."
 };
 export default ta;

@@ -246,6 +246,12 @@ const ptBR: Record<string, string> = {
   "Protect PDF": "Proteger PDF",
   "Unlock PDF": "Desbloquear PDF",
   "Office to PDF": "Office para PDF",
-  "PDF to JPG": "PDF para JPG"
+  "PDF to JPG": "PDF para JPG",
+
+  // Question papers
+  "Question papers": "Provas",
+  "Question paper maker": "Gerador de provas",
+  "Exam papers with sections, marks and answer key": "Provas com seções, pontuação e gabarito",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Uma prova completa com seções, pontuação e gabarito, a partir de qualquer capítulo."
 };
 export default ptBR;

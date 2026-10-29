@@ -269,6 +269,12 @@ const bn: Record<string, string> = {
   "Protect PDF": "PDF-এ পাসওয়ার্ড দিন",
   "Unlock PDF": "PDF-এর পাসওয়ার্ড সরান",
   "Office to PDF": "Office থেকে PDF",
-  "PDF to JPG": "PDF থেকে JPG"
+  "PDF to JPG": "PDF থেকে JPG",
+
+  // Question papers
+  "Question papers": "প্রশ্নপত্র",
+  "Question paper maker": "প্রশ্নপত্র তৈরি",
+  "Exam papers with sections, marks and answer key": "বিভাগ, নম্বর ও উত্তরমালা সহ পরীক্ষার প্রশ্নপত্র",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "যেকোনো অধ্যায় থেকে বিভাগ, নম্বর ও উত্তরমালা সহ সম্পূর্ণ প্রশ্নপত্র।"
 };
 export default bn;

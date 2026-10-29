@@ -1,5 +1,13 @@
 # Changes
 
+## Revision 41: Question paper maker
+
+- Question paper maker (/tools/exam, in the sidebar under Documents, the Documents tab, All tools, and a "Question paper" button on a file's page): turns a chapter or notes (PDF, Word, text or photos) into a complete exam paper.
+- Patterns: Class test (20 marks, 40 min), Unit test (25, 1 hour), Term exam (40, 1½ hours), Full exam (80, 3 hours, CBSE-style with case-based questions), or Custom: up to 6 sections of multiple choice, true/false, fill in the blanks, short answer, long answer or case-based, with any count and 1–10 marks each.
+- Paper details: exam name, school (remembered), class, subject, time, difficulty (easy / balanced / challenging), 11 languages, and optional topics to cover (voice input works here too).
+- Output: printed-paper layout with general instructions, sections, marks against every question, then an optional answer key and marking scheme (marking points per mark). Print / Save as PDF (only the paper prints, key on its own page), Word (.docx) for the paper and for the key, and Copy.
+- Marks come from the chosen pattern, never from the AI, so totals always add up. Malformed questions are dropped and the shortfall is shown, never padded. Unusable replies return the credits (module documents, task question_paper). New strings translated in all 39 languages. New analytics event: question_paper_exported. No database change.
+
 ## Revision 40: 30 international languages
 
 - 40 interface languages in all: the 10 Indian ones plus Spanish, French, German, Portuguese (Brazil), Italian, Dutch, Russian, Ukrainian, Polish, Turkish, Arabic, Urdu, Persian, Hebrew, Chinese (Simplified and Traditional), Japanese, Korean, Indonesian, Malay, Vietnamese, Thai, Filipino, Swahili, Greek, Czech, Romanian, Hungarian, Swedish and Nepali. Each covers the same 247 strings as Hindi (navigation, Home, the four area pages, All tools).

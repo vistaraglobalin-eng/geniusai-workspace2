@@ -246,6 +246,12 @@ const ur: Record<string, string> = {
   "Protect PDF": "PDF پر پاس ورڈ لگائیں",
   "Unlock PDF": "PDF کا پاس ورڈ ہٹائیں",
   "Office to PDF": "Office سے PDF",
-  "PDF to JPG": "PDF سے JPG"
+  "PDF to JPG": "PDF سے JPG",
+
+  // Question papers
+  "Question papers": "سوالیہ پرچے",
+  "Question paper maker": "سوالیہ پرچہ بنائیں",
+  "Exam papers with sections, marks and answer key": "حصوں، نمبروں اور جوابی کلید کے ساتھ امتحانی پرچے",
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "کسی بھی باب سے حصوں، نمبروں اور جوابی کلید کے ساتھ مکمل امتحانی پرچہ۔"
 };
 export default ur;
