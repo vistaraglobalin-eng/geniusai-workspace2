@@ -252,6 +252,12 @@ const it: Record<string, string> = {
   "Question papers": "Compiti in classe",
   "Question paper maker": "Generatore di compiti",
   "Exam papers with sections, marks and answer key": "Verifiche con sezioni, punteggi e soluzioni",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Una verifica completa con sezioni, punteggi e soluzioni, da qualsiasi capitolo."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Una verifica completa con sezioni, punteggi e soluzioni, da qualsiasi capitolo.",
+
+  // Policy Q&A
+  "Policy Q&A": "Domande sulle policy",
+  "Company policy Q&A": "Domande sulle policy aziendali",
+  "Employees ask, answers come from your HR policies": "I dipendenti chiedono, le risposte vengono dalle vostre policy HR",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "I dipendenti fanno domande e ricevono risposte dalle vostre policy HR, con le fonti."
 };
 export default it;

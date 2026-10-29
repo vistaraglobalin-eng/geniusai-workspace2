@@ -275,6 +275,12 @@ const gu: Record<string, string> = {
   "Question papers": "પ્રશ્નપત્રો",
   "Question paper maker": "પ્રશ્નપત્ર બનાવો",
   "Exam papers with sections, marks and answer key": "વિભાગ, ગુણ અને જવાબ સૂચિ સાથે પરીક્ષા પ્રશ્નપત્ર",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "કોઈપણ પ્રકરણમાંથી વિભાગ, ગુણ અને જવાબ સૂચિ સાથે સંપૂર્ણ પ્રશ્નપત્ર."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "કોઈપણ પ્રકરણમાંથી વિભાગ, ગુણ અને જવાબ સૂચિ સાથે સંપૂર્ણ પ્રશ્નપત્ર.",
+
+  // Policy Q&A
+  "Policy Q&A": "નીતિ પ્રશ્નોત્તરી",
+  "Company policy Q&A": "કંપની નીતિ પ્રશ્નોત્તરી",
+  "Employees ask, answers come from your HR policies": "કર્મચારીઓ પૂછે, જવાબ તમારી HR નીતિઓમાંથી",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "કર્મચારીઓ પ્રશ્ન પૂછે અને તમારી પોતાની HR નીતિઓમાંથી સ્રોત સાથે જવાબ મેળવે."
 };
 export default gu;

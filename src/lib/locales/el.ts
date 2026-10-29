@@ -252,6 +252,12 @@ const el: Record<string, string> = {
   "Question papers": "Διαγωνίσματα",
   "Question paper maker": "Δημιουργός διαγωνισμάτων",
   "Exam papers with sections, marks and answer key": "Διαγωνίσματα με ενότητες, βαθμολογία και απαντήσεις",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Ένα πλήρες διαγώνισμα με ενότητες, βαθμολογία και απαντήσεις, από οποιοδήποτε κεφάλαιο."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Ένα πλήρες διαγώνισμα με ενότητες, βαθμολογία και απαντήσεις, από οποιοδήποτε κεφάλαιο.",
+
+  // Policy Q&A
+  "Policy Q&A": "Ερωτήσεις πολιτικών",
+  "Company policy Q&A": "Ερωτήσεις για τις πολιτικές της εταιρείας",
+  "Employees ask, answers come from your HR policies": "Οι εργαζόμενοι ρωτούν, οι απαντήσεις από τις πολιτικές HR σας",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Οι εργαζόμενοι κάνουν ερωτήσεις και παίρνουν απαντήσεις από τις δικές σας πολιτικές HR, με πηγές."
 };
 export default el;

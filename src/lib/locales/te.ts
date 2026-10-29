@@ -275,6 +275,12 @@ const te: Record<string, string> = {
   "Question papers": "ప్రశ్నపత్రాలు",
   "Question paper maker": "ప్రశ్నపత్రం తయారీ",
   "Exam papers with sections, marks and answer key": "విభాగాలు, మార్కులు, జవాబు కీతో పరీక్ష ప్రశ్నపత్రం",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "ఏ పాఠం నుండైనా విభాగాలు, మార్కులు, జవాబు కీతో పూర్తి ప్రశ్నపత్రం."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ఏ పాఠం నుండైనా విభాగాలు, మార్కులు, జవాబు కీతో పూర్తి ప్రశ్నపత్రం.",
+
+  // Policy Q&A
+  "Policy Q&A": "విధానాల ప్రశ్నోత్తరాలు",
+  "Company policy Q&A": "కంపెనీ విధానాల ప్రశ్నోత్తరాలు",
+  "Employees ask, answers come from your HR policies": "ఉద్యోగులు అడుగుతారు, సమాధానాలు మీ HR విధానాల నుండి",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ఉద్యోగులు ప్రశ్నలు అడిగి, మీ సొంత HR విధానాల నుండి మూలాలతో సమాధానాలు పొందుతారు."
 };
 export default te;

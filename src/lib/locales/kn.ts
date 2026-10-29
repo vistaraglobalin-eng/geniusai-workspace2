@@ -275,6 +275,12 @@ const kn: Record<string, string> = {
   "Question papers": "ಪ್ರಶ್ನೆಪತ್ರಿಕೆಗಳು",
   "Question paper maker": "ಪ್ರಶ್ನೆಪತ್ರಿಕೆ ತಯಾರಕ",
   "Exam papers with sections, marks and answer key": "ವಿಭಾಗ, ಅಂಕ ಮತ್ತು ಉತ್ತರ ಕೀಲಿಯೊಂದಿಗೆ ಪರೀಕ್ಷಾ ಪ್ರಶ್ನೆಪತ್ರಿಕೆ",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "ಯಾವುದೇ ಅಧ್ಯಾಯದಿಂದ ವಿಭಾಗ, ಅಂಕ ಮತ್ತು ಉತ್ತರ ಕೀಲಿಯೊಂದಿಗೆ ಪೂರ್ಣ ಪ್ರಶ್ನೆಪತ್ರಿಕೆ."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ಯಾವುದೇ ಅಧ್ಯಾಯದಿಂದ ವಿಭಾಗ, ಅಂಕ ಮತ್ತು ಉತ್ತರ ಕೀಲಿಯೊಂದಿಗೆ ಪೂರ್ಣ ಪ್ರಶ್ನೆಪತ್ರಿಕೆ.",
+
+  // Policy Q&A
+  "Policy Q&A": "ನೀತಿ ಪ್ರಶ್ನೋತ್ತರ",
+  "Company policy Q&A": "ಕಂಪನಿ ನೀತಿ ಪ್ರಶ್ನೋತ್ತರ",
+  "Employees ask, answers come from your HR policies": "ಉದ್ಯೋಗಿಗಳು ಕೇಳುತ್ತಾರೆ, ಉತ್ತರಗಳು ನಿಮ್ಮ HR ನೀತಿಗಳಿಂದ",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ಉದ್ಯೋಗಿಗಳು ಪ್ರಶ್ನೆ ಕೇಳಿ, ನಿಮ್ಮ ಸ್ವಂತ HR ನೀತಿಗಳಿಂದ ಮೂಲಗಳೊಂದಿಗೆ ಉತ್ತರ ಪಡೆಯುತ್ತಾರೆ."
 };
 export default kn;

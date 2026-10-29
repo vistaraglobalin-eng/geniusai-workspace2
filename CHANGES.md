@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 42: Company policy Q&A
+
+- Company policy Q&A (/tools/policies, in the sidebar under Documents, the Documents tab and All tools): employees ask about leave, notice period, expenses, work from home and so on, and get answers only from the company's own policy documents, with the file and page or section for every point. Follow-up questions, suggested questions, voice input, any language.
+- Admins set it up in Files: put the handbook and policies in a space (e.g. "HR Policies") and tap "Use for policy Q&A". The space shows a policy icon. Up to 8 documents / 23 MB are read together (newest first).
+- Open to everyone in the workspace, including view-only employees: the server decides which files are read (only the policy library), and each person can ask up to 30 questions a day. Questions use the workspace's credits (module documents, task policy_qa). The assistant never guesses beyond the policies and points people to HR for decisions.
+- **Database update needed:** supabase/migrations/202610290025_policy_library.sql (adds spaces.is_policy_library; lets view-only members run policy_qa jobs only). Until it's run, the page says a one-time update is needed. New strings translated in all 39 languages.
+
 ## Revision 41: Question paper maker
 
 - Question paper maker (/tools/exam, in the sidebar under Documents, the Documents tab, All tools, and a "Question paper" button on a file's page): turns a chapter or notes (PDF, Word, text or photos) into a complete exam paper.

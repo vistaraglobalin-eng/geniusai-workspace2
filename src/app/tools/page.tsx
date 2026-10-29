@@ -25,6 +25,7 @@ const HUBS = [
   { href: "/tools/read", title: "Read mode", text: "Any PDF or Word file as easy-to-read text on your phone. Free.", Icon: BookOpen, color: "mint" },
   { href: "/tools/study", title: "Quizzes & flashcards", text: "Turn notes or a chapter into a practice quiz or flashcards.", Icon: GraduationCap, color: "lavender" },
   { href: "/tools/exam", title: "Question paper maker", text: "A full exam paper with sections, marks and an answer key, from any chapter.", Icon: ScrollText, color: "peach" },
+  { href: "/tools/policies", title: "Company policy Q&A", text: "Employees ask questions and get answers from your own HR policies, with sources.", Icon: BookCheck, color: "blue" },
   { href: "/tools/agreements/clause-map", title: "Clause map", text: "How a contract's clauses and definitions connect, and what's broken.", Icon: Network, color: "blue" },
   { href: "/tools/sign/requests", title: "Request signatures", text: "Send a PDF for others to sign by private link. Free.", Icon: Send, color: "mint" },
   { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations and receipts with UPI QR. Free.", Icon: ReceiptText, color: "mint" },

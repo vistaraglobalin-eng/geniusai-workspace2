@@ -252,6 +252,12 @@ const zhTW: Record<string, string> = {
   "Question papers": "試卷",
   "Question paper maker": "試卷產生器",
   "Exam papers with sections, marks and answer key": "含題型分區、配分和解答的試卷",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "根據任一章節產生含題型分區、配分和解答的完整試卷。"
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "根據任一章節產生含題型分區、配分和解答的完整試卷。",
+
+  // Policy Q&A
+  "Policy Q&A": "制度問答",
+  "Company policy Q&A": "公司制度問答",
+  "Employees ask, answers come from your HR policies": "員工提問，答案來自你們的人事制度",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "員工提問，並從你們自己的人事制度中取得附出處的答案。"
 };
 export default zhTW;

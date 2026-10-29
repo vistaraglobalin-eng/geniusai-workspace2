@@ -252,6 +252,12 @@ const th: Record<string, string> = {
   "Question papers": "ข้อสอบ",
   "Question paper maker": "สร้างข้อสอบ",
   "Exam papers with sections, marks and answer key": "ข้อสอบพร้อมตอน คะแนน และเฉลย",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "ข้อสอบฉบับสมบูรณ์พร้อมตอน คะแนน และเฉลย จากบทเรียนใดก็ได้"
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ข้อสอบฉบับสมบูรณ์พร้อมตอน คะแนน และเฉลย จากบทเรียนใดก็ได้",
+
+  // Policy Q&A
+  "Policy Q&A": "ถามตอบนโยบาย",
+  "Company policy Q&A": "ถามตอบนโยบายบริษัท",
+  "Employees ask, answers come from your HR policies": "พนักงานถาม คำตอบมาจากนโยบาย HR ของคุณ",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "พนักงานถามคำถามและได้คำตอบจากนโยบาย HR ของคุณเองพร้อมแหล่งอ้างอิง"
 };
 export default th;

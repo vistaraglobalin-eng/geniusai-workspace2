@@ -275,6 +275,12 @@ const pa: Record<string, string> = {
   "Question papers": "ਪ੍ਰਸ਼ਨ ਪੱਤਰ",
   "Question paper maker": "ਪ੍ਰਸ਼ਨ ਪੱਤਰ ਬਣਾਓ",
   "Exam papers with sections, marks and answer key": "ਭਾਗਾਂ, ਅੰਕਾਂ ਅਤੇ ਉੱਤਰ ਕੁੰਜੀ ਨਾਲ ਪ੍ਰੀਖਿਆ ਪ੍ਰਸ਼ਨ ਪੱਤਰ",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "ਕਿਸੇ ਵੀ ਅਧਿਆਇ ਤੋਂ ਭਾਗਾਂ, ਅੰਕਾਂ ਅਤੇ ਉੱਤਰ ਕੁੰਜੀ ਨਾਲ ਪੂਰਾ ਪ੍ਰਸ਼ਨ ਪੱਤਰ।"
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "ਕਿਸੇ ਵੀ ਅਧਿਆਇ ਤੋਂ ਭਾਗਾਂ, ਅੰਕਾਂ ਅਤੇ ਉੱਤਰ ਕੁੰਜੀ ਨਾਲ ਪੂਰਾ ਪ੍ਰਸ਼ਨ ਪੱਤਰ।",
+
+  // Policy Q&A
+  "Policy Q&A": "ਨੀਤੀ ਸਵਾਲ-ਜਵਾਬ",
+  "Company policy Q&A": "ਕੰਪਨੀ ਨੀਤੀ ਸਵਾਲ-ਜਵਾਬ",
+  "Employees ask, answers come from your HR policies": "ਕਰਮਚਾਰੀ ਪੁੱਛਣ, ਜਵਾਬ ਤੁਹਾਡੀਆਂ HR ਨੀਤੀਆਂ ਤੋਂ",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ਕਰਮਚਾਰੀ ਸਵਾਲ ਪੁੱਛਦੇ ਹਨ ਅਤੇ ਤੁਹਾਡੀਆਂ ਆਪਣੀਆਂ HR ਨੀਤੀਆਂ ਤੋਂ ਸਰੋਤ ਸਮੇਤ ਜਵਾਬ ਪਾਉਂਦੇ ਹਨ।"
 };
 export default pa;

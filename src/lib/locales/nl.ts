@@ -252,6 +252,12 @@ const nl: Record<string, string> = {
   "Question papers": "Toetsen",
   "Question paper maker": "Toetsenmaker",
   "Exam papers with sections, marks and answer key": "Toetsen met onderdelen, punten en antwoordmodel",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Een volledige toets met onderdelen, punten en antwoordmodel, uit elk hoofdstuk."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Een volledige toets met onderdelen, punten en antwoordmodel, uit elk hoofdstuk.",
+
+  // Policy Q&A
+  "Policy Q&A": "Beleidsvragen",
+  "Company policy Q&A": "Vragen over bedrijfsbeleid",
+  "Employees ask, answers come from your HR policies": "Medewerkers vragen, antwoorden komen uit jullie HR-beleid",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Medewerkers stellen vragen en krijgen antwoorden uit jullie eigen HR-beleid, met bronnen."
 };
 export default nl;

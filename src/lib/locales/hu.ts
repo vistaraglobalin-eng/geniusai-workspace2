@@ -252,6 +252,12 @@ const hu: Record<string, string> = {
   "Question papers": "Dolgozatok",
   "Question paper maker": "Dolgozatkészítő",
   "Exam papers with sections, marks and answer key": "Dolgozatok feladatrészekkel, pontozással és megoldókulccsal",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Teljes dolgozat feladatrészekkel, pontozással és megoldókulccsal, bármely fejezetből."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Teljes dolgozat feladatrészekkel, pontozással és megoldókulccsal, bármely fejezetből.",
+
+  // Policy Q&A
+  "Policy Q&A": "Szabályzati kérdések",
+  "Company policy Q&A": "Céges szabályzat kérdések",
+  "Employees ask, answers come from your HR policies": "A dolgozók kérdeznek, a válaszok a HR-szabályzataitokból",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "A dolgozók kérdeznek, és a saját HR-szabályzataitokból kapnak választ, forrásmegjelöléssel."
 };
 export default hu;

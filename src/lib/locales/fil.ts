@@ -252,6 +252,12 @@ const fil: Record<string, string> = {
   "Question papers": "Mga pagsusulit",
   "Question paper maker": "Gumawa ng pagsusulit",
   "Exam papers with sections, marks and answer key": "Pagsusulit na may mga bahagi, puntos at susi sa pagwawasto",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kumpletong pagsusulit na may mga bahagi, puntos at susi sa pagwawasto, mula sa anumang kabanata."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Kumpletong pagsusulit na may mga bahagi, puntos at susi sa pagwawasto, mula sa anumang kabanata.",
+
+  // Policy Q&A
+  "Policy Q&A": "Tanong sa patakaran",
+  "Company policy Q&A": "Tanong sa patakaran ng kumpanya",
+  "Employees ask, answers come from your HR policies": "Nagtatanong ang empleyado, sagot mula sa HR policies ninyo",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Nagtatanong ang mga empleyado at kumukuha ng sagot mula sa sarili ninyong HR policies, may sanggunian."
 };
 export default fil;

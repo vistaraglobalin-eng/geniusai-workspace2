@@ -252,6 +252,12 @@ const ur: Record<string, string> = {
   "Question papers": "سوالیہ پرچے",
   "Question paper maker": "سوالیہ پرچہ بنائیں",
   "Exam papers with sections, marks and answer key": "حصوں، نمبروں اور جوابی کلید کے ساتھ امتحانی پرچے",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "کسی بھی باب سے حصوں، نمبروں اور جوابی کلید کے ساتھ مکمل امتحانی پرچہ۔"
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "کسی بھی باب سے حصوں، نمبروں اور جوابی کلید کے ساتھ مکمل امتحانی پرچہ۔",
+
+  // Policy Q&A
+  "Policy Q&A": "پالیسی سوال جواب",
+  "Company policy Q&A": "کمپنی پالیسی سوال جواب",
+  "Employees ask, answers come from your HR policies": "ملازمین پوچھیں، جواب آپ کی HR پالیسیوں سے",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ملازمین سوال پوچھیں اور آپ کی اپنی HR پالیسیوں سے حوالوں کے ساتھ جواب پائیں۔"
 };
 export default ur;

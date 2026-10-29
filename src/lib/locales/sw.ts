@@ -252,6 +252,12 @@ const sw: Record<string, string> = {
   "Question papers": "Karatasi za mtihani",
   "Question paper maker": "Kitengeneza mtihani",
   "Exam papers with sections, marks and answer key": "Karatasi za mtihani zenye sehemu, alama na majibu",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Karatasi kamili ya mtihani yenye sehemu, alama na majibu, kutoka sura yoyote."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Karatasi kamili ya mtihani yenye sehemu, alama na majibu, kutoka sura yoyote.",
+
+  // Policy Q&A
+  "Policy Q&A": "Maswali ya sera",
+  "Company policy Q&A": "Maswali ya sera za kampuni",
+  "Employees ask, answers come from your HR policies": "Wafanyakazi huuliza, majibu kutoka sera zako za HR",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Wafanyakazi huuliza maswali na kupata majibu kutoka sera zako za HR, pamoja na vyanzo."
 };
 export default sw;

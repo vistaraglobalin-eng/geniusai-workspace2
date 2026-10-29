@@ -252,6 +252,12 @@ const de: Record<string, string> = {
   "Question papers": "Prüfungsbögen",
   "Question paper maker": "Prüfungsbogen-Ersteller",
   "Exam papers with sections, marks and answer key": "Prüfungen mit Abschnitten, Punkten und Lösungsschlüssel",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Eine vollständige Prüfung mit Abschnitten, Punkten und Lösungsschlüssel aus jedem Kapitel."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Eine vollständige Prüfung mit Abschnitten, Punkten und Lösungsschlüssel aus jedem Kapitel.",
+
+  // Policy Q&A
+  "Policy Q&A": "Richtlinien-Fragen",
+  "Company policy Q&A": "Fragen zu Firmenrichtlinien",
+  "Employees ask, answers come from your HR policies": "Mitarbeitende fragen, Antworten aus Ihren HR-Richtlinien",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Mitarbeitende stellen Fragen und erhalten Antworten aus Ihren eigenen HR-Richtlinien, mit Quellen."
 };
 export default de;

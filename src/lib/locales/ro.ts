@@ -252,6 +252,12 @@ const ro: Record<string, string> = {
   "Question papers": "Lucrări de examen",
   "Question paper maker": "Generator de lucrări",
   "Exam papers with sections, marks and answer key": "Lucrări cu secțiuni, punctaj și barem",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "O lucrare completă cu secțiuni, punctaj și barem, din orice capitol."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "O lucrare completă cu secțiuni, punctaj și barem, din orice capitol.",
+
+  // Policy Q&A
+  "Policy Q&A": "Întrebări despre politici",
+  "Company policy Q&A": "Întrebări despre politicile companiei",
+  "Employees ask, answers come from your HR policies": "Angajații întreabă, răspunsurile vin din politicile voastre HR",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Angajații pun întrebări și primesc răspunsuri din propriile voastre politici HR, cu surse."
 };
 export default ro;

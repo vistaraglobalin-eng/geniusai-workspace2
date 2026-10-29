@@ -275,6 +275,12 @@ const mr: Record<string, string> = {
   "Question papers": "प्रश्नपत्रिका",
   "Question paper maker": "प्रश्नपत्रिका तयार करा",
   "Exam papers with sections, marks and answer key": "विभाग, गुण आणि उत्तरसूचीसह परीक्षा प्रश्नपत्रिका",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "कोणत्याही धड्यापासून विभाग, गुण आणि उत्तरसूचीसह संपूर्ण प्रश्नपत्रिका."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "कोणत्याही धड्यापासून विभाग, गुण आणि उत्तरसूचीसह संपूर्ण प्रश्नपत्रिका.",
+
+  // Policy Q&A
+  "Policy Q&A": "धोरण प्रश्नोत्तरे",
+  "Company policy Q&A": "कंपनी धोरण प्रश्नोत्तरे",
+  "Employees ask, answers come from your HR policies": "कर्मचारी विचारतात, उत्तरे तुमच्या HR धोरणांतून",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "कर्मचारी प्रश्न विचारतात आणि तुमच्या स्वतःच्या HR धोरणांतून स्रोतांसह उत्तरे मिळवतात."
 };
 export default mr;

@@ -252,6 +252,12 @@ const tr: Record<string, string> = {
   "Question papers": "Sınav kâğıtları",
   "Question paper maker": "Sınav hazırlayıcı",
   "Exam papers with sections, marks and answer key": "Bölümleri, puanları ve cevap anahtarıyla sınav kâğıtları",
-  "A full exam paper with sections, marks and an answer key, from any chapter.": "Herhangi bir üniteden bölümleri, puanları ve cevap anahtarıyla eksiksiz bir sınav."
+  "A full exam paper with sections, marks and an answer key, from any chapter.": "Herhangi bir üniteden bölümleri, puanları ve cevap anahtarıyla eksiksiz bir sınav.",
+
+  // Policy Q&A
+  "Policy Q&A": "Politika soru-cevap",
+  "Company policy Q&A": "Şirket politikaları soru-cevap",
+  "Employees ask, answers come from your HR policies": "Çalışanlar sorar, yanıtlar İK politikalarınızdan gelir",
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Çalışanlar soru sorar ve kendi İK politikalarınızdan kaynaklı yanıtlar alır."
 };
 export default tr;

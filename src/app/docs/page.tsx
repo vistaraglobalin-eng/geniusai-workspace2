@@ -39,6 +39,7 @@ export default function DocsPage() {
       { title: "AI", rows: [
         { href: "/tools/study", title: "Quizzes & flashcards", text: "Practice tests from notes or a chapter, in Hindi too", Icon: GraduationCap, tint: "purple" },
         { href: "/tools/exam", title: "Question paper maker", text: "Exam papers with sections, marks and answer key", Icon: ScrollText, tint: "purple" },
+        { href: "/tools/policies", title: "Company policy Q&A", text: "Employees ask, answers come from your HR policies", Icon: BookCheck, tint: "cyan" },
         { href: "/tools/statement", title: "Bank statement to Excel", text: "Every transaction, with balances checked", Icon: FileSpreadsheet, tint: "green" },
         { href: "/tools/chat", title: "Chat with a document", text: "Ask questions, get answers with page numbers", Icon: MessageSquareText, tint: "cyan" },
         { href: "/tools/documents?task=summary", title: "Summarize", text: "Key points from long documents", Icon: ListChecks, tint: "cyan" },
