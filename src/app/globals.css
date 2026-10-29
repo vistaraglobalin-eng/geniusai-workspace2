@@ -2643,3 +2643,24 @@ html[data-motion="reduce"] .voice-btn.on { animation: none; }
 .bl-ok { display: inline-flex; align-items: center; gap: 4px; color: #1f9d55; font-weight: 600; font-size: .8rem; }
 .bl-done { display: flex; flex-direction: column; gap: 10px; }
 .bl-done > p { display: flex; align-items: center; gap: 6px; margin: 0; font-weight: 600; }
+
+/* Join with company email */
+.dj-card { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; margin-bottom: 16px; border-color: var(--accent-border); }
+.dj-card h2 { margin: 0; font-size: 1rem; }
+.dj-text p { margin: 2px 0 0; font-size: .86rem; color: var(--text-2); }
+.dj-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.auth-card .dj-card { grid-template-columns: auto 1fr; text-align: left; }
+.auth-card .dj-actions { grid-column: 1 / -1; justify-content: stretch; }
+.auth-card .dj-actions .primary-button { width: 100%; justify-content: center; }
+@media (max-width: 640px) { .dj-card { grid-template-columns: auto 1fr; } .dj-actions { grid-column: 1 / -1; justify-content: flex-start; } }
+.cd-card { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.cd-card h2 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1.02rem; }
+.cd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 12px; }
+.cd-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; }
+.cd-list li + li { border-top: 1px solid var(--border); }
+.cd-list span { display: flex; flex-direction: column; }
+.cd-list em { font-style: normal; font-size: .78rem; color: var(--text-3); }
+.cd-form { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cd-form .text-input:first-of-type { flex: 1 1 180px; }
+.cd-form select { flex: 0 0 auto; width: auto; }
+.cd-at { font-weight: 700; color: var(--text-3); }

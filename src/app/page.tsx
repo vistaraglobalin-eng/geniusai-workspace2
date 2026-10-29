@@ -14,6 +14,9 @@ import { DotRing } from "@/components/DotRing";
 import { inr, todayIso } from "@/lib/invoices/calc";
 import { localeOf } from "@/lib/i18n";
 import { getLang, t } from "@/lib/i18n-server";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { findDomainOffer, type DomainOffer } from "@/lib/team/domains-server";
+import { DomainJoinCard } from "@/components/DomainJoinCard";
 
 const ACTIONS = [
   { href: "/tools/invoices/new?kind=invoice", label: "Invoice", Icon: ReceiptText, tint: "green" },
@@ -68,6 +71,12 @@ export default async function Home() {
   const spent = ((expRows ?? []) as { amount: number | string }[]).reduce((s, r) => s + Number(r.amount), 0);
   const rupees = (n: number) => `₹ ${inr(n, 0)}`;
 
+  // Signed in with a company email whose workspace they haven't joined yet? Offer it.
+  let offer: DomainOffer | null = null;
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) offer = await findDomainOffer(createSupabaseAdminClient(), user);
+  } catch { offer = null; }
   const lang = await getLang();
   const tr = (s: string) => t(lang, s);
   const loc = localeOf(lang);
@@ -84,6 +93,8 @@ export default async function Home() {
         </div>
         <Link href="/billing" className="credit-pill" title={tr("Plans & credits")}><Zap size={15} aria-hidden="true" />{credits.available.toLocaleString("en-IN")}</Link>
       </header>
+
+      {offer && <DomainJoinCard workspaceName={offer.workspaceName} domain={offer.domain} access={offer.access} dismissible />}
 
       <section className="home-hero" aria-label={tr("This month")}>
         <DotRing value={pct} label={`${Math.round(pct * 100)}% ${tr("of this month's invoices collected")}`} />

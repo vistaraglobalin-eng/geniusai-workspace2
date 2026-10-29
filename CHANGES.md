@@ -1,5 +1,12 @@
 # Changes
 
+## Revision 45: Join with company email
+
+- Owners and admins claim their company's email domain in Settings → Team members → "Join with company email" (e.g. @vistaraglobal.in), choosing whether people join as Viewers or Editors. Anyone who signs in with a confirmed email on that domain then sees "<Company> is on GeniusAI · Join" on the set-up screen (instead of making a new workspace) or at the top of Home, and joins in one tap. Removing a domain stops new joins; people who already joined stay.
+- Safety: the admin's own email must be on the domain; public providers (Gmail, Yahoo, Outlook.com, Rediffmail, iCloud and ~35 more) can't be claimed; a domain belongs to one workspace; the user's email must be confirmed; the 50-member limit applies; every claim and join is written to the audit log. Up to 3 domains per workspace.
+- "Continue with Microsoft" on the sign-in page for Outlook / Microsoft 365 work accounts, shown when NEXT_PUBLIC_MICROSOFT_SIGNIN=on (and the Azure provider is switched on in Supabase), alongside the existing Google sign-in.
+- **Database update needed:** supabase/migrations/202610290027_workspace_domains.sql (table workspace_domains, readable by members only). Until it's run, the settings card says a one-time update is needed and nothing else changes.
+
 ## Revision 44: Bulk letters
 
 - Bulk letters (/tools/letters/bulk, at the top of Business letters and on the Documents tab): one letter per person from a spreadsheet, for offer letters, appointment letters, experience letters, relieving letters, increment letters, salary slips, employment certificates and internship certificates.
