@@ -19,6 +19,7 @@ export default function MoneyPage() {
         { href: "/tools/expenses", title: "Expenses", text: "Snap bills, see where money goes, export for your CA", Icon: Wallet, tint: "teal" }
       ] },
       { title: "Accounts", rows: [
+        { href: "/tools/statement", title: "Bank statement to Excel", text: "Statement PDF or photo into a checked Excel sheet", Icon: FileSpreadsheet, tint: "green" },
         { href: "/tools/tally", title: "Export to Tally", text: "Invoices, receipts and expenses into TallyPrime", Icon: ArrowRightLeft, tint: "teal" }
       ] },
       { title: "Set up", rows: [

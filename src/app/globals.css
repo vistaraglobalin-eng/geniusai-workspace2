@@ -2421,3 +2421,32 @@ kbd { font-family: var(--font-sans); font-weight: 600; font-size: .78rem; line-h
 .st-card-nav { display: flex; align-items: center; gap: 14px; font-size: .85rem; color: var(--text-2); font-variant-numeric: tabular-nums; }
 .st-nav { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); display: grid; place-items: center; cursor: pointer; }
 @media (max-width: 560px) { .st-row { grid-template-columns: minmax(0, 1fr); } }
+
+/* Bank statement to Excel (/tools/statement) */
+.bs-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: .86rem; line-height: 1.5; color: var(--text-2); }
+.bs-list strong { color: var(--text); }
+.bs-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.bs-cards > div { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; background: var(--surface); min-width: 0; }
+.bs-cards span { display: block; font-size: .72rem; color: var(--text-3); }
+.bs-cards strong { display: block; font-size: .95rem; color: var(--text); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.bs-cards strong.in { color: #1f9d55; }
+.bs-cards strong.out { color: var(--danger-text); }
+.bs-modes { display: flex; flex-wrap: wrap; gap: 6px; }
+.bs-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
+.bs-table { width: 100%; border-collapse: collapse; font-size: .8rem; min-width: 640px; }
+.bs-table th { position: sticky; top: 0; background: var(--surface-2); text-align: left; font-weight: 700; color: var(--text-2); padding: 8px 10px; white-space: nowrap; }
+.bs-table td { padding: 7px 10px; border-top: 1px solid var(--border); vertical-align: top; color: var(--text); }
+.bs-table td:first-child { white-space: nowrap; }
+.bs-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bs-table .desc { max-width: 280px; overflow-wrap: anywhere; }
+.bs-table .desc span { display: block; font-size: .72rem; color: var(--text-3); }
+.bs-table tr.bad td { background: var(--danger-bg); }
+@media (max-width: 640px) { .bs-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Language switch (top bar) */
+.lang-switch { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-size: .8rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.lang-switch:hover { border-color: var(--accent-border); color: var(--accent-text); }
+.lang-switch:disabled { opacity: .6; cursor: progress; }
+.lang-switch svg { color: var(--accent-text); }
+/* Devanagari needs a little more line height than Latin text. */
+html[lang="hi"] body { line-height: 1.6; }

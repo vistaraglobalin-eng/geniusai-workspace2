@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature, Send, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap } from "lucide-react";
+import { ArrowUpRight, FilePen, FileStack, FileText, MessageSquareText, PenLine, Signature, Send, Image as ImageIcon, ReceiptText, BriefcaseBusiness, Mail, Wallet, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
 import { PDF_TOOL_ICONS } from "@/components/ToolIcons";
 import { PDF_TOOLS, TOOL_INFO } from "@/lib/pdf/catalog";
+import { t } from "@/lib/i18n";
+import { getLang } from "@/lib/i18n-server";
 
 export const metadata: Metadata = { title: "All tools · GeniusAI Workspace" };
 
@@ -27,6 +29,7 @@ const HUBS = [
   { href: "/tools/sign/requests", title: "Request signatures", text: "Send a PDF for others to sign by private link. Free.", Icon: Send, color: "mint" },
   { href: "/tools/invoices", title: "Invoices & Receipts", text: "GST invoices, quotations and receipts with UPI QR. Free.", Icon: ReceiptText, color: "mint" },
   { href: "/tools/expenses", title: "Expense tracker", text: "Photograph bills, track spending by category, export for your CA. Free.", Icon: Wallet, color: "rose" },
+  { href: "/tools/statement", title: "Bank statement to Excel", text: "Any bank statement PDF or photo into a checked Excel sheet.", Icon: FileSpreadsheet, color: "mint" },
   { href: "/tools/letters", title: "Letters & visiting cards", text: "Visiting cards, letterhead, offer letters, salary slips and rent receipts. Free.", Icon: Mail, color: "blue" },
   { href: "/tools/career", title: "Resume & Career Studio", text: "ATS-friendly resumes, job match and cover letters.", Icon: BriefcaseBusiness, color: "lavender" },
   { href: "/tools/photos", title: "Product Photos & Ads", text: "Remove backgrounds, marketplace photos and ad posts. Free.", Icon: ImageIcon, color: "peach" }
@@ -39,23 +42,25 @@ export default async function ToolsPage() {
   if (!ctx) redirect("/login?next=/tools");
   if (!ctx.workspace) redirect("/onboarding");
   const workspace = ctx.workspace;
+  const lang = await getLang();
+  const tr = (s: string) => t(lang, s);
 
   return (
     <AppShell ctx={{ ...ctx, workspace }} active="tools" breadcrumb="All tools">
-      <div className="welcome-row"><div><h1>What do you need <span>to do?</span></h1></div></div>
+      <div className="welcome-row"><div><h1>{tr("What do you need")} <span>{tr("to do?")}</span></h1></div></div>
       <div className="tool-grid tools-hub">
         {HUBS.map(({ href, title, text, Icon, color }) => (
           <Link key={href} href={href} className="tool-card tool-card-link">
             <div className="tool-card-top"><div className={`tool-icon ${color}`}><Icon size={22} aria-hidden="true" /></div><ArrowUpRight size={16} className="card-arrow" aria-hidden="true" /></div>
-            <h3>{title}</h3><p>{text}</p>
+            <h3>{tr(title)}</h3><p>{tr(text)}</p>
           </Link>
         ))}
       </div>
-      <div className="section-heading"><div><h2>PDF tools</h2><p>Jump straight in.</p></div></div>
-      <nav className="quick-tools" aria-label="PDF tools">
-        {PDF_TOOLS.map((t) => {
-          const Icon = PDF_TOOL_ICONS[t];
-          return <Link key={t} href={`/tools/pdf/${t}`} className="quick-tool"><Icon size={16} aria-hidden="true" />{TOOL_INFO[t].title}</Link>;
+      <div className="section-heading"><div><h2>{tr("PDF tools")}</h2><p>{tr("Jump straight in.")}</p></div></div>
+      <nav className="quick-tools" aria-label={tr("PDF tools")}>
+        {PDF_TOOLS.map((tool) => {
+          const Icon = PDF_TOOL_ICONS[tool];
+          return <Link key={tool} href={`/tools/pdf/${tool}`} className="quick-tool"><Icon size={16} aria-hidden="true" />{tr(TOOL_INFO[tool].title)}</Link>;
         })}
       </nav>
     </AppShell>

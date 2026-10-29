@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Check, Monitor, Moon, Sun } from "lucide-react";
 import {
   ACCENTS, ACCENT_SWATCHES, PREFS_COOKIE, PREFS_COOKIE_MAX_AGE,
@@ -8,6 +9,7 @@ import {
   type Accent, type Motion, type Preferences, type TextSize, type Theme
 } from "@/lib/preferences";
 import { savePreferences } from "./actions";
+import { LANGUAGES, LANGUAGE_NAMES, t } from "@/lib/i18n";
 
 const THEME_OPTIONS: { value: Theme; label: string; Icon: typeof Sun }[] = [
   { value: "system", label: "Match device", Icon: Monitor },
@@ -27,6 +29,7 @@ const MOTION_OPTIONS: { value: Motion; label: string }[] = [
 function applyToDocument(prefs: Preferences) {
   const root = document.documentElement;
   for (const [key, value] of Object.entries(htmlAttributes(prefs))) root.setAttribute(key, value);
+  root.lang = prefs.lang;
   const secure = window.location.protocol === "https:" ? "; Secure" : "";
   document.cookie = `${PREFS_COOKIE}=${serializePreferences(prefs)}; Path=/; Max-Age=${PREFS_COOKIE_MAX_AGE}; SameSite=Lax${secure}`;
 }
@@ -35,6 +38,7 @@ export function AppearanceSettings({ initial }: { initial: Preferences }) {
   const [prefs, setPrefs] = useState<Preferences>(initial);
   const [status, setStatus] = useState<{ kind: "success" | "error"; text: string } | null>(null);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const router = useRouter();
 
   // If this device's look differs from the account's saved preferences, adopt the account's.
   useEffect(() => {
@@ -45,6 +49,7 @@ export function AppearanceSettings({ initial }: { initial: Preferences }) {
     const next = { ...prefs, ...patch };
     setPrefs(next);
     applyToDocument(next); // instant, no reload
+    if (patch.lang && patch.lang !== prefs.lang) router.refresh(); // menus are rendered on the server
     setStatus(null);
     // Debounce the account sync so rapid clicks make one request.
     if (saveTimer.current) clearTimeout(saveTimer.current);
@@ -56,6 +61,21 @@ export function AppearanceSettings({ initial }: { initial: Preferences }) {
 
   return (
     <div>
+      <div className="settings-row">
+        <div className="settings-row-text">
+          <strong id="lang-label">Language · भाषा</strong>
+          <span>{t(prefs.lang, "Choose the language for menus and main screens. AI tools can also reply in Hindi.")}</span>
+        </div>
+        <div className="segmented" role="radiogroup" aria-labelledby="lang-label">
+          {LANGUAGES.map((l) => (
+            <label key={l} className={prefs.lang === l ? "selected" : ""} lang={l}>
+              <input type="radio" name="lang" value={l} checked={prefs.lang === l} onChange={() => update({ lang: l })} />
+              {LANGUAGE_NAMES[l]}
+            </label>
+          ))}
+        </div>
+      </div>
+
       <div className="settings-row">
         <div className="settings-row-text">
           <strong id="theme-label">Theme</strong>
