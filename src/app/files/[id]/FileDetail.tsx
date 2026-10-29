@@ -12,6 +12,7 @@ import { COMMENT_MAX, segments } from "@/lib/comments/mentions";
 import { DriveSaveButton } from "@/components/DriveButtons";
 import { DropboxSaveButton } from "@/components/DropboxButtons";
 import { OneDriveSaveButton } from "@/components/OneDriveButtons";
+import { VoiceButton, appendSpoken } from "@/components/VoiceButton";
 
 const READABLE_MIMES = ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "text/plain", "text/csv"];
 
@@ -77,6 +78,7 @@ function Composer({ members, me, placeholder, onSend, autoFocus, page, onClearPa
         <div className="cm-input-actions">
           <button type="button" className="icon-button" aria-label="Mention someone" title="Mention someone"
             onClick={() => { const el = ref.current; const c = el?.selectionStart ?? text.length; const v = `${text.slice(0, c)}${c && !/\s$/.test(text.slice(0, c)) ? " " : ""}@${text.slice(c)}`; onChange(v, v.length - text.slice(c).length); el?.focus(); }}><AtSign size={16} aria-hidden="true" /></button>
+          <VoiceButton onText={(s) => { const v = appendSpoken(text, s); onChange(v, v.length); }} disabled={busy} />
           <button type="button" className="primary-button cm-send" onClick={send} disabled={!text.trim() || busy} aria-label="Send"><Send size={15} aria-hidden="true" /></button>
         </div>
         {matches.length > 0 && (

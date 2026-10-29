@@ -9,6 +9,7 @@ import { ShareSheet } from "@/components/ShareSheet";
 import type { InvoiceSettings } from "@/lib/invoices/render";
 import { LETTERHEAD_STYLES, PAGE_H, PAGE_W, buildLetterPdf, layoutLetter, loadImages, type Block, type LetterheadStyle } from "@/lib/letters/render";
 import { safeFileName, templateFor, type Field, type Values } from "@/lib/letters/templates";
+import { VoiceButton, appendSpoken } from "@/components/VoiceButton";
 
 type Val = { target: { value: string } };
 const DRAFT = (k: string) => `ga.letter.${k}`;
@@ -155,6 +156,7 @@ export function LetterEditor({ templateKey, workspaceId, settings }: { templateK
             </div>
             <p className="lt-help">{bodyEdit === null ? "Written from the form above. Edit freely — your changes are kept." : "You edited this text, so changes in the form above no longer update it."}</p>
             <textarea className="text-input lt-body" rows={14} value={body} onChange={(e: Val) => setBodyEdit(e.target.value)} aria-label="Letter text" maxLength={12000} />
+            <VoiceButton className="voice-row" onText={(s) => setBodyEdit(appendSpoken(body, s))} />
           </section>
         )}
         <p className="lt-help">Templates are general formats. Check the terms suit your business and local law before you sign.</p>

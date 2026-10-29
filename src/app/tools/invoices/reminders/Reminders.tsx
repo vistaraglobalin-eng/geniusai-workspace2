@@ -10,6 +10,7 @@ import { inr, r2, showDate } from "@/lib/invoices/calc";
 import { buildInvoicePdf, type InvoiceSettings } from "@/lib/invoices/render";
 import { updateDocument, type SavedDoc } from "@/lib/invoices/data";
 import { TONES, daysOverdue, phoneDigits, readLog, reminderSubject, reminderText, sinceText, suggestedTone, type Lang, type ReminderLog, type Tone } from "@/lib/invoices/reminders";
+import { VoiceButton, appendSpoken } from "@/components/VoiceButton";
 
 type Filter = "overdue" | "all";
 
@@ -123,6 +124,7 @@ function ReminderCard({ doc, days, balance, settings, lang, log, open: startOpen
             {TONES.map((t) => <button key={t.key} type="button" aria-selected={tone === t.key} onClick={() => setTone(t.key)} title={t.note}>{t.label}</button>)}
           </nav>
           <textarea className="text-input rm-text" rows={12} value={text} onChange={(e) => setEdited(e.target.value)} aria-label="Reminder message" lang={lang} />
+          <VoiceButton className="voice-row" onText={(s) => setEdited(appendSpoken(text, s))} />
           {edited !== null && <button type="button" className="quiet-button rm-reset" onClick={() => setEdited(null)}>Reset message</button>}
           {!phone && <p className="rm-hint">No mobile number saved for this customer — WhatsApp and SMS will ask you to pick the contact. <Link href={`/tools/invoices/${doc.id}`}>Add it on the invoice</Link>.</p>}
           <ShareApps label="Send reminder with" items={[

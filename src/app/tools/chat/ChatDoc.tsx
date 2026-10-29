@@ -10,6 +10,7 @@ import { DOCUMENT_MIME_TYPES } from "@/lib/documents/tasks";
 import { MAX_CHAT_FILES, fileSetKey } from "@/lib/documents/chat";
 import { renderMarkdownHtml } from "@/lib/markdown";
 import { track } from "@/lib/analytics";
+import { VoiceButton, appendSpoken } from "@/components/VoiceButton";
 
 export type ChatFile = { id: string; name: string; mimeType: string; byteSize: number };
 type Turn = { id: string; q: string; a: string | null; credits: number | null; error?: string };
@@ -170,6 +171,7 @@ export function ChatDoc({ workspaceId, userId, files, initialFileId, credits, re
                 placeholder={readOnly ? "You have view-only access" : multi ? "Ask about these documents…" : "Ask about this document…"}
                 onChange={(e: { target: { value: string } }) => setQ(e.target.value)}
                 onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); void ask(q); } }} />
+              <VoiceButton onText={(s) => setQ((prev) => appendSpoken(prev, s))} disabled={readOnly || asking} />
               <button type="submit" className="primary-button chat-send" aria-label="Ask" disabled={!q.trim() || asking || readOnly}><ArrowUp size={18} aria-hidden="true" /></button>
             </form>
             <p className="chat-foot"><Sparkles size={12} aria-hidden="true" /> {multi ? "Answers come only from these documents and name the source. Each question uses more credits with more documents." : "Answers come only from this document. Each question uses a few credits."} Check important details in the original.</p>

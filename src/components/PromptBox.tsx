@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Wand2 } from "lucide-react";
 import { MAX_PROMPT_CHARS } from "@/lib/agreements/prompts";
+import { VoiceButton, appendSpoken } from "@/components/VoiceButton";
 
 const EXAMPLES = [
   "Rental agreement for a 2BHK in Pune, ₹28,000 rent, 11 months",
@@ -37,6 +38,7 @@ export function PromptBox({ heading = "Describe the agreement you need", compact
           onChange={(e: { target: { value: string } }) => { setText(e.target.value); setError(null); }}
           aria-describedby={error ? "prompt-error" : undefined}
         />
+        <VoiceButton onText={(s) => { setText((prev) => appendSpoken(prev, s)); setError(null); }} />
         <button type="submit" className="primary-button"><Wand2 size={16} aria-hidden="true" /> Draft it</button>
       </div>
       {error && <p className="form-message error" id="prompt-error" role="alert">{error}</p>}

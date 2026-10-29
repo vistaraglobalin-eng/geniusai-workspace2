@@ -9,6 +9,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { DOCUMENT_MIME_TYPES } from "@/lib/documents/tasks";
 import { DISCLAIMER } from "@/lib/agreements/prompts";
 import { track } from "@/lib/analytics";
+import { VoiceButton, appendSpoken } from "@/components/VoiceButton";
 import {
   MAX_CONTRACTS, MAX_FOCUS_CHARS, MIN_CONTRACTS, STATUS_LABEL, countByStatus, parseImpactReport, reportToMarkdown,
   type ImpactReport, type ImpactStatus, type Severity
@@ -169,6 +170,7 @@ export function LawImpact({ workspaceId, files, history, creditsAvailable }: {
           <textarea id="li-focus" className="text-input" rows={2} maxLength={MAX_FOCUS_CHARS} value={focus}
             placeholder="e.g. breach notice, consent, data retention, payment timelines"
             onChange={(e: { target: { value: string } }) => setFocus(e.target.value)} />
+          <VoiceButton className="voice-row" onText={(s) => setFocus((prev) => appendSpoken(prev, s))} />
         </div>
 
         <button type="button" className="primary-button wide" onClick={run} disabled={!ready || busy}>

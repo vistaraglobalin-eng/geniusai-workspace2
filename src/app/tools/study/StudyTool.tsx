@@ -8,6 +8,7 @@ import { UploadButton } from "@/components/UploadButton";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { DOCUMENT_MIME_TYPES } from "@/lib/documents/tasks";
 import { track } from "@/lib/analytics";
+import { VoiceButton, appendSpoken } from "@/components/VoiceButton";
 import {
   MAX_FOCUS_CHARS, STUDY_COUNTS, STUDY_LANGUAGES, STUDY_LEVELS, parseStudySet, scoreQuiz, studySetToMarkdown,
   type StudyKind, type StudyLevel, type StudySet
@@ -140,6 +141,7 @@ export function StudyTool({ workspaceId, files, history, creditsAvailable, initi
           <label htmlFor="st-focus">Focus on <span className="optional">(optional)</span></label>
           <input id="st-focus" className="text-input" maxLength={MAX_FOCUS_CHARS} value={focus} placeholder="e.g. chapter 3, important dates, formulas"
             onChange={(e: { target: { value: string } }) => setFocus(e.target.value)} />
+          <VoiceButton className="voice-row" onText={(s) => setFocus((prev) => appendSpoken(prev, s).slice(0, MAX_FOCUS_CHARS))} />
         </div>
         <button type="button" className="primary-button wide" onClick={make} disabled={!selected || busy}>
           <GraduationCap size={16} aria-hidden="true" /> {busy ? "Making your set… (up to a minute)" : `Make ${count} ${kind === "quiz" ? "questions" : "flashcards"}`}
