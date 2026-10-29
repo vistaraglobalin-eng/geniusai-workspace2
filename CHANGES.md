@@ -1,5 +1,16 @@
 # Changes
 
+## Revision 39: Shared folders outside the workspace
+
+- Files → pick a space → **Share**: create private links that work without an account, for clients, students, a class or another team. Three kinds:
+  - **View & download**: people see and download the space's files.
+  - **View & add files**: they can also add files (a team or project folder).
+  - **Collect files only**: they hand files in without seeing anyone else's (assignments, documents from clients).
+- Each link: optional name ("Class 10-B homework"), works for 1 day, 7 days, 30 days or no end date, shows how often it was opened and how many files came in, and can be copied, sent (share sheet or WhatsApp) or turned off at once. Up to 10 active links per space.
+- Guest page /f/<link>: the folder's files with Download, and an upload box (name + files, up to 25 MB each, same file types as the app). Files go straight to private storage through a one-time signed upload URL, and the server checks the stored size and type before saving. They're saved in the space as "Guest name – file.pdf" so members see who sent them.
+- Safety: 192-bit link tokens, links checked on every request, downloads via 60-second signed URLs, no search indexing, limits of 30 guest uploads per 10 minutes and 1,000 per link, and blocked or deleted files never shown. View-only members can't create links.
+- **Database update needed:** supabase/migrations/202610290024_space_shares.sql (new table space_shares; files get shared_via and guest_name). Until it's run, the Share panel says a one-time update is needed and everything else works as before. New analytics event: space_shared.
+
 ## Revision 38: Voice input
 
 - Mic button to speak instead of typing (src/components/VoiceButton.tsx), on: Chat with a document (ask questions), the AI drafting box on Home and Agreements, the custom agreement brief, New-law check focus, payment reminder messages, letter text, file comments and the Quizzes focus field.

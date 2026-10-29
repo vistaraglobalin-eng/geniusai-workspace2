@@ -2474,3 +2474,55 @@ html[data-motion="reduce"] .voice-btn.on { animation: none; }
 .voice-status.error { color: var(--danger-text); }
 .prompt-field .voice-wrap { align-self: center; }
 @media (max-width: 640px) { .prompt-field .voice-wrap { align-self: flex-end; } }
+
+/* Shared folders: owner panel (Files → space → Share) */
+.ss-panel { margin-top: 12px; display: flex; flex-direction: column; gap: 12px; }
+.ss-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ss-top h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1rem; }
+.ss-form { display: flex; flex-direction: column; gap: 12px; }
+.ss-modes { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ss-modes legend { font-size: .82rem; font-weight: 600; margin-bottom: 6px; color: var(--text-2); }
+.ss-mode { display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; background: var(--surface); }
+.ss-mode input { position: absolute; opacity: 0; pointer-events: none; }
+.ss-mode strong { font-size: .88rem; }
+.ss-mode span { font-size: .76rem; color: var(--text-3); line-height: 1.4; }
+.ss-mode.on { border-color: var(--accent-border); background: color-mix(in srgb, var(--accent-text) 7%, var(--surface)); box-shadow: inset 0 0 0 1px var(--accent-border); }
+.ss-mode:has(input:focus-visible) { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+.ss-row { display: grid; grid-template-columns: 180px 1fr; gap: 10px; }
+.ss-row .field span { font-size: .82rem; font-weight: 600; color: var(--text-2); }
+.ss-form > .primary-button { align-self: flex-start; }
+.ss-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 12px; }
+.ss-list li { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 10px 12px; }
+.ss-list li + li { border-top: 1px solid var(--border); }
+.ss-icon { color: var(--accent-text); display: inline-flex; }
+.ss-meta { display: flex; flex-direction: column; min-width: 0; }
+.ss-meta strong { font-size: .88rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ss-meta span { font-size: .76rem; color: var(--text-3); }
+.ss-actions { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 640px) {
+  .ss-modes, .ss-row { grid-template-columns: 1fr; }
+  .ss-list li { grid-template-columns: auto 1fr; }
+  .ss-actions { grid-column: 1 / -1; justify-content: flex-start; }
+}
+
+/* Shared folders: guest page (/f/<token>) */
+.sf-wrap { display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin: 0 auto; width: 100%; }
+.sf-head { display: flex; align-items: center; gap: 14px; }
+.sf-head h1 { margin: 0; font-size: 1.35rem; overflow-wrap: anywhere; }
+.sf-head p { margin: 2px 0 0; font-size: .84rem; color: var(--text-3); }
+.sf-upload, .sf-files { display: flex; flex-direction: column; gap: 10px; }
+.sf-upload h2, .sf-files h2 { margin: 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+.sf-count { font-size: .76rem; font-weight: 600; color: var(--text-3); background: var(--surface-2); border-radius: 999px; padding: 2px 8px; }
+.sf-pick { cursor: pointer; justify-content: center; }
+.sf-pick.disabled { opacity: .6; pointer-events: none; }
+.sf-sent { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.sf-sent li { display: grid; grid-template-columns: 16px 1fr auto; align-items: center; gap: 8px; font-size: .84rem; }
+.sf-sent li.done svg { color: #1f9d55; }
+.sf-sent li.error svg, .sf-sent li.error .sf-sent-note { color: var(--danger-text); }
+.sf-sent-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sf-sent-note { font-size: .76rem; color: var(--text-3); }
+.sf-files .file-row .secondary-button { flex: none; }
+.sf-foot { font-size: .76rem; color: var(--text-3); text-align: center; margin: 6px 0 0; }
+.spin { animation: gai-spin 1s linear infinite; }
+@keyframes gai-spin { to { transform: rotate(360deg); } }
+@media (max-width: 640px) { .sf-files .file-row .secondary-button { padding: 0 10px; } }
