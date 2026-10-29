@@ -266,6 +266,11 @@ const el: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Μαζικές επιστολές πρόσληψης",
-  "Offer, appointment or experience letters for many people at once": "Επιστολές πρόσληψης, διορισμού ή προϋπηρεσίας για πολλά άτομα μαζί"
+  "Offer, appointment or experience letters for many people at once": "Επιστολές πρόσληψης, διορισμού ή προϋπηρεσίας για πολλά άτομα μαζί",
+
+  // Sales report
+  "Sales report": "Αναφορά πωλήσεων",
+  "Sales": "Πωλήσεις",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Πωλήσεις από Shopify, Stripe και HubSpot σε μία αναφορά, με προτάσεις AI"
 };
 export default el;

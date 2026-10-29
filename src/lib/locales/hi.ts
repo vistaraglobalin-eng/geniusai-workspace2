@@ -290,6 +290,11 @@ const hi: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "बल्क ऑफ़र लेटर",
-  "Offer, appointment or experience letters for many people at once": "एक साथ कई लोगों के ऑफ़र, नियुक्ति या अनुभव पत्र"
+  "Offer, appointment or experience letters for many people at once": "एक साथ कई लोगों के ऑफ़र, नियुक्ति या अनुभव पत्र",
+
+  // Sales report
+  "Sales report": "सेल्स रिपोर्ट",
+  "Sales": "सेल्स",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe और HubSpot की बिक्री एक रिपोर्ट में, AI सुझावों के साथ"
 };
 export default hi;

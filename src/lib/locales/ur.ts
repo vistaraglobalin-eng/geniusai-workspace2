@@ -266,6 +266,11 @@ const ur: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "بیک وقت آفر لیٹرز",
-  "Offer, appointment or experience letters for many people at once": "کئی لوگوں کے لیے ایک ساتھ آفر، تقرری یا تجربے کے خطوط"
+  "Offer, appointment or experience letters for many people at once": "کئی لوگوں کے لیے ایک ساتھ آفر، تقرری یا تجربے کے خطوط",
+
+  // Sales report
+  "Sales report": "سیلز رپورٹ",
+  "Sales": "سیلز",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify، Stripe اور HubSpot کی فروخت ایک رپورٹ میں، AI مشوروں کے ساتھ"
 };
 export default ur;

@@ -289,6 +289,11 @@ const pa: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "ਬਲਕ ਆਫ਼ਰ ਲੈਟਰ",
-  "Offer, appointment or experience letters for many people at once": "ਇੱਕੋ ਵਾਰ ਕਈ ਲੋਕਾਂ ਲਈ ਆਫ਼ਰ, ਨਿਯੁਕਤੀ ਜਾਂ ਤਜਰਬਾ ਪੱਤਰ"
+  "Offer, appointment or experience letters for many people at once": "ਇੱਕੋ ਵਾਰ ਕਈ ਲੋਕਾਂ ਲਈ ਆਫ਼ਰ, ਨਿਯੁਕਤੀ ਜਾਂ ਤਜਰਬਾ ਪੱਤਰ",
+
+  // Sales report
+  "Sales report": "ਵਿਕਰੀ ਰਿਪੋਰਟ",
+  "Sales": "ਵਿਕਰੀ",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe ਅਤੇ HubSpot ਦੀ ਵਿਕਰੀ ਇੱਕ ਰਿਪੋਰਟ ਵਿੱਚ, AI ਸੁਝਾਵਾਂ ਨਾਲ"
 };
 export default pa;

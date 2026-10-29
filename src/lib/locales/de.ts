@@ -266,6 +266,11 @@ const de: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Angebotsschreiben im Stapel",
-  "Offer, appointment or experience letters for many people at once": "Angebots-, Einstellungs- oder Arbeitszeugnisse für viele Personen auf einmal"
+  "Offer, appointment or experience letters for many people at once": "Angebots-, Einstellungs- oder Arbeitszeugnisse für viele Personen auf einmal",
+
+  // Sales report
+  "Sales report": "Verkaufsbericht",
+  "Sales": "Verkauf",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Umsätze aus Shopify, Stripe und HubSpot in einem Bericht, mit KI-Empfehlungen"
 };
 export default de;

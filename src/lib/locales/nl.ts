@@ -266,6 +266,11 @@ const nl: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Aanbiedingsbrieven in bulk",
-  "Offer, appointment or experience letters for many people at once": "Aanbiedings-, aanstellings- of werkgeversverklaringen voor veel mensen tegelijk"
+  "Offer, appointment or experience letters for many people at once": "Aanbiedings-, aanstellings- of werkgeversverklaringen voor veel mensen tegelijk",
+
+  // Sales report
+  "Sales report": "Verkooprapport",
+  "Sales": "Verkoop",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Verkoop uit Shopify, Stripe en HubSpot in één rapport, met AI-tips"
 };
 export default nl;

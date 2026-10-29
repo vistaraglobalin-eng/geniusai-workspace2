@@ -1,5 +1,13 @@
 # Changes
 
+## Revision 46 — Sales & commerce: Shopify, Stripe, HubSpot and a sales report
+
+- **Connected apps → Sales & commerce:** owners/admins connect Shopify (Dev Dashboard client ID + secret, or an older `shpat_` token), Stripe (read-only restricted key) and HubSpot (private app token). Each key is tested with a read-only call first, then stored encrypted (`business_connections.secret_enc`, never readable from the app). Disconnect any time.
+- **Sales report** (`/tools/sales`, Money → Sales): pick a period; it reads orders, payments and deals and shows net sales, orders, average order, new vs returning customers, Stripe fees/failed payments/refunds, a daily chart, top products and HubSpot win rate. Free. Excel download with Overview, Daily, Top products, Orders, Payments and Deals sheets.
+- **AI summary:** "What should I do next?" — uses credits; only totals are sent, never customer names or emails.
+- Hard limits: 20 s per call, 2,500 records per app per report; view-only members can't see sales numbers.
+- New database table: `supabase/migrations/202610290028_business_connections.sql`.
+
 ## Revision 45: Join with company email
 
 - Owners and admins claim their company's email domain in Settings → Team members → "Join with company email" (e.g. @vistaraglobal.in), choosing whether people join as Viewers or Editors. Anyone who signs in with a confirmed email on that domain then sees "<Company> is on GeniusAI · Join" on the set-up screen (instead of making a new workspace) or at the top of Home, and joins in one tap. Removing a domain stops new joins; people who already joined stay.

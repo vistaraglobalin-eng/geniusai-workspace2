@@ -266,6 +266,11 @@ const he: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "מכתבי הצעה בכמות",
-  "Offer, appointment or experience letters for many people at once": "מכתבי הצעה, מינוי או ניסיון לאנשים רבים בבת אחת"
+  "Offer, appointment or experience letters for many people at once": "מכתבי הצעה, מינוי או ניסיון לאנשים רבים בבת אחת",
+
+  // Sales report
+  "Sales report": "דוח מכירות",
+  "Sales": "מכירות",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "מכירות מ-Shopify,‏ Stripe ו-HubSpot בדוח אחד, עם צעדים הבאים מ-AI"
 };
 export default he;

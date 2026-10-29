@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRightLeft, BellRing, Building2, FileSpreadsheet, ReceiptText, ScrollText, Wallet, Receipt } from "lucide-react";
+import { ArrowRightLeft, BellRing, Building2, FileSpreadsheet, ReceiptText, ScrollText, Wallet, Receipt, TrendingUp } from "lucide-react";
 import { Hub } from "@/components/Hub";
 
 export const metadata: Metadata = { title: "Money · GeniusAI Workspace" };
@@ -21,6 +21,9 @@ export default function MoneyPage() {
       { title: "Accounts", rows: [
         { href: "/tools/statement", title: "Bank statement to Excel", text: "Statement PDF or photo into a checked Excel sheet", Icon: FileSpreadsheet, tint: "green" },
         { href: "/tools/tally", title: "Export to Tally", text: "Invoices, receipts and expenses into TallyPrime", Icon: ArrowRightLeft, tint: "teal" }
+      ] },
+      { title: "Sales", rows: [
+        { href: "/tools/sales", title: "Sales report", text: "Shopify, Stripe and HubSpot sales in one report, with AI next steps", Icon: TrendingUp, tint: "indigo" }
       ] },
       { title: "Set up", rows: [
         { href: "/tools/invoices/settings", title: "Business details", text: "Name, GSTIN, logo, bank, UPI and signature", Icon: Building2, tint: "gray" }
