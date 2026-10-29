@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import { ArrowRightLeft, Bell, BriefcaseBusiness, Check, ChevronDown, CircleUserRound, Contact, Eye, FilePen, FileStack, FileText, FolderOpen, Home, Image as ImageIcon, IndianRupee, LayoutTemplate, LogOut, Mail, MessageSquareText, PenLine, Plus, ReceiptText, ScanLine, Settings, Signature, Sparkles, Users, Wallet, Zap, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet } from "lucide-react";
 import type { WorkspaceContext } from "@/lib/workspace";
 import { roleLabel } from "@/lib/team/roles";
-import { t, type Lang } from "@/lib/i18n";
-import { getLang } from "@/lib/i18n-server";
+import type { Lang } from "@/lib/i18n";
+import { getLang, t } from "@/lib/i18n-server";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 
 
@@ -171,7 +171,7 @@ export async function AppShell({
           <div className="top-actions">
             <span className="topbar-email">{user.email}</span>
             <LanguageSwitch lang={lang} />
-            <Link className="icon-button inbox-bell" href="/inbox" aria-label={ctx.unread ? (lang === "hi" ? `इनबॉक्स, ${ctx.unread} नए` : `Inbox, ${ctx.unread} unread`) : tr("Inbox")} title={tr("Inbox")}>
+            <Link className="icon-button inbox-bell" href="/inbox" aria-label={ctx.unread ? (lang === "en" ? `Inbox, ${ctx.unread} unread` : `${tr("Inbox")} (${ctx.unread})`) : tr("Inbox")} title={tr("Inbox")}>
               <Bell size={18} aria-hidden="true" />{ctx.unread > 0 && <span className="bell-badge">{ctx.unread > 9 ? "9+" : ctx.unread}</span>}
             </Link>
             <Link className="avatar small" href="/settings#profile" aria-label={tr("Your profile and settings")}>{initial}</Link>

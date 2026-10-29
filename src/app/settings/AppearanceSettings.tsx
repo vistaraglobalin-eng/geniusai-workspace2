@@ -9,7 +9,7 @@ import {
   type Accent, type Motion, type Preferences, type TextSize, type Theme
 } from "@/lib/preferences";
 import { savePreferences } from "./actions";
-import { LANGUAGES, LANGUAGE_NAMES, t } from "@/lib/i18n";
+import { CLIENT_TEXT, LANGUAGES, LANGUAGE_ENGLISH, LANGUAGE_NAMES, isLang } from "@/lib/i18n";
 
 const THEME_OPTIONS: { value: Theme; label: string; Icon: typeof Sun }[] = [
   { value: "system", label: "Match device", Icon: Monitor },
@@ -63,17 +63,15 @@ export function AppearanceSettings({ initial }: { initial: Preferences }) {
     <div>
       <div className="settings-row">
         <div className="settings-row-text">
-          <strong id="lang-label">Language · भाषा</strong>
-          <span>{t(prefs.lang, "Choose the language for menus and main screens. AI tools can also reply in Hindi.")}</span>
+          <strong id="lang-label">Language{prefs.lang === "en" ? "" : ` · ${CLIENT_TEXT[prefs.lang].language}`}</strong>
+          <span>{CLIENT_TEXT[prefs.lang].hint}</span>
         </div>
-        <div className="segmented" role="radiogroup" aria-labelledby="lang-label">
+        <select className="text-input lang-select" aria-labelledby="lang-label" value={prefs.lang}
+          onChange={(e) => { if (isLang(e.target.value)) update({ lang: e.target.value }); }}>
           {LANGUAGES.map((l) => (
-            <label key={l} className={prefs.lang === l ? "selected" : ""} lang={l}>
-              <input type="radio" name="lang" value={l} checked={prefs.lang === l} onChange={() => update({ lang: l })} />
-              {LANGUAGE_NAMES[l]}
-            </label>
+            <option key={l} value={l} lang={l}>{LANGUAGE_NAMES[l]}{l === "en" ? "" : ` · ${LANGUAGE_ENGLISH[l]}`}</option>
           ))}
-        </div>
+        </select>
       </div>
 
       <div className="settings-row">
