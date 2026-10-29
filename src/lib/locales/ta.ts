@@ -285,6 +285,10 @@ const ta: Record<string, string> = {
 
   // Developer API
   "Developer API": "டெவலப்பர் API",
-  "Use GeniusAI tools from your own app": "உங்கள் ஆப்பிலிருந்து GeniusAI கருவிகளைப் பயன்படுத்துங்கள்"
+  "Use GeniusAI tools from your own app": "உங்கள் ஆப்பிலிருந்து GeniusAI கருவிகளைப் பயன்படுத்துங்கள்",
+
+  // Bulk letters
+  "Bulk offer letters": "மொத்த நியமனக் கடிதங்கள்",
+  "Offer, appointment or experience letters for many people at once": "பலருக்கு ஒரே நேரத்தில் நியமன, பணி அல்லது அனுபவக் கடிதங்கள்"
 };
 export default ta;

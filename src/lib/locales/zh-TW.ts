@@ -262,6 +262,10 @@ const zhTW: Record<string, string> = {
 
   // Developer API
   "Developer API": "開發者 API",
-  "Use GeniusAI tools from your own app": "在你自己的應用程式中使用 GeniusAI 工具"
+  "Use GeniusAI tools from your own app": "在你自己的應用程式中使用 GeniusAI 工具",
+
+  // Bulk letters
+  "Bulk offer letters": "批次錄取通知書",
+  "Offer, appointment or experience letters for many people at once": "一次為多人產生錄取、任命或工作證明信"
 };
 export default zhTW;

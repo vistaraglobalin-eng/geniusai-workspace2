@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Award, BadgeCheck, BellRing, Building2, CalendarDays, GraduationCap, Landmark, LogOut, ScrollText, TriangleAlert, Contact, FileType2, ChevronRight, DoorOpen, FilePenLine, Handshake, House, PenLine, ShieldCheck, TrendingUp, UserCheck, Wallet } from "lucide-react";
+import { Award, BadgeCheck, BellRing, Building2, CalendarDays, GraduationCap, Landmark, LogOut, ScrollText, TriangleAlert, Contact, FileType2, ChevronRight, DoorOpen, FilePenLine, Handshake, House, PenLine, ShieldCheck, TrendingUp, UserCheck, Wallet, Users } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -46,6 +46,12 @@ export default async function LettersPage() {
         </Link>
       )}
       <div className="service-groups">
+      <section className="service-group" aria-labelledby="g-bulk">
+        <h2 id="g-bulk">Many people at once</h2>
+        <ul className="list-card">
+          <li><Link href="/tools/letters/bulk" className="list-row"><span className="app-icon indigo"><Users size={17} aria-hidden="true" /></span><span className="list-text"><strong>Bulk letters</strong><span>Upload your Excel sheet: one offer letter, salary slip or experience letter per person</span></span><ChevronRight size={17} aria-hidden="true" className="list-chevron" /></Link></li>
+        </ul>
+      </section>
       <section className="service-group" aria-labelledby="g-stationery">
         <h2 id="g-stationery">Stationery</h2>
         <ul className="list-card">

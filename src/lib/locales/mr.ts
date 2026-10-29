@@ -285,6 +285,10 @@ const mr: Record<string, string> = {
 
   // Developer API
   "Developer API": "डेव्हलपर API",
-  "Use GeniusAI tools from your own app": "तुमच्या ॲपमधून GeniusAI टूल्स वापरा"
+  "Use GeniusAI tools from your own app": "तुमच्या ॲपमधून GeniusAI टूल्स वापरा",
+
+  // Bulk letters
+  "Bulk offer letters": "एकाच वेळी अनेक ऑफर लेटर",
+  "Offer, appointment or experience letters for many people at once": "अनेक लोकांसाठी एकाच वेळी ऑफर, नियुक्ती किंवा अनुभव पत्रे"
 };
 export default mr;

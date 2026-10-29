@@ -285,6 +285,10 @@ const te: Record<string, string> = {
 
   // Developer API
   "Developer API": "డెవలపర్ API",
-  "Use GeniusAI tools from your own app": "మీ యాప్ నుండి GeniusAI టూల్స్ వాడండి"
+  "Use GeniusAI tools from your own app": "మీ యాప్ నుండి GeniusAI టూల్స్ వాడండి",
+
+  // Bulk letters
+  "Bulk offer letters": "బల్క్ ఆఫర్ లెటర్‌లు",
+  "Offer, appointment or experience letters for many people at once": "ఒకేసారి చాలా మందికి ఆఫర్, నియామక లేదా అనుభవ లేఖలు"
 };
 export default te;

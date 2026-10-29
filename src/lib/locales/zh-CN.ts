@@ -262,6 +262,10 @@ const zhCN: Record<string, string> = {
 
   // Developer API
   "Developer API": "开发者 API",
-  "Use GeniusAI tools from your own app": "在你自己的应用中使用 GeniusAI 工具"
+  "Use GeniusAI tools from your own app": "在你自己的应用中使用 GeniusAI 工具",
+
+  // Bulk letters
+  "Bulk offer letters": "批量录用通知书",
+  "Offer, appointment or experience letters for many people at once": "一次为多人生成录用、任命或工作证明信"
 };
 export default zhCN;

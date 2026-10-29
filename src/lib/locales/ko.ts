@@ -262,6 +262,10 @@ const ko: Record<string, string> = {
 
   // Developer API
   "Developer API": "개발자 API",
-  "Use GeniusAI tools from your own app": "내 앱에서 GeniusAI 도구 사용하기"
+  "Use GeniusAI tools from your own app": "내 앱에서 GeniusAI 도구 사용하기",
+
+  // Bulk letters
+  "Bulk offer letters": "채용 제안서 일괄 작성",
+  "Offer, appointment or experience letters for many people at once": "여러 명의 채용 제안서, 임용장, 경력증명서를 한 번에"
 };
 export default ko;

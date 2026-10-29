@@ -262,6 +262,10 @@ const vi: Record<string, string> = {
 
   // Developer API
   "Developer API": "API cho nhà phát triển",
-  "Use GeniusAI tools from your own app": "Dùng công cụ GeniusAI ngay trong ứng dụng của bạn"
+  "Use GeniusAI tools from your own app": "Dùng công cụ GeniusAI ngay trong ứng dụng của bạn",
+
+  // Bulk letters
+  "Bulk offer letters": "Thư mời nhận việc hàng loạt",
+  "Offer, appointment or experience letters for many people at once": "Thư mời nhận việc, bổ nhiệm hoặc xác nhận kinh nghiệm cho nhiều người cùng lúc"
 };
 export default vi;

@@ -262,6 +262,10 @@ const uk: Record<string, string> = {
 
   // Developer API
   "Developer API": "API для розробників",
-  "Use GeniusAI tools from your own app": "Використовуйте інструменти GeniusAI у своєму застосунку"
+  "Use GeniusAI tools from your own app": "Використовуйте інструменти GeniusAI у своєму застосунку",
+
+  // Bulk letters
+  "Bulk offer letters": "Масові офери",
+  "Offer, appointment or experience letters for many people at once": "Офери, накази про прийняття чи довідки про стаж одразу для багатьох людей"
 };
 export default uk;

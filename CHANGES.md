@@ -1,5 +1,13 @@
 # Changes
 
+## Revision 44: Bulk letters
+
+- Bulk letters (/tools/letters/bulk, at the top of Business letters and on the Documents tab): one letter per person from a spreadsheet, for offer letters, appointment letters, experience letters, relieving letters, increment letters, salary slips, employment certificates and internship certificates.
+- Details for everyone are set once (letter date, accept-by date, signatory and designation, salary month), plus optional automatic reference numbers (e.g. VG/HR/2026/ → 001, 002…) and the letterhead style.
+- People can come from an Excel file (.xlsx, read with a new dependency-free reader), a CSV, or rows pasted from Excel / Google Sheets. A sample sheet with the right columns can be downloaded. Columns are matched by name and common HR spellings (Candidate name, DOJ, Package, Emp code…).
+- Values are cleaned the Indian way: dates like 01/12/2026, 1-12-2026, 1 Dec 2026 or Excel date numbers; amounts like ₹3,60,000, 3.6 lakh or 360000/-; Mr/Ms/Mrs titles. Anything unreadable is shown against its row and that row is skipped, never guessed.
+- Output: every letter as a PDF on the letterhead (the same templates as single letters), downloaded together as a ZIP, or saved to Files. Letters are made on the device; nothing is sent to AI. Up to 200 people per batch. No database change. New strings translated in all 39 languages; new analytics event bulk_letters_made.
+
 ## Revision 43: Developer API
 
 - Public JSON API at /api/v1 so developers can use GeniusAI from their own apps, with a guide at /developers (curl examples, responses, errors, limits).

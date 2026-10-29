@@ -262,6 +262,10 @@ const el: Record<string, string> = {
 
   // Developer API
   "Developer API": "API για προγραμματιστές",
-  "Use GeniusAI tools from your own app": "Χρησιμοποιήστε τα εργαλεία του GeniusAI από τη δική σας εφαρμογή"
+  "Use GeniusAI tools from your own app": "Χρησιμοποιήστε τα εργαλεία του GeniusAI από τη δική σας εφαρμογή",
+
+  // Bulk letters
+  "Bulk offer letters": "Μαζικές επιστολές πρόσληψης",
+  "Offer, appointment or experience letters for many people at once": "Επιστολές πρόσληψης, διορισμού ή προϋπηρεσίας για πολλά άτομα μαζί"
 };
 export default el;

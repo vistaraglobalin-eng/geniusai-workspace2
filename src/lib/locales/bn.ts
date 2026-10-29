@@ -285,6 +285,10 @@ const bn: Record<string, string> = {
 
   // Developer API
   "Developer API": "ডেভেলপার API",
-  "Use GeniusAI tools from your own app": "নিজের অ্যাপ থেকে GeniusAI টুল ব্যবহার করুন"
+  "Use GeniusAI tools from your own app": "নিজের অ্যাপ থেকে GeniusAI টুল ব্যবহার করুন",
+
+  // Bulk letters
+  "Bulk offer letters": "একসাথে অনেক অফার লেটার",
+  "Offer, appointment or experience letters for many people at once": "একসাথে অনেকের অফার, নিয়োগ বা অভিজ্ঞতার চিঠি"
 };
 export default bn;

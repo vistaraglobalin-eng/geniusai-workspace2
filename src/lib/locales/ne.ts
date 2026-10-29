@@ -262,6 +262,10 @@ const ne: Record<string, string> = {
 
   // Developer API
   "Developer API": "डेभलपर API",
-  "Use GeniusAI tools from your own app": "आफ्नै एपबाट GeniusAI उपकरणहरू प्रयोग गर्नुहोस्"
+  "Use GeniusAI tools from your own app": "आफ्नै एपबाट GeniusAI उपकरणहरू प्रयोग गर्नुहोस्",
+
+  // Bulk letters
+  "Bulk offer letters": "एकैपटक धेरै अफर लेटर",
+  "Offer, appointment or experience letters for many people at once": "धेरै जनाका लागि एकैपटक अफर, नियुक्ति वा अनुभव पत्र"
 };
 export default ne;

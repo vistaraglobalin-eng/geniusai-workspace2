@@ -262,6 +262,10 @@ const fa: Record<string, string> = {
 
   // Developer API
   "Developer API": "API توسعه‌دهندگان",
-  "Use GeniusAI tools from your own app": "ابزارهای GeniusAI را در برنامهٔ خودتان به کار ببرید"
+  "Use GeniusAI tools from your own app": "ابزارهای GeniusAI را در برنامهٔ خودتان به کار ببرید",
+
+  // Bulk letters
+  "Bulk offer letters": "نامه‌های پیشنهاد گروهی",
+  "Offer, appointment or experience letters for many people at once": "نامه‌های پیشنهاد کار، استخدام یا سابقه برای چند نفر به‌طور هم‌زمان"
 };
 export default fa;

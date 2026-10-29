@@ -262,6 +262,10 @@ const ar: Record<string, string> = {
 
   // Developer API
   "Developer API": "واجهة المطوّرين API",
-  "Use GeniusAI tools from your own app": "استخدم أدوات GeniusAI من تطبيقك الخاص"
+  "Use GeniusAI tools from your own app": "استخدم أدوات GeniusAI من تطبيقك الخاص",
+
+  // Bulk letters
+  "Bulk offer letters": "خطابات عرض بالجملة",
+  "Offer, appointment or experience letters for many people at once": "خطابات عرض أو تعيين أو خبرة لعدة أشخاص دفعة واحدة"
 };
 export default ar;

@@ -285,6 +285,10 @@ const gu: Record<string, string> = {
 
   // Developer API
   "Developer API": "ડેવલપર API",
-  "Use GeniusAI tools from your own app": "તમારી ઍપમાંથી GeniusAI ટૂલ્સ વાપરો"
+  "Use GeniusAI tools from your own app": "તમારી ઍપમાંથી GeniusAI ટૂલ્સ વાપરો",
+
+  // Bulk letters
+  "Bulk offer letters": "એકસાથે ઘણા ઑફર લેટર",
+  "Offer, appointment or experience letters for many people at once": "એકસાથે ઘણા લોકો માટે ઑફર, નિમણૂક કે અનુભવ પત્રો"
 };
 export default gu;

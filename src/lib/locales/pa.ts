@@ -285,6 +285,10 @@ const pa: Record<string, string> = {
 
   // Developer API
   "Developer API": "ਡਿਵੈਲਪਰ API",
-  "Use GeniusAI tools from your own app": "ਆਪਣੀ ਐਪ ਤੋਂ GeniusAI ਟੂਲ ਵਰਤੋ"
+  "Use GeniusAI tools from your own app": "ਆਪਣੀ ਐਪ ਤੋਂ GeniusAI ਟੂਲ ਵਰਤੋ",
+
+  // Bulk letters
+  "Bulk offer letters": "ਬਲਕ ਆਫ਼ਰ ਲੈਟਰ",
+  "Offer, appointment or experience letters for many people at once": "ਇੱਕੋ ਵਾਰ ਕਈ ਲੋਕਾਂ ਲਈ ਆਫ਼ਰ, ਨਿਯੁਕਤੀ ਜਾਂ ਤਜਰਬਾ ਪੱਤਰ"
 };
 export default pa;

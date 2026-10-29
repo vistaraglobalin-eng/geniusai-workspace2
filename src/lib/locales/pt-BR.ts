@@ -262,6 +262,10 @@ const ptBR: Record<string, string> = {
 
   // Developer API
   "Developer API": "API para desenvolvedores",
-  "Use GeniusAI tools from your own app": "Use as ferramentas do GeniusAI no seu próprio app"
+  "Use GeniusAI tools from your own app": "Use as ferramentas do GeniusAI no seu próprio app",
+
+  // Bulk letters
+  "Bulk offer letters": "Cartas de oferta em lote",
+  "Offer, appointment or experience letters for many people at once": "Cartas de oferta, admissão ou experiência para várias pessoas de uma vez"
 };
 export default ptBR;
