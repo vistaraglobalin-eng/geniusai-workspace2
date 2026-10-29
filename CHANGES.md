@@ -1,5 +1,18 @@
 # Changes
 
+## Revision 43: Developer API
+
+- Public JSON API at /api/v1 so developers can use GeniusAI from their own apps, with a guide at /developers (curl examples, responses, errors, limits).
+  - GET /me: workspace, key and credit balance (free).
+  - POST /documents/{summary|translate|extract_text|markdown|tables}: Document Genius tasks (translate into 25 languages).
+  - POST /chat: answer a question from one document, with page citations and optional history.
+  - POST /bank-statements: every transaction with balance checks, account number reduced to the last 4 digits.
+  - POST /quiz: quiz or flashcards in English and 9 Indian languages.
+- Input: plain text (up to 200,000 characters) or a base64 file (PDF, .docx, text, CSV, PNG, JPEG, WebP, up to 3 MB), processed in memory and not stored in the workspace. Results use the same tested prompts and checks as the app.
+- Keys: owners and admins create, see usage for (requests and credits, last 30 days) and revoke keys in Settings → Developer API (also linked from Account). The key is shown once; only its SHA-256 hash is stored. Keys act as the member who created them and stop working if that member leaves or becomes view-only. Up to 10 active keys per workspace.
+- Limits and safety: 20 requests a minute per key (429 with Retry-After), Idempotency-Key header for safe retries without double charges, every request logged (endpoint, status, credits), uniform { error: { code, message } } responses.
+- **Database update needed:** supabase/migrations/202610290026_api_keys.sql (tables api_keys and api_requests, readable by admins only, key hash never readable). Until it's run, the keys page says a one-time update is needed and the API returns 503. New strings translated in all 39 languages.
+
 ## Revision 42: Company policy Q&A
 
 - Company policy Q&A (/tools/policies, in the sidebar under Documents, the Documents tab and All tools): employees ask about leave, notice period, expenses, work from home and so on, and get answers only from the company's own policy documents, with the file and page or section for every point. Follow-up questions, suggested questions, voice input, any language.

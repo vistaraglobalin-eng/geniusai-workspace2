@@ -258,6 +258,10 @@ const sv: Record<string, string> = {
   "Policy Q&A": "Policyfrågor",
   "Company policy Q&A": "Frågor om företagets policyer",
   "Employees ask, answers come from your HR policies": "Anställda frågar, svaren kommer från era HR-policyer",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Anställda ställer frågor och får svar från era egna HR-policyer, med källor."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Anställda ställer frågor och får svar från era egna HR-policyer, med källor.",
+
+  // Developer API
+  "Developer API": "Utvecklar-API",
+  "Use GeniusAI tools from your own app": "Använd GeniusAI:s verktyg från din egen app"
 };
 export default sv;

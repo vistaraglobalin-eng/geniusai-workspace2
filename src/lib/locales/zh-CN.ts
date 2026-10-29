@@ -258,6 +258,10 @@ const zhCN: Record<string, string> = {
   "Policy Q&A": "制度问答",
   "Company policy Q&A": "公司制度问答",
   "Employees ask, answers come from your HR policies": "员工提问，答案来自你们的人事制度",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "员工提问，并从你们自己的人事制度中获得附出处的答案。"
+  "Employees ask questions and get answers from your own HR policies, with sources.": "员工提问，并从你们自己的人事制度中获得附出处的答案。",
+
+  // Developer API
+  "Developer API": "开发者 API",
+  "Use GeniusAI tools from your own app": "在你自己的应用中使用 GeniusAI 工具"
 };
 export default zhCN;

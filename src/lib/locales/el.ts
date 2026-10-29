@@ -258,6 +258,10 @@ const el: Record<string, string> = {
   "Policy Q&A": "Ερωτήσεις πολιτικών",
   "Company policy Q&A": "Ερωτήσεις για τις πολιτικές της εταιρείας",
   "Employees ask, answers come from your HR policies": "Οι εργαζόμενοι ρωτούν, οι απαντήσεις από τις πολιτικές HR σας",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Οι εργαζόμενοι κάνουν ερωτήσεις και παίρνουν απαντήσεις από τις δικές σας πολιτικές HR, με πηγές."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Οι εργαζόμενοι κάνουν ερωτήσεις και παίρνουν απαντήσεις από τις δικές σας πολιτικές HR, με πηγές.",
+
+  // Developer API
+  "Developer API": "API για προγραμματιστές",
+  "Use GeniusAI tools from your own app": "Χρησιμοποιήστε τα εργαλεία του GeniusAI από τη δική σας εφαρμογή"
 };
 export default el;

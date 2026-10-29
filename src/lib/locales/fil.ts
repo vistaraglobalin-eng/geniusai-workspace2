@@ -258,6 +258,10 @@ const fil: Record<string, string> = {
   "Policy Q&A": "Tanong sa patakaran",
   "Company policy Q&A": "Tanong sa patakaran ng kumpanya",
   "Employees ask, answers come from your HR policies": "Nagtatanong ang empleyado, sagot mula sa HR policies ninyo",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Nagtatanong ang mga empleyado at kumukuha ng sagot mula sa sarili ninyong HR policies, may sanggunian."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Nagtatanong ang mga empleyado at kumukuha ng sagot mula sa sarili ninyong HR policies, may sanggunian.",
+
+  // Developer API
+  "Developer API": "Developer API",
+  "Use GeniusAI tools from your own app": "Gamitin ang mga tool ng GeniusAI sa sarili mong app"
 };
 export default fil;

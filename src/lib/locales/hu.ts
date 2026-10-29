@@ -258,6 +258,10 @@ const hu: Record<string, string> = {
   "Policy Q&A": "Szabályzati kérdések",
   "Company policy Q&A": "Céges szabályzat kérdések",
   "Employees ask, answers come from your HR policies": "A dolgozók kérdeznek, a válaszok a HR-szabályzataitokból",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "A dolgozók kérdeznek, és a saját HR-szabályzataitokból kapnak választ, forrásmegjelöléssel."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "A dolgozók kérdeznek, és a saját HR-szabályzataitokból kapnak választ, forrásmegjelöléssel.",
+
+  // Developer API
+  "Developer API": "Fejlesztői API",
+  "Use GeniusAI tools from your own app": "Használja a GeniusAI eszközeit a saját alkalmazásából"
 };
 export default hu;

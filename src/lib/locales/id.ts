@@ -258,6 +258,10 @@ const id: Record<string, string> = {
   "Policy Q&A": "Tanya jawab kebijakan",
   "Company policy Q&A": "Tanya jawab kebijakan perusahaan",
   "Employees ask, answers come from your HR policies": "Karyawan bertanya, jawaban dari kebijakan HR Anda",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Karyawan bertanya dan mendapat jawaban dari kebijakan HR Anda sendiri, lengkap dengan sumbernya."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Karyawan bertanya dan mendapat jawaban dari kebijakan HR Anda sendiri, lengkap dengan sumbernya.",
+
+  // Developer API
+  "Developer API": "API pengembang",
+  "Use GeniusAI tools from your own app": "Gunakan alat GeniusAI dari aplikasi Anda sendiri"
 };
 export default id;

@@ -258,6 +258,10 @@ const nl: Record<string, string> = {
   "Policy Q&A": "Beleidsvragen",
   "Company policy Q&A": "Vragen over bedrijfsbeleid",
   "Employees ask, answers come from your HR policies": "Medewerkers vragen, antwoorden komen uit jullie HR-beleid",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Medewerkers stellen vragen en krijgen antwoorden uit jullie eigen HR-beleid, met bronnen."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Medewerkers stellen vragen en krijgen antwoorden uit jullie eigen HR-beleid, met bronnen.",
+
+  // Developer API
+  "Developer API": "Ontwikkelaars-API",
+  "Use GeniusAI tools from your own app": "Gebruik GeniusAI-tools vanuit je eigen app"
 };
 export default nl;

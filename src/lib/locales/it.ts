@@ -258,6 +258,10 @@ const it: Record<string, string> = {
   "Policy Q&A": "Domande sulle policy",
   "Company policy Q&A": "Domande sulle policy aziendali",
   "Employees ask, answers come from your HR policies": "I dipendenti chiedono, le risposte vengono dalle vostre policy HR",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "I dipendenti fanno domande e ricevono risposte dalle vostre policy HR, con le fonti."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "I dipendenti fanno domande e ricevono risposte dalle vostre policy HR, con le fonti.",
+
+  // Developer API
+  "Developer API": "API per sviluppatori",
+  "Use GeniusAI tools from your own app": "Usa gli strumenti GeniusAI dalla tua app"
 };
 export default it;

@@ -258,6 +258,10 @@ const ne: Record<string, string> = {
   "Policy Q&A": "नीति प्रश्नोत्तर",
   "Company policy Q&A": "कम्पनी नीति प्रश्नोत्तर",
   "Employees ask, answers come from your HR policies": "कर्मचारीले सोध्छन्, जवाफ तपाईंका HR नीतिबाट",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "कर्मचारीले प्रश्न सोध्छन् र तपाईंकै HR नीतिबाट स्रोतसहित जवाफ पाउँछन्।"
+  "Employees ask questions and get answers from your own HR policies, with sources.": "कर्मचारीले प्रश्न सोध्छन् र तपाईंकै HR नीतिबाट स्रोतसहित जवाफ पाउँछन्।",
+
+  // Developer API
+  "Developer API": "डेभलपर API",
+  "Use GeniusAI tools from your own app": "आफ्नै एपबाट GeniusAI उपकरणहरू प्रयोग गर्नुहोस्"
 };
 export default ne;

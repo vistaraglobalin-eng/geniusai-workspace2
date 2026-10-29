@@ -258,6 +258,10 @@ const ja: Record<string, string> = {
   "Policy Q&A": "規程Q&A",
   "Company policy Q&A": "社内規程Q&A",
   "Employees ask, answers come from your HR policies": "社員の質問に、人事規程から回答",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "社員が質問すると、自社の人事規程から出典付きで回答します。"
+  "Employees ask questions and get answers from your own HR policies, with sources.": "社員が質問すると、自社の人事規程から出典付きで回答します。",
+
+  // Developer API
+  "Developer API": "開発者向け API",
+  "Use GeniusAI tools from your own app": "自社アプリから GeniusAI のツールを使う"
 };
 export default ja;

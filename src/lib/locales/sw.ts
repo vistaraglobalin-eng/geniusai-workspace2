@@ -258,6 +258,10 @@ const sw: Record<string, string> = {
   "Policy Q&A": "Maswali ya sera",
   "Company policy Q&A": "Maswali ya sera za kampuni",
   "Employees ask, answers come from your HR policies": "Wafanyakazi huuliza, majibu kutoka sera zako za HR",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Wafanyakazi huuliza maswali na kupata majibu kutoka sera zako za HR, pamoja na vyanzo."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Wafanyakazi huuliza maswali na kupata majibu kutoka sera zako za HR, pamoja na vyanzo.",
+
+  // Developer API
+  "Developer API": "API ya wasanidi",
+  "Use GeniusAI tools from your own app": "Tumia zana za GeniusAI kutoka programu yako mwenyewe"
 };
 export default sw;

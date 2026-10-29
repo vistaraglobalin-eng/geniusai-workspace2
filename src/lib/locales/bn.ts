@@ -281,6 +281,10 @@ const bn: Record<string, string> = {
   "Policy Q&A": "নীতি প্রশ্নোত্তর",
   "Company policy Q&A": "কোম্পানির নীতি প্রশ্নোত্তর",
   "Employees ask, answers come from your HR policies": "কর্মীরা প্রশ্ন করেন, উত্তর আসে আপনার HR নীতি থেকে",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "কর্মীরা প্রশ্ন করেন এবং আপনার নিজস্ব HR নীতি থেকে উৎস সহ উত্তর পান।"
+  "Employees ask questions and get answers from your own HR policies, with sources.": "কর্মীরা প্রশ্ন করেন এবং আপনার নিজস্ব HR নীতি থেকে উৎস সহ উত্তর পান।",
+
+  // Developer API
+  "Developer API": "ডেভেলপার API",
+  "Use GeniusAI tools from your own app": "নিজের অ্যাপ থেকে GeniusAI টুল ব্যবহার করুন"
 };
 export default bn;
