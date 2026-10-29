@@ -258,6 +258,10 @@ const vi: Record<string, string> = {
   "Policy Q&A": "Hỏi đáp quy định",
   "Company policy Q&A": "Hỏi đáp quy định công ty",
   "Employees ask, answers come from your HR policies": "Nhân viên hỏi, câu trả lời lấy từ quy định nhân sự của bạn",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Nhân viên đặt câu hỏi và nhận câu trả lời từ chính quy định nhân sự của bạn, kèm nguồn."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Nhân viên đặt câu hỏi và nhận câu trả lời từ chính quy định nhân sự của bạn, kèm nguồn.",
+
+  // Developer API
+  "Developer API": "API cho nhà phát triển",
+  "Use GeniusAI tools from your own app": "Dùng công cụ GeniusAI ngay trong ứng dụng của bạn"
 };
 export default vi;

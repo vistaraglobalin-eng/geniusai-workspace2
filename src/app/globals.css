@@ -2606,3 +2606,27 @@ html[data-motion="reduce"] .voice-btn.on { animation: none; }
 .pq-docs li span { overflow-wrap: anywhere; }
 .pq-docs li svg { margin-top: 3px; color: var(--text-3); }
 .quiet-button.is-on { color: var(--accent-text); border-color: var(--accent-border); background: color-mix(in srgb, var(--accent-text) 8%, var(--surface)); }
+
+/* Developer API keys (/settings/api) */
+.ak-wrap { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+.ak-card { display: flex; flex-direction: column; gap: 12px; }
+.ak-card h2 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1.02rem; }
+.ak-create { display: flex; gap: 8px; flex-wrap: wrap; }
+.ak-create .text-input { flex: 1 1 220px; }
+.ak-fresh { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--warning-border); background: var(--warning-bg); }
+.ak-fresh p { margin: 0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.ak-fresh code { display: block; width: 100%; padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); font-size: .85rem; overflow-wrap: anywhere; user-select: all; }
+.ak-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.ak-list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+.ak-list li:first-child { border-top: 0; }
+.ak-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ak-meta strong { font-size: .92rem; }
+.ak-meta span { font-size: .78rem; color: var(--text-3); overflow-wrap: anywhere; }
+.ak-meta code { font-size: .78rem; }
+
+/* Developer API guide (/developers) */
+.api-docs h3 { font-family: var(--font-sans); font-size: 1rem; margin: 22px 0 6px; }
+.api-docs code { font-size: .86em; background: var(--surface-2); border-radius: 6px; padding: 1px 5px; overflow-wrap: anywhere; }
+.api-code { margin: 8px 0 14px; padding: 12px 14px; border-radius: 12px; background: #16161a; color: #e9e9ee; font-size: .8rem; line-height: 1.55; overflow-x: auto; white-space: pre; }
+.api-code code { background: none; padding: 0; color: inherit; font-size: inherit; overflow-wrap: normal; }
+.api-small { font-size: .82rem; color: var(--text-3); }

@@ -281,6 +281,10 @@ const te: Record<string, string> = {
   "Policy Q&A": "విధానాల ప్రశ్నోత్తరాలు",
   "Company policy Q&A": "కంపెనీ విధానాల ప్రశ్నోత్తరాలు",
   "Employees ask, answers come from your HR policies": "ఉద్యోగులు అడుగుతారు, సమాధానాలు మీ HR విధానాల నుండి",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "ఉద్యోగులు ప్రశ్నలు అడిగి, మీ సొంత HR విధానాల నుండి మూలాలతో సమాధానాలు పొందుతారు."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ఉద్యోగులు ప్రశ్నలు అడిగి, మీ సొంత HR విధానాల నుండి మూలాలతో సమాధానాలు పొందుతారు.",
+
+  // Developer API
+  "Developer API": "డెవలపర్ API",
+  "Use GeniusAI tools from your own app": "మీ యాప్ నుండి GeniusAI టూల్స్ వాడండి"
 };
 export default te;

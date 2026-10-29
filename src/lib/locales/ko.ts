@@ -258,6 +258,10 @@ const ko: Record<string, string> = {
   "Policy Q&A": "규정 Q&A",
   "Company policy Q&A": "회사 규정 Q&A",
   "Employees ask, answers come from your HR policies": "직원이 묻고, 답은 인사 규정에서",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "직원이 질문하면 회사의 인사 규정에서 출처와 함께 답을 찾아 줍니다."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "직원이 질문하면 회사의 인사 규정에서 출처와 함께 답을 찾아 줍니다.",
+
+  // Developer API
+  "Developer API": "개발자 API",
+  "Use GeniusAI tools from your own app": "내 앱에서 GeniusAI 도구 사용하기"
 };
 export default ko;

@@ -258,6 +258,10 @@ const uk: Record<string, string> = {
   "Policy Q&A": "Питання щодо політик",
   "Company policy Q&A": "Питання про політики компанії",
   "Employees ask, answers come from your HR policies": "Працівники питають — відповіді з ваших HR-політик",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Працівники ставлять запитання й отримують відповіді з ваших власних HR-політик із джерелами."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Працівники ставлять запитання й отримують відповіді з ваших власних HR-політик із джерелами.",
+
+  // Developer API
+  "Developer API": "API для розробників",
+  "Use GeniusAI tools from your own app": "Використовуйте інструменти GeniusAI у своєму застосунку"
 };
 export default uk;

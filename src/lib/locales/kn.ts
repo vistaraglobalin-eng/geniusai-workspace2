@@ -281,6 +281,10 @@ const kn: Record<string, string> = {
   "Policy Q&A": "ನೀತಿ ಪ್ರಶ್ನೋತ್ತರ",
   "Company policy Q&A": "ಕಂಪನಿ ನೀತಿ ಪ್ರಶ್ನೋತ್ತರ",
   "Employees ask, answers come from your HR policies": "ಉದ್ಯೋಗಿಗಳು ಕೇಳುತ್ತಾರೆ, ಉತ್ತರಗಳು ನಿಮ್ಮ HR ನೀತಿಗಳಿಂದ",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "ಉದ್ಯೋಗಿಗಳು ಪ್ರಶ್ನೆ ಕೇಳಿ, ನಿಮ್ಮ ಸ್ವಂತ HR ನೀತಿಗಳಿಂದ ಮೂಲಗಳೊಂದಿಗೆ ಉತ್ತರ ಪಡೆಯುತ್ತಾರೆ."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ಉದ್ಯೋಗಿಗಳು ಪ್ರಶ್ನೆ ಕೇಳಿ, ನಿಮ್ಮ ಸ್ವಂತ HR ನೀತಿಗಳಿಂದ ಮೂಲಗಳೊಂದಿಗೆ ಉತ್ತರ ಪಡೆಯುತ್ತಾರೆ.",
+
+  // Developer API
+  "Developer API": "ಡೆವಲಪರ್ API",
+  "Use GeniusAI tools from your own app": "ನಿಮ್ಮ ಆ್ಯಪ್‌ನಿಂದ GeniusAI ಟೂಲ್‌ಗಳನ್ನು ಬಳಸಿ"
 };
 export default kn;

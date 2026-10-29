@@ -281,6 +281,10 @@ const ml: Record<string, string> = {
   "Policy Q&A": "നയ ചോദ്യോത്തരം",
   "Company policy Q&A": "കമ്പനി നയ ചോദ്യോത്തരം",
   "Employees ask, answers come from your HR policies": "ജീവനക്കാർ ചോദിക്കുന്നു, ഉത്തരം നിങ്ങളുടെ HR നയങ്ങളിൽ നിന്ന്",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "ജീവനക്കാർ ചോദ്യങ്ങൾ ചോദിക്കുകയും നിങ്ങളുടെ സ്വന്തം HR നയങ്ങളിൽ നിന്ന് ഉറവിടത്തോടെ ഉത്തരം നേടുകയും ചെയ്യുന്നു."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ജീവനക്കാർ ചോദ്യങ്ങൾ ചോദിക്കുകയും നിങ്ങളുടെ സ്വന്തം HR നയങ്ങളിൽ നിന്ന് ഉറവിടത്തോടെ ഉത്തരം നേടുകയും ചെയ്യുന്നു.",
+
+  // Developer API
+  "Developer API": "ഡെവലപ്പർ API",
+  "Use GeniusAI tools from your own app": "നിങ്ങളുടെ ആപ്പിൽ നിന്ന് GeniusAI ടൂളുകൾ ഉപയോഗിക്കുക"
 };
 export default ml;

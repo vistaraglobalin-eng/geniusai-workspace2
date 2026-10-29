@@ -258,6 +258,10 @@ const ptBR: Record<string, string> = {
   "Policy Q&A": "Dúvidas sobre políticas",
   "Company policy Q&A": "Dúvidas sobre políticas da empresa",
   "Employees ask, answers come from your HR policies": "Funcionários perguntam; respostas vêm das suas políticas de RH",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Funcionários fazem perguntas e recebem respostas das suas próprias políticas de RH, com fontes."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Funcionários fazem perguntas e recebem respostas das suas próprias políticas de RH, com fontes.",
+
+  // Developer API
+  "Developer API": "API para desenvolvedores",
+  "Use GeniusAI tools from your own app": "Use as ferramentas do GeniusAI no seu próprio app"
 };
 export default ptBR;

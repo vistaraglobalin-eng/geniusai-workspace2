@@ -281,6 +281,10 @@ const pa: Record<string, string> = {
   "Policy Q&A": "ਨੀਤੀ ਸਵਾਲ-ਜਵਾਬ",
   "Company policy Q&A": "ਕੰਪਨੀ ਨੀਤੀ ਸਵਾਲ-ਜਵਾਬ",
   "Employees ask, answers come from your HR policies": "ਕਰਮਚਾਰੀ ਪੁੱਛਣ, ਜਵਾਬ ਤੁਹਾਡੀਆਂ HR ਨੀਤੀਆਂ ਤੋਂ",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "ਕਰਮਚਾਰੀ ਸਵਾਲ ਪੁੱਛਦੇ ਹਨ ਅਤੇ ਤੁਹਾਡੀਆਂ ਆਪਣੀਆਂ HR ਨੀਤੀਆਂ ਤੋਂ ਸਰੋਤ ਸਮੇਤ ਜਵਾਬ ਪਾਉਂਦੇ ਹਨ।"
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ਕਰਮਚਾਰੀ ਸਵਾਲ ਪੁੱਛਦੇ ਹਨ ਅਤੇ ਤੁਹਾਡੀਆਂ ਆਪਣੀਆਂ HR ਨੀਤੀਆਂ ਤੋਂ ਸਰੋਤ ਸਮੇਤ ਜਵਾਬ ਪਾਉਂਦੇ ਹਨ।",
+
+  // Developer API
+  "Developer API": "ਡਿਵੈਲਪਰ API",
+  "Use GeniusAI tools from your own app": "ਆਪਣੀ ਐਪ ਤੋਂ GeniusAI ਟੂਲ ਵਰਤੋ"
 };
 export default pa;

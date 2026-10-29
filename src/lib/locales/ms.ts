@@ -258,6 +258,10 @@ const ms: Record<string, string> = {
   "Policy Q&A": "Soal jawab polisi",
   "Company policy Q&A": "Soal jawab polisi syarikat",
   "Employees ask, answers come from your HR policies": "Pekerja bertanya, jawapan daripada polisi HR anda",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Pekerja bertanya dan mendapat jawapan daripada polisi HR anda sendiri, dengan sumber."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Pekerja bertanya dan mendapat jawapan daripada polisi HR anda sendiri, dengan sumber.",
+
+  // Developer API
+  "Developer API": "API pembangun",
+  "Use GeniusAI tools from your own app": "Gunakan alat GeniusAI daripada aplikasi anda sendiri"
 };
 export default ms;

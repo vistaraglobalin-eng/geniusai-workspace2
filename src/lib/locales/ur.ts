@@ -258,6 +258,10 @@ const ur: Record<string, string> = {
   "Policy Q&A": "پالیسی سوال جواب",
   "Company policy Q&A": "کمپنی پالیسی سوال جواب",
   "Employees ask, answers come from your HR policies": "ملازمین پوچھیں، جواب آپ کی HR پالیسیوں سے",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "ملازمین سوال پوچھیں اور آپ کی اپنی HR پالیسیوں سے حوالوں کے ساتھ جواب پائیں۔"
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ملازمین سوال پوچھیں اور آپ کی اپنی HR پالیسیوں سے حوالوں کے ساتھ جواب پائیں۔",
+
+  // Developer API
+  "Developer API": "ڈیولپر API",
+  "Use GeniusAI tools from your own app": "اپنی ایپ سے GeniusAI ٹولز استعمال کریں"
 };
 export default ur;

@@ -258,6 +258,10 @@ const zhTW: Record<string, string> = {
   "Policy Q&A": "制度問答",
   "Company policy Q&A": "公司制度問答",
   "Employees ask, answers come from your HR policies": "員工提問，答案來自你們的人事制度",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "員工提問，並從你們自己的人事制度中取得附出處的答案。"
+  "Employees ask questions and get answers from your own HR policies, with sources.": "員工提問，並從你們自己的人事制度中取得附出處的答案。",
+
+  // Developer API
+  "Developer API": "開發者 API",
+  "Use GeniusAI tools from your own app": "在你自己的應用程式中使用 GeniusAI 工具"
 };
 export default zhTW;

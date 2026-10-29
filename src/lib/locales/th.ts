@@ -258,6 +258,10 @@ const th: Record<string, string> = {
   "Policy Q&A": "ถามตอบนโยบาย",
   "Company policy Q&A": "ถามตอบนโยบายบริษัท",
   "Employees ask, answers come from your HR policies": "พนักงานถาม คำตอบมาจากนโยบาย HR ของคุณ",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "พนักงานถามคำถามและได้คำตอบจากนโยบาย HR ของคุณเองพร้อมแหล่งอ้างอิง"
+  "Employees ask questions and get answers from your own HR policies, with sources.": "พนักงานถามคำถามและได้คำตอบจากนโยบาย HR ของคุณเองพร้อมแหล่งอ้างอิง",
+
+  // Developer API
+  "Developer API": "API สำหรับนักพัฒนา",
+  "Use GeniusAI tools from your own app": "ใช้เครื่องมือ GeniusAI จากแอปของคุณเอง"
 };
 export default th;

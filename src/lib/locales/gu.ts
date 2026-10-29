@@ -281,6 +281,10 @@ const gu: Record<string, string> = {
   "Policy Q&A": "નીતિ પ્રશ્નોત્તરી",
   "Company policy Q&A": "કંપની નીતિ પ્રશ્નોત્તરી",
   "Employees ask, answers come from your HR policies": "કર્મચારીઓ પૂછે, જવાબ તમારી HR નીતિઓમાંથી",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "કર્મચારીઓ પ્રશ્ન પૂછે અને તમારી પોતાની HR નીતિઓમાંથી સ્રોત સાથે જવાબ મેળવે."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "કર્મચારીઓ પ્રશ્ન પૂછે અને તમારી પોતાની HR નીતિઓમાંથી સ્રોત સાથે જવાબ મેળવે.",
+
+  // Developer API
+  "Developer API": "ડેવલપર API",
+  "Use GeniusAI tools from your own app": "તમારી ઍપમાંથી GeniusAI ટૂલ્સ વાપરો"
 };
 export default gu;

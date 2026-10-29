@@ -281,6 +281,10 @@ const ta: Record<string, string> = {
   "Policy Q&A": "கொள்கை கேள்வி-பதில்",
   "Company policy Q&A": "நிறுவனக் கொள்கை கேள்வி-பதில்",
   "Employees ask, answers come from your HR policies": "ஊழியர்கள் கேட்கிறார்கள், பதில்கள் உங்கள் HR கொள்கைகளிலிருந்து",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "ஊழியர்கள் கேள்வி கேட்டு, உங்கள் சொந்த HR கொள்கைகளிலிருந்து ஆதாரத்துடன் பதில் பெறுகிறார்கள்."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "ஊழியர்கள் கேள்வி கேட்டு, உங்கள் சொந்த HR கொள்கைகளிலிருந்து ஆதாரத்துடன் பதில் பெறுகிறார்கள்.",
+
+  // Developer API
+  "Developer API": "டெவலப்பர் API",
+  "Use GeniusAI tools from your own app": "உங்கள் ஆப்பிலிருந்து GeniusAI கருவிகளைப் பயன்படுத்துங்கள்"
 };
 export default ta;

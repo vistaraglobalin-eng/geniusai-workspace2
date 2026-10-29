@@ -258,6 +258,10 @@ const cs: Record<string, string> = {
   "Policy Q&A": "Dotazy na směrnice",
   "Company policy Q&A": "Dotazy na firemní směrnice",
   "Employees ask, answers come from your HR policies": "Zaměstnanci se ptají, odpovědi z vašich HR směrnic",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Zaměstnanci se ptají a dostávají odpovědi z vašich vlastních HR směrnic, se zdroji."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Zaměstnanci se ptají a dostávají odpovědi z vašich vlastních HR směrnic, se zdroji.",
+
+  // Developer API
+  "Developer API": "API pro vývojáře",
+  "Use GeniusAI tools from your own app": "Používejte nástroje GeniusAI ve vlastní aplikaci"
 };
 export default cs;

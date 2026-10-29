@@ -258,6 +258,10 @@ const fa: Record<string, string> = {
   "Policy Q&A": "پرسش‌وپاسخ سیاست‌ها",
   "Company policy Q&A": "پرسش‌وپاسخ سیاست‌های شرکت",
   "Employees ask, answers come from your HR policies": "کارکنان می‌پرسند، پاسخ‌ها از سیاست‌های منابع انسانی شما",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "کارکنان می‌پرسند و پاسخ‌ها را از سیاست‌های منابع انسانی خودتان، همراه با منبع، دریافت می‌کنند."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "کارکنان می‌پرسند و پاسخ‌ها را از سیاست‌های منابع انسانی خودتان، همراه با منبع، دریافت می‌کنند.",
+
+  // Developer API
+  "Developer API": "API توسعه‌دهندگان",
+  "Use GeniusAI tools from your own app": "ابزارهای GeniusAI را در برنامهٔ خودتان به کار ببرید"
 };
 export default fa;

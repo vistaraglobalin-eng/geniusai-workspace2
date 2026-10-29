@@ -258,6 +258,10 @@ const tr: Record<string, string> = {
   "Policy Q&A": "Politika soru-cevap",
   "Company policy Q&A": "Şirket politikaları soru-cevap",
   "Employees ask, answers come from your HR policies": "Çalışanlar sorar, yanıtlar İK politikalarınızdan gelir",
-  "Employees ask questions and get answers from your own HR policies, with sources.": "Çalışanlar soru sorar ve kendi İK politikalarınızdan kaynaklı yanıtlar alır."
+  "Employees ask questions and get answers from your own HR policies, with sources.": "Çalışanlar soru sorar ve kendi İK politikalarınızdan kaynaklı yanıtlar alır.",
+
+  // Developer API
+  "Developer API": "Geliştirici API'si",
+  "Use GeniusAI tools from your own app": "GeniusAI araçlarını kendi uygulamanızdan kullanın"
 };
 export default tr;

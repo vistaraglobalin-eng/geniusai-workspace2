@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { Building2, Download, LogOut, Palette, ShieldCheck, Sparkles, UserRound, Users, Zap } from "lucide-react";
+import { Building2, Download, LogOut, Palette, ShieldCheck, Sparkles, UserRound, Users, Zap, KeyRound } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { loadWorkspaceContext } from "@/lib/workspace";
 import { AppShell } from "@/components/AppShell";
@@ -45,6 +45,7 @@ export default async function SettingsPage() {
           <a href="#appearance"><span className="app-icon sm purple"><Palette size={15} aria-hidden="true" /></span> Appearance</a>
           <a href="#privacy"><span className="app-icon sm gray"><ShieldCheck size={15} aria-hidden="true" /></span> Privacy & security</a>
           <Link href="/billing"><span className="app-icon sm green"><Zap size={15} aria-hidden="true" /></span> Plans & credits</Link>
+          <Link href="/settings/api"><span className="app-icon sm indigo"><KeyRound size={15} aria-hidden="true" /></span> Developer API</Link>
         </nav>
 
         <div className="settings-sections">
