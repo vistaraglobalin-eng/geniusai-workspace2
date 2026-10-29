@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { cookies } from "next/headers";
 import { Geist, Playfair_Display } from "next/font/google";
 import { PREFS_COOKIE, htmlAttributes, parsePreferences } from "@/lib/preferences";
+import { dirOf } from "@/lib/i18n";
 import { OfflineSupport } from "@/components/OfflineSupport";
 import { Analytics } from "@/components/Analytics";
 import { Suspense } from "react";
@@ -37,7 +38,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   // colours: no white flash in dark mode, no layout shift.
   const prefs = parsePreferences((await cookies()).get(PREFS_COOKIE)?.value);
   return (
-    <html lang={prefs.lang} {...htmlAttributes(prefs)} className={`${sans.variable} ${serif.variable}`}>
+    <html lang={prefs.lang} dir={dirOf(prefs.lang)} {...htmlAttributes(prefs)} className={`${sans.variable} ${serif.variable}`}>
       <body>{children}<OfflineSupport /><Suspense fallback={null}><Analytics /></Suspense></body>
     </html>
   );

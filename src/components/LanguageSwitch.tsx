@@ -4,7 +4,7 @@ import { useRef, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Check, Languages } from "lucide-react";
 import { PREFS_COOKIE, PREFS_COOKIE_MAX_AGE, parsePreferences, serializePreferences } from "@/lib/preferences";
-import { CLIENT_TEXT, LANGUAGES, LANGUAGE_ENGLISH, LANGUAGE_NAMES, type Lang } from "@/lib/i18n";
+import { CLIENT_TEXT, INDIAN_LANGUAGES, LANGUAGE_ENGLISH, LANGUAGE_NAMES, WORLD_LANGUAGES, dirOf, type Lang } from "@/lib/i18n";
 import { savePreferences } from "@/app/settings/actions";
 import { track } from "@/lib/analytics";
 
@@ -19,6 +19,7 @@ export function setInterfaceLanguage(lang: Lang, refresh: () => void) {
   const secure = window.location.protocol === "https:" ? "; Secure" : "";
   document.cookie = `${PREFS_COOKIE}=${serializePreferences(prefs)}; Path=/; Max-Age=${PREFS_COOKIE_MAX_AGE}; SameSite=Lax${secure}`;
   document.documentElement.lang = lang;
+  document.documentElement.dir = dirOf(lang);
   refresh();
   void savePreferences(prefs).catch(() => undefined); // this device already switched; account sync is best effort
   track("language_changed", { lang });
@@ -41,12 +42,17 @@ export function LanguageSwitch({ lang }: { lang: Lang }) {
         <Languages size={15} aria-hidden="true" /><span lang={lang}>{LANGUAGE_NAMES[lang]}</span>
       </summary>
       <div className="lang-list" role="menu">
-        {LANGUAGES.map((l) => (
-          <button key={l} type="button" role="menuitemradio" aria-checked={l === lang} className={l === lang ? "current" : ""} onClick={() => choose(l)}>
-            <span lang={l}>{LANGUAGE_NAMES[l]}</span>
-            <em>{l === "en" ? "" : LANGUAGE_ENGLISH[l]}</em>
-            {l === lang && <Check size={15} aria-hidden="true" />}
-          </button>
+        {([["India", INDIAN_LANGUAGES], ["International", WORLD_LANGUAGES]] as const).map(([group, list]) => (
+          <div key={group} role="group" aria-label={group}>
+            <span className="lang-group" aria-hidden="true">{group}</span>
+            {list.map((l) => (
+              <button key={l} type="button" role="menuitemradio" aria-checked={l === lang} className={l === lang ? "current" : ""} onClick={() => choose(l)}>
+                <span lang={l} dir={dirOf(l)}>{LANGUAGE_NAMES[l]}</span>
+                <em>{l === "en" ? "" : LANGUAGE_ENGLISH[l]}</em>
+                {l === lang && <Check size={15} aria-hidden="true" />}
+              </button>
+            ))}
+          </div>
         ))}
       </div>
     </details>

@@ -1,5 +1,13 @@
 # Changes
 
+## Revision 40: 30 international languages
+
+- 40 interface languages in all: the 10 Indian ones plus Spanish, French, German, Portuguese (Brazil), Italian, Dutch, Russian, Ukrainian, Polish, Turkish, Arabic, Urdu, Persian, Hebrew, Chinese (Simplified and Traditional), Japanese, Korean, Indonesian, Malay, Vietnamese, Thai, Filipino, Swahili, Greek, Czech, Romanian, Hungarian, Swedish and Nepali. Each covers the same 247 strings as Hindi (navigation, Home, the four area pages, All tools).
+- The language menu (top bar) and Settings → Language are grouped into "India" and "International"; each language is listed in its own script with its English name.
+- Right-to-left: Arabic, Urdu, Persian and Hebrew set dir="rtl", so the whole layout mirrors (sidebar on the right, arrows flipped); emails, amounts and percentages stay left to right.
+- Dates always use the everyday Gregorian calendar and Western digits (Arabic, Persian and Thai would otherwise default to other calendars). Voice typing listens in each language's main region (es-ES, ar-SA, ja-JP…).
+- Machine-quality translations; native-speaker review recommended before marketing in a country. No database change.
+
 ## Revision 39: Shared folders outside the workspace
 
 - Files → pick a space → **Share**: create private links that work without an account, for clients, students, a class or another team. Three kinds:
