@@ -262,6 +262,10 @@ const ms: Record<string, string> = {
 
   // Developer API
   "Developer API": "API pembangun",
-  "Use GeniusAI tools from your own app": "Gunakan alat GeniusAI daripada aplikasi anda sendiri"
+  "Use GeniusAI tools from your own app": "Gunakan alat GeniusAI daripada aplikasi anda sendiri",
+
+  // Bulk letters
+  "Bulk offer letters": "Surat tawaran pukal",
+  "Offer, appointment or experience letters for many people at once": "Surat tawaran, pelantikan atau pengalaman untuk ramai orang sekali gus"
 };
 export default ms;

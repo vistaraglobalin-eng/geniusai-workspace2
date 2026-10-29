@@ -262,6 +262,10 @@ const he: Record<string, string> = {
 
   // Developer API
   "Developer API": "API למפתחים",
-  "Use GeniusAI tools from your own app": "השתמשו בכלי GeniusAI מתוך האפליקציה שלכם"
+  "Use GeniusAI tools from your own app": "השתמשו בכלי GeniusAI מתוך האפליקציה שלכם",
+
+  // Bulk letters
+  "Bulk offer letters": "מכתבי הצעה בכמות",
+  "Offer, appointment or experience letters for many people at once": "מכתבי הצעה, מינוי או ניסיון לאנשים רבים בבת אחת"
 };
 export default he;

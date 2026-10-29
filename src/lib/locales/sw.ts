@@ -262,6 +262,10 @@ const sw: Record<string, string> = {
 
   // Developer API
   "Developer API": "API ya wasanidi",
-  "Use GeniusAI tools from your own app": "Tumia zana za GeniusAI kutoka programu yako mwenyewe"
+  "Use GeniusAI tools from your own app": "Tumia zana za GeniusAI kutoka programu yako mwenyewe",
+
+  // Bulk letters
+  "Bulk offer letters": "Barua za ofa kwa wingi",
+  "Offer, appointment or experience letters for many people at once": "Barua za ofa, uteuzi au uzoefu kwa watu wengi kwa wakati mmoja"
 };
 export default sw;

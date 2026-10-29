@@ -262,6 +262,10 @@ const ro: Record<string, string> = {
 
   // Developer API
   "Developer API": "API pentru dezvoltatori",
-  "Use GeniusAI tools from your own app": "Folosește instrumentele GeniusAI din propria aplicație"
+  "Use GeniusAI tools from your own app": "Folosește instrumentele GeniusAI din propria aplicație",
+
+  // Bulk letters
+  "Bulk offer letters": "Scrisori de ofertă în masă",
+  "Offer, appointment or experience letters for many people at once": "Scrisori de ofertă, numire sau experiență pentru mai multe persoane deodată"
 };
 export default ro;

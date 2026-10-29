@@ -285,6 +285,10 @@ const kn: Record<string, string> = {
 
   // Developer API
   "Developer API": "ಡೆವಲಪರ್ API",
-  "Use GeniusAI tools from your own app": "ನಿಮ್ಮ ಆ್ಯಪ್‌ನಿಂದ GeniusAI ಟೂಲ್‌ಗಳನ್ನು ಬಳಸಿ"
+  "Use GeniusAI tools from your own app": "ನಿಮ್ಮ ಆ್ಯಪ್‌ನಿಂದ GeniusAI ಟೂಲ್‌ಗಳನ್ನು ಬಳಸಿ",
+
+  // Bulk letters
+  "Bulk offer letters": "ಒಟ್ಟು ಆಫರ್ ಲೆಟರ್‌ಗಳು",
+  "Offer, appointment or experience letters for many people at once": "ಒಮ್ಮೆಗೇ ಹಲವರಿಗೆ ಆಫರ್, ನೇಮಕಾತಿ ಅಥವಾ ಅನುಭವ ಪತ್ರಗಳು"
 };
 export default kn;

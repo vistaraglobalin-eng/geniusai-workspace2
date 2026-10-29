@@ -262,6 +262,10 @@ const tr: Record<string, string> = {
 
   // Developer API
   "Developer API": "Geliştirici API'si",
-  "Use GeniusAI tools from your own app": "GeniusAI araçlarını kendi uygulamanızdan kullanın"
+  "Use GeniusAI tools from your own app": "GeniusAI araçlarını kendi uygulamanızdan kullanın",
+
+  // Bulk letters
+  "Bulk offer letters": "Toplu teklif mektupları",
+  "Offer, appointment or experience letters for many people at once": "Birçok kişi için aynı anda teklif, atama veya deneyim mektupları"
 };
 export default tr;

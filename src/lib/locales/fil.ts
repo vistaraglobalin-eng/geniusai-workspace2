@@ -262,6 +262,10 @@ const fil: Record<string, string> = {
 
   // Developer API
   "Developer API": "Developer API",
-  "Use GeniusAI tools from your own app": "Gamitin ang mga tool ng GeniusAI sa sarili mong app"
+  "Use GeniusAI tools from your own app": "Gamitin ang mga tool ng GeniusAI sa sarili mong app",
+
+  // Bulk letters
+  "Bulk offer letters": "Maramihang offer letter",
+  "Offer, appointment or experience letters for many people at once": "Offer, appointment o experience letter para sa maraming tao nang sabay-sabay"
 };
 export default fil;

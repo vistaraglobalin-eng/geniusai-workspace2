@@ -262,6 +262,10 @@ const th: Record<string, string> = {
 
   // Developer API
   "Developer API": "API สำหรับนักพัฒนา",
-  "Use GeniusAI tools from your own app": "ใช้เครื่องมือ GeniusAI จากแอปของคุณเอง"
+  "Use GeniusAI tools from your own app": "ใช้เครื่องมือ GeniusAI จากแอปของคุณเอง",
+
+  // Bulk letters
+  "Bulk offer letters": "จดหมายเสนองานแบบกลุ่ม",
+  "Offer, appointment or experience letters for many people at once": "จดหมายเสนองาน แต่งตั้ง หรือรับรองการทำงานสำหรับหลายคนพร้อมกัน"
 };
 export default th;

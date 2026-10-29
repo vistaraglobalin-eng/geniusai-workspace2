@@ -2630,3 +2630,16 @@ html[data-motion="reduce"] .voice-btn.on { animation: none; }
 .api-code { margin: 8px 0 14px; padding: 12px 14px; border-radius: 12px; background: #16161a; color: #e9e9ee; font-size: .8rem; line-height: 1.55; overflow-x: auto; white-space: pre; }
 .api-code code { background: none; padding: 0; color: inherit; font-size: inherit; overflow-wrap: normal; }
 .api-small { font-size: .82rem; color: var(--text-3); }
+
+/* Bulk letters (/tools/letters/bulk) */
+.bl-layout .dg-result { grid-column: 1 / -1; }
+.bl-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.bl-upload { cursor: pointer; }
+.bl-summary { margin: 4px 0 0; font-size: .9rem; }
+.bl-summary .ok { color: #1f9d55; font-weight: 600; }
+.bl-summary .bad { color: var(--danger-text); font-weight: 600; }
+.bl-table { min-width: 520px; }
+.bl-problem { color: var(--danger-text); font-size: .78rem; }
+.bl-ok { display: inline-flex; align-items: center; gap: 4px; color: #1f9d55; font-weight: 600; font-size: .8rem; }
+.bl-done { display: flex; flex-direction: column; gap: 10px; }
+.bl-done > p { display: flex; align-items: center; gap: 6px; margin: 0; font-weight: 600; }

@@ -262,6 +262,10 @@ const ja: Record<string, string> = {
 
   // Developer API
   "Developer API": "開発者向け API",
-  "Use GeniusAI tools from your own app": "自社アプリから GeniusAI のツールを使う"
+  "Use GeniusAI tools from your own app": "自社アプリから GeniusAI のツールを使う",
+
+  // Bulk letters
+  "Bulk offer letters": "内定通知書の一括作成",
+  "Offer, appointment or experience letters for many people at once": "複数人分の内定・辞令・在職証明書をまとめて作成"
 };
 export default ja;

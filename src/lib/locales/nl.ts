@@ -262,6 +262,10 @@ const nl: Record<string, string> = {
 
   // Developer API
   "Developer API": "Ontwikkelaars-API",
-  "Use GeniusAI tools from your own app": "Gebruik GeniusAI-tools vanuit je eigen app"
+  "Use GeniusAI tools from your own app": "Gebruik GeniusAI-tools vanuit je eigen app",
+
+  // Bulk letters
+  "Bulk offer letters": "Aanbiedingsbrieven in bulk",
+  "Offer, appointment or experience letters for many people at once": "Aanbiedings-, aanstellings- of werkgeversverklaringen voor veel mensen tegelijk"
 };
 export default nl;

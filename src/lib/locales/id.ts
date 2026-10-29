@@ -262,6 +262,10 @@ const id: Record<string, string> = {
 
   // Developer API
   "Developer API": "API pengembang",
-  "Use GeniusAI tools from your own app": "Gunakan alat GeniusAI dari aplikasi Anda sendiri"
+  "Use GeniusAI tools from your own app": "Gunakan alat GeniusAI dari aplikasi Anda sendiri",
+
+  // Bulk letters
+  "Bulk offer letters": "Surat penawaran massal",
+  "Offer, appointment or experience letters for many people at once": "Surat penawaran, pengangkatan, atau pengalaman kerja untuk banyak orang sekaligus"
 };
 export default id;

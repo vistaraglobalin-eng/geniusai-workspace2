@@ -20,6 +20,7 @@ export type AnalyticsEvent =
   | "voice_input_used"
   | "space_shared"
   | "question_paper_exported"
+  | "bulk_letters_made"
   | "onboarding_completed";
 
 type Props = Record<string, string | number | boolean | null | undefined>;

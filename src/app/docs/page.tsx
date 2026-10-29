@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Combine, EyeOff, FilePen, FileType2, FileStack, LayoutTemplate, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet, ScrollText } from "lucide-react";
+import { Combine, EyeOff, FilePen, FileType2, FileStack, LayoutTemplate, Languages, ListChecks, Mail, MessageSquareText, Minimize2, PenLine, ScanLine, ScanText, Stamp, Send, Signature, Table, GitCompareArrows, Landmark, BookCheck, Diff, Network, BookOpen, GraduationCap, FileSpreadsheet, ScrollText, Users } from "lucide-react";
 import { Hub } from "@/components/Hub";
 
 export const metadata: Metadata = { title: "Documents · GeniusAI Workspace" };
@@ -34,7 +34,8 @@ export default function DocsPage() {
       { title: "Write", rows: [
         { href: "/templates", title: "Templates library", text: "35+ Indian formats: HR, bank, GST, rent, agreements", Icon: LayoutTemplate, tint: "blue" },
         { href: "/tools/agreements", title: "Agreements", text: "Draft India-ready agreements with AI", Icon: FilePen, tint: "purple" },
-        { href: "/tools/letters", title: "Business letters", text: "Offer letters, salary slips, NOC, rent receipts", Icon: Mail, tint: "blue" }
+        { href: "/tools/letters", title: "Business letters", text: "Offer letters, salary slips, NOC, rent receipts", Icon: Mail, tint: "blue" },
+        { href: "/tools/letters/bulk", title: "Bulk offer letters", text: "Offer, appointment or experience letters for many people at once", Icon: Users, tint: "indigo" }
       ] },
       { title: "AI", rows: [
         { href: "/tools/study", title: "Quizzes & flashcards", text: "Practice tests from notes or a chapter, in Hindi too", Icon: GraduationCap, tint: "purple" },

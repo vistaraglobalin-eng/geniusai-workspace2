@@ -262,6 +262,10 @@ const cs: Record<string, string> = {
 
   // Developer API
   "Developer API": "API pro vývojáře",
-  "Use GeniusAI tools from your own app": "Používejte nástroje GeniusAI ve vlastní aplikaci"
+  "Use GeniusAI tools from your own app": "Používejte nástroje GeniusAI ve vlastní aplikaci",
+
+  // Bulk letters
+  "Bulk offer letters": "Hromadné nabídkové dopisy",
+  "Offer, appointment or experience letters for many people at once": "Nabídkové dopisy, jmenování nebo potvrzení o zaměstnání pro více lidí najednou"
 };
 export default cs;

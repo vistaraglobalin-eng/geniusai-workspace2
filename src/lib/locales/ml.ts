@@ -285,6 +285,10 @@ const ml: Record<string, string> = {
 
   // Developer API
   "Developer API": "ഡെവലപ്പർ API",
-  "Use GeniusAI tools from your own app": "നിങ്ങളുടെ ആപ്പിൽ നിന്ന് GeniusAI ടൂളുകൾ ഉപയോഗിക്കുക"
+  "Use GeniusAI tools from your own app": "നിങ്ങളുടെ ആപ്പിൽ നിന്ന് GeniusAI ടൂളുകൾ ഉപയോഗിക്കുക",
+
+  // Bulk letters
+  "Bulk offer letters": "ഒന്നിച്ച് ഓഫർ ലെറ്ററുകൾ",
+  "Offer, appointment or experience letters for many people at once": "ഒരേ സമയം പലർക്കും ഓഫർ, നിയമന അല്ലെങ്കിൽ പരിചയ സർട്ടിഫിക്കറ്റുകൾ"
 };
 export default ml;

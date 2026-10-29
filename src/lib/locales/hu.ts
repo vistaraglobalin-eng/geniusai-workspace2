@@ -262,6 +262,10 @@ const hu: Record<string, string> = {
 
   // Developer API
   "Developer API": "Fejlesztői API",
-  "Use GeniusAI tools from your own app": "Használja a GeniusAI eszközeit a saját alkalmazásából"
+  "Use GeniusAI tools from your own app": "Használja a GeniusAI eszközeit a saját alkalmazásából",
+
+  // Bulk letters
+  "Bulk offer letters": "Tömeges ajánlatlevelek",
+  "Offer, appointment or experience letters for many people at once": "Ajánlat-, kinevezési vagy munkáltatói igazolások egyszerre sok embernek"
 };
 export default hu;

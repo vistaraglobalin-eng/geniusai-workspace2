@@ -262,6 +262,10 @@ const ur: Record<string, string> = {
 
   // Developer API
   "Developer API": "ڈیولپر API",
-  "Use GeniusAI tools from your own app": "اپنی ایپ سے GeniusAI ٹولز استعمال کریں"
+  "Use GeniusAI tools from your own app": "اپنی ایپ سے GeniusAI ٹولز استعمال کریں",
+
+  // Bulk letters
+  "Bulk offer letters": "بیک وقت آفر لیٹرز",
+  "Offer, appointment or experience letters for many people at once": "کئی لوگوں کے لیے ایک ساتھ آفر، تقرری یا تجربے کے خطوط"
 };
 export default ur;

@@ -38,7 +38,7 @@ export function crc32(data: Uint8Array): number {
   return (c ^ 0xffffffff) >>> 0;
 }
 
-function zip(files: { name: string; data: Uint8Array }[]): Uint8Array<ArrayBuffer> {
+export function zip(files: { name: string; data: Uint8Array }[]): Uint8Array<ArrayBuffer> {
   const parts: Uint8Array[] = [];
   const central: Uint8Array[] = [];
   let offset = 0;

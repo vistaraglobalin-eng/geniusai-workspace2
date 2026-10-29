@@ -262,6 +262,10 @@ const sv: Record<string, string> = {
 
   // Developer API
   "Developer API": "Utvecklar-API",
-  "Use GeniusAI tools from your own app": "Använd GeniusAI:s verktyg från din egen app"
+  "Use GeniusAI tools from your own app": "Använd GeniusAI:s verktyg från din egen app",
+
+  // Bulk letters
+  "Bulk offer letters": "Erbjudandebrev i bulk",
+  "Offer, appointment or experience letters for many people at once": "Erbjudande-, anställnings- eller tjänstgöringsintyg för många på en gång"
 };
 export default sv;
