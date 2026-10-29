@@ -289,6 +289,11 @@ const ml: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "ഒന്നിച്ച് ഓഫർ ലെറ്ററുകൾ",
-  "Offer, appointment or experience letters for many people at once": "ഒരേ സമയം പലർക്കും ഓഫർ, നിയമന അല്ലെങ്കിൽ പരിചയ സർട്ടിഫിക്കറ്റുകൾ"
+  "Offer, appointment or experience letters for many people at once": "ഒരേ സമയം പലർക്കും ഓഫർ, നിയമന അല്ലെങ്കിൽ പരിചയ സർട്ടിഫിക്കറ്റുകൾ",
+
+  // Sales report
+  "Sales report": "വിൽപ്പന റിപ്പോർട്ട്",
+  "Sales": "വിൽപ്പന",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe, HubSpot വിൽപ്പന ഒരു റിപ്പോർട്ടിൽ, AI നിർദ്ദേശങ്ങളോടെ"
 };
 export default ml;

@@ -266,6 +266,11 @@ const id: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Surat penawaran massal",
-  "Offer, appointment or experience letters for many people at once": "Surat penawaran, pengangkatan, atau pengalaman kerja untuk banyak orang sekaligus"
+  "Offer, appointment or experience letters for many people at once": "Surat penawaran, pengangkatan, atau pengalaman kerja untuk banyak orang sekaligus",
+
+  // Sales report
+  "Sales report": "Laporan penjualan",
+  "Sales": "Penjualan",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Penjualan Shopify, Stripe, dan HubSpot dalam satu laporan, dengan saran AI"
 };
 export default id;

@@ -289,6 +289,11 @@ const kn: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "ಒಟ್ಟು ಆಫರ್ ಲೆಟರ್‌ಗಳು",
-  "Offer, appointment or experience letters for many people at once": "ಒಮ್ಮೆಗೇ ಹಲವರಿಗೆ ಆಫರ್, ನೇಮಕಾತಿ ಅಥವಾ ಅನುಭವ ಪತ್ರಗಳು"
+  "Offer, appointment or experience letters for many people at once": "ಒಮ್ಮೆಗೇ ಹಲವರಿಗೆ ಆಫರ್, ನೇಮಕಾತಿ ಅಥವಾ ಅನುಭವ ಪತ್ರಗಳು",
+
+  // Sales report
+  "Sales report": "ಮಾರಾಟ ವರದಿ",
+  "Sales": "ಮಾರಾಟ",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe ಮತ್ತು HubSpot ಮಾರಾಟ ಒಂದೇ ವರದಿಯಲ್ಲಿ, AI ಸಲಹೆಗಳೊಂದಿಗೆ"
 };
 export default kn;

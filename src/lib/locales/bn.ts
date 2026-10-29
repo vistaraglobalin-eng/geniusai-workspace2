@@ -289,6 +289,11 @@ const bn: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "একসাথে অনেক অফার লেটার",
-  "Offer, appointment or experience letters for many people at once": "একসাথে অনেকের অফার, নিয়োগ বা অভিজ্ঞতার চিঠি"
+  "Offer, appointment or experience letters for many people at once": "একসাথে অনেকের অফার, নিয়োগ বা অভিজ্ঞতার চিঠি",
+
+  // Sales report
+  "Sales report": "বিক্রয় রিপোর্ট",
+  "Sales": "বিক্রয়",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe ও HubSpot-এর বিক্রি এক রিপোর্টে, AI পরামর্শ সহ"
 };
 export default bn;

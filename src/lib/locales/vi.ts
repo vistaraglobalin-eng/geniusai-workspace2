@@ -266,6 +266,11 @@ const vi: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Thư mời nhận việc hàng loạt",
-  "Offer, appointment or experience letters for many people at once": "Thư mời nhận việc, bổ nhiệm hoặc xác nhận kinh nghiệm cho nhiều người cùng lúc"
+  "Offer, appointment or experience letters for many people at once": "Thư mời nhận việc, bổ nhiệm hoặc xác nhận kinh nghiệm cho nhiều người cùng lúc",
+
+  // Sales report
+  "Sales report": "Báo cáo bán hàng",
+  "Sales": "Bán hàng",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Doanh số Shopify, Stripe và HubSpot trong một báo cáo, kèm gợi ý từ AI"
 };
 export default vi;

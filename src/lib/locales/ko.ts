@@ -266,6 +266,11 @@ const ko: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "채용 제안서 일괄 작성",
-  "Offer, appointment or experience letters for many people at once": "여러 명의 채용 제안서, 임용장, 경력증명서를 한 번에"
+  "Offer, appointment or experience letters for many people at once": "여러 명의 채용 제안서, 임용장, 경력증명서를 한 번에",
+
+  // Sales report
+  "Sales report": "매출 보고서",
+  "Sales": "매출",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe, HubSpot 매출을 한 보고서로, AI 추천 포함"
 };
 export default ko;

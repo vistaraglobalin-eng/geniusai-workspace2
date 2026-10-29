@@ -266,6 +266,11 @@ const hu: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Tömeges ajánlatlevelek",
-  "Offer, appointment or experience letters for many people at once": "Ajánlat-, kinevezési vagy munkáltatói igazolások egyszerre sok embernek"
+  "Offer, appointment or experience letters for many people at once": "Ajánlat-, kinevezési vagy munkáltatói igazolások egyszerre sok embernek",
+
+  // Sales report
+  "Sales report": "Értékesítési jelentés",
+  "Sales": "Értékesítés",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe és HubSpot eladások egy jelentésben, AI-javaslatokkal"
 };
 export default hu;

@@ -289,6 +289,11 @@ const mr: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "एकाच वेळी अनेक ऑफर लेटर",
-  "Offer, appointment or experience letters for many people at once": "अनेक लोकांसाठी एकाच वेळी ऑफर, नियुक्ती किंवा अनुभव पत्रे"
+  "Offer, appointment or experience letters for many people at once": "अनेक लोकांसाठी एकाच वेळी ऑफर, नियुक्ती किंवा अनुभव पत्रे",
+
+  // Sales report
+  "Sales report": "विक्री अहवाल",
+  "Sales": "विक्री",
+  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe आणि HubSpot ची विक्री एका अहवालात, AI सूचनांसह"
 };
 export default mr;
