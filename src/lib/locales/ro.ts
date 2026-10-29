@@ -266,11 +266,6 @@ const ro: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Scrisori de ofertă în masă",
-  "Offer, appointment or experience letters for many people at once": "Scrisori de ofertă, numire sau experiență pentru mai multe persoane deodată",
-
-  // Sales report
-  "Sales report": "Raport de vânzări",
-  "Sales": "Vânzări",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Vânzări din Shopify, Stripe și HubSpot într-un singur raport, cu sugestii AI"
+  "Offer, appointment or experience letters for many people at once": "Scrisori de ofertă, numire sau experiență pentru mai multe persoane deodată"
 };
 export default ro;

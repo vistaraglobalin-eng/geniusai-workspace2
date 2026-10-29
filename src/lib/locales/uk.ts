@@ -266,11 +266,6 @@ const uk: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Масові офери",
-  "Offer, appointment or experience letters for many people at once": "Офери, накази про прийняття чи довідки про стаж одразу для багатьох людей",
-
-  // Sales report
-  "Sales report": "Звіт про продажі",
-  "Sales": "Продажі",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Продажі з Shopify, Stripe і HubSpot в одному звіті, з порадами ШІ"
+  "Offer, appointment or experience letters for many people at once": "Офери, накази про прийняття чи довідки про стаж одразу для багатьох людей"
 };
 export default uk;

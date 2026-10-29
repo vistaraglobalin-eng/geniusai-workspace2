@@ -289,11 +289,6 @@ const gu: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "એકસાથે ઘણા ઑફર લેટર",
-  "Offer, appointment or experience letters for many people at once": "એકસાથે ઘણા લોકો માટે ઑફર, નિમણૂક કે અનુભવ પત્રો",
-
-  // Sales report
-  "Sales report": "વેચાણ રિપોર્ટ",
-  "Sales": "વેચાણ",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe અને HubSpot નું વેચાણ એક રિપોર્ટમાં, AI સૂચનો સાથે"
+  "Offer, appointment or experience letters for many people at once": "એકસાથે ઘણા લોકો માટે ઑફર, નિમણૂક કે અનુભવ પત્રો"
 };
 export default gu;

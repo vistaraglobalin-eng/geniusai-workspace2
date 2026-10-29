@@ -289,11 +289,6 @@ const ta: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "மொத்த நியமனக் கடிதங்கள்",
-  "Offer, appointment or experience letters for many people at once": "பலருக்கு ஒரே நேரத்தில் நியமன, பணி அல்லது அனுபவக் கடிதங்கள்",
-
-  // Sales report
-  "Sales report": "விற்பனை அறிக்கை",
-  "Sales": "விற்பனை",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe, HubSpot விற்பனை ஒரே அறிக்கையில், AI பரிந்துரைகளுடன்"
+  "Offer, appointment or experience letters for many people at once": "பலருக்கு ஒரே நேரத்தில் நியமன, பணி அல்லது அனுபவக் கடிதங்கள்"
 };
 export default ta;

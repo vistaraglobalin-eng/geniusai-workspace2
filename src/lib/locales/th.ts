@@ -266,11 +266,6 @@ const th: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "จดหมายเสนองานแบบกลุ่ม",
-  "Offer, appointment or experience letters for many people at once": "จดหมายเสนองาน แต่งตั้ง หรือรับรองการทำงานสำหรับหลายคนพร้อมกัน",
-
-  // Sales report
-  "Sales report": "รายงานยอดขาย",
-  "Sales": "ยอดขาย",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "ยอดขายจาก Shopify, Stripe และ HubSpot ในรายงานเดียว พร้อมคำแนะนำจาก AI"
+  "Offer, appointment or experience letters for many people at once": "จดหมายเสนองาน แต่งตั้ง หรือรับรองการทำงานสำหรับหลายคนพร้อมกัน"
 };
 export default th;

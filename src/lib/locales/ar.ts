@@ -266,11 +266,6 @@ const ar: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "خطابات عرض بالجملة",
-  "Offer, appointment or experience letters for many people at once": "خطابات عرض أو تعيين أو خبرة لعدة أشخاص دفعة واحدة",
-
-  // Sales report
-  "Sales report": "تقرير المبيعات",
-  "Sales": "المبيعات",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "مبيعات Shopify وStripe وHubSpot في تقرير واحد، مع خطوات تالية من الذكاء الاصطناعي"
+  "Offer, appointment or experience letters for many people at once": "خطابات عرض أو تعيين أو خبرة لعدة أشخاص دفعة واحدة"
 };
 export default ar;

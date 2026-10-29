@@ -266,11 +266,6 @@ const zhCN: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "批量录用通知书",
-  "Offer, appointment or experience letters for many people at once": "一次为多人生成录用、任命或工作证明信",
-
-  // Sales report
-  "Sales report": "销售报告",
-  "Sales": "销售",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify、Stripe 和 HubSpot 的销售汇总成一份报告，附 AI 建议"
+  "Offer, appointment or experience letters for many people at once": "一次为多人生成录用、任命或工作证明信"
 };
 export default zhCN;

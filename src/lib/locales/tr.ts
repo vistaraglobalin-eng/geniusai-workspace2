@@ -266,11 +266,6 @@ const tr: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Toplu teklif mektupları",
-  "Offer, appointment or experience letters for many people at once": "Birçok kişi için aynı anda teklif, atama veya deneyim mektupları",
-
-  // Sales report
-  "Sales report": "Satış raporu",
-  "Sales": "Satış",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe ve HubSpot satışları tek raporda, yapay zekâ önerileriyle"
+  "Offer, appointment or experience letters for many people at once": "Birçok kişi için aynı anda teklif, atama veya deneyim mektupları"
 };
 export default tr;

@@ -289,11 +289,6 @@ const te: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "బల్క్ ఆఫర్ లెటర్‌లు",
-  "Offer, appointment or experience letters for many people at once": "ఒకేసారి చాలా మందికి ఆఫర్, నియామక లేదా అనుభవ లేఖలు",
-
-  // Sales report
-  "Sales report": "అమ్మకాల నివేదిక",
-  "Sales": "అమ్మకాలు",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify, Stripe, HubSpot అమ్మకాలు ఒకే నివేదికలో, AI సూచనలతో"
+  "Offer, appointment or experience letters for many people at once": "ఒకేసారి చాలా మందికి ఆఫర్, నియామక లేదా అనుభవ లేఖలు"
 };
 export default te;

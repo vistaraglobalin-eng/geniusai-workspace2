@@ -266,11 +266,6 @@ const sw: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Barua za ofa kwa wingi",
-  "Offer, appointment or experience letters for many people at once": "Barua za ofa, uteuzi au uzoefu kwa watu wengi kwa wakati mmoja",
-
-  // Sales report
-  "Sales report": "Ripoti ya mauzo",
-  "Sales": "Mauzo",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Mauzo ya Shopify, Stripe na HubSpot katika ripoti moja, pamoja na ushauri wa AI"
+  "Offer, appointment or experience letters for many people at once": "Barua za ofa, uteuzi au uzoefu kwa watu wengi kwa wakati mmoja"
 };
 export default sw;

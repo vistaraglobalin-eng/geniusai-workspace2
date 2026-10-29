@@ -9,8 +9,6 @@ import { driveStatus, oneDriveStatus } from "@/lib/integrations/status";
 import { ConnectedApps } from "./ConnectedApps";
 import type { HookRow } from "./WebhookCard";
 import { dropboxAppKey } from "@/lib/integrations/dropbox";
-import { listConnections } from "@/lib/commerce/store";
-import { BusinessApps, type BusinessConnection } from "./BusinessApps";
 
 export const metadata: Metadata = { title: "Connected apps · GeniusAI Workspace" };
 export const dynamic = "force-dynamic";
@@ -26,7 +24,6 @@ export default async function AppsPage({ searchParams }: { searchParams: Promise
   const isAdmin = (workspace.role === "owner" || workspace.role === "admin") && workspace.access === "edit";
   const { data: hookData, error: hookErr } = await supabase.from("workspace_integrations")
     .select("id, provider, name, url_hint, events, last_status, last_at").eq("workspace_id", workspace.id).order("created_at");
-  const biz = await listConnections(supabase, workspace.id);
   const hooksMissing = !!hookErr && /does not exist|schema cache/i.test(hookErr.message);
   const notice = sp.google === "connected" ? { ok: true, text: "Google Drive is connected." }
     : sp.google === "cancelled" ? { ok: false, text: "Google Drive wasn't connected — you cancelled on Google's screen." }
@@ -47,7 +44,6 @@ export default async function AppsPage({ searchParams }: { searchParams: Promise
       </div>
       {notice && <p className={`form-message ${notice.ok ? "success" : "error"}`} role="status">{notice.text}</p>}
       <ConnectedApps drive={drive} hooks={(hookData ?? []) as HookRow[]} isAdmin={isAdmin} hooksMissing={hooksMissing} dropboxReady={!!dropboxAppKey()} onedrive={onedrive} />
-      <BusinessApps connections={biz.rows as BusinessConnection[]} isAdmin={isAdmin} setupNeeded={biz.setupNeeded} />
     </AppShell>
   );
 }

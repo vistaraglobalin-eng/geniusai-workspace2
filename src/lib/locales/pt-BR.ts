@@ -266,11 +266,6 @@ const ptBR: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Cartas de oferta em lote",
-  "Offer, appointment or experience letters for many people at once": "Cartas de oferta, admissão ou experiência para várias pessoas de uma vez",
-
-  // Sales report
-  "Sales report": "Relatório de vendas",
-  "Sales": "Vendas",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Vendas do Shopify, Stripe e HubSpot em um relatório, com próximos passos da IA"
+  "Offer, appointment or experience letters for many people at once": "Cartas de oferta, admissão ou experiência para várias pessoas de uma vez"
 };
 export default ptBR;

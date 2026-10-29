@@ -266,11 +266,6 @@ const ms: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Surat tawaran pukal",
-  "Offer, appointment or experience letters for many people at once": "Surat tawaran, pelantikan atau pengalaman untuk ramai orang sekali gus",
-
-  // Sales report
-  "Sales report": "Laporan jualan",
-  "Sales": "Jualan",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Jualan Shopify, Stripe dan HubSpot dalam satu laporan, dengan cadangan AI"
+  "Offer, appointment or experience letters for many people at once": "Surat tawaran, pelantikan atau pengalaman untuk ramai orang sekali gus"
 };
 export default ms;

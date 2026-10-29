@@ -266,11 +266,6 @@ const fil: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Maramihang offer letter",
-  "Offer, appointment or experience letters for many people at once": "Offer, appointment o experience letter para sa maraming tao nang sabay-sabay",
-
-  // Sales report
-  "Sales report": "Ulat sa benta",
-  "Sales": "Benta",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Benta mula Shopify, Stripe at HubSpot sa iisang ulat, may mungkahi ng AI"
+  "Offer, appointment or experience letters for many people at once": "Offer, appointment o experience letter para sa maraming tao nang sabay-sabay"
 };
 export default fil;

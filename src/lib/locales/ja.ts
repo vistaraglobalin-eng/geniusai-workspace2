@@ -266,11 +266,6 @@ const ja: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "内定通知書の一括作成",
-  "Offer, appointment or experience letters for many people at once": "複数人分の内定・辞令・在職証明書をまとめて作成",
-
-  // Sales report
-  "Sales report": "売上レポート",
-  "Sales": "売上",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Shopify・Stripe・HubSpotの売上を1つのレポートに。AIによる次の一手付き"
+  "Offer, appointment or experience letters for many people at once": "複数人分の内定・辞令・在職証明書をまとめて作成"
 };
 export default ja;

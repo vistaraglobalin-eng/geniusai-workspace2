@@ -266,11 +266,6 @@ const sv: Record<string, string> = {
 
   // Bulk letters
   "Bulk offer letters": "Erbjudandebrev i bulk",
-  "Offer, appointment or experience letters for many people at once": "Erbjudande-, anställnings- eller tjänstgöringsintyg för många på en gång",
-
-  // Sales report
-  "Sales report": "Försäljningsrapport",
-  "Sales": "Försäljning",
-  "Shopify, Stripe and HubSpot sales in one report, with AI next steps": "Försäljning från Shopify, Stripe och HubSpot i en rapport, med AI-tips"
+  "Offer, appointment or experience letters for many people at once": "Erbjudande-, anställnings- eller tjänstgöringsintyg för många på en gång"
 };
 export default sv;
